@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>São José Sánchez del Río · Santos da Modernidade</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600&family=Raleway:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../style.css" />
+  <style>
+    .perfil-hero {
+      min-height: 100vh;
+      background: var(--dark);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      position: relative;
+      overflow: hidden;
+      padding-top: 80px;
+    }
+
+    .perfil-hero-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 5rem 4rem 5rem 5rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .perfil-breadcrumb {
+      font-size: 0.68rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: rgba(201,168,76,0.5);
+      margin-bottom: 2rem;
+    }
+
+    .perfil-breadcrumb a {
+      color: inherit;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .perfil-breadcrumb a:hover { color: var(--gold); }
+
+    .perfil-badge {
+      display: inline-block;
+      border: 1px solid rgba(201,168,76,0.4);
+      color: var(--gold);
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      padding: 0.35rem 0.9rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .perfil-nome {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 600;
+      color: var(--ivory);
+      line-height: 1.15;
+      margin-bottom: 0.5rem;
+      letter-spacing: 0.03em;
+    }
+
+    .perfil-titulo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      font-style: italic;
+      font-weight: 300;
+      color: var(--gold-light);
+      margin-bottom: 2rem;
+      opacity: 0.8;
+    }
+
+    .perfil-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .perfil-meta-item {
+      display: flex;
+      gap: 1rem;
+      font-size: 0.85rem;
+    }
+
+    .perfil-meta-label {
+      color: rgba(201,168,76,0.6);
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      min-width: 100px;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+    }
+
+    .perfil-meta-value { color: rgba(240,232,216,0.75); }
+
+    .perfil-frase {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-style: italic;
+      color: var(--gold-light);
+      border-left: 2px solid var(--gold);
+      padding-left: 1.25rem;
+      line-height: 1.65;
+      opacity: 0.9;
+    }
+
+    .perfil-hero-right {
+      position: relative;
+      background: var(--dark-mid);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .perfil-hero-right::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at center, rgba(201,168,76,0.06) 0%, transparent 70%);
+    }
+
+    .perfil-img-placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      color: rgba(201,168,76,0.2);
+      font-family: 'Cinzel', serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      text-align: center;
+    }
+
+    .perfil-img-placeholder-cross {
+      font-size: 5rem;
+      line-height: 1;
+      opacity: 0.15;
+    }
+
+    .perfil-hero-datas {
+      position: absolute;
+      bottom: 2rem;
+      right: 2rem;
+      text-align: right;
+    }
+
+    .perfil-hero-ano {
+      font-family: 'Cinzel', serif;
+      font-size: 4rem;
+      font-weight: 600;
+      color: rgba(201,168,76,0.08);
+      line-height: 1;
+      display: block;
+    }
+
+    .perfil-content {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .bio-section {
+      padding: 7rem 0;
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 5rem;
+      border-bottom: 1px solid var(--gold-light);
+    }
+
+    .bio-sidebar {
+      position: sticky;
+      top: 100px;
+      align-self: start;
+    }
+
+    .sidebar-tag {
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold-dark);
+      display: block;
+      margin-bottom: 1rem;
+    }
+
+    .sidebar-title {
+      font-family: 'Cinzel', serif;
+      font-size: 1.3rem;
+      font-weight: 400;
+      color: var(--dark);
+      letter-spacing: 0.06em;
+      line-height: 1.4;
+    }
+
+    .sidebar-ornament {
+      width: 30px;
+      height: 1px;
+      background: var(--gold);
+      margin: 1.5rem 0;
+    }
+
+    .sidebar-resumo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      font-style: italic;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    .bio-texto h3 {
+      font-family: 'Cinzel', serif;
+      font-size: 1rem;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      color: var(--dark);
+      margin: 2rem 0 0.75rem;
+    }
+
+    .bio-texto h3:first-child { margin-top: 0; }
+
+    .bio-texto p {
+      font-size: 0.97rem;
+      line-height: 1.9;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+    }
+
+    .bio-texto p strong {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .timeline-section {
+      padding: 7rem 0;
+      border-bottom: 1px solid var(--gold-light);
+    }
+
+    .timeline-header { margin-bottom: 3.5rem; }
+
+    .timeline-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      position: relative;
+    }
+
+    .timeline-grid::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: linear-gradient(to bottom, transparent, var(--gold-light), transparent);
+      transform: translateX(-50%);
+    }
+
+    .tl-item {
+      padding: 2rem;
+      position: relative;
+    }
+
+    .tl-item:nth-child(odd) {
+      text-align: right;
+      padding-right: 3rem;
+    }
+
+    .tl-item:nth-child(even) { padding-left: 3rem; }
+
+    .tl-item::after {
+      content: '';
+      position: absolute;
+      top: 2.5rem;
+      width: 8px;
+      height: 8px;
+      background: var(--gold);
+      transform: rotate(45deg);
+    }
+
+    .tl-item:nth-child(odd)::after { right: -4px; }
+    .tl-item:nth-child(even)::after { left: -4px; }
+
+    .tl-ano {
+      font-family: 'Cinzel', serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      color: var(--gold-dark);
+      margin-bottom: 0.4rem;
+    }
+
+    .tl-evento {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      font-weight: 400;
+      color: var(--dark);
+      margin-bottom: 0.3rem;
+    }
+
+    .tl-desc {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .milagres-section {
+      padding: 7rem 0;
+      background: var(--parchment);
+      margin: 0 -2rem;
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+
+    .milagres-inner { max-width: 1100px; margin: 0 auto; }
+
+    .milagres-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .milagre-card {
+      background: var(--ivory);
+      border: 1px solid var(--gold-light);
+      padding: 2rem;
+    }
+
+    .milagre-numero {
+      font-family: 'Cinzel', serif;
+      font-size: 2.5rem;
+      font-weight: 600;
+      color: var(--gold-light);
+      line-height: 1;
+      margin-bottom: 1rem;
+    }
+
+    .milagre-local {
+      font-size: 0.68rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold-dark);
+      margin-bottom: 0.5rem;
+    }
+
+    .milagre-titulo {
+      font-family: 'Cinzel', serif;
+      font-size: 0.95rem;
+      font-weight: 400;
+      color: var(--dark);
+      letter-spacing: 0.05em;
+      margin-bottom: 0.75rem;
+    }
+
+    .milagre-desc {
+      font-size: 0.88rem;
+      line-height: 1.75;
+      color: var(--text-muted);
+    }
+
+    .milagre-ano-badge {
+      display: inline-block;
+      margin-top: 1rem;
+      border: 1px solid var(--gold-light);
+      color: var(--gold-dark);
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      padding: 0.2rem 0.6rem;
+    }
+
+    .galeria-section {
+      padding: 7rem 0;
+      border-bottom: 1px solid var(--gold-light);
+    }
+
+    .galeria-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      grid-template-rows: 200px 200px;
+      gap: 1rem;
+      margin-top: 3rem;
+    }
+
+    .galeria-item {
+      background: var(--dark-mid);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(201,168,76,0.2);
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      font-family: 'Cinzel', serif;
+      border: 1px solid rgba(201,168,76,0.1);
+    }
+
+    .galeria-item:first-child { grid-row: 1 / 3; }
+
+    .galeria-legenda {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      text-align: center;
+      margin-top: 1rem;
+      font-style: italic;
+      font-family: 'Cormorant Garamond', serif;
+    }
+
+    .oracao-section {
+      padding: 7rem 0;
+      background: var(--blue-deep);
+      margin: 0 -2rem;
+      padding-left: 2rem;
+      padding-right: 2rem;
+      text-align: center;
+    }
+
+    .oracao-inner { max-width: 680px; margin: 0 auto; }
+    .oracao-section .section-tag { color: var(--gold); }
+
+    .oracao-titulo {
+      font-family: 'Cinzel', serif;
+      font-size: 1.4rem;
+      font-weight: 400;
+      color: var(--ivory);
+      letter-spacing: 0.08em;
+      margin-bottom: 2.5rem;
+    }
+
+    .oracao-texto {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      font-weight: 300;
+      line-height: 2;
+      color: rgba(240,232,216,0.8);
+      text-align: left;
+    }
+
+    .oracao-texto p { margin-bottom: 1rem; }
+
+    .oracao-fecho {
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: 0.7;
+      margin-top: 2rem;
+    }
+
+    .fontes-section { padding: 7rem 0; }
+
+    .fontes-lista {
+      margin-top: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .fonte-item {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 1.5rem;
+      align-items: center;
+      padding: 1.25rem 0;
+      border-bottom: 1px solid var(--gold-light);
+    }
+
+    .fonte-tipo {
+      font-size: 0.62rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold-dark);
+      border: 1px solid var(--gold-light);
+      padding: 0.2rem 0.6rem;
+      white-space: nowrap;
+    }
+
+    .fonte-titulo {
+      font-size: 0.92rem;
+      color: var(--text);
+      font-weight: 400;
+    }
+
+    .fonte-autor {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 0.2rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+    }
+
+    .fonte-link {
+      font-size: 0.7rem;
+      color: var(--gold-dark);
+      text-decoration: none;
+      letter-spacing: 0.1em;
+      white-space: nowrap;
+      transition: color 0.2s;
+    }
+
+    .fonte-link:hover { color: var(--gold); }
+
+    .nav-santos {
+      position: static;
+      background: none;
+      backdrop-filter: none;
+      padding: 3rem 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid var(--gold-light);
+      margin-top: 2rem;
+    }
+    .nav-santo-link {
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+
+    .nav-santo-dir { text-align: right; }
+
+    .nav-santo-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .nav-santo-nome {
+      font-family: 'Cinzel', serif;
+      font-size: 0.95rem;
+      color: var(--gold-dark);
+      transition: color 0.2s;
+    }
+
+    .nav-santo-link:hover .nav-santo-nome { color: var(--gold); }
+
+    .section-header-left { margin-bottom: 0; }
+
+    .section-header-left h2 {
+      font-family: 'Cinzel', serif;
+      font-size: 1.5rem;
+      font-weight: 400;
+      color: var(--dark);
+      letter-spacing: 0.08em;
+      margin-bottom: 0.5rem;
+    }
+
+    .section-header-left p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      font-style: italic;
+      color: var(--text-muted);
+    }
+
+    @media (max-width: 768px) {
+      .perfil-hero { grid-template-columns: 1fr; }
+      .perfil-hero-right { display: none; }
+      .perfil-hero-left { padding: 3rem 1.5rem; }
+      .bio-section { grid-template-columns: 1fr; gap: 2rem; }
+      .bio-sidebar { position: static; }
+      .timeline-grid { grid-template-columns: 1fr; }
+      .timeline-grid::before { display: none; }
+      .tl-item { text-align: left !important; padding: 1rem 0 1rem 2rem !important; }
+      .tl-item::after { left: 0 !important; right: auto !important; }
+      .milagres-grid { grid-template-columns: 1fr; }
+      .galeria-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+      .galeria-item:first-child { grid-row: auto; }
+      .fonte-item { grid-template-columns: 1fr; gap: 0.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="../index.html" class="nav-logo">Santos da Modernidade</a>
+    <ul class="nav-links">
+      <li><a href="../index.html#santos">Os Santos</a></li>
+      <li><a href="../index.html#categorias">Categorias</a></li>
+      <li><a href="../index.html#cronologia">Cronologia</a></li>
+      <li><a href="../index.html#mapa">Mapa</a></li>
+      <li><a href="../index.html#sobre">Sobre</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="perfil-hero">
+    <div class="perfil-hero-left">
+      <p class="perfil-breadcrumb">
+        <a href="../index.html">Início</a> &nbsp;·&nbsp;
+        <a href="../index.html#santos">Os Santos</a> &nbsp;·&nbsp;
+        José Sánchez del Río
+      </p>
+      <span class="perfil-badge">Santo · Canonizado em 2016</span>
+      <h1 class="perfil-nome">José Sánchez<br>del Río</h1>
+      <p class="perfil-titulo">"Joselito" — O Menino Mártir Cristero</p>
+      <div class="perfil-meta">
+        <div class="perfil-meta-item">
+          <span class="perfil-meta-label">Nascimento</span>
+          <span class="perfil-meta-value">28 de março de 1913 · Sahuayo, Michoacán, México</span>
+        </div>
+        <div class="perfil-meta-item">
+          <span class="perfil-meta-label">Falecimento</span>
+          <span class="perfil-meta-value">10 de fevereiro de 1928 · Sahuayo, México</span>
+        </div>
+        <div class="perfil-meta-item">
+          <span class="perfil-meta-label">Beatificação</span>
+          <span class="perfil-meta-value">20 de novembro de 2005 · Guadalajara, México</span>
+        </div>
+        <div class="perfil-meta-item">
+          <span class="perfil-meta-label">Canonização</span>
+          <span class="perfil-meta-value">16 de outubro de 2016 · Roma · Papa Francisco</span>
+        </div>
+        <div class="perfil-meta-item">
+          <span class="perfil-meta-label">Festa litúrgica</span>
+          <span class="perfil-meta-value">10 de fevereiro</span>
+        </div>
+        <div class="perfil-meta-item">
+          <span class="perfil-meta-label">Patrono</span>
+          <span class="perfil-meta-value">Jovens mártires e perseguidos pela fé</span>
+        </div>
+      </div>
+      <p class="perfil-frase">
+        "Viva Cristo Rei! Viva Santa Maria de Guadalupe!"
+      </p>
+    </div>
+    <div class="perfil-hero-right">
+      <img src="../imagens/js4.jpg" 
+       alt="José Sánches" 
+       style="width:100%; height:100%; object-fit:cover;" />
+    </div>
+      <div class="perfil-hero-datas">
+        <span class="perfil-hero-ano">1928</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTEÚDO -->
+  <div class="perfil-content">
+
+    <!-- BIOGRAFIA -->
+    <section class="bio-section" id="biografia">
+      <div class="bio-sidebar">
+        <span class="sidebar-tag">Seção 01</span>
+        <h2 class="sidebar-title">Biografia<br>Detalhada</h2>
+        <div class="sidebar-ornament"></div>
+        <p class="sidebar-resumo">
+          Um menino de 14 anos que escolheu morrer mártir a negar sua fé, num dos períodos mais sangrentos da história do catolicismo no México.
+        </p>
+      </div>
+      <div class="bio-texto">
+        <h3>O México da Guerra Cristera</h3>
+        <p>
+          Para entender José Sánchez del Río, é preciso entender o contexto em que ele viveu. Após a Revolução Mexicana, o governo de Plutarco Elías Calles aprovou em 1926 a chamada <strong>Lei Calles</strong>, que proibia o culto público, fechava seminários, expulsava sacerdotes estrangeiros e criminalizava a prática da fé católica.
+        </p>
+        <p>
+          A resposta popular foi imediata: dezenas de milhares de camponeses e jovens católicos pegaram em armas sob o grito de guerra <em>"Viva Cristo Rei!"</em>, dando início à <strong>Guerra Cristera</strong> (1926–1929), um dos conflitos religiosos mais intensos do século XX.
+        </p>
+
+        <h3>Infância e Família</h3>
+        <p>
+          José nasceu em <strong>28 de março de 1913</strong> em Sahuayo, no estado de Michoacán, México. Era o terceiro filho de Macario Sánchez e María del Río. Desde pequeno, era conhecido pela devoção intensa, pela alegria e pelo desejo ardente de servir a Deus. Seus dois irmãos mais velhos já lutavam como cristeros quando José pediu para se juntar ao movimento.
+        </p>
+        <p>
+          Com apenas <strong>14 anos</strong>, José insistiu tanto com o general cristero Luis Guízar Morfín que este acabou por aceitá-lo — não como combatente, mas como porta-bandeira e cuidador de mulas. José aceitou qualquer função, desde que pudesse estar junto à causa.
+        </p>
+
+        <h3>Captura e Prisão</h3>
+        <p>
+          Em janeiro de 1928, durante uma batalha, o cavalo do general foi abatido. José, sem hesitar, cedeu o seu próprio cavalo ao comandante para que pudesse escapar — sabendo que isso significava sua própria captura. Foi preso pelas forças federais e levado de volta a Sahuayo.
+        </p>
+        <p>
+          Na prisão, José foi mantido em condições desumanas. O prefeito local, que o conhecia desde criança, tentou convencê-lo a renegar a fé em troca da liberdade. José recusou repetidas vezes com serenidade. Sua mãe foi até ele e, ao invés de pedir que cedesse, o encorajou a permanecer firme.
+        </p>
+
+        <h3>O Martírio</h3>
+        <p>
+          Em <strong>10 de fevereiro de 1928</strong>, durante a Guerra Cristera, segundo os relatos tradicionais, suas solas dos pés foram cruelmente feridas antes dele ser obrigado a caminhar até o cemitério onde seria executado. Cada passo representava sofrimento intenso, pensado para quebrar sua resistência e fazê-lo renegar a fé. Contudo, mesmo com os pés ensanguentados e dilacerados pela violência, José seguiu adiante sem abandonar suas convicções, transformando aquela dolorosa caminhada em um testemunho marcante de coragem, fidelidade e entrega a Cristo.
+        </p>
+        <p>
+          Em cada passo, José repetia: <em>"Viva Cristo Rei! Viva Santa Maria de Guadalupe!"</em> Ao chegar ao cemitério, foi esfaqueado várias vezes e, por fim, executado com um tiro na cabeça. Tinha <strong>14 anos e 10 meses</strong>. Suas últimas palavras foram o mesmo grito de fé que repetiu durante toda a Via Crucis de seu martírio.
+        </p>
+      </div>
+    </section>
+
+    <!-- LINHA DO TEMPO -->
+    <section class="timeline-section" id="cronologia">
+      <div class="timeline-header">
+        <span class="section-tag">Seção 02</span>
+        <div class="section-header-left">
+          <h2>Linha do Tempo</h2>
+          <p>Uma vida de apenas 14 anos que se tornou símbolo de coragem e fé inabalável</p>
+        </div>
+      </div>
+      <div class="timeline-grid">
+        <div class="tl-item">
+          <p class="tl-ano">28 Mar 1913</p>
+          <h3 class="tl-evento">Nascimento em Sahuayo</h3>
+          <p class="tl-desc">Nasce no estado de Michoacán, México, terceiro filho de Macario Sánchez e María del Río.</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-ano">1926</p>
+          <h3 class="tl-evento">Lei Calles</h3>
+          <p class="tl-desc">O governo mexicano aprova leis que criminalizam a prática da fé católica, dando início à perseguição religiosa.</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-ano">1926 · 13 anos</p>
+          <h3 class="tl-evento">Início da Guerra Cristera</h3>
+          <p class="tl-desc">Católicos mexicanos pegam em armas sob o grito "Viva Cristo Rei!". Os irmãos de José se juntam ao movimento.</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-ano">Jan 1928 · 14 anos</p>
+          <h3 class="tl-evento">Ingresso como cristero</h3>
+          <p class="tl-desc">José insiste e consegue se juntar aos cristeros como porta-bandeira, sob o comando do general Guízar Morfín.</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-ano">Jan 1928</p>
+          <h3 class="tl-evento">Captura</h3>
+          <p class="tl-desc">Cede seu cavalo ao general para salvá-lo e é capturado pelas forças federais. É levado preso a Sahuayo.</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-ano">Fev 1928</p>
+          <h3 class="tl-evento">Recusa renegar a fé</h3>
+          <p class="tl-desc">Na prisão, recusa repetidamente as propostas de liberdade em troca de apostasia. Sua mãe o encoraja a permanecer firme.</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-ano">10 Fev 1928</p>
+          <h3 class="tl-evento">Martírio aos 14 anos</h3>
+          <p class="tl-desc">É torturado e executado no cemitério de Sahuayo, gritando "Viva Cristo Rei!" até o último momento.</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-ano">20 Nov 2005</p>
+          <h3 class="tl-evento">Beatificação</h3>
+          <p class="tl-desc">É beatificado em Guadalajara junto a outros mártires cristeros pelo cardeal José Saraiva Martins, representando o Papa João Paulo II.</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-ano">16 Out 2016</p>
+          <h3 class="tl-evento">Canonização</h3>
+          <p class="tl-desc">É canonizado pelo Papa Francisco em Roma, tornando-se o mais jovem mártir da Guerra Cristera elevado aos altares.</p>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- MILAGRES -->
+  <section class="milagres-section" id="milagres">
+    <div class="milagres-inner">
+      <span class="section-tag">Seção 03</span>
+      <div class="section-header-left">
+        <h2>Milagres Aprovados</h2>
+        <p>Os prodígios reconhecidos pela Igreja para sua beatificação e canonização</p>
+      </div>
+      <div class="milagres-grid">
+        <div class="milagre-card">
+          <p class="milagre-numero">01</p>
+          <p class="milagre-local">México</p>
+          <h3 class="milagre-titulo">Cura inexplicável aprovada para a beatificação</h3>
+          <p class="milagre-desc">
+            Uma cura considerada medicamente inexplicável foi reconhecida pelo Vaticano após investigação rigorosa das comissões médica e teológica. O caso envolveu uma recuperação súbita e completa atribuída à intercessão de José Sánchez del Río, abrindo o caminho para sua beatificação em 2005 junto aos demais mártires cristeros.
+          </p>
+          <span class="milagre-ano-badge">Aprovado em 2004 · para a Beatificação</span>
+        </div>
+        <div class="milagre-card">
+          <p class="milagre-numero">02</p>
+          <p class="milagre-local">México</p>
+          <h3 class="milagre-titulo">Segundo milagre aprovado para a canonização</h3>
+          <p class="milagre-desc">
+            Um segundo milagre atribuído à intercessão de José foi investigado e aprovado pelo Dicastério para as Causas dos Santos. A cura, considerada científica e medicamente inexplicável, habilitou sua canonização pelo Papa Francisco em outubro de 2016, tornando-o santo da Igreja universal.
+          </p>
+          <span class="milagre-ano-badge">Aprovado em 2015 · para a Canonização</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="perfil-content">
+
+    <!-- GALERIA -->
+    <section class="galeria-section" id="galeria">
+      <span class="section-tag">Seção 04</span>
+      <div class="section-header-left">
+        <h2>Galeria</h2>
+        <p>Imagens da vida, do martírio e da canonização de José Sánchez del Río</p>
+      </div>
+        <div class="galeria-grid">
+          
+          <div class="galeria-item"><img src="../imagens/js2.png" alt="José Sánchez" style="width:100%; height:100%; object-fit:cover;"/></div>
+          <div class="galeria-item"><img src="../imagens/js3.jpg" alt="José Sánchez" style="width:100%; height:100%; object-fit:cover;"/></div>
+          <div class="galeria-item"><img src="../imagens/js1.png" alt="José Sánchez" style="width:100%; height:100%; object-fit:cover;"/></div>
+          <div class="galeria-item"><img src="../imagens/js4.jpg" alt="José Sánchez" style="width:100%; height:100%; object-fit:cover;"/></div>
+          <div class="galeria-item"><img src="../imagens/js0.jpg" alt="José Sánchez" style="width:100%; height:100%; object-fit:cover;"/></div>
+        </div>
+      <p class="galeria-legenda">
+        As fotografias devem ser obtidas de fontes de domínio público ou com autorização dos detentores dos direitos.
+      </p>
+    </section>
+
+    <!-- FONTES -->
+    <section class="fontes-section" id="fontes">
+      <span class="section-tag">Seção 06</span>
+      <div class="section-header-left">
+        <h2>Fontes e Referências</h2>
+        <p>Documentação utilizada para a elaboração deste perfil</p>
+      </div>
+      <div class="fontes-lista">
+        <div class="fonte-item">
+          <span class="fonte-tipo">Vatican News</span>
+          <div>
+            <p class="fonte-titulo">Canonização de José Sánchez del Río — Cobertura Oficial</p>
+            <p class="fonte-autor">Vatican News · outubro de 2016</p>
+          </div>
+          <a href="https://www.vaticannews.va" target="_blank" class="fonte-link">Acessar →</a>
+        </div>
+        <div class="fonte-item">
+          <span class="fonte-tipo">Livro</span>
+          <div>
+            <p class="fonte-titulo">Viva Cristo Rei! — A Guerra Cristera e seus Mártires</p>
+            <p class="fonte-autor">Jean Meyer · Editora Perspectiva, 2013</p>
+          </div>
+          <span class="fonte-link">Impresso</span>
+        </div>
+        <div class="fonte-item">
+          <span class="fonte-tipo">Filme</span>
+          <div>
+            <p class="fonte-titulo">Cristiada (For Greater Glory)</p>
+            <p class="fonte-autor">Dir. Dean Wright · 2012 · Baseado em fatos reais da Guerra Cristera</p>
+          </div>
+          <span class="fonte-link">Audiovisual</span>
+        </div>
+        <div class="fonte-item">
+          <span class="fonte-tipo">Decreto</span>
+          <div>
+            <p class="fonte-titulo">Decreto de Canonização — Dicastério para as Causas dos Santos</p>
+            <p class="fonte-autor">Santa Sé · 2016</p>
+          </div>
+          <a href="https://www.vatican.va" target="_blank" class="fonte-link">Acessar →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- NAVEGAÇÃO -->
+    <div class="nav-santos">
+      <a href="carlo-acutis.html" class="nav-santo-link">
+        <span class="nav-santo-label">← Anterior</span>
+        <span class="nav-santo-nome">São Carlo Acutis</span>
+      </a>
+      <a href="teresa-calcuta.html" class="nav-santo-link nav-santo-dir">
+        <span class="nav-santo-label">Próximo →</span>
+        <span class="nav-santo-nome">Santa Teresa de Calcutá</span>
+      </a>
+    </div>
+
+  </div>
+
+  <!-- ORAÇÃO -->
+  <section class="oracao-section" id="oracao">
+    <div class="oracao-inner">
+      <span class="section-tag">Seção 05</span>
+      <h2 class="oracao-titulo">Oração por Intercessão de São José Sánchez del Río</h2>
+      <div class="oracao-texto">
+        <p>
+          Senhor Jesus Cristo, Tu que deste a José, ainda menino, a força de testemunhar a fé até o derramamento de sangue, concede-nos, por sua intercessão, a coragem de professar nossa fé sem medo e sem vergonha.
+        </p>
+        <p>
+          Ele poderia ter salvo a própria vida com uma simples palavra de negação. Preferiu morrer gritando o Teu nome. Que seu exemplo nos ensine que nenhum bem terreno vale mais do que a fidelidade a Ti.
+        </p>
+        <p>
+          São José Sánchez del Río, intercede por nós e por todos os que hoje sofrem perseguição por causa da fé. Que o teu grito — Viva Cristo Rei! — ressoe em nossos corações como um chamado à santidade corajosa. Amém.
+        </p>
+      </div>
+      <p class="oracao-fecho">· Para uso privado · Aprovação eclesiástica recomendada ·</p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <span class="footer-logo">Santos da Modernidade</span>
+      <ul class="footer-links">
+        <li><a href="../index.html#sobre">Sobre o Projeto</a></li>
+        <li><a href="#">Fontes</a></li>
+        <li><a href="#">Contato</a></li>
+      </ul>
+      <span class="footer-copy">© 2025 Santos da Modernidade · Ad Maiorem Dei Gloriam</span>
+    </div>
+  </footer>
+
+</body>
+</html>

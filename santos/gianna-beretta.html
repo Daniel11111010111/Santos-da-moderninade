@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Santa Gianna Beretta Molla · Santos da Modernidade</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600&family=Raleway:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../style.css" />
+  <style>
+    .perfil-hero {
+      min-height: 100vh;
+      background: var(--dark);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      position: relative;
+      overflow: hidden;
+      padding-top: 80px;
+    }
+
+    .perfil-hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 40%, rgba(201,168,76,0.07) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 40% at 20% 80%, rgba(123,28,46,0.1) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 40% at 80% 20%, rgba(27,45,79,0.12) 0%, transparent 60%);
+    }
+
+    .perfil-hero-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 5rem 4rem 5rem 5rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .perfil-breadcrumb {
+      font-size: 0.68rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: rgba(201,168,76,0.5);
+      margin-bottom: 2rem;
+    }
+    .perfil-breadcrumb a { color: inherit; text-decoration: none; transition: color 0.2s; }
+    .perfil-breadcrumb a:hover { color: var(--gold); }
+
+    .perfil-badge {
+      display: inline-block;
+      border: 1px solid rgba(201,168,76,0.4);
+      color: var(--gold);
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      padding: 0.35rem 0.9rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .perfil-nome {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 600;
+      color: var(--ivory);
+      line-height: 1.15;
+      margin-bottom: 0.5rem;
+      letter-spacing: 0.03em;
+    }
+
+    .perfil-titulo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      font-style: italic;
+      font-weight: 300;
+      color: var(--gold-light);
+      margin-bottom: 2rem;
+      opacity: 0.8;
+    }
+
+    .perfil-meta { display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 2.5rem; }
+    .perfil-meta-item { display: flex; gap: 1rem; align-items: baseline; }
+    .perfil-meta-label {
+      color: rgba(201,168,76,0.6);
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      min-width: 110px;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      flex-shrink: 0;
+    }
+    .perfil-meta-value { color: rgba(240,232,216,0.75); font-size: 0.85rem; line-height: 1.4; }
+
+    .perfil-frase {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-style: italic;
+      color: var(--gold-light);
+      border-left: 2px solid var(--gold);
+      padding-left: 1.25rem;
+      line-height: 1.65;
+      opacity: 0.9;
+    }
+
+    .perfil-hero-right {
+      position: relative;
+      background: var(--dark-mid);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .perfil-hero-right::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at center, rgba(201,168,76,0.06) 0%, transparent 70%);
+    }
+
+    .perfil-img-placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      color: rgba(201,168,76,0.2);
+      font-family: 'Cinzel', serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      text-align: center;
+    }
+
+    .perfil-img-placeholder-cross { font-size: 5rem; line-height: 1; opacity: 0.15; }
+
+    .perfil-hero-ano {
+      position: absolute;
+      bottom: 2rem; right: 2rem;
+      font-family: 'Cinzel', serif;
+      font-size: 4rem;
+      font-weight: 600;
+      color: rgba(201,168,76,0.08);
+      line-height: 1;
+    }
+
+    .perfil-content { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+
+    .section-tag { font-size: 0.65rem; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold-dark); display: block; margin-bottom: 1rem; }
+
+    .section-header-left h2 { font-family: 'Cinzel', serif; font-size: 1.5rem; font-weight: 400; color: var(--dark); letter-spacing: 0.08em; margin-bottom: 0.5rem; }
+    .section-header-left p { font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-style: italic; color: var(--text-muted); }
+
+    .bio-section { padding: 7rem 0; display: grid; grid-template-columns: 1fr 2fr; gap: 5rem; border-bottom: 1px solid var(--gold-light); }
+    .bio-sidebar { position: sticky; top: 100px; align-self: start; }
+    .sidebar-title { font-family: 'Cinzel', serif; font-size: 1.3rem; font-weight: 400; color: var(--dark); letter-spacing: 0.06em; line-height: 1.4; }
+    .sidebar-ornament { width: 30px; height: 1px; background: var(--gold); margin: 1.5rem 0; }
+    .sidebar-resumo { font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-style: italic; color: var(--text-muted); line-height: 1.7; }
+
+    .bio-texto h3 { font-family: 'Cinzel', serif; font-size: 1rem; font-weight: 400; letter-spacing: 0.1em; color: var(--dark); margin: 2rem 0 0.75rem; }
+    .bio-texto h3:first-child { margin-top: 0; }
+    .bio-texto p { font-size: 0.97rem; line-height: 1.9; color: var(--text-muted); margin-bottom: 1rem; }
+    .bio-texto p strong { color: var(--text); font-weight: 500; }
+
+    .timeline-section { padding: 7rem 0; border-bottom: 1px solid var(--gold-light); }
+    .timeline-header { margin-bottom: 3.5rem; }
+    .timeline-grid { display: grid; grid-template-columns: 1fr 1fr; position: relative; }
+    .timeline-grid::before { content: ''; position: absolute; left: 50%; top: 0; bottom: 0; width: 1px; background: linear-gradient(to bottom, transparent, var(--gold-light), transparent); transform: translateX(-50%); }
+    .tl-item { padding: 2rem; position: relative; }
+    .tl-item:nth-child(odd) { text-align: right; padding-right: 3rem; }
+    .tl-item:nth-child(even) { padding-left: 3rem; }
+    .tl-item::after { content: ''; position: absolute; top: 2.5rem; width: 8px; height: 8px; background: var(--gold); transform: rotate(45deg); }
+    .tl-item:nth-child(odd)::after { right: -4px; }
+    .tl-item:nth-child(even)::after { left: -4px; }
+    .tl-ano { font-family: 'Cinzel', serif; font-size: 0.72rem; letter-spacing: 0.2em; color: var(--gold-dark); margin-bottom: 0.4rem; }
+    .tl-evento { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; color: var(--dark); margin-bottom: 0.3rem; }
+    .tl-desc { font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; }
+
+    .milagres-section { padding: 7rem 0; background: var(--parchment); margin: 0 -2rem; padding-left: 2rem; padding-right: 2rem; border-top: 1px solid var(--gold-light); border-bottom: 1px solid var(--gold-light); }
+    .milagres-inner { max-width: 1100px; margin: 0 auto; }
+    .milagres-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 3rem; }
+    .milagre-card { background: var(--ivory); border: 1px solid var(--gold-light); padding: 2rem; }
+    .milagre-numero { font-family: 'Cinzel', serif; font-size: 2.5rem; font-weight: 600; color: var(--gold-light); line-height: 1; margin-bottom: 1rem; }
+    .milagre-local { font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold-dark); margin-bottom: 0.5rem; }
+    .milagre-titulo { font-family: 'Cinzel', serif; font-size: 0.95rem; color: var(--dark); margin-bottom: 0.75rem; }
+    .milagre-desc { font-size: 0.88rem; line-height: 1.75; color: var(--text-muted); }
+    .milagre-ano-badge { display: inline-block; margin-top: 1rem; border: 1px solid var(--gold-light); color: var(--gold-dark); font-size: 0.65rem; letter-spacing: 0.18em; padding: 0.2rem 0.6rem; }
+
+    .galeria-section { padding: 7rem 0; border-bottom: 1px solid var(--gold-light); }
+    .galeria-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; grid-template-rows: 200px 200px; gap: 1rem; margin-top: 3rem; }
+    .galeria-item { background: var(--dark-mid); display: flex; align-items: center; justify-content: center; color: rgba(201,168,76,0.2); font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; font-family: 'Cinzel', serif; border: 1px solid rgba(201,168,76,0.1); }
+    .galeria-item:first-child { grid-row: 1 / 3; }
+    .galeria-legenda { font-size: 0.75rem; color: var(--text-muted); text-align: center; margin-top: 1rem; font-style: italic; font-family: 'Cormorant Garamond', serif; }
+
+    .oracao-section { padding: 7rem 0; background: var(--blue-deep); margin: 0 -2rem; padding-left: 2rem; padding-right: 2rem; text-align: center; position: relative; overflow: hidden; }
+    .oracao-section::before { content: '"'; position: absolute; top: -2rem; left: 50%; transform: translateX(-50%); font-family: 'Cormorant Garamond', serif; font-size: 20rem; color: rgba(201,168,76,0.05); line-height: 1; pointer-events: none; }
+    .oracao-inner { max-width: 680px; margin: 0 auto; position: relative; z-index: 2; }
+    .oracao-section .section-tag { color: var(--gold); }
+    .oracao-titulo { font-family: 'Cinzel', serif; font-size: 1.4rem; color: var(--ivory); letter-spacing: 0.08em; margin-bottom: 2.5rem; }
+    .oracao-texto { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 300; line-height: 2; color: rgba(240,232,216,0.8); text-align: left; }
+    .oracao-texto p { margin-bottom: 1rem; }
+    .oracao-fecho { font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); opacity: 0.7; margin-top: 2rem; }
+
+    .fontes-section { padding: 7rem 0; }
+    .fontes-lista { margin-top: 2.5rem; display: flex; flex-direction: column; }
+    .fonte-item { display: grid; grid-template-columns: auto 1fr auto; gap: 1.5rem; align-items: center; padding: 1.25rem 0; border-bottom: 1px solid var(--gold-light); }
+    .fonte-tipo { font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold-dark); border: 1px solid var(--gold-light); padding: 0.2rem 0.6rem; white-space: nowrap; }
+    .fonte-titulo { font-size: 0.92rem; color: var(--text); }
+    .fonte-autor { font-size: 0.8rem; color: var(--text-muted); margin-top: 0.2rem; font-family: 'Cormorant Garamond', serif; font-style: italic; }
+    .fonte-link { font-size: 0.7rem; color: var(--gold-dark); text-decoration: none; letter-spacing: 0.1em; white-space: nowrap; transition: color 0.2s; }
+    .fonte-link:hover { color: var(--gold); }
+
+    .nav-santos {
+      position: static;
+      background: none;
+      backdrop-filter: none;
+      padding: 3rem 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid var(--gold-light);
+      margin-top: 2rem;
+    }
+    .nav-santo-link { text-decoration: none; display: flex; flex-direction: column; gap: 0.3rem; }
+    .nav-santo-dir { text-align: right; }
+    .nav-santo-label { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted); }
+    .nav-santo-nome { font-family: 'Cinzel', serif; font-size: 0.95rem; color: var(--gold-dark); transition: color 0.2s; }
+    .nav-santo-link:hover .nav-santo-nome { color: var(--gold); }
+
+    @media (max-width: 768px) {
+      .perfil-hero { grid-template-columns: 1fr; }
+      .perfil-hero-right { display: none; }
+      .perfil-hero-left { padding: 3rem 1.5rem; }
+      .bio-section { grid-template-columns: 1fr; gap: 2rem; }
+      .bio-sidebar { position: static; }
+      .timeline-grid { grid-template-columns: 1fr; }
+      .timeline-grid::before { display: none; }
+      .tl-item { text-align: left !important; padding: 1rem 0 1rem 2rem !important; }
+      .tl-item::after { left: 0 !important; right: auto !important; }
+      .milagres-grid { grid-template-columns: 1fr; }
+      .galeria-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+      .galeria-item:first-child { grid-row: auto; }
+      .fonte-item { grid-template-columns: 1fr; gap: 0.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="../index.html" class="nav-logo">Santos da Modernidade</a>
+    <ul class="nav-links">
+      <li><a href="../index.html#santos">Os Santos</a></li>
+      <li><a href="../index.html#categorias">Categorias</a></li>
+      <li><a href="../index.html#cronologia">Cronologia</a></li>
+      <li><a href="../index.html#mapa">Mapa</a></li>
+      <li><a href="../index.html#sobre">Sobre</a></li>
+    </ul>
+  </nav>
+
+  <section class="perfil-hero">
+    <div class="perfil-hero-bg"></div>
+    <div class="perfil-hero-left">
+      <p class="perfil-breadcrumb">
+        <a href="../index.html">Início</a> &nbsp;·&nbsp;
+        <a href="../index.html#santos">Os Santos</a> &nbsp;·&nbsp;
+        Gianna Beretta Molla
+      </p>
+      <span class="perfil-badge">Santa · Canonizada em 2004</span>
+      <h1 class="perfil-nome">Gianna<br>Beretta Molla</h1>
+      <p class="perfil-titulo">"A Santa Médica e Mãe"</p>
+      <div class="perfil-meta">
+        <div class="perfil-meta-item">
+          <span class="perfil-meta-label">Nascimento</span>
+          <span class="perfil-meta-value">4 de outubro de 1922 · Magenta, Itália</span>
+        </div>
+        <div class="perfil-meta-item">
+          <span class="perfil-meta-label">Falecimento</span>
+          <span class="perfil-meta-value">28 de abril de 1962 · Mesero, Itália</span>
+        </div>
+        <div class="perfil-meta-item">
+          <span class="perfil-meta-label">Beatificação</span>
+          <span class="perfil-meta-value">24 de abril de 1994 · Roma · João Paulo II</span>
+        </div>
+        <div class="perfil-meta-item">
+          <span class="perfil-meta-label">Canonização</span>
+          <span class="perfil-meta-value">16 de maio de 2004 · Roma · João Paulo II</span>
+        </div>
+        <div class="perfil-meta-item">
+          <span class="perfil-meta-label">Festa litúrgica</span>
+          <span class="perfil-meta-value">28 de abril</span>
+        </div>
+        <div class="perfil-meta-item">
+          <span class="perfil-meta-label">Padroeira</span>
+          <span class="perfil-meta-value">Médicos, mães e crianças por nascer</span>
+        </div>
+      </div>
+      <p class="perfil-frase">"A missão da mulher é dar vida."</p>
+    </div>
+    <div class="perfil-hero-right">
+      <img src="../imagens/sg4.jpg" 
+     alt="Gianna Beretta" 
+     style="width:100%; height:100%; object-fit:cover;" />
+      <span class="perfil-hero-ano">1962</span>
+    </div>
+  </section>
+
+  <div class="perfil-content">
+
+    <section class="bio-section" id="biografia">
+      <div class="bio-sidebar">
+        <span class="section-tag">Seção 01</span>
+        <h2 class="sidebar-title">Biografia<br>Detalhada</h2>
+        <div class="sidebar-ornament"></div>
+        <p class="sidebar-resumo">Médica pediatra, esposa e mãe italiana que sacrificou a própria vida para salvar sua filha ainda no ventre materno, tornando-se padroeira das mães e dos médicos.</p>
+      </div>
+      <div class="bio-texto">
+        <h3>Infância e Família</h3>
+        <p>Gianna Francesca Beretta nasceu em <strong>4 de outubro de 1922</strong> em Magenta, na Lombardia italiana, décima filha de um casal profundamente católico. Cresceu num ambiente de fé viva, alegria e serviço ao próximo. Sua mãe morreu quando ela tinha 19 anos, e seu pai logo depois — perdas que aprofundaram sua espiritualidade sem apagar sua alegria característica.</p>
+        <p>Era uma jovem moderna e completa: gostava de esqui, montanhismo, teatro e música. Participava ativamente da <strong>Ação Católica</strong> e da <strong>Sociedade de São Vicente de Paulo</strong>, visitando pobres e doentes.</p>
+
+        <h3>Medicina como Missão</h3>
+        <p>Em 1949, formou-se em medicina pela Universidade de Milão e especializou-se em pediatria. Para Gianna, a medicina não era apenas uma profissão — era uma <strong>missão apostólica</strong>. Dizia que o médico é chamado a ser instrumento da Providência na cura e no alívio do sofrimento humano.</p>
+        <p>Abriu seu consultório em Mesero, onde atendia crianças pobres muitas vezes sem cobrar. Era conhecida pela dedicação, competência e carinho com os pequenos pacientes.</p>
+
+        <h3>Casamento e Família</h3>
+        <p>Em 1955, casou-se com <strong>Pietro Molla</strong>, engenheiro. O casal teve três filhos: Pierluigi, Mariolina e Laura. Gianna vivia a maternidade com alegria e dedicação, sem abandonar o consultório. Ela queria mostrar que santidade e vida comum — trabalho, casamento, filhos — podiam andar juntos.</p>
+
+        <h3>A Escolha Heroica</h3>
+        <p>Em 1961, grávida do quarto filho, Gianna foi diagnosticada com um <strong>fibroma no útero</strong>. Os médicos apresentaram três opções: retirada total do útero (salvaria a mãe, mataria o bebê), aborto terapêutico, ou remoção apenas do fibroma — arriscada para ela, mas que preservaria a gravidez.</p>
+        <p>Sem hesitar, Gianna escolheu a terceira opção, dizendo claramente: <strong>"Se houver que escolher entre minha vida e a do bebê, escolham a do bebê."</strong> A cirurgia foi realizada. A gravidez continuou, mas com complicações graves.</p>
+
+        <h3>Morte e Nascimento</h3>
+        <p>Em <strong>21 de abril de 1962</strong>, nasceu <strong>Gianna Emanuela Molla</strong> — saudável. Uma semana depois, em 28 de abril de 1962, Gianna morreu de peritonite séptica, aos 39 anos, repetindo até o fim: "Jesus, eu Te amo." Sua filha Gianna Emanuela tornou-se médica e esteve presente na canonização da mãe em 2004.</p>
+      </div>
+    </section>
+
+    <section class="timeline-section" id="cronologia">
+      <div class="timeline-header">
+        <span class="section-tag">Seção 02</span>
+        <div class="section-header-left">
+          <h2>Linha do Tempo</h2>
+          <p>39 anos de vida marcados pela alegria, pela medicina e pelo sacrifício supremo de mãe</p>
+        </div>
+      </div>
+      <div class="timeline-grid">
+        <div class="tl-item">
+          <p class="tl-ano">4 Out 1922</p>
+          <h3 class="tl-evento">Nascimento em Magenta</h3>
+          <p class="tl-desc">Nasce décima filha de família italiana profundamente católica na Lombardia.</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-ano">1949 · 27 anos</p>
+          <h3 class="tl-evento">Formatura em Medicina</h3>
+          <p class="tl-desc">Gradua-se pela Universidade de Milão e especializa-se em pediatria. Abre consultório em Mesero.</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-ano">1952</p>
+          <h3 class="tl-evento">Especialização em pediatria</h3>
+          <p class="tl-desc">Conclui a especialização e passa a atender crianças pobres frequentemente sem cobrar consulta.</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-ano">1955 · 33 anos</p>
+          <h3 class="tl-evento">Casamento com Pietro Molla</h3>
+          <p class="tl-desc">Casa-se com o engenheiro Pietro Molla. O casal terá três filhos: Pierluigi, Mariolina e Laura.</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-ano">1961</p>
+          <h3 class="tl-evento">Diagnóstico do fibroma</h3>
+          <p class="tl-desc">Grávida do quarto filho, é diagnosticada com fibroma uterino. Escolhe a cirurgia que preserva o bebê, arriscando a própria vida.</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-ano">21 Abr 1962</p>
+          <h3 class="tl-evento">Nascimento de Gianna Emanuela</h3>
+          <p class="tl-desc">Sua filha nasce saudável. Gianna desenvolve peritonite séptica grave nos dias seguintes.</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-ano">28 Abr 1962</p>
+          <h3 class="tl-evento">Morte aos 39 anos</h3>
+          <p class="tl-desc">Falece em Mesero repetindo "Jesus, eu Te amo." Sua filha Gianna Emanuela torna-se médica em sua homenagem.</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-ano">16 Mai 2004</p>
+          <h3 class="tl-evento">Canonização</h3>
+          <p class="tl-desc">João Paulo II a canoniza em Roma. Sua filha Gianna Emanuela e seu marido Pietro estão presentes na cerimônia.</p>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <section class="milagres-section" id="milagres">
+    <div class="milagres-inner">
+      <span class="section-tag">Seção 03</span>
+      <div class="section-header-left">
+        <h2>Milagres Aprovados</h2>
+        <p>Os prodígios reconhecidos pela Igreja para sua beatificação e canonização</p>
+      </div>
+      <div class="milagres-grid">
+        <div class="milagre-card">
+          <p class="milagre-numero">01</p>
+          <p class="milagre-local">Brasil</p>
+          <h3 class="milagre-titulo">Cura de gravidez com placenta prévia grave</h3>
+          <p class="milagre-desc">Uma mulher brasileira com placenta prévia total — condição que tornava a gravidez fatal para mãe e filho — foi curada milagrosamente após intensa novena a Gianna Beretta Molla. Mãe e filho sobreviveram em perfeita saúde. O Vaticano reconheceu o caso para a beatificação em 1994.</p>
+          <span class="milagre-ano-badge">Aprovado em 1993 · para a Beatificação</span>
+        </div>
+        <div class="milagre-card">
+          <p class="milagre-numero">02</p>
+          <p class="milagre-local">América do Sul</p>
+          <h3 class="milagre-titulo">Segundo milagre aprovado para a canonização</h3>
+          <p class="milagre-desc">Um segundo caso de cura inexplicável atribuída à intercessão de Gianna foi investigado e aprovado pelo Dicastério para as Causas dos Santos. O milagre envolveu uma situação obstétrica de alto risco com desfecho considerado impossível pela medicina, habilitando a canonização em 2004.</p>
+          <span class="milagre-ano-badge">Aprovado em 2002 · para a Canonização</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="perfil-content">
+
+    <section class="galeria-section" id="galeria">
+      <span class="section-tag">Seção 04</span>
+      <div class="section-header-left">
+        <h2>Galeria</h2>
+        <p>Imagens da vida, da família e da canonização de Gianna Beretta Molla</p>
+      </div>
+    
+    <div class="galeria-grid">
+  <div class="galeria-item">
+    <img src="../imagens/sg4.jpg" 
+         alt="Gianna Beretta" 
+         style="width:100%; height:100%; object-fit:cover;" />
+  </div>
+  <div class="galeria-item">
+    <img src="../imagens/sg5.jpg" 
+         alt="Gianna Beretta" 
+         style="width:100%; height:100%; object-fit:cover;" />
+  </div>
+  <div class="galeria-item">
+    <img src="../imagens/sg0.jpg" 
+         alt="Gianna Beretta" 
+         style="width:100%; height:100%; object-fit:cover;" />
+  </div>
+  <div class="galeria-item">
+    <img src="../imagens/sg3.jpg" 
+         alt="Gianna Beretta" 
+         style="width:100%; height:100%; object-fit:cover;" />
+  </div>
+  <div class="galeria-item">
+    <img src="../imagens/sg1.jpg" 
+         alt="Gianna Beretta" 
+         style="width:100%; height:100%; object-fit:cover;" />
+  </div>
+</div>
+      </div>
+      <p class="galeria-legenda">As fotografias devem ser obtidas de fontes de domínio público ou com autorização dos detentores dos direitos.</p>
+    </section>
+
+  <div class="perfil-content">
+  <section class="fontes-section" id="fontes">
+    <span class="section-tag">Seção 06</span>
+    <div class="section-header-left">
+      <h2>Fontes e Referências</h2>
+      <p>Documentação utilizada para a elaboração deste perfil</p>
+    </div>
+    <div class="fontes-lista">
+      <div class="fonte-item">
+       <span class="fonte-tipo">Site Oficial</span>
+       <div>
+         <p class="fonte-titulo">giannaberettamolla.org</p>
+         <p class="fonte-autor">Fondazione Santa Gianna Beretta Molla — Site oficial em português</p>
+      </div>
+      <a href="http://giannaberettamolla.org/giannaportughes.htm" target="_blank" class="fonte-link">Acessar →</a>
+    </div>
+      <div class="fonte-item">
+        <span class="fonte-tipo">Livro</span>
+        <div><p class="fonte-titulo">Gianna Beretta Molla — Uma Mulher do Nosso Tempo</p><p class="fonte-autor">Pietro Molla e Elio Guerriero · Editora Loyola, 2004</p></div>
+        <span class="fonte-link">Impresso</span>
+      </div>
+      <div class="fonte-item">
+        <span class="fonte-tipo">Livro</span>
+        <div><p class="fonte-titulo">Santa Gianna Molla — Médica, Mãe e Mártir</p><p class="fonte-autor">Simonetta Sanna · Editora Canção Nova, 2010</p></div>
+        <span class="fonte-link">Impresso</span>
+      </div>
+      <div class="fonte-item">
+        <span class="fonte-tipo">Vatican News</span>
+        <div><p class="fonte-titulo">Canonização de Gianna Beretta Molla — Homilia de João Paulo II</p><p class="fonte-autor">Santa Sé · 16 de maio de 2004</p></div>
+        <a href="https://www.vatican.va/content/john-paul-ii/pt/homilies/2004/documents/hf_jp-ii_hom_20040516_canonizations.html" target="_blank" class="fonte-link">Acessar →</a>
+      </div>
+    </div>
+  </section>
+</div>  
+
+    <div class="nav-santos">
+      <a href="maximiliano-kolbe.html" class="nav-santo-link">
+        <span class="nav-santo-label">← Santo Anterior</span>
+        <span class="nav-santo-nome">São Maximiliano Kolbe</span>
+      </a>
+      <a href="pier-giorgio.html" class="nav-santo-link nav-santo-dir">
+        <span class="nav-santo-label">Próximo Santo →</span>
+        <span class="nav-santo-nome">São Pier Giorgio</span>
+      </a>
+    </div>
+
+  </div>
+
+  <section class="oracao-section" id="oracao">
+    <div class="oracao-inner">
+      <span class="section-tag">Seção 05</span>
+      <h2 class="oracao-titulo">Oração por Intercessão de Santa Gianna Beretta Molla</h2>
+      <div class="oracao-texto">
+        <p>Senhor Jesus, Tu que és o autor de toda vida, concede-nos, pela intercessão de Santa Gianna Beretta Molla, a graça de amar a vida — em todas as suas formas — com a mesma coragem e generosidade com que ela amou.</p>
+        <p>Ela viveu a maternidade não como um fardo, mas como uma vocação sagrada. Quando chegou o momento decisivo, não hesitou: escolheu a vida de sua filha antes da própria. Nesse gesto, revelou o rosto mais verdadeiro do amor.</p>
+        <p>Santa Gianna, padroeira das mães, dos médicos e das crianças por nascer, intercede por todas as famílias em dificuldade, pelas mães que sofrem e pelas crianças que ainda não nasceram. Que nunca nos falte coragem para dizer sim à vida. Amém.</p>
+      </div>
+      <p class="oracao-fecho">· Para uso privado · Aprovação eclesiástica recomendada ·</p>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-inner">
+      <span class="footer-logo">Santos da Modernidade</span>
+      <ul class="footer-links">
+        <li><a href="../index.html#sobre">Sobre o Projeto</a></li>
+        <li><a href="#">Fontes</a></li>
+        <li><a href="#">Contato</a></li>
+      </ul>
+      <span class="footer-copy">© 2025 Santos da Modernidade · Ad Maiorem Dei Gloriam</span>
+    </div>
+  </footer>
+
+</body>
+</html>
