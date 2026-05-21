@@ -287,12 +287,12 @@
   <!-- FILTROS -->
   <div class="filtros-section">
     <button class="filtro-btn ativo" onclick="filtrar('todos', this)">Todos</button>
-    <button class="filtro-btn" onclick="filtrar('martires', this)">✝ Mártires</button>
-    <button class="filtro-btn" onclick="filtrar('jovens', this)">✦ Jovens Santos</button>
-    <button class="filtro-btn" onclick="filtrar('religiosos', this)">☩ Religiosos</button>
-    <button class="filtro-btn" onclick="filtrar('leigos', this)">◆ Leigos</button>
-    <button class="filtro-btn" onclick="filtrar('fundadores', this)">⊕ Fundadores</button>
-    <button class="filtro-btn" onclick="filtrar('misticos', this)">☽ Místicos</button>
+    <button class="filtro-btn" onclick="filtrar('martires', this)"> Mártires</button>
+    <button class="filtro-btn" onclick="filtrar('jovens', this)"> Jovens Santos</button>
+    <button class="filtro-btn" onclick="filtrar('religiosos', this)"> Religiosos</button>
+    <button class="filtro-btn" onclick="filtrar('leigos', this)"> Leigos</button>
+    <button class="filtro-btn" onclick="filtrar('fundadores', this)"> Fundadores</button>
+    <button class="filtro-btn" onclick="filtrar('misticos', this)"> Místicos</button>
   </div>
 
   <!-- GRID -->
@@ -322,7 +322,7 @@
     const santos = [
       {
         nome: "São Carlo Acutis",
-        categorias: ["jovens"],
+        categorias: ["jovens", "leigos"],
         arquivo: "santos/carlo-acutis.html",
         foto: "imagens/foto_carlo0.jpg",
         datas: "1991 – 2006 · Milão, Itália",
@@ -342,7 +342,7 @@
       },
       {
         nome: "São José Sánchez del Río",
-        categorias: ["martires"],
+        categorias: ["jovens", "martires", "leigos"],
         arquivo: "santos/jose-sanchez.html",
         foto: "imagens/js0.jpg",
         datas: "1913 – 1928 · Michoacán, México",
@@ -352,7 +352,7 @@
       },
       {
         nome: "São Maximiliano Kolbe",
-        categorias: ["martires", "religiosos"],
+        categorias: ["martires", "religiosos","fundadores"],
         arquivo: "santos/maximiliano-kolbe.html",
         foto: "imagens/mxm1.jpg",
         datas: "1894 – 1941 · Zdunska Wola, Polônia",

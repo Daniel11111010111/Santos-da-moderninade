@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sobre · Santos da Modernidade</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600&family=Raleway:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+
+    /* ── HERO ── */
+    .sobre-hero {
+      min-height: 60vh;
+      background: var(--dark);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 9rem 2rem 5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .sobre-hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 40%, rgba(201,168,76,0.07) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 40% at 20% 80%, rgba(123,28,46,0.1) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 40% at 80% 20%, rgba(27,45,79,0.12) 0%, transparent 60%);
+    }
+
+    .sobre-breadcrumb {
+      font-size: 0.68rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: rgba(201,168,76,0.5);
+      margin-bottom: 2rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .sobre-breadcrumb a { color: inherit; text-decoration: none; transition: color 0.2s; }
+    .sobre-breadcrumb a:hover { color: var(--gold); }
+
+    .sobre-ornamento {
+      width: 2px;
+      height: 60px;
+      background: linear-gradient(to bottom, transparent, var(--gold));
+      margin: 0 auto 2rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .sobre-titulo {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 600;
+      color: var(--ivory);
+      letter-spacing: 0.05em;
+      margin-bottom: 1rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .sobre-subtitulo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      font-style: italic;
+      font-weight: 300;
+      color: rgba(240,232,216,0.65);
+      max-width: 500px;
+      line-height: 1.7;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* ── CONTEÚDO ── */
+    .sobre-content {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 7rem 2rem;
+    }
+
+    .sobre-section {
+      margin-bottom: 5rem;
+    }
+
+    .sobre-section-tag {
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold-dark);
+      display: block;
+      margin-bottom: 1rem;
+    }
+
+    .sobre-section h2 {
+      font-family: 'Cinzel', serif;
+      font-size: 1.6rem;
+      font-weight: 400;
+      color: var(--dark);
+      letter-spacing: 0.06em;
+      margin-bottom: 1.5rem;
+      line-height: 1.4;
+    }
+
+    .sobre-section p {
+      font-size: 1rem;
+      line-height: 1.9;
+      color: var(--text-muted);
+      margin-bottom: 1.2rem;
+    }
+
+    .sobre-section p strong {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .sobre-divider {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin: 4rem 0;
+    }
+
+    .sobre-divider::before,
+    .sobre-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--gold-light);
+    }
+
+    .sobre-divider-cross { color: var(--gold); font-size: 0.9rem; }
+
+    /* ── INSPIRAÇÃO ── */
+    .inspiracao-box {
+      border: 1px solid var(--gold-light);
+      border-left: 3px solid var(--gold);
+      padding: 2rem 2.5rem;
+      background: var(--parchment);
+      margin: 2rem 0;
+    }
+
+    .inspiracao-box p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      font-style: italic;
+      color: var(--text);
+      line-height: 1.8;
+      margin: 0;
+    }
+
+    .inspiracao-box cite {
+      display: block;
+      margin-top: 1rem;
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold-dark);
+      font-style: normal;
+    }
+
+    /* ── VALORES ── */
+    .valores-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .valor-item {
+      border: 1px solid var(--gold-light);
+      padding: 1.5rem;
+    }
+
+    .valor-icon {
+      font-size: 1.5rem;
+      display: block;
+      margin-bottom: 0.75rem;
+    }
+
+    .valor-titulo {
+      font-family: 'Cinzel', serif;
+      font-size: 0.9rem;
+      font-weight: 400;
+      color: var(--dark);
+      letter-spacing: 0.08em;
+      margin-bottom: 0.5rem;
+    }
+
+    .valor-desc {
+      font-size: 0.88rem;
+      line-height: 1.7;
+      color: var(--text-muted);
+    }
+
+    /* ── CONTATO ── */
+    .contato-section {
+      background: var(--dark);
+      padding: 6rem 2rem;
+      text-align: center;
+    }
+
+    .contato-inner {
+      max-width: 560px;
+      margin: 0 auto;
+    }
+
+    .contato-tag {
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      display: block;
+      margin-bottom: 1rem;
+    }
+
+    .contato-titulo {
+      font-family: 'Cinzel', serif;
+      font-size: 1.8rem;
+      font-weight: 400;
+      color: var(--ivory);
+      letter-spacing: 0.06em;
+      margin-bottom: 1rem;
+    }
+
+    .contato-desc {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-style: italic;
+      color: rgba(240,232,216,0.6);
+      line-height: 1.7;
+      margin-bottom: 2.5rem;
+    }
+
+    .contato-email {
+      display: inline-block;
+      font-family: 'Cinzel', serif;
+      font-size: 1rem;
+      letter-spacing: 0.08em;
+      color: var(--gold);
+      text-decoration: none;
+      border: 1px solid rgba(201,168,76,0.4);
+      padding: 1rem 2.5rem;
+      transition: all 0.3s;
+    }
+
+    .contato-email:hover {
+      background: var(--gold);
+      color: var(--dark);
+    }
+
+    .contato-aviso {
+      margin-top: 1.5rem;
+      font-size: 0.75rem;
+      color: rgba(240,232,216,0.3);
+      letter-spacing: 0.1em;
+    }
+
+    /* ── RESPONSIVO ── */
+    @media (max-width: 768px) {
+      .valores-grid { grid-template-columns: 1fr; }
+      .sobre-content { padding: 4rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-logo">Santos da Modernidade</a>
+    <ul class="nav-links">
+      <li><a href="index.html#santos">Os Santos</a></li>
+      <li><a href="categoria.html">Categorias</a></li>
+      <li><a href="index.html#cronologia">Cronologia</a></li>
+      <li><a href="mapa.html">Mapa</a></li>
+      <li><a href="sobre.html">Sobre</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="sobre-hero">
+    <div class="sobre-hero-bg"></div>
+    <p class="sobre-breadcrumb">
+      <a href="index.html">Início</a> &nbsp;·&nbsp; Sobre o Projeto
+    </p>
+    <div class="sobre-ornamento"></div>
+    <h1 class="sobre-titulo">Santos da Modernidade</h1>
+    <p class="sobre-subtitulo">A história por trás do projeto — motivação, inspiração e propósito.</p>
+  </section>
+
+  <!-- CONTEÚDO -->
+  <div class="sobre-content">
+
+    <!-- MOTIVAÇÃO -->
+    <div class="sobre-section">
+      <span class="sobre-section-tag">A motivação</span>
+      <h2>Por que este site existe</h2>
+      <p>
+        O <strong>Santos da Modernidade</strong> nasceu do desejo de tornar mais conhecidas as histórias dos santos, mártires e testemunhas da fé dos últimos séculos. Vivemos num tempo em que a santidade parece distante ou reservada a outro mundo — e no entanto, ela floresceu ao lado de guerras, revoluções, câmeras fotográficas e internet.
+      </p>
+      <p>
+        Muitas pessoas não sabem que existiu um menino de 15 anos que usou a tecnologia para evangelizar, ou um jovem alpinista que dava os próprios sapatos aos pobres, ou uma médica que trocou a própria vida pela da filha. Estas histórias merecem ser contadas — e este projeto é uma tentativa de fazê-lo com cuidado e beleza.
+      </p>
+      <p>
+        O site também é um <strong>projeto de aprendizado</strong>. Cada linha de código foi escrita com o objetivo de crescer como desenvolvedor — unindo o estudo da programação a algo que vale a pena construir.
+      </p>
+    </div>
+
+    <div class="sobre-divider"><span class="sobre-divider-cross">✦</span></div>
+
+    <!-- INSPIRAÇÃO -->
+    <div class="sobre-section">
+      <span class="sobre-section-tag">A inspiração</span>
+      <h2>Carlo Acutis e os santos que apontam para cima</h2>
+      <p>
+        A inspiração direta foi o site dos <strong>Milagres Eucarísticos de Carlo Acutis</strong> — uma exposição virtual criada por um adolescente que usou a internet como instrumento de evangelização. Ver que um jovem de 15 anos havia feito isso com tanta seriedade e beleza foi o ponto de partida.
+      </p>
+
+      <div class="inspiracao-box">
+        <p>
+          "O que me inspira nos santos não é apenas a heroicidade dos seus atos — é a direção que eles escolheram. Em tudo o que fizeram, viveram e sofreram, apontavam para Deus, para as coisas de Deus e para o serviço ao próximo. É essa direção que este projeto quer mostrar."
+        </p>
+        <cite>— desenvolvedor do projeto "Santos da Modernidade"</cite>
+      </div>
+
+      <p>
+        Cada santo catalogado aqui não é apenas uma biografia — é um testemunho de que a santidade não tem época, não tem profissão, não tem nacionalidade. Ela nasce quando alguém decide orientar tudo o que é e tudo o que tem em direção a Deus.
+      </p>
+    </div>
+
+    <div class="sobre-divider"><span class="sobre-divider-cross">✦</span></div>
+
+    <!-- O QUE GUIA O PROJETO -->
+    <div class="sobre-section">
+      <span class="sobre-section-tag">O que guia o projeto</span>
+      <h2>Quatro pilares</h2>
+
+      <div class="valores-grid">
+        <div class="valor-item">
+          <p class="valor-titulo">Fidelidade histórica</p>
+          <p class="valor-desc">Cada biografia, milagre e data é documentada com base em fontes confiáveis — livros, decretos vaticanos e sites oficiais.</p>
+        </div>
+        <div class="valor-item">
+          <p class="valor-titulo">Beleza como respeito</p>
+          <p class="valor-desc">O design cuidadoso é uma forma de respeito. Histórias tão grandes merecem ser apresentadas com dignidade e atenção.</p>
+        </div>
+        <div class="valor-item">
+          <p class="valor-titulo">Acessibilidade</p>
+          <p class="valor-desc">O site é gratuito, sem anúncios e sem cadastro. O conhecimento sobre os santos deve estar ao alcance de todos.</p>
+        </div>
+        <div class="valor-item">
+          <p class="valor-titulo">Crescimento contínuo</p>
+          <p class="valor-desc">O projeto está em desenvolvimento. Novos santos, funcionalidades e melhorias são adicionados progressivamente.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- CONTATO -->
+  <section class="contato-section">
+    <div class="contato-inner">
+      <span class="contato-tag">Fale conosco</span>
+      <h2 class="contato-titulo">Entre em Contato</h2>
+      <p class="contato-desc">
+        Sugestões de santos, correções históricas, dúvidas ou simplesmente querer compartilhar algo — será sempre bem-vindo.
+      </p>
+      <a href="mailto:santosdamodernidade@gmail.com" class="contato-email">
+        santosdamodernidade@gmail.com
+      </a>
+      <p class="contato-aviso">Respondemos assim que possível · Ad Maiorem Dei Gloriam</p>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-inner">
+      <span class="footer-logo">Santos da Modernidade</span>
+      <span class="footer-copy">© 2025 Santos da Modernidade · Ad Maiorem Dei Gloriam</span>
+    </div>
+  </footer>
+
+</body>
+</html>
