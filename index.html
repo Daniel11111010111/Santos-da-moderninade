@@ -20,6 +20,9 @@
       <li><a href="mapa.html">Mapa</a></li>
       <li><a href="sobre.html">Sobre</a></li>
     </ul>
+    <button class="nav-hamburguer" id="nav-hamburguer" onclick="toggleMenu()">
+      ☰
+    </button>
   </nav>
 
   <!-- HERO -->
@@ -265,5 +268,13 @@
     </div>
   </footer>
 
+<script>
+  function toggleMenu() {
+    const menu = document.querySelector('.nav-links');
+    const btn = document.getElementById('nav-hamburguer');
+    menu.classList.toggle('aberto');
+    btn.textContent = menu.classList.contains('aberto') ? '✕' : '☰';
+  }
+</script>
 </body>
 </html>

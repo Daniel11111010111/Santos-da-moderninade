@@ -665,4 +665,11 @@
       .nav-links { display: none; }
       .mapa-inner { grid-template-columns: 1fr; gap: 2rem; }
       .footer-inner { flex-direction: column; text-align: center; }
+      .nav-hamburguer { display: block !important; }
+      .nav-links { display: none !important; }
+      .nav-links.aberto { display: flex !important; flex-direction: column; position: fixed; top: 60px; left: 0; right: 0; background: rgba(26,20,16,0.98); padding: 2rem; gap: 1.5rem; z-index: 99; }
+    }
+    
+    .nav-hamburguer {
+      display: none;
     }
