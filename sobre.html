@@ -281,6 +281,11 @@
       <li><a href="mapa.html">Mapa</a></li>
       <li><a href="sobre.html">Sobre</a></li>
     </ul>
+    <button id="nav-hamburguer" 
+        onclick="toggleMenu()" 
+        style="background:transparent; border:none; color:#C9A84C; font-size:1.5rem; cursor:pointer; padding:0.25rem 0.5rem; -webkit-appearance:none; appearance:none;">
+      ☰
+    </button>
   </nav>
 
   <!-- HERO -->
@@ -384,6 +389,13 @@
       <span class="footer-copy">© 2025 Santos da Modernidade · Ad Maiorem Dei Gloriam</span>
     </div>
   </footer>
-
+<script>
+  function toggleMenu() {
+    const menu = document.querySelector('.nav-links');
+    const btn = document.getElementById('nav-hamburguer');
+    menu.classList.toggle('aberto');
+    btn.textContent = menu.classList.contains('aberto') ? '✕' : '☰';
+  }
+</script>
 </body>
 </html>
