@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Categorias · Santos da Modernidade</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600&family=Raleway:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* ── HERO DA CATEGORIA ── */
+    .cat-hero {
+      background: var(--dark);
+      padding: 10rem 2rem 5rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cat-hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 40%, rgba(201,168,76,0.07) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 40% at 20% 80%, rgba(123,28,46,0.1) 0%, transparent 60%);
+    }
+
+    .cat-breadcrumb {
+      font-size: 0.68rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: rgba(201,168,76,0.5);
+      margin-bottom: 2rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .cat-breadcrumb a {
+      color: inherit;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .cat-breadcrumb a:hover { color: var(--gold); }
+
+    .cat-icon-hero {
+      font-size: 3rem;
+      display: block;
+      margin-bottom: 1rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .cat-titulo {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 600;
+      color: var(--ivory);
+      letter-spacing: 0.05em;
+      margin-bottom: 1rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .cat-descricao {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      font-style: italic;
+      font-weight: 300;
+      color: rgba(240,232,216,0.7);
+      max-width: 580px;
+      margin: 0 auto;
+      line-height: 1.7;
+      position: relative;
+      z-index: 2;
+    }
+
+    .cat-count {
+      display: inline-block;
+      margin-top: 1.5rem;
+      border: 1px solid rgba(201,168,76,0.3);
+      color: var(--gold);
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      padding: 0.35rem 1rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* ── FILTROS ── */
+    .filtros-section {
+      background: var(--parchment);
+      border-bottom: 1px solid var(--gold-light);
+      padding: 1.5rem 2rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .filtro-btn {
+      font-family: 'Raleway', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      background: none;
+      border: 1px solid var(--gold-light);
+      padding: 0.5rem 1.2rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .filtro-btn:hover {
+      color: var(--gold-dark);
+      border-color: var(--gold);
+    }
+
+    .filtro-btn.ativo {
+      background: var(--gold);
+      color: var(--dark);
+      border-color: var(--gold);
+    }
+
+    /* ── GRID DE SANTOS ── */
+    .cat-content {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 5rem 2rem 8rem;
+    }
+
+    .cat-santos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr));
+      gap: 2rem;
+    }
+
+    /* reutiliza os estilos dos cards do index */
+    .santo-card {
+      background: var(--ivory);
+      border: 1px solid var(--gold-light);
+      text-decoration: none;
+      display: block;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .santo-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(139,105,20,0.15);
+    }
+
+    .santo-card-img {
+      width: 100%;
+      aspect-ratio: 3/4;
+      background: var(--dark-mid);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+    }
+
+    .santo-card-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .santo-card-img-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cinzel', serif;
+      font-size: 3rem;
+      color: rgba(201,168,76,0.2);
+    }
+
+    .santo-card-year {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: var(--gold);
+      color: var(--dark);
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      padding: 0.25rem 0.6rem;
+    }
+
+    .santo-card-body {
+      padding: 1.5rem;
+      border-top: 2px solid var(--gold);
+    }
+
+    .santo-card-category {
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold-dark);
+      margin-bottom: 0.5rem;
+    }
+
+    .santo-card-name {
+      font-family: 'Cinzel', serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--dark);
+      margin-bottom: 0.4rem;
+      line-height: 1.3;
+    }
+
+    .santo-card-dates {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.95rem;
+      font-style: italic;
+      color: var(--text-muted);
+      margin-bottom: 0.75rem;
+    }
+
+    .santo-card-desc {
+      font-size: 0.88rem;
+      line-height: 1.7;
+      color: var(--text-muted);
+    }
+
+    /* ── VAZIO ── */
+    .cat-vazio {
+      text-align: center;
+      padding: 5rem 2rem;
+      display: none;
+    }
+
+    .cat-vazio h3 {
+      font-family: 'Cinzel', serif;
+      font-size: 1.2rem;
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .cat-vazio p {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      color: var(--text-muted);
+    }
+
+    /* ── RESPONSIVO ── */
+    @media (max-width: 768px) {
+      .filtros-section { gap: 0.5rem; }
+      .filtro-btn { font-size: 0.6rem; padding: 0.4rem 0.8rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="index.html" class="nav-logo">Santos da Modernidade</a>
+    <ul class="nav-links">
+      <li><a href="index.html#santos">Os Santos</a></li>
+      <li><a href="categoria.html">Categorias</a></li>
+      <li><a href="index.html#cronologia">Cronologia</a></li>
+      <li><a href="index.html#mapa">Mapa</a></li>
+      <li><a href="index.html#sobre">Sobre</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="cat-hero">
+    <div class="cat-hero-bg"></div>
+    <p class="cat-breadcrumb">
+      <a href="index.html">Início</a> &nbsp;·&nbsp; Categorias
+    </p>
+    <span class="cat-icon-hero" id="cat-icon">✝</span>
+    <h1 class="cat-titulo" id="cat-titulo">Categorias</h1>
+    <p class="cat-descricao" id="cat-descricao">
+      Explore os santos por vocação, contexto histórico ou forma de santidade.
+    </p>
+    <span class="cat-count" id="cat-count">6 santos no total</span>
+  </section>
+
+  <!-- FILTROS -->
+  <div class="filtros-section">
+    <button class="filtro-btn ativo" onclick="filtrar('todos', this)">Todos</button>
+    <button class="filtro-btn" onclick="filtrar('martires', this)">✝ Mártires</button>
+    <button class="filtro-btn" onclick="filtrar('jovens', this)">✦ Jovens Santos</button>
+    <button class="filtro-btn" onclick="filtrar('religiosos', this)">☩ Religiosos</button>
+    <button class="filtro-btn" onclick="filtrar('leigos', this)">◆ Leigos</button>
+    <button class="filtro-btn" onclick="filtrar('fundadores', this)">⊕ Fundadores</button>
+    <button class="filtro-btn" onclick="filtrar('misticos', this)">☽ Místicos</button>
+  </div>
+
+  <!-- GRID -->
+  <div class="cat-content">
+    <div class="cat-santos-grid" id="santos-grid"></div>
+    <div class="cat-vazio" id="cat-vazio">
+      <h3>Nenhum santo encontrado</h3>
+      <p>Esta categoria ainda não tem santos cadastrados.</p>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <span class="footer-logo">Santos da Modernidade</span>
+      <ul class="footer-links">
+        <li><a href="index.html#sobre">Sobre o Projeto</a></li>
+        <li><a href="#">Fontes</a></li>
+        <li><a href="#">Contato</a></li>
+      </ul>
+      <span class="footer-copy">© 2025 Santos da Modernidade · Ad Maiorem Dei Gloriam</span>
+    </div>
+  </footer>
+
+  <script>
+    // ── DADOS DOS SANTOS ──
+    const santos = [
+      {
+        nome: "São Carlo Acutis",
+        categorias: ["jovens"],
+        arquivo: "santos/carlo-acutis.html",
+        foto: "imagens/foto_carlo0.jpg",
+        datas: "1991 – 2006 · Milão, Itália",
+        ano: "2025",
+        desc: "O \"influencer de Deus\", apaixonado pela eucaristia, que documentou os milagres eucarísticos e morreu de leucemia aos 15 anos.",
+        catLabel: "Jovem · Tecnologia · Eucaristia"
+      },
+      {
+        nome: "Beato Pier Giorgio Frassati",
+        categorias: ["jovens"],
+        arquivo: "santos/pier-giorgio.html",
+        foto: "imagens/pg4.jpg",
+        datas: "1901 – 1925 · Turim, Itália",
+        ano: "1990",
+        desc: "Jovem universitário que vivia na alegria, no esporte e no serviço aos pobres. \"Homem das Oito Bem-aventuranças\".",
+        catLabel: "Jovem · Alpinismo · Pobreza"
+      },
+      {
+        nome: "São José Sánchez del Río",
+        categorias: ["martires"],
+        arquivo: "santos/jose-sanchez.html",
+        foto: "imagens/js0.jpg",
+        datas: "1913 – 1928 · Michoacán, México",
+        ano: "2016",
+        desc: "O \"Joselito\", adolescente de 14 anos que morreu mártir durante a Guerra Cristera gritando \"Viva Cristo Rey!\"",
+        catLabel: "Mártir · Cristero · México"
+      },
+      {
+        nome: "São Maximiliano Kolbe",
+        categorias: ["martires", "religiosos"],
+        arquivo: "santos/maximiliano-kolbe.html",
+        foto: "imagens/mxm1.jpg",
+        datas: "1894 – 1941 · Zdunska Wola, Polônia",
+        ano: "1982",
+        desc: "Frade franciscano que ofereceu a própria vida em Auschwitz para salvar um pai de família.",
+        catLabel: "Mártir · Franciscano · Polônia"
+      },
+      {
+        nome: "Santa Teresa de Calcutá",
+        categorias: ["religiosos", "fundadores"],
+        arquivo: "santos/teresa-calcuta.html",
+        foto: "imagens/teresa1.jpg",
+        datas: "1910 – 1997 · Skopje / Calcutá",
+        ano: "2016",
+        desc: "A \"Santa das Sarjetas\", fundadora das Missionárias da Caridade, serviu os mais pobres entre os pobres durante décadas.",
+        catLabel: "Religiosa · Caridade · Índia"
+      },
+      {
+        nome: "Santa Gianna Beretta Molla",
+        categorias: ["leigos"],
+        arquivo: "santos/gianna-beretta.html",
+        foto: "imagens/sg3.jpg",
+        datas: "1922 – 1962 · Magenta, Itália",
+        ano: "2004",
+        desc: "Pediatra e mãe que sacrificou a própria vida para salvar sua filha ainda no ventre materno.",
+        catLabel: "Médica · Mãe · Vida"
+      }
+    ];
+
+    // ── INFORMAÇÕES DAS CATEGORIAS ──
+    const categorias = {
+      todos: {
+        icon: "✦",
+        titulo: "Todos os Santos",
+        descricao: "Explore todos os santos e beatos cadastrados no projeto, dos séculos XIX ao XXI."
+      },
+      martires: {
+        icon: "✝",
+        titulo: "Mártires",
+        descricao: "Aqueles que deram a própria vida como testemunho da fé — o mais radical dos atos de amor."
+      },
+      jovens: {
+        icon: "✦",
+        titulo: "Jovens Santos",
+        descricao: "Jovens que provaram que a santidade não tem idade mínima — e que o Céu está ao alcance de todos."
+      },
+      religiosos: {
+        icon: "☩",
+        titulo: "Religiosos",
+        descricao: "Freiras, frades e padres que consagraram toda a vida a Deus e ao serviço da Igreja."
+      },
+      leigos: {
+        icon: "◆",
+        titulo: "Leigos",
+        descricao: "Homens e mulheres comuns — médicos, pais, estudantes — que viveram a santidade no cotidiano."
+      },
+      fundadores: {
+        icon: "⊕",
+        titulo: "Fundadores",
+        descricao: "Aqueles que fundaram congregações, movimentos e obras que continuam servindo ao mundo."
+      },
+      misticos: {
+        icon: "☽",
+        titulo: "Místicos",
+        descricao: "Santos marcados por experiências espirituais profundas, visões e uma união íntima com Deus."
+      }
+    };
+
+    // ── FUNÇÃO DE FILTRO ──
+    function filtrar(categoria, botao) {
+      // atualiza botões
+      document.querySelectorAll('.filtro-btn').forEach(btn => btn.classList.remove('ativo'));
+      botao.classList.add('ativo');
+
+      // atualiza hero
+      const info = categorias[categoria];
+      document.getElementById('cat-icon').textContent = info.icon;
+      document.getElementById('cat-titulo').textContent = info.titulo;
+      document.getElementById('cat-descricao').textContent = info.descricao;
+
+      // filtra santos
+      const filtrados = categoria === 'todos'
+        ? santos
+        : santos.filter(s => s.categorias.includes(categoria));
+
+      // atualiza contador
+      document.getElementById('cat-count').textContent =
+        filtrados.length === 1
+          ? '1 santo encontrado'
+          : `${filtrados.length} santos encontrados`;
+
+      // renderiza cards
+      const grid = document.getElementById('santos-grid');
+      const vazio = document.getElementById('cat-vazio');
+
+      if (filtrados.length === 0) {
+        grid.innerHTML = '';
+        vazio.style.display = 'block';
+        return;
+      }
+
+      vazio.style.display = 'none';
+      grid.innerHTML = filtrados.map(s => `
+        <a href="${s.arquivo}" class="santo-card">
+          <div class="santo-card-img">
+            <img src="${s.foto}" alt="${s.nome}" style="width:100%; height:100%; object-fit:cover;" 
+                 onerror="this.style.display='none'; this.parentElement.innerHTML += '<div class=\\'santo-card-img-placeholder\\'>✦</div>'" />
+            <span class="santo-card-year">${s.ano}</span>
+          </div>
+          <div class="santo-card-body">
+            <p class="santo-card-category">${s.catLabel}</p>
+            <h3 class="santo-card-name">${s.nome}</h3>
+            <p class="santo-card-dates">${s.datas}</p>
+            <p class="santo-card-desc">${s.desc}</p>
+          </div>
+        </a>
+      `).join('');
+    }
+
+    // ── VERIFICAR URL PARA CATEGORIA INICIAL ──
+    const params = new URLSearchParams(window.location.search);
+    const catInicial = params.get('cat') || 'todos';
+    const btnInicial = document.querySelector(`[onclick="filtrar('${catInicial}', this)"]`);
+
+    if (btnInicial) {
+      document.querySelectorAll('.filtro-btn').forEach(btn => btn.classList.remove('ativo'));
+      btnInicial.classList.add('ativo');
+      filtrar(catInicial, btnInicial);
+    } else {
+      filtrar('todos', document.querySelector('.filtro-btn'));
+    }
+  </script>
+
+</body>
+</html>
