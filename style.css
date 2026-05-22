@@ -663,12 +663,10 @@
   .nav-hamburguer {
    display: none;
   } 
+/* Funciona em todas as telas */
 @media (max-width: 9999px) {
-  nav { padding: 1rem 1.5rem; }
   .nav-links { display: none; }
   .nav-hamburguer { display: block !important; }
-  .mapa-inner { grid-template-columns: 1fr; gap: 2rem; }
-  .footer-inner { flex-direction: column; text-align: center; }
   .nav-links.aberto { 
     display: flex !important; 
     flex-direction: column; 
@@ -682,3 +680,21 @@
     z-index: 99; 
   }
 }
+
+/* Só no celular */
+@media (max-width: 768px) {
+  nav { padding: 1rem 1.5rem; }
+  .mapa-inner { grid-template-columns: 1fr; gap: 2rem; }
+  .footer-inner { flex-direction: column; text-align: center; }
+  .cat-grid { grid-template-columns: 1fr 1fr; overflow: hidden; }
+  .mapa-stats {gap: 2rem;padding: 3rem 1rem;}
+  .stat-item { min-width: 120px;}
+  .milagres-section { margin: 0; padding-left: 1.5rem; padding-right: 1.5rem; }
+  .oracao-section { margin: 0; padding-left: 1.5rem; padding-right: 1.5rem; }
+}  
+  
+
+
+ 
+
+
