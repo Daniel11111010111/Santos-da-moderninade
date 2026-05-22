@@ -693,6 +693,7 @@
   .milagres-section { margin: 0; padding-left: 1.5rem; padding-right: 1.5rem; }
   .oracao-section { margin: 0; padding-left: 1.5rem; padding-right: 1.5rem; }
   .cat-grid { grid-template-columns: 1fr 1fr; }
+  .hero-subtitle { max-width: 90vw; margin-left: auto; margin-right: auto; padding-left: 1.5rem; padding-right: 1.5rem; }
 }  
   
 
