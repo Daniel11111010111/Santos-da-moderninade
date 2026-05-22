@@ -691,6 +691,7 @@
   .stat-item { min-width: 120px;}
   .milagres-section { margin: 0; padding-left: 1.5rem; padding-right: 1.5rem; }
   .oracao-section { margin: 0; padding-left: 1.5rem; padding-right: 1.5rem; }
+  .cat-grid { grid-template-columns: 1fr 1fr; }
 }  
   
 
