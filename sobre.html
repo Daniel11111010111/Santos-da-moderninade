@@ -165,12 +165,20 @@
       font-style: normal;
     }
 
-    /* ── VALORES ── */
+     /* ── VALORES ── */
+     /* Configuração para celular (Mobile First): os cards ficam um embaixo do outro */
     .valores-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.5rem;
-      margin-top: 2rem;
+     display: grid;
+     grid-template-columns: 1fr; /* Apenas 1 coluna no celular */
+     gap: 1.5rem;
+     margin-top: 2rem;
+    }
+
+/* Configuração para telas maiores (computadores e tablets) */
+    @media (min-width: 768px) {
+      .valores-grid {
+       grid-template-columns: 1fr 1fr; /* Vira 2 colunas no PC */
+      }
     }
 
     .valor-item {
