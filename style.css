@@ -693,7 +693,7 @@
   .milagres-section { margin: 0; padding-left: 1.5rem; padding-right: 1.5rem; }
   .oracao-section { margin: 0; padding-left: 1.5rem; padding-right: 1.5rem; }
   .cat-grid { grid-template-columns: 1fr 1fr; }
-  .hero-subtitle { width: 100% !important; max-width: 100% !important; box-sizing: border-box !important; padding-left: 1.5rem !important; padding-right: 1.5rem !important;
+  .hero-subtitle { width: 100% !important; max-width: 100% !important; box-sizing: border-box !important; padding-left: 1.5rem !important; padding-right: 1.5rem !important;}
 }  
   
 
