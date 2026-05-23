@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>São Pio de Pietrelcina · Santos da Modernidade</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600&family=Raleway:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../style.css" />
+  <style>
+    .perfil-hero {
+      min-height: 100vh;
+      background: var(--dark);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      position: relative;
+      overflow: hidden;
+      padding-top: 80px;
+    }
+
+    .perfil-hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 40%, rgba(201,168,76,0.07) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 40% at 20% 80%, rgba(123,28,46,0.1) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 40% at 80% 20%, rgba(27,45,79,0.12) 0%, transparent 60%);
+    }
+
+    .perfil-hero-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 5rem 4rem 5rem 5rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .perfil-breadcrumb {
+      font-size: 0.68rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: rgba(201,168,76,0.5);
+      margin-bottom: 2rem;
+    }
+    .perfil-breadcrumb a { color: inherit; text-decoration: none; transition: color 0.2s; }
+    .perfil-breadcrumb a:hover { color: var(--gold); }
+
+    .perfil-badge {
+      display: inline-block;
+      border: 1px solid rgba(201,168,76,0.4);
+      color: var(--gold);
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      padding: 0.35rem 0.9rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .perfil-nome {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 600;
+      color: var(--ivory);
+      line-height: 1.15;
+      margin-bottom: 0.5rem;
+      letter-spacing: 0.03em;
+    }
+
+    .perfil-titulo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      font-style: italic;
+      font-weight: 300;
+      color: var(--gold-light);
+      margin-bottom: 2rem;
+      opacity: 0.8;
+    }
+
+    .perfil-meta { display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 2.5rem; }
+    .perfil-meta-item { display: flex; gap: 1rem; align-items: baseline; }
+    .perfil-meta-label {
+      color: rgba(201,168,76,0.6);
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      min-width: 110px;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      flex-shrink: 0;
+    }
+    .perfil-meta-value { color: rgba(240,232,216,0.75); font-size: 0.85rem; line-height: 1.4; }
+
+    .perfil-frase {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-style: italic;
+      color: var(--gold-light);
+      border-left: 2px solid var(--gold);
+      padding-left: 1.25rem;
+      line-height: 1.65;
+      opacity: 0.9;
+    }
+
+    .perfil-hero-right {
+      position: relative;
+      background: var(--dark-mid);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .perfil-hero-right::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at center, rgba(201,168,76,0.06) 0%, transparent 70%);
+    }
+
+    .perfil-img-placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      color: rgba(201,168,76,0.2);
+      font-family: 'Cinzel', serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      text-align: center;
+    }
+
+    .perfil-img-placeholder-cross { font-size: 5rem; line-height: 1; opacity: 0.15; }
+
+    .perfil-hero-ano {
+      position: absolute;
+      bottom: 2rem; right: 2rem;
+      font-family: 'Cinzel', serif;
+      font-size: 4rem;
+      font-weight: 600;
+      color: rgba(201,168,76,0.08);
+      line-height: 1;
+    }
+
+    .perfil-content { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+
+    .section-tag { font-size: 0.65rem; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold-dark); display: block; margin-bottom: 1rem; }
+
+    .section-header-left h2 { font-family: 'Cinzel', serif; font-size: 1.5rem; font-weight: 400; color: var(--dark); letter-spacing: 0.08em; margin-bottom: 0.5rem; }
+    .section-header-left p { font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-style: italic; color: var(--text-muted); }
+
+    .bio-section { padding: 7rem 0; display: grid; grid-template-columns: 1fr 2fr; gap: 5rem; border-bottom: 1px solid var(--gold-light); }
+    .bio-sidebar { position: sticky; top: 100px; align-self: start; }
+    .sidebar-title { font-family: 'Cinzel', serif; font-size: 1.3rem; font-weight: 400; color: var(--dark); letter-spacing: 0.06em; line-height: 1.4; }
+    .sidebar-ornament { width: 30px; height: 1px; background: var(--gold); margin: 1.5rem 0; }
+    .sidebar-resumo { font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-style: italic; color: var(--text-muted); line-height: 1.7; }
+
+    .bio-texto h3 { font-family: 'Cinzel', serif; font-size: 1rem; font-weight: 400; letter-spacing: 0.1em; color: var(--dark); margin: 2rem 0 0.75rem; }
+    .bio-texto h3:first-child { margin-top: 0; }
+    .bio-texto p { font-size: 0.97rem; line-height: 1.9; color: var(--text-muted); margin-bottom: 1rem; }
+    .bio-texto p strong { color: var(--text); font-weight: 500; }
+
+    .timeline-section { padding: 7rem 0; border-bottom: 1px solid var(--gold-light); }
+    .timeline-header { margin-bottom: 3.5rem; }
+    .timeline-grid { display: grid; grid-template-columns: 1fr 1fr; position: relative; }
+    .timeline-grid::before { content: ''; position: absolute; left: 50%; top: 0; bottom: 0; width: 1px; background: linear-gradient(to bottom, transparent, var(--gold-light), transparent); transform: translateX(-50%); }
+    .tl-item { padding: 2rem; position: relative; }
+    .tl-item:nth-child(odd) { text-align: right; padding-right: 3rem; }
+    .tl-item:nth-child(even) { padding-left: 3rem; }
+    .tl-item::after { content: ''; position: absolute; top: 2.5rem; width: 8px; height: 8px; background: var(--gold); transform: rotate(45deg); }
+    .tl-item:nth-child(odd)::after { right: -4px; }
+    .tl-item:nth-child(even)::after { left: -4px; }
+    .tl-ano { font-family: 'Cinzel', serif; font-size: 0.72rem; letter-spacing: 0.2em; color: var(--gold-dark); margin-bottom: 0.4rem; }
+    .tl-evento { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; color: var(--dark); margin-bottom: 0.3rem; }
+    .tl-desc { font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; }
+
+    .milagres-section { padding: 7rem 0; background: var(--parchment); margin: 0 -2rem; padding-left: 2rem; padding-right: 2rem; border-top: 1px solid var(--gold-light); border-bottom: 1px solid var(--gold-light); }
+    .milagres-inner { max-width: 1100px; margin: 0 auto; }
+    .milagres-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 3rem; }
+    .milagre-card { background: var(--ivory); border: 1px solid var(--gold-light); padding: 2rem; }
+    .milagre-numero { font-family: 'Cinzel', serif; font-size: 2.5rem; font-weight: 600; color: var(--gold-light); line-height: 1; margin-bottom: 1rem; }
+    .milagre-local { font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold-dark); margin-bottom: 0.5rem; }
+    .milagre-titulo { font-family: 'Cinzel', serif; font-size: 0.95rem; color: var(--dark); margin-bottom: 0.75rem; }
+    .milagre-desc { font-size: 0.88rem; line-height: 1.75; color: var(--text-muted); }
+    .milagre-ano-badge { display: inline-block; margin-top: 1rem; border: 1px solid var(--gold-light); color: var(--gold-dark); font-size: 0.65rem; letter-spacing: 0.18em; padding: 0.2rem 0.6rem; }
+
+    .galeria-section { padding: 7rem 0; border-bottom: 1px solid var(--gold-light); }
+    .galeria-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; grid-template-rows: 200px 200px; gap: 1rem; margin-top: 3rem; }
+    .galeria-item { background: var(--dark-mid); display: flex; align-items: center; justify-content: center; color: rgba(201,168,76,0.2); font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; font-family: 'Cinzel', serif; border: 1px solid rgba(201,168,76,0.1); overflow: hidden; }
+    .galeria-item:first-child { grid-row: 1 / 3; }
+    .galeria-item img { width: 100%; height: 100%; object-fit: cover; }
+    .galeria-legenda { font-size: 0.75rem; color: var(--text-muted); text-align: center; margin-top: 1rem; font-style: italic; font-family: 'Cormorant Garamond', serif; }
+
+    .oracao-section { padding: 7rem 0; background: var(--blue-deep); margin: 0 -2rem; padding-left: 2rem; padding-right: 2rem; text-align: center; position: relative; overflow: hidden; }
+    .oracao-section::before { content: '"'; position: absolute; top: -2rem; left: 50%; transform: translateX(-50%); font-family: 'Cormorant Garamond', serif; font-size: 20rem; color: rgba(201,168,76,0.05); line-height: 1; pointer-events: none; }
+    .oracao-inner { max-width: 680px; margin: 0 auto; position: relative; z-index: 2; }
+    .oracao-section .section-tag { color: var(--gold); }
+    .oracao-titulo { font-family: 'Cinzel', serif; font-size: 1.4rem; color: var(--ivory); letter-spacing: 0.08em; margin-bottom: 2.5rem; }
+    .oracao-texto { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 300; line-height: 2; color: rgba(240,232,216,0.8); text-align: left; }
+    .oracao-texto p { margin-bottom: 1rem; }
+    .oracao-fecho { font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); opacity: 0.7; margin-top: 2rem; }
+
+    .fontes-section { padding: 7rem 0; }
+    .fontes-lista { margin-top: 2.5rem; display: flex; flex-direction: column; }
+    .fonte-item { display: grid; grid-template-columns: auto 1fr auto; gap: 1.5rem; align-items: center; padding: 1.25rem 0; border-bottom: 1px solid var(--gold-light); }
+    .fonte-tipo { font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold-dark); border: 1px solid var(--gold-light); padding: 0.2rem 0.6rem; white-space: nowrap; }
+    .fonte-titulo { font-size: 0.92rem; color: var(--text); }
+    .fonte-autor { font-size: 0.8rem; color: var(--text-muted); margin-top: 0.2rem; font-family: 'Cormorant Garamond', serif; font-style: italic; }
+    .fonte-link { font-size: 0.7rem; color: var(--gold-dark); text-decoration: none; letter-spacing: 0.1em; white-space: nowrap; transition: color 0.2s; }
+    .fonte-link:hover { color: var(--gold); }
+
+    .div.nav-santos { position: static; background: none; backdrop-filter: none; border-bottom: none; padding: 3rem 0; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--gold-light); margin-top: 2rem; }
+    .nav-santo-link { text-decoration: none; display: flex; flex-direction: column; gap: 0.3rem; }
+    .nav-santo-dir { text-align: right; }
+    .nav-santo-label { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted); }
+    .nav-santo-nome { font-family: 'Cinzel', serif; font-size: 0.95rem; color: var(--gold-dark); transition: color 0.2s; }
+    .nav-santo-link:hover .nav-santo-nome { color: var(--gold); }
+
+    @media (max-width: 768px) {
+      .perfil-hero { grid-template-columns: 1fr; }
+      .perfil-hero-right { display: none; }
+      .perfil-hero-left { padding: 3rem 1.5rem; }
+      .bio-section { grid-template-columns: 1fr; gap: 2rem; }
+      .bio-sidebar { position: static; }
+      .timeline-grid { grid-template-columns: 1fr; }
+      .timeline-grid::before { display: none; }
+      .tl-item { text-align: left !important; padding: 1rem 0 1rem 2rem !important; }
+      .tl-item::after { left: 0 !important; right: auto !important; }
+      .milagres-grid { grid-template-columns: 1fr; }
+      .galeria-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+      .galeria-item:first-child { grid-row: auto; }
+      .fonte-item { grid-template-columns: 1fr; gap: 0.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="../index.html" class="nav-logo">Santos da Modernidade</a>
+    <ul class="nav-links">
+      <li><a href="../index.html#santos">Os Santos</a></li>
+      <li><a href="../categoria.html">Categorias</a></li>
+      <li><a href="../index.html#cronologia">Cronologia</a></li>
+      <li><a href="../mapa.html">Mapa</a></li>
+      <li><a href="../sobre.html">Sobre</a></li>
+    </ul>
+    <button id="nav-hamburguer"
+            onclick="toggleMenu()"
+            style="background:transparent; border:none; color:#C9A84C; font-size:1.5rem; cursor:pointer; padding:0.25rem 0.5rem; -webkit-appearance:none; appearance:none;">
+      ☰
+    </button>
+  </nav>
+
+  <!-- HERO -->
+  <section class="perfil-hero">
+    <div class="perfil-hero-bg"></div>
+    <div class="perfil-hero-left">
+      <p class="perfil-breadcrumb">
+        <a href="../index.html">Início</a> &nbsp;·&nbsp;
+        <a href="../index.html#santos">Os Santos</a> &nbsp;·&nbsp;
+        Padre Pio
+      </p>
+      <span class="perfil-badge">Santo · Canonizado em 2002</span>
+      <h1 class="perfil-nome">São Pio de<br>Pietrelcina</h1>
+      <p class="perfil-titulo">"Padre Pio" — O Santo das Chagas</p>
+      <div class="perfil-meta">
+        <div class="perfil-meta-item">
+          <span class="perfil-meta-label">Nascimento</span>
+          <span class="perfil-meta-value">25 de maio de 1887 · Pietrelcina, Itália</span>
+        </div>
+        <div class="perfil-meta-item">
+          <span class="perfil-meta-label">Falecimento</span>
+          <span class="perfil-meta-value">23 de setembro de 1968 · San Giovanni Rotondo, Itália</span>
+        </div>
+        <div class="perfil-meta-item">
+          <span class="perfil-meta-label">Beatificação</span>
+          <span class="perfil-meta-value">2 de maio de 1999 · Roma · João Paulo II</span>
+        </div>
+        <div class="perfil-meta-item">
+          <span class="perfil-meta-label">Canonização</span>
+          <span class="perfil-meta-value">16 de junho de 2002 · Roma · João Paulo II</span>
+        </div>
+        <div class="perfil-meta-item">
+          <span class="perfil-meta-label">Festa litúrgica</span>
+          <span class="perfil-meta-value">23 de setembro</span>
+        </div>
+        <div class="perfil-meta-item">
+          <span class="perfil-meta-label">Patrono</span>
+          <span class="perfil-meta-value">Doentes, voluntários civis e adolescentes em estresse</span>
+        </div>
+      </div>
+      <p class="perfil-frase">"Ora, spera e non ti preoccupare." — Reza, espera e não te preocupes.</p>
+    </div>
+    <div class="perfil-hero-right" style="position:relative; overflow:hidden;">
+      <img src="../imagens/pio1.jpg" 
+       alt="Pio de Pietrelcina" 
+       style="width:100%; height:100%; object-fit:cover; position:absolute; inset:0;" />
+      <div class="perfil-hero-datas"></div>
+       <span class="perfil-hero-ano">1968</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTEÚDO -->
+  <div class="perfil-content">
+
+    <!-- BIOGRAFIA -->
+    <section class="bio-section" id="biografia">
+  <div class="bio-sidebar">
+    <span class="section-tag">Seção 01</span>
+    <h2 class="sidebar-title">Biografia<br>Detalhada</h2>
+    <div class="sidebar-ornament"></div>
+    <p class="sidebar-resumo">Frade capuchinho italiano que carregou as chagas de Cristo por 50 anos, tornou-se um dos confessores mais procurados do século XX e fundou uma das maiores obras hospitalares da Itália.</p>
+  </div>
+
+  <div class="bio-texto">
+
+    <h3>Infância e Vocação</h3>
+    <p>Francesco Forgione nasceu em <strong>25 de maio de 1887</strong> em Pietrelcina, uma pequena cidade agrícola do sul da Itália, numa família camponesa simples e profundamente católica. Filho de Grazio Forgione e Maria Giuseppa Di Nunzio, cresceu num ambiente de trabalho duro, oração e forte devoção popular. A pobreza da família não impediu que recebesse uma formação religiosa intensa, marcada pela frequência aos sacramentos e pela vida paroquial.</p>
+
+    <p>Desde criança demonstrava uma espiritualidade incomum. Mais tarde relataria experiências espirituais que incluíam visões de Jesus, da Virgem Maria e do anjo da guarda, além de intensas batalhas espirituais que descreveu em cartas aos seus diretores espirituais. Ainda menino, dizia desejar entregar sua vida inteiramente a Deus e tornar-se sacerdote.</p>
+
+    <p>Aos 15 anos ingressou nos <strong>Frades Menores Capuchinhos</strong>, tomando o nome de frei Pio em honra a São Pio V. Os anos de formação foram marcados por grande fragilidade física e frequentes enfermidades, o que levantou dúvidas sobre sua capacidade de seguir a vida religiosa. Apesar disso, perseverou e foi ordenado sacerdote em <strong>10 de agosto de 1910</strong>.</p>
+
+    <p>Em 1916, foi enviado para o convento de <strong>San Giovanni Rotondo</strong>, no sul da Itália. A pequena cidade, então pouco conhecida, tornar-se-ia o centro definitivo de sua missão e o local onde viveria pelos cinquenta anos seguintes.</p>
+
+    <h3>As Chagas de Cristo</h3>
+
+    <p>Em <strong>20 de setembro de 1918</strong>, enquanto rezava diante de um crucifixo no coro da igreja do convento, Padre Pio recebeu as <strong>estigmas</strong> — as chagas correspondentes às feridas de Cristo nas mãos, nos pés e no lado. O fenômeno teve enorme repercussão e transformou o frade capuchinho numa das figuras religiosas mais conhecidas do século XX.</p>
+
+    <p>Foi o primeiro sacerdote estigmatizado da história da Igreja. As feridas sangravam regularmente e provocavam dores constantes, tornando sua vida física um contínuo sofrimento. Apesar disso, testemunhas afirmavam que as chagas exalavam um perfume floral característico e difícil de explicar, fenômeno descrito por milhares de peregrinos ao longo dos anos.</p>
+
+    <p>As estigmas também trouxeram controvérsia. Médicos, jornalistas e autoridades eclesiásticas investigaram o caso repetidas vezes. Em determinados períodos, Padre Pio chegou a sofrer restrições impostas pela própria Igreja, sendo temporariamente proibido de celebrar publicamente ou atender confissões. Ele aceitou essas decisões em silêncio e obediência, interpretando-as como parte de sua cruz pessoal.</p>
+
+    <p>As chagas permaneceram vivas por aproximadamente <strong>50 anos</strong>. Pouco antes de sua morte começaram a desaparecer e, em 1968, haviam sumido completamente, sem deixar cicatrizes visíveis.</p>
+
+    <h3>O Confessor Incansável</h3>
+
+    <p>Padre Pio passava até <strong>16 horas por dia no confessionário</strong>. Pessoas vinham de toda a Itália e de diversas partes do mundo para se confessar com ele, frequentemente enfrentando filas que duravam dias ou semanas. O confessionário tornou-se o principal centro de sua missão sacerdotal.</p>
+
+    <p>Era conhecido pelo dom da <strong>leitura de consciências</strong>. Numerosos penitentes relataram que ele identificava pecados omitidos, intenções escondidas ou situações íntimas jamais reveladas a ninguém. Seu modo de orientar podia parecer severo, mas tinha como objetivo conduzir ao arrependimento sincero e à transformação espiritual.</p>
+
+    <p>Entre os visitantes estava o jovem sacerdote polonês Karol Wojtyła, futuro São João Paulo II, que se confessou com Padre Pio em 1947. Décadas depois, o papa recordaria o profundo impacto espiritual daquele encontro e a fama de santidade já associada ao frade capuchinho.</p>
+
+    <h3>Bilocação e Fenômenos Místicos</h3>
+
+    <p>Além das estigmas e da fama de confessor, Padre Pio ficou associado a numerosos fenômenos extraordinários, especialmente relatos de <strong>bilocação</strong> — a presença simultânea em locais diferentes. Esses episódios pertencem ao campo dos testemunhos tradicionalmente ligados à sua figura espiritual e contribuíram para ampliar ainda mais sua reputação de santidade.</p>
+
+    <p>Um dos relatos mais conhecidos surgiu durante a <strong>Segunda Guerra Mundial</strong>. Alguns pilotos militares afirmaram ter visto um frade semelhante a Padre Pio nos céus próximos a San Giovanni Rotondo, impedindo ou desviando ataques contra a região. Embora os testemunhos variem em detalhes, o episódio tornou-se um dos casos mais frequentemente associados à sua bilocação.</p>
+
+    <p>Outros relatos narram visitas espirituais a enfermos e pessoas em perigo. Diversos fiéis afirmavam ter recebido ajuda, conforto ou orientação de Padre Pio em locais distantes enquanto ele permanecia fisicamente no convento. Em alguns casos, somente mais tarde reconheceriam sua imagem ou identidade através de fotografias e relatos de terceiros.</p>
+
+    <p>O próprio Padre Pio raramente comentava tais acontecimentos. Quando questionado, costumava responder com humildade ou desviar do assunto, atribuindo toda graça e auxílio exclusivamente à ação de Deus.</p>
+
+    <h3>A Casa do Alívio do Sofrimento</h3>
+
+    <p>Em 1956, Padre Pio inaugurou a <strong>Casa Alívio do Sofrimento</strong> (Casa Sollievo della Sofferenza) em San Giovanni Rotondo — um hospital moderno construído com doações de fiéis do mundo inteiro. O projeto representava sua convicção de que a oração e a caridade concreta deveriam caminhar juntas.</p>
+
+    <p>Considerado extremamente avançado para a época, o hospital unia excelência médica e assistência humana aos enfermos. Hoje permanece como um dos maiores centros hospitalares da Itália, com mais de 1.000 leitos e referência em pesquisa médica e atendimento especializado.</p>
+
+    <h3>Morte e Legado</h3>
+
+    <p>Padre Pio faleceu em <strong>23 de setembro de 1968</strong>, aos 81 anos, exatamente próximo ao cinquentenário do recebimento das estigmas. Suas últimas palavras conhecidas foram: <strong>"Jesus, Maria"</strong>.</p>
+
+    <p>Após sua morte, San Giovanni Rotondo transformou-se num dos maiores centros de peregrinação do mundo, recebendo milhões de visitantes todos os anos. Beatificado em 1999 e canonizado em 2002 por São João Paulo II, Padre Pio permanece como uma das figuras religiosas mais veneradas da modernidade — lembrado pela oração, pelo sofrimento suportado, pela dedicação incansável ao confessionário e pelos inúmeros testemunhos de graças associados à sua intercessão.</p>
+
+  </div>
+</section>
+
+    <!-- LINHA DO TEMPO -->
+    <section class="timeline-section" id="cronologia">
+      <div class="timeline-header">
+        <span class="section-tag">Seção 02</span>
+        <div class="section-header-left">
+          <h2>Linha do Tempo</h2>
+          <p>81 anos de vida marcados por sofrimento, oração e um amor heroico à Cruz de Cristo</p>
+        </div>
+      </div>
+      <div class="timeline-grid">
+        <div class="tl-item">
+          <p class="tl-ano">25 Mai 1887</p>
+          <h3 class="tl-evento">Nascimento em Pietrelcina</h3>
+          <p class="tl-desc">Nasce Francesco Forgione em família camponesa e católica no sul da Itália.</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-ano">1903 · 15 anos</p>
+          <h3 class="tl-evento">Ingressa nos Capuchinhos</h3>
+          <p class="tl-desc">Entra nos Frades Menores Capuchinhos tomando o nome de frei Pio.</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-ano">10 Ago 1910</p>
+          <h3 class="tl-evento">Ordenação sacerdotal</h3>
+          <p class="tl-desc">É ordenado padre aos 23 anos. Sua saúde frágil preocupava os superiores.</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-ano">1916</p>
+          <h3 class="tl-evento">Chega a San Giovanni Rotondo</h3>
+          <p class="tl-desc">É enviado ao convento de San Giovanni Rotondo, onde permanecerá pelo resto da vida.</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-ano">20 Set 1918</p>
+          <h3 class="tl-evento">Recebe as Estigmas</h3>
+          <p class="tl-desc">Enquanto reza diante de um crucifixo, recebe as chagas de Cristo. É o primeiro padre estigmatizado da história.</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-ano">1923 – 1933</p>
+          <h3 class="tl-evento">Restrições do Vaticano</h3>
+          <p class="tl-desc">O Santo Ofício impõe restrições ao seu ministério por dez anos — período de humilhação que ele aceita com obediência total.</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-ano">1956</p>
+          <h3 class="tl-evento">Casa do Alívio do Sofrimento</h3>
+          <p class="tl-desc">Inaugura o hospital Casa Sollievo della Sofferenza, construído com doações de fiéis do mundo inteiro.</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-ano">23 Set 1968</p>
+          <h3 class="tl-evento">Morte aos 81 anos</h3>
+          <p class="tl-desc">Falece em San Giovanni Rotondo no 50º aniversário das estigmas. As chagas desaparecem completamente.</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-ano">2 Mai 1999</p>
+          <h3 class="tl-evento">Beatificação</h3>
+          <p class="tl-desc">João Paulo II o beatifica em Roma diante de 300.000 fiéis.</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-ano">16 Jun 2002</p>
+          <h3 class="tl-evento">Canonização</h3>
+          <p class="tl-desc">João Paulo II o canoniza em Roma diante de 500.000 pessoas — uma das maiores canonizações da história.</p>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- MILAGRES -->
+  <section class="milagres-section" id="milagres">
+    <div class="milagres-inner">
+      <span class="section-tag">Seção 03</span>
+      <div class="section-header-left">
+        <h2>Milagres Aprovados</h2>
+        <p>Os prodígios reconhecidos pela Igreja para sua beatificação e canonização</p>
+      </div>
+      <div class="milagres-grid">
+        <div class="milagre-card">
+          <p class="milagre-numero">01</p>
+          <p class="milagre-local">Itália</p>
+          <h3 class="milagre-titulo">Cura de Consiglia De Martino</h3>
+          <p class="milagre-desc">Consiglia De Martino sofria de uma grave fístula linfática no pescoço, considerada incurável. Em 1959, após visitar San Giovanni Rotondo e pedir a intercessão de Padre Pio, foi curada instantaneamente. A cura foi investigada e reconhecida pelo Vaticano, abrindo o caminho para a beatificação em 1999.</p>
+          <span class="milagre-ano-badge">Aprovado em 1998 · para a Beatificação</span>
+        </div>
+        <div class="milagre-card">
+          <p class="milagre-numero">02</p>
+          <p class="milagre-local">Itália</p>
+          <h3 class="milagre-titulo">Cura de Matteo Pio Colella</h3>
+          <p class="milagre-desc">Matteo Pio Colella, filho de um médico de San Giovanni Rotondo, estava em coma e com múltiplos órgãos em falência aos 7 anos. Os médicos não davam esperanças. Sua mãe rezou intensamente pedindo a intercessão de Padre Pio. Matteo se recuperou completamente de forma inexplicável — e relatou ter visto um frade com barba e mãos ensanguentadas durante o coma.</p>
+          <span class="milagre-ano-badge">Aprovado em 2002 · para a Canonização</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="perfil-content">
+
+    <!-- GALERIA -->
+<section class="galeria-section" id="galeria">
+  <span class="section-tag">Seção 04</span>
+
+  <div class="section-header-left">
+    <h2>Galeria</h2>
+    <p>Imagens da vida, do ministério e da canonização de São Pio de Pietrelcina</p>
+  </div>
+
+  <div class="galeria-grid">
+
+    <div class="galeria-item">
+      <img src="../imagens/pio0.jpg"
+           alt="Pio de Pietrelcina"
+           style="width:100%; height:100%; object-fit:cover;">
+    </div>
+
+    <div class="galeria-item">
+      <img src="../imagens/pio1.jpg"
+           alt="Pio de Pietrelcina"
+           style="width:100%; height:100%; object-fit:cover;">
+    </div>
+
+    <div class="galeria-item">
+      <img src="../imagens/pio2.jpg"
+           alt="Pio de Pietrelcina"
+           style="width:100%; height:100%; object-fit:cover;">
+    </div>
+
+    <div class="galeria-item">
+      <img src="../imagens/pio3.jpg"
+           alt="Pio de Pietrelcina"
+           style="width:100%; height:100%; object-fit:cover;">
+    </div>
+
+    <div class="galeria-item">
+      <img src="../imagens/pio4.jpg"
+           alt="Pio de Pietrelcina"
+           style="width:100%; height:100%; object-fit:cover;">
+    </div>
+
+  </div>
+
+  <p class="galeria-legenda">
+    As fotografias devem ser obtidas de fontes de domínio público ou com autorização dos detentores dos direitos.
+  </p>
+</section>
+
+    <!-- FONTES -->
+    <section class="fontes-section" id="fontes">
+      <span class="section-tag">Seção 06</span>
+      <div class="section-header-left">
+        <h2>Fontes e Referências</h2>
+        <p>Documentação utilizada para a elaboração deste perfil</p>
+      </div>
+      <div class="fontes-lista">
+        <div class="fonte-item">
+          <span class="fonte-tipo">Site Oficial</span>
+          <div><p class="fonte-titulo">padrepio.com</p><p class="fonte-autor">Site oficial do Santuário de San Giovanni Rotondo</p></div>
+          <a href="https://www.padrepio.com" target="_blank" class="fonte-link">Acessar →</a>
+        </div>
+        <div class="fonte-item">
+          <span class="fonte-tipo">Livro</span>
+          <div><p class="fonte-titulo">Padre Pio — O Santo das Chagas</p><p class="fonte-autor">C. Bernard Ruffin · Editora Loyola, 1991</p></div>
+          <span class="fonte-link">Impresso</span>
+        </div>
+        <div class="fonte-item">
+          <span class="fonte-tipo">Livro</span>
+          <div><p class="fonte-titulo">Cartas — Correspondência com os Diretores Espirituais</p><p class="fonte-autor">São Pio de Pietrelcina · Editora Santuário, 2004</p></div>
+          <span class="fonte-link">Impresso</span>
+        </div>
+        <div class="fonte-item">
+          <span class="fonte-tipo">Vatican News</span>
+          <div><p class="fonte-titulo">Canonização de Padre Pio — Homilia de João Paulo II</p><p class="fonte-autor">Santa Sé · 16 de junho de 2002</p></div>
+          <a href="https://www.vatican.va/content/john-paul-ii/pt/homilies/2002/documents/hf_jp-ii_hom_20020616_padre-pio.html" target="_blank" class="fonte-link">Acessar →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- NAVEGAÇÃO -->
+    <div class="nav-santos" style="position:static; background:none; backdrop-filter:none; border-bottom:none; padding:3rem 0; display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--gold-light); margin-top:2rem;">
+      <a href="pier-giorgio.html" class="nav-santo-link">
+        <span class="nav-santo-label">← Santo Anterior</span>
+        <span class="nav-santo-nome">São Pier Giorgio Frassati</span>
+      </a>
+      <a href="carlo-acutis.html" class="nav-santo-link nav-santo-dir">
+        <span class="nav-santo-label">Próximo Santo →</span>
+        <span class="nav-santo-nome">São Carlo Acutis</span>
+      </a>
+    </div>
+
+  </div>
+
+  <!-- ORAÇÃO -->
+  <section class="oracao-section" id="oracao">
+    <div class="oracao-inner">
+      <span class="section-tag">Seção 05</span>
+      <h2 class="oracao-titulo">Oração por Intercessão de São Pio de Pietrelcina</h2>
+      <div class="oracao-texto">
+        <p>Senhor Jesus, Tu que permitiste que São Pio participasse de modo singular do Teu sofrimento redentor, concede-nos, por sua intercessão, a graça de abraçar com fé as cruzes da nossa vida.</p>
+        <p>Ele carregou as Tuas chagas por cinquenta anos sem se queixar, transformando cada dor em oração e cada hora no confessionário em misericórdia derramada. Que seu exemplo nos ensine que o sofrimento unido a Ti não é derrota — é redenção.</p>
+        <p>São Pio de Pietrelcina, intercede por nós junto ao Pai. Que nunca nos falte a paz que vem da oração, a coragem que vem da Cruz e a alegria que vem da esperança. Amém.</p>
+      </div>
+      <p class="oracao-fecho">· Para uso privado · Aprovação eclesiástica recomendada ·</p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <span class="footer-logo">Santos da Modernidade</span>
+      <span class="footer-copy">© Santos da Modernidade · Ad Maiorem Dei Gloriam</span>
+    </div>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      const menu = document.querySelector('.nav-links');
+      const btn = document.getElementById('nav-hamburguer');
+      menu.classList.toggle('aberto');
+      btn.textContent = menu.classList.contains('aberto') ? '✕' : '☰';
+    }
+  </script>
+
+</body>
+</html>
