@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>São Pier Giorgio Frassati · Santos da Modernidade</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600&family=Raleway:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../style.css" />
+  <style>
+    /* ── PAGE-SPECIFIC STYLES ── */
+
+    .perfil-hero {
+      min-height: 100vh;
+      background: var(--dark);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      position: relative;
+      overflow: hidden;
+      padding-top: 80px;
+    }
+
+    .perfil-hero-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 5rem 4rem 5rem 5rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .perfil-breadcrumb {
+      font-size: 0.68rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: rgba(201,168,76,0.5);
+      margin-bottom: 2rem;
+    }
+
+    .perfil-breadcrumb a {
+      color: inherit;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .perfil-breadcrumb a:hover { color: var(--gold); }
+
+    .perfil-badge {
+      display: inline-block;
+      border: 1px solid rgba(201,168,76,0.4);
+      color: var(--gold);
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      padding: 0.35rem 0.9rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .perfil-nome {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 600;
+      color: var(--ivory);
+      line-height: 1.15;
+      margin-bottom: 0.5rem;
+      letter-spacing: 0.03em;
+    }
+
+    .perfil-titulo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      font-style: italic;
+      font-weight: 300;
+      color: var(--gold-light);
+      margin-bottom: 2rem;
+      opacity: 0.8;
+    }
+
+    .perfil-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .perfil-meta-item {
+      display: flex;
+      gap: 1rem;
+      font-size: 0.85rem;
+    }
+
+    .perfil-meta-label {
+      color: rgba(201,168,76,0.6);
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      min-width: 100px;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+    }
+
+    .perfil-meta-value {
+      color: rgba(240,232,216,0.75);
+    }
+
+    .perfil-frase {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-style: italic;
+      color: var(--gold-light);
+      border-left: 2px solid var(--gold);
+      padding-left: 1.25rem;
+      line-height: 1.65;
+      opacity: 0.9;
+    }
+
+    .perfil-hero-right {
+      position: relative;
+      background: var(--dark-mid);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .perfil-hero-right::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at center, rgba(201,168,76,0.06) 0%, transparent 70%);
+    }
+
+    .perfil-img-placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      color: rgba(201,168,76,0.2);
+      font-family: 'Cinzel', serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      text-align: center;
+    }
+
+    .perfil-img-placeholder-cross {
+      font-size: 5rem;
+      line-height: 1;
+      opacity: 0.15;
+    }
+
+    .perfil-hero-datas {
+      position: absolute;
+      bottom: 2rem;
+      right: 2rem;
+      text-align: right;
+    }
+
+    .perfil-hero-ano {
+      font-family: 'Cinzel', serif;
+      font-size: 4rem;
+      font-weight: 600;
+      color: rgba(201,168,76,0.08);
+      line-height: 1;
+      display: block;
+    }
+
+    .perfil-content {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .bio-section {
+      padding: 7rem 0;
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 5rem;
+      border-bottom: 1px solid var(--gold-light);
+    }
+
+    .bio-sidebar {
+      position: sticky;
+      top: 100px;
+      align-self: start;
+    }
+
+    .sidebar-tag {
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold-dark);
+      display: block;
+      margin-bottom: 1rem;
+    }
+
+    .sidebar-title {
+      font-family: 'Cinzel', serif;
+      font-size: 1.3rem;
+      font-weight: 400;
+      color: var(--dark);
+      letter-spacing: 0.06em;
+      line-height: 1.4;
+    }
+
+    .sidebar-ornament {
+      width: 30px;
+      height: 1px;
+      background: var(--gold);
+      margin: 1.5rem 0;
+    }
+
+    .sidebar-resumo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      font-style: italic;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    .bio-texto h3 {
+      font-family: 'Cinzel', serif;
+      font-size: 1rem;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      color: var(--dark);
+      margin: 2rem 0 0.75rem;
+    }
+
+    .bio-texto h3:first-child { margin-top: 0; }
+
+    .bio-texto p {
+      font-size: 0.97rem;
+      line-height: 1.9;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+    }
+
+    .bio-texto p strong {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .timeline-section {
+      padding: 7rem 0;
+      border-bottom: 1px solid var(--gold-light);
+    }
+
+    .timeline-header { margin-bottom: 3.5rem; }
+
+    .timeline-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      position: relative;
+    }
+
+    .timeline-grid::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: linear-gradient(to bottom, transparent, var(--gold-light), transparent);
+      transform: translateX(-50%);
+    }
+
+    .tl-item {
+      padding: 2rem;
+      position: relative;
+    }
+
+    .tl-item:nth-child(odd) {
+      text-align: right;
+      padding-right: 3rem;
+    }
+
+    .tl-item:nth-child(even) { padding-left: 3rem; }
+
+    .tl-item::after {
+      content: '';
+      position: absolute;
+      top: 2.5rem;
+      width: 8px;
+      height: 8px;
+      background: var(--gold);
+      transform: rotate(45deg);
+    }
+
+    .tl-item:nth-child(odd)::after { right: -4px; }
+    .tl-item:nth-child(even)::after { left: -4px; }
+
+    .tl-ano {
+      font-family: 'Cinzel', serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      color: var(--gold-dark);
+      margin-bottom: 0.4rem;
+    }
+
+    .tl-evento {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      font-weight: 400;
+      color: var(--dark);
+      margin-bottom: 0.3rem;
+    }
+
+    .tl-desc {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .milagres-section {
+      padding: 7rem 0;
+      background: var(--parchment);
+      margin: 0;
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+
+    .milagres-inner { max-width: 1100px; margin: 0 auto; }
+
+    .milagres-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .milagre-card {
+      background: var(--ivory);
+      border: 1px solid var(--gold-light);
+      padding: 2rem;
+    }
+
+    .milagre-numero {
+      font-family: 'Cinzel', serif;
+      font-size: 2.5rem;
+      font-weight: 600;
+      color: var(--gold-light);
+      line-height: 1;
+      margin-bottom: 1rem;
+    }
+
+    .milagre-local {
+      font-size: 0.68rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold-dark);
+      margin-bottom: 0.5rem;
+    }
+
+    .milagre-titulo {
+      font-family: 'Cinzel', serif;
+      font-size: 0.95rem;
+      font-weight: 400;
+      color: var(--dark);
+      letter-spacing: 0.05em;
+      margin-bottom: 0.75rem;
+    }
+
+    .milagre-desc {
+      font-size: 0.88rem;
+      line-height: 1.75;
+      color: var(--text-muted);
+    }
+
+    .milagre-ano-badge {
+      display: inline-block;
+      margin-top: 1rem;
+      border: 1px solid var(--gold-light);
+      color: var(--gold-dark);
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      padding: 0.2rem 0.6rem;
+    }
+
+    .galeria-section {
+      padding: 7rem 0;
+      border-bottom: 1px solid var(--gold-light);
+    }
+
+    .galeria-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      grid-template-rows: 200px 200px;
+      gap: 1rem;
+      margin-top: 3rem;
+    }
+
+    .galeria-item {
+      background: var(--dark-mid);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(201,168,76,0.2);
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      font-family: 'Cinzel', serif;
+      border: 1px solid rgba(201,168,76,0.1);
+    }
+
+    .galeria-item:first-child { grid-row: 1 / 3; }
+
+    .galeria-legenda {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      text-align: center;
+      margin-top: 1rem;
+      font-style: italic;
+      font-family: 'Cormorant Garamond', serif;
+    }
+
+    .oracao-section {
+      padding: 7rem 0;
+      background: var(--blue-deep);
+      margin: 0 -2rem;
+      padding-left: 2rem;
+      padding-right: 2rem;
+      text-align: center;
+    }
+
+    .oracao-inner { max-width: 680px; margin: 0 auto; }
+    .oracao-section .section-tag { color: var(--gold); }
+
+    .oracao-titulo {
+      font-family: 'Cinzel', serif;
+      font-size: 1.4rem;
+      font-weight: 400;
+      color: var(--ivory);
+      letter-spacing: 0.08em;
+      margin-bottom: 2.5rem;
+    }
+
+    .oracao-texto {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      font-weight: 300;
+      line-height: 2;
+      color: rgba(240,232,216,0.8);
+      text-align: left;
+    }
+
+    .oracao-texto p { margin-bottom: 1rem; }
+
+    .oracao-fecho {
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: 0.7;
+      margin-top: 2rem;
+    }
+
+    .fontes-section { padding: 7rem 0; }
+
+    .fontes-lista {
+      margin-top: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .fonte-item {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 1.5rem;
+      align-items: center;
+      padding: 1.25rem 0;
+      border-bottom: 1px solid var(--gold-light);
+    }
+
+    .fonte-tipo {
+      font-size: 0.62rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold-dark);
+      border: 1px solid var(--gold-light);
+      padding: 0.2rem 0.6rem;
+      white-space: nowrap;
+    }
+
+    .fonte-titulo {
+      font-size: 0.92rem;
+      color: var(--text);
+      font-weight: 400;
+    }
+
+    .fonte-autor {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 0.2rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+    }
+
+    .fonte-link {
+      font-size: 0.7rem;
+      color: var(--gold-dark);
+      text-decoration: none;
+      letter-spacing: 0.1em;
+      white-space: nowrap;
+      transition: color 0.2s;
+    }
+
+    .fonte-link:hover { color: var(--gold); }
+
+    .nav-santos {
+      position: static;
+      background: none;
+      backdrop-filter: none;
+      padding: 3rem 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid var(--gold-light);
+      margin-top: 2rem;
+    }
+    .nav-santo-link {
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+
+    .nav-santo-dir { text-align: right; }
+
+    .nav-santo-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .nav-santo-nome {
+      font-family: 'Cinzel', serif;
+      font-size: 0.95rem;
+      color: var(--gold-dark);
+      transition: color 0.2s;
+    }
+
+    .nav-santo-link:hover .nav-santo-nome { color: var(--gold); }
+
+    .section-header-left { margin-bottom: 0; }
+
+    .section-header-left h2 {
+      font-family: 'Cinzel', serif;
+      font-size: 1.5rem;
+      font-weight: 400;
+      color: var(--dark);
+      letter-spacing: 0.08em;
+      margin-bottom: 0.5rem;
+    }
+
+    .section-header-left p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      font-style: italic;
+      color: var(--text-muted);
+    }
+
+   @media (max-width: 768px) {
+      .perfil-hero { grid-template-columns: 1fr; }
+      .perfil-hero-right { display: flex; }
+      .perfil-hero-left { padding: 3rem 1.5rem; }
+      .bio-section { grid-template-columns: 1fr; gap: 2rem; }
+      .bio-sidebar { position: static; }
+      .timeline-grid { grid-template-columns: 1fr; }
+      .timeline-grid::before { display: none; }
+      .tl-item { text-align: left !important; padding: 1rem 0 1rem 2rem !important; }
+      .tl-item::after { left: 0 !important; right: auto !important; }
+      .milagres-grid { grid-template-columns: 1fr; }
+      .galeria-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+      .galeria-item:first-child { grid-row: auto; }
+      .fonte-item { grid-template-columns: 1fr; gap: 0.5rem; }
+      .section-header-left { padding: 0 24px; }
+      .section-tag { padding-left: 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="../index.html" class="nav-logo">Santos da Modernidade</a>
+    <ul class="nav-links">
+      <li><a href="../index.html#santos">Os Santos</a></li>
+      <li><a href="../categoria.html">Categorias</a></li>
+      <li><a href="../index.html#cronologia">Cronologia</a></li>
+      <li><a href="../mapa.html">Mapa</a></li>
+      <li><a href="../sobre.html">Sobre</a></li>
+    </ul>
+  <button id="nav-hamburguer" 
+        onclick="toggleMenu()" 
+        style="background:transparent; border:none; color:#C9A84C; font-size:1.5rem; cursor:pointer; padding:0.25rem 0.5rem; -webkit-appearance:none; appearance:none;">
+    ☰
+  </button>
+  </nav>
+
+  <!-- HERO -->
+  <section class="perfil-hero">
+    <div class="perfil-hero-left">
+      <p class="perfil-breadcrumb">
+        <a href="../index.html">Início</a> &nbsp;·&nbsp;
+        <a href="../index.html#santos">Os Santos</a> &nbsp;·&nbsp;
+        Pier Giorgio Frassati
+      </p>
+      <span class="perfil-badge"> Santo · Canonizado em 2025</span>
+      <h1 class="perfil-nome">Pier Giorgio<br>Frassati</h1>
+      <p class="perfil-titulo">"O Homem das Oito Bem-aventuranças"</p>
+      <div class="perfil-meta">
+        <div class="perfil-meta-item">
+          <span class="perfil-meta-label">Nascimento</span>
+          <span class="perfil-meta-value">6 de abril de 1901 · Turim, Itália</span>
+        </div>
+        <div class="perfil-meta-item">
+          <span class="perfil-meta-label">Falecimento</span>
+          <span class="perfil-meta-value">4 de julho de 1925 · Turim, Itália</span>
+        </div>
+        <div class="perfil-meta-item">
+          <span class="perfil-meta-label">Beatificação</span>
+          <span class="perfil-meta-value">20 de maio de 1990 · Roma · São João Paulo II</span>
+        </div>
+        <div class="perfil-meta-item">
+          <span class="perfil-meta-label">Festa litúrgica</span>
+          <span class="perfil-meta-value">4 de julho</span>
+        </div>
+        <div class="perfil-meta-item">
+          <span class="perfil-meta-label">Patrono</span>
+          <span class="perfil-meta-value">Jovens, alpinistas e estudantes universitários</span>
+        </div>
+      </div>
+      <p class="perfil-frase">
+        "Para onde Deus me chamar, irei feliz. Mas se me perguntarem o meu desejo, direi: quero ficar aqui para sempre."
+      </p>
+    </div>
+    <div class="perfil-hero-right" style="position:relative; overflow:hidden;">
+       <img src="../imagens/pg2.jpg" 
+       alt="Pier Giorgio Frassati" 
+       style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;" />
+      <div class="perfil-hero-datas">
+        <span class="perfil-hero-ano">1925</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTEÚDO -->
+  <div class="perfil-content">
+
+    <!-- BIOGRAFIA -->
+    <section class="bio-section" id="biografia">
+      <div class="bio-sidebar">
+        <span class="sidebar-tag">Seção 01</span>
+        <h2 class="sidebar-title">Biografia<br>Detalhada</h2>
+        <div class="sidebar-ornament"></div>
+        <p class="sidebar-resumo">
+          Jovem universitário, alpinista e apaixonado pela vida, Pier Giorgio viveu a santidade com alegria contagiante e um amor heroico pelos pobres e doentes de Turim.
+        </p>
+      </div>
+      <div class="bio-texto">
+        <h3>Família e Infância</h3>
+        <p>
+          Pier Giorgio Frassati nasceu em <strong>6 de abril de 1901</strong> em Turim, Itália, filho de Alfredo Frassati — fundador do importante jornal <em>La Stampa</em> e futuro embaixador da Itália na Alemanha — e de Adelaide Ametis, pintora de talento. Apesar do ambiente familiar culto e abastado, a relação entre seus pais era tensa e fria, o que marcou profundamente a infância de Pier Giorgio.
+        </p>
+        <p>
+          Desde cedo, ele buscou fora de casa o calor humano que faltava dentro dela — especialmente entre os pobres, os doentes e os amigos. Sua irmã Luciana seria sua grande confidente ao longo de toda a vida.
+        </p>
+
+        <h3>Fé Profunda e Vida Sacramental</h3>
+        <p>
+          Pier Giorgio tinha uma vida espiritual intensa, centrada na Eucaristia diária e na oração. Era membro ativo da <strong>Congregação Mariana</strong> e da <strong>Ordem Terceira Dominicana</strong>, tomando o nome de frei Girolamo. Participava de adorações noturnas ao Santíssimo Sacramento com regularidade.
+        </p>
+        <p>
+          Para ele, a Missa diária não era obrigação — era o combustível de toda a sua alegria e caridade. Dizia que sem a Eucaristia não conseguiria viver como vivia.
+        </p>
+
+        <h3>O Jovem Alegre e Aventureiro</h3>
+        <p>
+          Contrariando qualquer imagem de santidade sombria, Pier Giorgio era <strong>extrovertido, engraçado e apaixonado pela vida</strong>. Praticava alpinismo com entusiasmo nas montanhas dos Alpes, nadava, andava de bicicleta e adorava reunir amigos. Seu grupo de amizade, chamado por eles de "Os Tipos" (<em>I Tipi</em>), era famoso pelas excursões, piadas e camaradagem.
+        </p>
+        <p>
+          São João Paulo II o chamou de "o homem das oito bem-aventuranças" — alguém que vivia o Evangelho com a naturalidade de quem respira.
+        </p>
+
+        <h3>O Amor pelos Pobres</h3>
+        <p>
+          Em segredo — para não constranger a família —, Pier Giorgio distribuía grande parte de sua mesada entre os pobres de Turim. Visitava doentes, conseguia medicamentos para quem não podia pagar, pagava aluguéis de famílias em dificuldade e levava comida pessoalmente.
+        </p>
+        <p>
+          Era membro ativo da <strong>Sociedade de São Vicente de Paulo</strong>, onde atuava semanalmente nos bairros mais pobres da cidade. Muitas vezes chegava em casa sem os sapatos — os havia dado a alguém no caminho.
+        </p>
+
+        <h3>Doença e Morte Silenciosa</h3>
+        <p>
+          Em junho de 1925, Pier Giorgio começou a sentir os primeiros sintomas de poliomielite fulminante — provavelmente contraída durante as visitas aos doentes. Ocultou a doença da família, que estava consumida pelo grave estado de saúde da avó materna.
+        </p>
+        <p>
+          Morreu em <strong>4 de julho de 1925</strong>, aos apenas 24 anos. Só então sua família descobriu a extensão de sua vida de caridade: no dia do funeral, centenas de pobres e doentes de Turim foram às ruas — rostos que a família nunca havia visto, mas que Pier Giorgio conhecia pelo nome.
+        </p>
+      </div>
+    </section>
+
+    <!-- LINHA DO TEMPO -->
+    <section class="timeline-section" id="cronologia">
+      <div class="timeline-header">
+        <span class="section-tag">Seção 02</span>
+        <div class="section-header-left">
+          <h2>Linha do Tempo</h2>
+          <p>24 anos vividos com uma intensidade que poucos alcançam em uma vida inteira</p>
+        </div>
+      </div>
+      <div class="timeline-grid">
+        <div class="tl-item">
+          <p class="tl-ano">6 Abr 1901</p>
+          <h3 class="tl-evento">Nascimento em Turim</h3>
+          <p class="tl-desc">Nasce filho de Alfredo Frassati, fundador do jornal La Stampa, e de Adelaide Ametis.</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-ano">1910 · 9 anos</p>
+          <h3 class="tl-evento">Primeira Comunhão</h3>
+          <p class="tl-desc">Recebe a Eucaristia pela primeira vez. A partir daí, a Missa diária se torna o centro de sua vida.</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-ano">1918 · 17 anos</p>
+          <h3 class="tl-evento">Ingresso na universidade</h3>
+          <p class="tl-desc">Inicia o curso de Engenharia de Minas no Politécnico de Turim, contra a vontade do pai, que queria que estudasse Direito.</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-ano">1919 · 18 anos</p>
+          <h3 class="tl-evento">São Vicente de Paulo</h3>
+          <p class="tl-desc">Entra para a Sociedade de São Vicente de Paulo e passa a visitar doentes e pobres semanalmente nos bairros mais carentes de Turim.</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-ano">1921 · 20 anos</p>
+          <h3 class="tl-evento">Ordem Dominicana</h3>
+          <p class="tl-desc">Ingressa na Ordem Terceira de São Domingos, tomando o nome de frei Girolamo. Aprofunda sua vida de oração e contemplação.</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-ano">1922 · 21 anos</p>
+          <h3 class="tl-evento">Alpinismo nos Alpes</h3>
+          <p class="tl-desc">Realiza algumas de suas escaladas mais memoráveis nos Alpes italianos com o grupo de amigos "Os Tipos".</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-ano">Jun 1925</p>
+          <h3 class="tl-evento">Primeiros sintomas</h3>
+          <p class="tl-desc">Contrai poliomielite fulminante, provavelmente nas visitas aos doentes. Oculta a doença para não preocupar a família.</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-ano">4 Jul 1925</p>
+          <h3 class="tl-evento">Morte aos 24 anos</h3>
+          <p class="tl-desc">Falece em Turim. Centenas de pobres e doentes desconhecidos pela família comparecem ao funeral, revelando sua vida secreta de caridade.</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-ano">20 Mai 1990</p>
+          <h3 class="tl-evento">Beatificação</h3>
+          <p class="tl-desc">É beatificado pelo Papa João Paulo II em Roma, que o chama de "o homem das oito bem-aventuranças".</p>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- MILAGRES -->
+  <section class="milagres-section" id="milagres">
+    <div class="milagres-inner">
+      <span class="section-tag">Seção 03</span>
+      <div class="section-header-left">
+        <h2>Milagres Aprovados</h2>
+        <p>O prodígio reconhecido pela Igreja para sua beatificação</p>
+      </div>
+      <div class="milagres-grid">
+        <div class="milagre-card">
+          <p class="milagre-numero">01</p>
+          <p class="milagre-local">Turim, Itália</p>
+          <h3 class="milagre-titulo">Cura inexplicável de uma jovem gravemente enferma</h3>
+          <p class="milagre-desc">
+            Uma jovem italiana sofria de uma doença grave considerada incurável pelos médicos. Sua família iniciou uma novena pedindo a intercessão de Pier Giorgio Frassati. A recuperação foi completa, súbita e inexplicável pela medicina. A comissão médica e teológica do Vaticano analisou o caso e reconheceu o milagre, abrindo o caminho para a beatificação em 1990.
+          </p>
+          <span class="milagre-ano-badge">Aprovado em 1989 · para a Beatificação</span>
+        </div>
+        <div class="milagre-card">
+          <p class="milagre-numero">✦</p>
+          <p class="milagre-local">Canonização</p>
+          <h3 class="milagre-titulo">7 de setembro de 2025</h3>
+          <p class="milagre-desc">
+            O milagre que abriu caminho para a canonização de Pier Giorgio Frassati foi a cura de um seminarista norte-americano chamado Juan Gutierrez de Los Angeles. Em 2017, enquanto jogava basquete, ele sofreu uma ruptura grave no tendão de Aquiles e, após rezar a novena do Beato, foi curado sem a necessidade de cirurgia.
+          </p>
+          <span class="milagre-ano-badge"> Aprovado pelo Vaticano em novembro de 2024 para canonização</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="perfil-content">
+
+    <!-- GALERIA -->
+    <section class="galeria-section" id="galeria">
+      <span class="section-tag">Seção 04</span>
+      <div class="section-header-left">
+        <h2>Galeria</h2>
+        <p>Imagens da vida e beatificação de Pier Giorgio Frassati</p>
+      </div>
+      <div class="galeria-grid">
+        <div class="galeria-item">
+          <img src="../imagens/pg0.jpeg" 
+             alt="Pier Giorgio" 
+             style="width:100%; height:100%; object-fit:cover;" />
+        </div>
+        <div class="galeria-item">
+          <img src="../imagens/pg1.jpg" 
+             alt="Pier Giorgio" 
+             style="width:100%; height:100%; object-fit:cover;" />
+        </div>
+        <div class="galeria-item">
+          <img src="../imagens/pg2.jpg" 
+             alt="Pier Giorgio" 
+             style="width:100%; height:100%; object-fit:cover;" />
+        </div>
+        <div class="galeria-item">
+          <img src="../imagens/pg3.jpg" 
+           alt="Pier Giorgio" 
+           style="width:100%; height:100%; object-fit:cover;" />
+        </div>
+        <div class="galeria-item">
+          <img src="../imagens/pg4.jpg" 
+           alt="Pier Giorgio" 
+           style="width:100%; height:100%; object-fit:cover;" />
+        </div>
+      </div>
+      <p class="galeria-legenda">
+        As fotografias devem ser obtidas de fontes de domínio público ou com autorização dos detentores dos direitos.
+      </p>
+    </section>
+
+    <!-- FONTES -->
+    <section class="fontes-section" id="fontes">
+      <span class="section-tag">Seção 06</span>
+      <div class="section-header-left">
+        <h2>Fontes e Referências</h2>
+        <p>Documentação utilizada para a elaboração deste perfil</p>
+      </div>
+      <div class="fontes-lista">
+        <div class="fonte-item">
+          <span class="fonte-tipo">Site Oficial</span>
+          <div>
+            <p class="fonte-titulo">piergiorgiofrassati.org</p>
+            <p class="fonte-autor">Site oficial da causa de canonização de Pier Giorgio Frassati</p>
+          </div>
+          <a href="https://www.piergiorgiofrassati.org" target="_blank" class="fonte-link">Acessar →</a>
+        </div>
+        <div class="fonte-item">
+          <span class="fonte-tipo">Livro</span>
+          <div>
+            <p class="fonte-titulo">Meu Irmão Pier Giorgio — Sua Alma</p>
+            <p class="fonte-autor">Luciana Frassati (irmã) · Editora Loyola</p>
+          </div>
+          <span class="fonte-link">Impresso</span>
+        </div>
+        <div class="fonte-item">
+          <span class="fonte-tipo">Livro</span>
+          <div>
+            <p class="fonte-titulo">Pier Giorgio Frassati — Um Jovem do Nosso Tempo</p>
+            <p class="fonte-autor">Maria Di Lorenzo · Editora Paulinas, 2015</p>
+          </div>
+          <span class="fonte-link">Impresso</span>
+        </div>
+        <div class="fonte-item">
+          <span class="fonte-tipo">Vatican News</span>
+          <div>
+            <p class="fonte-titulo">Canonização de Pier Giorgio Frassati</p>
+            <p class="fonte-autor">Santa Sé · 7 de setembro de 2025</p>
+          </div>
+          <a href="https://press.vatican.va/content/salastampa/en/bollettino/pubblico/2025/06/13/250613a.html" target="_blank" class="fonte-link">Acessar →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- NAVEGAÇÃO -->
+    <div class="nav-santos">
+      <a href="gianna-beretta.html" class="nav-santo-link">
+        <span class="nav-santo-label">← Santo Anterior</span>
+        <span class="nav-santo-nome">Santa Gianna Beretta</span>
+      </a>
+      <a href="carlo-acutis.html" class="nav-santo-link nav-santo-dir">
+        <span class="nav-santo-label">Próximo Santo →</span>
+        <span class="nav-santo-nome">São Carlo Acutis</span>
+      </a>
+    </div>
+
+  </div>
+
+  <!-- ORAÇÃO -->
+  <section class="oracao-section" id="oracao">
+    <div class="oracao-inner">
+      <span class="section-tag">Seção 05</span>
+      <h2 class="oracao-titulo">Oração por Intercessão de Pier Giorgio Frassati</h2>
+      <div class="oracao-texto">
+        <p>
+          Senhor Jesus, Tu que chamaste Pier Giorgio à perfeição do amor evangélico, concede-nos, por sua intercessão, a graça de viver com a mesma alegria e generosidade com que ele viveu.
+        </p>
+        <p>
+          Ele viu em cada pobre o Teu rosto, em cada montanha a Tua glória, e em cada Eucaristia o centro de toda a sua vida. Que seu exemplo nos inspire a sair de nós mesmos e a amar sem calcular.
+        </p>
+        <p>
+         Senhor nosso Deus, que destes ao São Pier Giorgio Frassati a graça de aspirar às coisas mais nobres, com tenacidade e constância, e acolher com alegria o vosso convite à santidade, concedei-nos também a nós a graça de vivermos o Evangelho com coerência e de sermos testemunhas da Vossa caridade no mundo atual. Amém.
+        </p>
+      </div>
+      <p class="oracao-fecho">· Para uso privado · Aprovação eclesiástica pendente ·</p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <span class="footer-logo">Santos da Modernidade</span>
+      <span class="footer-copy">© Santos da Modernidade · Ad Maiorem Dei Gloriam</span>
+    </div>
+  </footer>
+  <script>
+    function toggleMenu() {
+     const menu = document.querySelector('.nav-links');
+     const btn = document.getElementById('nav-hamburguer');
+     menu.classList.toggle('aberto');
+     btn.textContent = menu.classList.contains('aberto') ? '✕' : '☰';
+    }
+  </script>
+</body>
+</html>

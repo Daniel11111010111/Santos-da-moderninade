@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>São João Paulo II · Santos da Modernidade</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600&family=Raleway:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../style.css" />
+  <style>
+    .perfil-hero {
+      min-height: 100vh;
+      background: var(--dark);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      position: relative;
+      overflow: hidden;
+      padding-top: 80px;
+    }
+
+    .perfil-hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 40%, rgba(201,168,76,0.07) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 40% at 20% 80%, rgba(123,28,46,0.1) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 40% at 80% 20%, rgba(27,45,79,0.12) 0%, transparent 60%);
+    }
+
+    .perfil-hero-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 5rem 4rem 5rem 5rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .perfil-breadcrumb {
+      font-size: 0.68rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: rgba(201,168,76,0.5);
+      margin-bottom: 2rem;
+    }
+    .perfil-breadcrumb a { color: inherit; text-decoration: none; transition: color 0.2s; }
+    .perfil-breadcrumb a:hover { color: var(--gold); }
+
+    .perfil-badge {
+      display: inline-block;
+      border: 1px solid rgba(201,168,76,0.4);
+      color: var(--gold);
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      padding: 0.35rem 0.9rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .perfil-nome {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 600;
+      color: var(--ivory);
+      line-height: 1.15;
+      margin-bottom: 0.5rem;
+      letter-spacing: 0.03em;
+    }
+
+    .perfil-titulo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      font-style: italic;
+      font-weight: 300;
+      color: var(--gold-light);
+      margin-bottom: 2rem;
+      opacity: 0.8;
+    }
+
+    .perfil-meta { display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 2.5rem; }
+    .perfil-meta-item { display: flex; gap: 1rem; align-items: baseline; }
+    .perfil-meta-label {
+      color: rgba(201,168,76,0.6);
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      min-width: 110px;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      flex-shrink: 0;
+    }
+    .perfil-meta-value { color: rgba(240,232,216,0.75); font-size: 0.85rem; line-height: 1.4; }
+
+    .perfil-frase {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-style: italic;
+      color: var(--gold-light);
+      border-left: 2px solid var(--gold);
+      padding-left: 1.25rem;
+      line-height: 1.65;
+      opacity: 0.9;
+    }
+
+    .perfil-hero-right {
+      position: relative;
+      background: var(--dark-mid);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .perfil-hero-right::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at center, rgba(201,168,76,0.06) 0%, transparent 70%);
+    }
+
+    .perfil-img-placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      color: rgba(201,168,76,0.2);
+      font-family: 'Cinzel', serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      text-align: center;
+    }
+
+    .perfil-img-placeholder-cross { font-size: 5rem; line-height: 1; opacity: 0.15; }
+
+    .perfil-hero-ano {
+      position: absolute;
+      bottom: 2rem; right: 2rem;
+      font-family: 'Cinzel', serif;
+      font-size: 4rem;
+      font-weight: 600;
+      color: rgba(201,168,76,0.08);
+      line-height: 1;
+    }
+
+    .perfil-content { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+
+    .section-tag { font-size: 0.65rem; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold-dark); display: block; margin-bottom: 1rem; }
+
+    .section-header-left h2 { font-family: 'Cinzel', serif; font-size: 1.5rem; font-weight: 400; color: var(--dark); letter-spacing: 0.08em; margin-bottom: 0.5rem; }
+    .section-header-left p { font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-style: italic; color: var(--text-muted); }
+
+    .bio-section { padding: 7rem 0; display: grid; grid-template-columns: 1fr 2fr; gap: 5rem; border-bottom: 1px solid var(--gold-light); }
+    .bio-sidebar { position: sticky; top: 100px; align-self: start; }
+    .sidebar-title { font-family: 'Cinzel', serif; font-size: 1.3rem; font-weight: 400; color: var(--dark); letter-spacing: 0.06em; line-height: 1.4; }
+    .sidebar-ornament { width: 30px; height: 1px; background: var(--gold); margin: 1.5rem 0; }
+    .sidebar-resumo { font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-style: italic; color: var(--text-muted); line-height: 1.7; }
+
+    .bio-texto h3 { font-family: 'Cinzel', serif; font-size: 1rem; font-weight: 400; letter-spacing: 0.1em; color: var(--dark); margin: 2rem 0 0.75rem; }
+    .bio-texto h3:first-child { margin-top: 0; }
+    .bio-texto p { font-size: 0.97rem; line-height: 1.9; color: var(--text-muted); margin-bottom: 1rem; }
+    .bio-texto p strong { color: var(--text); font-weight: 500; }
+
+    .timeline-section { padding: 7rem 0; border-bottom: 1px solid var(--gold-light); }
+    .timeline-header { margin-bottom: 3.5rem; }
+    .timeline-grid { display: grid; grid-template-columns: 1fr 1fr; position: relative; }
+    .timeline-grid::before { content: ''; position: absolute; left: 50%; top: 0; bottom: 0; width: 1px; background: linear-gradient(to bottom, transparent, var(--gold-light), transparent); transform: translateX(-50%); }
+    .tl-item { padding: 2rem; position: relative; }
+    .tl-item:nth-child(odd) { text-align: right; padding-right: 3rem; }
+    .tl-item:nth-child(even) { padding-left: 3rem; }
+    .tl-item::after { content: ''; position: absolute; top: 2.5rem; width: 8px; height: 8px; background: var(--gold); transform: rotate(45deg); }
+    .tl-item:nth-child(odd)::after { right: -4px; }
+    .tl-item:nth-child(even)::after { left: -4px; }
+    .tl-ano { font-family: 'Cinzel', serif; font-size: 0.72rem; letter-spacing: 0.2em; color: var(--gold-dark); margin-bottom: 0.4rem; }
+    .tl-evento { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; color: var(--dark); margin-bottom: 0.3rem; }
+    .tl-desc { font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; }
+
+    .milagres-section { padding: 7rem 0; background: var(--parchment); margin: 0 -2rem; padding-left: 2rem; padding-right: 2rem; border-top: 1px solid var(--gold-light); border-bottom: 1px solid var(--gold-light); }
+    .milagres-inner { max-width: 1100px; margin: 0 auto; }
+    .milagres-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 3rem; }
+    .milagre-card { background: var(--ivory); border: 1px solid var(--gold-light); padding: 2rem; }
+    .milagre-numero { font-family: 'Cinzel', serif; font-size: 2.5rem; font-weight: 600; color: var(--gold-light); line-height: 1; margin-bottom: 1rem; }
+    .milagre-local { font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold-dark); margin-bottom: 0.5rem; }
+    .milagre-titulo { font-family: 'Cinzel', serif; font-size: 0.95rem; color: var(--dark); margin-bottom: 0.75rem; }
+    .milagre-desc { font-size: 0.88rem; line-height: 1.75; color: var(--text-muted); }
+    .milagre-ano-badge { display: inline-block; margin-top: 1rem; border: 1px solid var(--gold-light); color: var(--gold-dark); font-size: 0.65rem; letter-spacing: 0.18em; padding: 0.2rem 0.6rem; }
+
+    .galeria-section { padding: 7rem 0; border-bottom: 1px solid var(--gold-light); }
+    .galeria-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; grid-template-rows: 200px 200px; gap: 1rem; margin-top: 3rem; }
+    .galeria-item { background: var(--dark-mid); display: flex; align-items: center; justify-content: center; color: rgba(201,168,76,0.2); font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; font-family: 'Cinzel', serif; border: 1px solid rgba(201,168,76,0.1); overflow: hidden; }
+    .galeria-item:first-child { grid-row: 1 / 3; }
+    .galeria-item img { width: 100%; height: 100%; object-fit: cover; }
+    .galeria-legenda { font-size: 0.75rem; color: var(--text-muted); text-align: center; margin-top: 1rem; font-style: italic; font-family: 'Cormorant Garamond', serif; }
+
+    .oracao-section { padding: 7rem 0; background: var(--blue-deep); margin: 0 -2rem; padding-left: 2rem; padding-right: 2rem; text-align: center; position: relative; overflow: hidden; }
+    .oracao-section::before { content: '"'; position: absolute; top: -2rem; left: 50%; transform: translateX(-50%); font-family: 'Cormorant Garamond', serif; font-size: 20rem; color: rgba(201,168,76,0.05); line-height: 1; pointer-events: none; }
+    .oracao-inner { max-width: 680px; margin: 0 auto; position: relative; z-index: 2; }
+    .oracao-section .section-tag { color: var(--gold); }
+    .oracao-titulo { font-family: 'Cinzel', serif; font-size: 1.4rem; color: var(--ivory); letter-spacing: 0.08em; margin-bottom: 2.5rem; }
+    .oracao-texto { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 300; line-height: 2; color: rgba(240,232,216,0.8); text-align: left; }
+    .oracao-texto p { margin-bottom: 1rem; }
+    .oracao-fecho { font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); opacity: 0.7; margin-top: 2rem; }
+
+    .fontes-section { padding: 7rem 0; }
+    .fontes-lista { margin-top: 2.5rem; display: flex; flex-direction: column; }
+    .fonte-item { display: grid; grid-template-columns: auto 1fr auto; gap: 1.5rem; align-items: center; padding: 1.25rem 0; border-bottom: 1px solid var(--gold-light); }
+    .fonte-tipo { font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold-dark); border: 1px solid var(--gold-light); padding: 0.2rem 0.6rem; white-space: nowrap; }
+    .fonte-titulo { font-size: 0.92rem; color: var(--text); }
+    .fonte-autor { font-size: 0.8rem; color: var(--text-muted); margin-top: 0.2rem; font-family: 'Cormorant Garamond', serif; font-style: italic; }
+    .fonte-link { font-size: 0.7rem; color: var(--gold-dark); text-decoration: none; letter-spacing: 0.1em; white-space: nowrap; transition: color 0.2s; }
+    .fonte-link:hover { color: var(--gold); }
+
+    .nav-santos-div { padding: 3rem 0; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--gold-light); margin-top: 2rem; }
+    .nav-santo-link { text-decoration: none; display: flex; flex-direction: column; gap: 0.3rem; }
+    .nav-santo-dir { text-align: right; }
+    .nav-santo-label { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted); }
+    .nav-santo-nome { font-family: 'Cinzel', serif; font-size: 0.95rem; color: var(--gold-dark); transition: color 0.2s; }
+    .nav-santo-link:hover .nav-santo-nome { color: var(--gold); }
+
+    @media (max-width: 768px) {
+      .perfil-hero { grid-template-columns: 1fr; }
+      .perfil-hero-right { display: flex; }
+      .perfil-hero-left { padding: 3rem 1.5rem; }
+      .bio-section { grid-template-columns: 1fr; gap: 2rem; }
+      .bio-sidebar { position: static; }
+      .timeline-grid { grid-template-columns: 1fr; }
+      .timeline-grid::before { display: none; }
+      .tl-item { text-align: left !important; padding: 1rem 0 1rem 2rem !important; }
+      .tl-item::after { left: 0 !important; right: auto !important; }
+      .milagres-grid { grid-template-columns: 1fr; }
+      .galeria-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+      .galeria-item:first-child { grid-row: auto; }
+      .fonte-item { grid-template-columns: 1fr; gap: 0.5rem; }
+      .section-header-left { padding: 0 24px; }
+      .section-tag { padding-left: 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="../index.html" class="nav-logo">Santos da Modernidade</a>
+    <ul class="nav-links">
+      <li><a href="../index.html#santos">Os Santos</a></li>
+      <li><a href="../categoria.html">Categorias</a></li>
+      <li><a href="../index.html#cronologia">Cronologia</a></li>
+      <li><a href="../mapa.html">Mapa</a></li>
+      <li><a href="../sobre.html">Sobre</a></li>
+    </ul>
+    <button id="nav-hamburguer"
+            onclick="toggleMenu()"
+            style="background:transparent; border:none; color:#C9A84C; font-size:1.5rem; cursor:pointer; padding:0.25rem 0.5rem; -webkit-appearance:none; appearance:none;">
+      ☰
+    </button>
+  </nav>
+
+  <!-- HERO -->
+  <section class="perfil-hero">
+    <div class="perfil-hero-bg"></div>
+    <div class="perfil-hero-left">
+      <p class="perfil-breadcrumb">
+        <a href="../index.html">Início</a> &nbsp;·&nbsp;
+        <a href="../index.html#santos">Os Santos</a> &nbsp;·&nbsp;
+        João Paulo II
+      </p>
+      <span class="perfil-badge">Santo · Canonizado em 2014</span>
+      <h1 class="perfil-nome">São João<br>Paulo II</h1>
+      <p class="perfil-titulo">"O Grande" — O Papa que mudou o mundo</p>
+      <div class="perfil-meta">
+        <div class="perfil-meta-item">
+          <span class="perfil-meta-label">Nascimento</span>
+          <span class="perfil-meta-value">18 de maio de 1920 · Wadowice, Polônia</span>
+        </div>
+        <div class="perfil-meta-item">
+          <span class="perfil-meta-label">Falecimento</span>
+          <span class="perfil-meta-value">2 de abril de 2005 · Cidade do Vaticano</span>
+        </div>
+        <div class="perfil-meta-item">
+          <span class="perfil-meta-label">Pontificado</span>
+          <span class="perfil-meta-value">16 de outubro de 1978 – 2 de abril de 2005</span>
+        </div>
+        <div class="perfil-meta-item">
+          <span class="perfil-meta-label">Beatificação</span>
+          <span class="perfil-meta-value">1 de maio de 2011 · Roma · Bento XVI</span>
+        </div>
+        <div class="perfil-meta-item">
+          <span class="perfil-meta-label">Canonização</span>
+          <span class="perfil-meta-value">27 de abril de 2014 · Roma · Francisco</span>
+        </div>
+        <div class="perfil-meta-item">
+          <span class="perfil-meta-label">Festa litúrgica</span>
+          <span class="perfil-meta-value">22 de outubro</span>
+        </div>
+      </div>
+      <p class="perfil-frase">"Não tenhais medo! Abri, escancarai as portas a Cristo!"</p>
+    </div>
+    <div class="perfil-hero-right" style="position:relative; overflow:hidden;">
+      <img src="../imagens/jpii1.jpg" 
+       alt="João Paulo II" 
+       style="width:100%; height:100%; object-fit:cover; position:absolute; inset:0;" />
+      <span class="perfil-hero-ano">2005</span>
+    </div>
+  </section>
+
+  <!-- CONTEÚDO -->
+  <div class="perfil-content">
+
+    <!-- BIOGRAFIA -->
+    <section class="bio-section" id="biografia">
+      <div class="bio-sidebar">
+        <span class="section-tag">Seção 01</span>
+        <h2 class="sidebar-title">Biografia<br>Detalhada</h2>
+        <div class="sidebar-ornament"></div>
+        <p class="sidebar-resumo">O papa polonês que desafiou o comunismo, sobreviveu a um atentado, perdoou seu agressor e conduziu a Igreja pelo maior pontificado do século XX — 26 anos de fé, coragem e amor ao ser humano.</p>
+      </div>
+      <div class="bio-texto">
+
+          <h3>Infância e Juventude na Polônia</h3>
+         <p>Karol Józef Wojtyła nasceu em <strong>18 de maio de 1920</strong>, na pequena cidade de Wadowice, no sul da Polônia, numa família profundamente católica e simples. Era o filho mais novo de Karol Wojtyła, oficial do exército polonês, e Emilia Kaczorowska. Desde cedo, sua vida foi marcada por perdas dolorosas que moldariam sua personalidade e espiritualidade.</p>
+
+         <p>Sua mãe morreu quando Karol tinha apenas nove anos. Poucos anos depois, perdeu o irmão mais velho, Edmund, médico que contraiu escarlatina ao cuidar de pacientes. Em 1941, já jovem adulto, perdeu também o pai — seu último familiar próximo. Mais tarde, João Paulo II recordaria que, antes mesmo de completar a juventude, havia experimentado profundamente a solidão e o sofrimento humano.</p>
+
+         <p>Apesar das tragédias pessoais, Karol destacou-se como um jovem extraordinariamente talentoso. Gostava de literatura, poesia, teatro e tinha paixão pelo esporte, especialmente futebol, esqui e caminhadas. Amigos o descreviam como inteligente, disciplinado e dotado de grande sensibilidade humana.</p>
+
+         <p>Seu mundo, porém, mudaria radicalmente em <strong>1939</strong>, quando a Alemanha nazista invadiu a Polônia e deu início à Segunda Guerra Mundial. Universidades foram fechadas, intelectuais perseguidos e milhares de poloneses deportados ou executados. Para evitar ser enviado a campos de trabalho forçado, Karol trabalhou como operário numa pedreira e depois numa fábrica química da Solvay, realizando trabalho pesado sob condições perigosas.</p>
+
+         <p>Mesmo nesse cenário brutal, recusou-se a abandonar a cultura e a identidade de seu povo. Participou do <strong>Teatro Rapsódico</strong>, grupo clandestino de resistência cultural que preservava a literatura e a língua polonesa diante da tentativa nazista de apagar a alma nacional da Polônia. O teatro, para ele, era mais que arte — era resistência espiritual.</p>
+
+         <h3>O Chamado ao Sacerdócio</h3>
+         <p>Durante os anos sombrios da ocupação nazista, amadureceu lentamente em Karol uma vocação inesperada. A morte do pai, em 1941, tornou-se momento decisivo de discernimento interior. Sozinho e em meio à guerra, sentiu-se chamado ao sacerdócio.</p>
+
+         <p>Em <strong>1942</strong>, ingressou secretamente no seminário clandestino de Cracóvia, organizado pelo arcebispo Adam Stefan Sapieha. A formação sacerdotal era proibida pelos nazistas e descoberta poderia significar prisão ou morte. Durante o dia, Karol continuava trabalhando na fábrica; à noite, estudava filosofia e teologia em absoluto sigilo.</p>
+
+         <p>Com o fim da guerra e a libertação da Polônia, prosseguiu seus estudos de maneira formal. Foi ordenado sacerdote em <strong>1º de novembro de 1946</strong>. Poucos dias depois, partiu para Roma, onde realizou doutorado em teologia e aprofundou seus estudos sobre a fé, a filosofia e a vida espiritual.</p>
+
+         <p>Ao retornar à Polônia, tornou-se professor universitário e capelão de jovens. Diferentemente de muitos intelectuais da época, aproximava-se profundamente dos estudantes, acompanhando-os em excursões, acampamentos e longas conversas filosóficas. Essas experiências moldariam sua futura visão pastoral e seu entendimento da dignidade da pessoa humana.</p>
+
+         <p>Sua ascensão na Igreja foi rápida. Em <strong>1958</strong>, aos apenas 38 anos, foi nomeado bispo auxiliar de Cracóvia — o mais jovem bispo da Polônia. Em 1964 tornou-se arcebispo e, em 1967, cardeal. Durante todo esse período, viveu sob o rígido regime comunista soviético, enfrentando restrições religiosas e defendendo firmemente a liberdade de consciência e os direitos humanos, sempre evitando o recurso à violência.</p>
+
+         <h3>A Eleição e o "Não Tenhais Medo!"</h3>
+         <p>O ano de <strong>1978</strong> transformaria a história da Igreja Católica. Após a morte de dois papas no mesmo ano, o conclave voltou-se inesperadamente para um cardeal vindo do outro lado da Cortina de Ferro. Em <strong>16 de outubro de 1978</strong>, Karol Wojtyła foi eleito papa.</p>
+
+         <p>Sua eleição surpreendeu o mundo. Era o primeiro papa não italiano em <strong>455 anos</strong> e o primeiro polonês da história a ocupar o trono de Pedro. Escolheu o nome <strong>João Paulo II</strong>, em continuidade ao breve pontificado de João Paulo I.</p>
+
+         <p>Logo em suas primeiras palavras, revelou o tom espiritual de seu pontificado. Da sacada da Basílica de São Pedro, falou com simplicidade e coragem: <em>"Não tenhais medo! Abri, escancarai as portas a Cristo!"</em> A frase tornaria-se uma das mais famosas do século XX e resumiria sua missão pastoral.</p>
+
+         <p>Seu pontificado duraria <strong>26 anos e 5 meses</strong>, tornando-se o terceiro mais longo da história da Igreja. João Paulo II transformou profundamente a presença pública do papado. Visitou <strong>129 países</strong>, realizou <strong>104 viagens internacionais</strong> e aproximou o sucessor de Pedro de povos que nunca haviam recebido uma visita papal.</p>
+
+         <p>Foi também um grande promotor da santidade como vocação universal. Beatificou <strong>1.340 pessoas</strong> e canonizou <strong>483 santos</strong>, apresentando ao mundo testemunhos modernos de fé vindos de diferentes culturas e continentes.</p>
+
+         <h3>O Atentado e o Perdão</h3>
+         <p>Em <strong>13 de maio de 1981</strong>, aniversário da primeira aparição de Fátima, a Praça de São Pedro estava cheia de peregrinos quando um acontecimento dramático abalou o mundo. Mehmet Ali Ağca disparou contra João Paulo II à curta distância.</p>
+
+         <p>Gravemente ferido, o papa perdeu grande quantidade de sangue e foi levado às pressas ao hospital Gemelli. Durante horas, sua vida esteve ameaçada. Muitos acreditaram que não sobreviveria.</p>
+
+         <p>João Paulo II, porém, atribuiu sua sobrevivência à proteção de <strong>Nossa Senhora de Fátima</strong>. Mais tarde declarou: <em>"Uma mão disparou, outra mão guiou a bala."</em> Como gesto de gratidão, enviou ao santuário de Fátima o projétil retirado de seu corpo, hoje inserido na coroa da imagem mariana.</p>
+
+         <p>O episódio revelou de modo extraordinário sua compreensão cristã do perdão. Em 1983, visitou pessoalmente Ağca na prisão romana de Rebibbia. Sentou-se diante do homem que tentara matá-lo, segurou-lhe a mão e conversou em particular com ele. Nunca revelou o conteúdo da conversa, mas o gesto tornou-se um dos maiores símbolos contemporâneos de misericórdia e reconciliação.</p>
+
+         <h3>A Queda do Comunismo e o Legado</h3>
+         <p>João Paulo II tornou-se uma das figuras morais mais influentes do século XX. Sua primeira visita à Polônia, em 1979, reuniu multidões e despertou esperança num povo submetido há décadas ao comunismo. Milhões ouviram suas palavras sobre dignidade humana, liberdade espiritual e identidade cristã.</p>
+
+         <p>Seu apoio moral ao movimento sindical <strong>Solidariedade</strong> fortaleceu uma resistência pacífica que gradualmente enfraqueceu o regime soviético. Muitos historiadores reconhecem que sua influência espiritual foi decisiva para os acontecimentos que culminaram na queda do comunismo no Leste Europeu em 1989.</p>
+
+         <p>O próprio Mikhail Gorbachev reconheceu posteriormente: <em>"O que aconteceu no Leste Europeu não teria sido possível sem João Paulo II."</em> O papa jamais conduziu revoluções políticas armadas; sua força estava na autoridade moral e na convicção de que a verdade e a liberdade humana possuem poder transformador.</p>
+
+         <p>Nos últimos anos de vida, enfrentou o avanço doloroso da doença de Parkinson e de limitações físicas progressivas. Em vez de esconder a fragilidade, viveu-a publicamente, oferecendo ao mundo um testemunho de dignidade no sofrimento e na velhice.</p>
+
+         <p>Morreu em <strong>2 de abril de 2005</strong>, às 21h37, enquanto milhares rezavam na Praça de São Pedro e milhões acompanhavam o momento pela televisão. Suas últimas palavras conhecidas foram: <em>"Deixai-me ir para a casa do Pai."</em></p>
+
+         <p>Seu funeral reuniu cerca de <strong>quatro milhões de peregrinos</strong> em Roma e tornou-se um dos maiores ajuntamentos humanos da história moderna. Durante a cerimônia, a multidão clamava espontaneamente: <em>"Santo subito!"</em> — "Santo já!". Beatificado em 2011 e canonizado em 2014, João Paulo II permanece para muitos como uma das figuras religiosas mais influentes e marcantes da era contemporânea.</p>
+
+      </div>
+    </section>
+
+    <!-- LINHA DO TEMPO -->
+    <section class="timeline-section" id="cronologia">
+      <div class="timeline-header">
+        <span class="section-tag">Seção 02</span>
+        <div class="section-header-left">
+          <h2>Linha do Tempo</h2>
+          <p>84 anos de vida — dos campos de trabalho nazistas ao trono de Pedro</p>
+        </div>
+      </div>
+      <div class="timeline-grid">
+        <div class="tl-item">
+          <p class="tl-ano">18 Mai 1920</p>
+          <h3 class="tl-evento">Nascimento em Wadowice</h3>
+          <p class="tl-desc">Nasce Karol Józef Wojtyla em família polonesa. Perde a mãe aos 9, o irmão aos 12 e o pai aos 20 anos.</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-ano">1939 – 1945</p>
+          <h3 class="tl-evento">Ocupação nazista</h3>
+          <p class="tl-desc">Trabalha como operário para evitar deportação. Participa de teatro clandestino de resistência cultural polonesa.</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-ano">1 Nov 1946</p>
+          <h3 class="tl-evento">Ordenação sacerdotal</h3>
+          <p class="tl-desc">É ordenado padre e enviado a Roma para doutoramento em teologia. Volta à Polônia como professor universitário.</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-ano">1958</p>
+          <h3 class="tl-evento">Bispo mais jovem da Polônia</h3>
+          <p class="tl-desc">Aos 38 anos é nomeado bispo auxiliar de Cracóvia — o mais jovem bispo do país, sob o regime comunista.</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-ano">16 Out 1978</p>
+          <h3 class="tl-evento">Eleição como Papa</h3>
+          <p class="tl-desc">Primeiro papa não italiano em 455 anos. Anuncia ao mundo: "Não tenhais medo! Abri as portas a Cristo!"</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-ano">13 Mai 1981</p>
+          <h3 class="tl-evento">Atentado e perdão</h3>
+          <p class="tl-desc">Baleado na Praça de São Pedro. Sobrevive e visita o agressor na prisão, perdoando-o pessoalmente.</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-ano">1989</p>
+          <h3 class="tl-evento">Queda do comunismo</h3>
+          <p class="tl-desc">Seu apoio ao Solidariedade e sua influência moral contribuem decisivamente para o colapso do regime soviético no Leste Europeu.</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-ano">2 Abr 2005</p>
+          <h3 class="tl-evento">Morte no Vaticano</h3>
+          <p class="tl-desc">Falece às 21h37. Suas últimas palavras: "Deixai-me ir para a casa do Pai." Quatro milhões vão a Roma para o funeral.</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-ano">1 Mai 2011</p>
+          <h3 class="tl-evento">Beatificação</h3>
+          <p class="tl-desc">Beatificado por Bento XVI em Roma apenas 6 anos após a morte — processo excepcionalmente rápido.</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-ano">27 Abr 2014</p>
+          <h3 class="tl-evento">Canonização</h3>
+          <p class="tl-desc">Canonizado pelo Papa Francisco junto a João XXIII. Mais de 800.000 pessoas estiveram presentes em Roma.</p>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- MILAGRES -->
+  <section class="milagres-section" id="milagres">
+    <div class="milagres-inner">
+      <span class="section-tag">Seção 03</span>
+      <div class="section-header-left">
+        <h2>Milagres Aprovados</h2>
+        <p>Os prodígios reconhecidos pela Igreja para sua beatificação e canonização</p>
+      </div>
+      <div class="milagres-grid">
+        <div class="milagre-card">
+          <p class="milagre-numero">01</p>
+          <p class="milagre-local">França</p>
+          <h3 class="milagre-titulo">Cura de Marie Simon-Pierre</h3>
+          <p class="milagre-desc">Marie Simon-Pierre, freira francesa, sofria de doença de Parkinson avançada — a mesma doença que acometeu João Paulo II. Dois meses após a morte do papa, ela acordou curada completamente. O Vaticano investigou o caso e o reconheceu como milagre, habilitando a beatificação em 2011.</p>
+          <span class="milagre-ano-badge">Aprovado em 2010 · para a Beatificação</span>
+        </div>
+        <div class="milagre-card">
+          <p class="milagre-numero">02</p>
+          <p class="milagre-local">Costa Rica</p>
+          <h3 class="milagre-titulo">Cura de Floribeth Mora Díaz</h3>
+          <p class="milagre-desc">Floribeth Mora Díaz, costarriquenha, sofria de aneurisma cerebral inoperável. Os médicos não davam esperanças de vida. No dia da beatificação de João Paulo II, ela ouviu sua voz dizendo "Levanta-te". Recuperou-se completamente. O caso foi reconhecido pelo Vaticano, habilitando a canonização em 2014.</p>
+          <span class="milagre-ano-badge">Aprovado em 2013 · para a Canonização</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="perfil-content">
+
+    <!-- GALERIA -->
+    <section class="galeria-section" id="galeria">
+      <span class="section-tag">Seção 04</span>
+      <div class="section-header-left">
+        <h2>Galeria</h2>
+        <p>Imagens do pontificado, das viagens e da canonização de São João Paulo II</p>
+      </div>
+        <div class="galeria-grid">
+          <div class="galeria-item">
+           <img src="../imagens/jpii1.jpg" 
+             alt="João Paulo II" 
+             style="width:100%; height:100%; object-fit:cover;" />
+          </div>
+         
+          <div class="galeria-item">
+           <img src="../imagens/jpii2.jpg" 
+             alt="João Paulo II" 
+             style="width:100%; height:100%; object-fit:cover;" />
+          </div>
+          
+          <div class="galeria-item">
+           <img src="../imagens/jpii3.jpg" 
+             alt="João Paulo II" 
+             style="width:100%; height:100%; object-fit:cover;" />
+          </div>
+          
+          <div class="galeria-item">
+           <img src="../imagens/jpii4.jpg" 
+             alt="João Paulo II" 
+             style="width:100%; height:100%; object-fit:cover;" />
+          </div>
+       </div>
+      <p class="galeria-legenda">As fotografias devem ser obtidas de fontes de domínio público ou com autorização dos detentores dos direitos.</p>
+    </section>
+
+    <!-- FONTES -->
+    <section class="fontes-section" id="fontes">
+      <span class="section-tag">Seção 06</span>
+      <div class="section-header-left">
+        <h2>Fontes e Referências</h2>
+        <p>Documentação utilizada para a elaboração deste perfil</p>
+      </div>
+      <div class="fontes-lista">
+        <div class="fonte-item">
+          <span class="fonte-tipo">Site Oficial</span>
+          <div><p class="fonte-titulo">vatican.va — João Paulo II</p><p class="fonte-autor">Arquivo oficial do Vaticano — documentos, homilias e encíclicas</p></div>
+          <a href="https://www.vatican.va/content/john-paul-ii/pt.html" target="_blank" class="fonte-link">Acessar →</a>
+        </div>
+        <div class="fonte-item">
+          <span class="fonte-tipo">Livro</span>
+          <div><p class="fonte-titulo">João Paulo II — Uma Biografia</p><p class="fonte-autor">George Weigel · Editora Objetiva, 1999</p></div>
+          <span class="fonte-link">Impresso</span>
+        </div>
+        <div class="fonte-item">
+          <span class="fonte-tipo">Livro</span>
+          <div><p class="fonte-titulo">Não Tenhais Medo — André Frossard conversa com João Paulo II</p><p class="fonte-autor">André Frossard · Editora Nova Fronteira, 1982</p></div>
+          <span class="fonte-link">Impresso</span>
+        </div>
+        <div class="fonte-item">
+          <span class="fonte-tipo">Documento</span>
+          <div><p class="fonte-titulo">Redemptor Hominis — Primeira Encíclica</p><p class="fonte-autor">João Paulo II · Santa Sé · 4 de março de 1979</p></div>
+          <a href="https://www.vatican.va/content/john-paul-ii/pt/encyclicals/documents/hf_jp-ii_enc_04031979_redemptor-hominis.html" target="_blank" class="fonte-link">Acessar →</a>
+        </div>
+        <div class="fonte-item">
+          <span class="fonte-tipo">Vatican News</span>
+          <div><p class="fonte-titulo">Canonização de João Paulo II — Homilia do Papa Francisco</p><p class="fonte-autor">Santa Sé · 27 de abril de 2014</p></div>
+          <a href="https://www.vatican.va/content/francesco/pt/homilies/2014/documents/papa-francesco_20140427_omelia-canonizzazioni.html" target="_blank" class="fonte-link">Acessar →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- NAVEGAÇÃO -->
+    <div class="nav-santos-div">
+      <a href="padre-pio.html" class="nav-santo-link">
+        <span class="nav-santo-label">← Santo Anterior</span>
+        <span class="nav-santo-nome">São Pio de Pietrelcina</span>
+      </a>
+      <a href="pastorinhos.html" class="nav-santo-link nav-santo-dir">
+        <span class="nav-santo-label">Próximo Santo →</span>
+        <span class="nav-santo-nome">Pastorinhos</span>
+      </a>
+    </div>
+
+  </div>
+
+  <!-- ORAÇÃO -->
+  <section class="oracao-section" id="oracao">
+    <div class="oracao-inner">
+      <span class="section-tag">Seção 05</span>
+      <h2 class="oracao-titulo">Oração por Intercessão de São João Paulo II</h2>
+      <div class="oracao-texto">
+        <p>Senhor Jesus, Tu que chamaste Karol Wojtyla a guiar a Tua Igreja num dos períodos mais turbulentos da história moderna, concede-nos, por sua intercessão, a coragem de não ter medo — de abrir as portas do coração, da família e da sociedade a Cristo.</p>
+        <p>Ele enfrentou o nazismo, o comunismo, o atentado e a doença — e em tudo respondeu com fé, perdão e alegria. Que seu exemplo nos ensine que a santidade não foge do mundo, mas o transforma por dentro, com amor.</p>
+        <p>São João Paulo II, grande defensor da dignidade humana e da família, intercede por nós, pela Igreja e pelo mundo. Que nunca nos falte a coragem de dizer ao mundo, como você disse: Não tenhais medo! Amém.</p>
+      </div>
+      <p class="oracao-fecho">· Para uso privado · Aprovação eclesiástica recomendada ·</p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <span class="footer-logo">Santos da Modernidade</span>
+      <span class="footer-copy">© Santos da Modernidade · Ad Maiorem Dei Gloriam</span>
+    </div>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      const menu = document.querySelector('.nav-links');
+      const btn = document.getElementById('nav-hamburguer');
+      menu.classList.toggle('aberto');
+      btn.textContent = menu.classList.contains('aberto') ? '✕' : '☰';
+    }
+  </script>
+
+</body>
+</html>
