@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Créditos Fotográficos · Santos da Modernidade</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600&family=Raleway:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .creditos-hero {
+      background: var(--dark);
+      padding: 9rem 2rem 5rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .creditos-hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 40%, rgba(201,168,76,0.07) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 40% at 20% 80%, rgba(123,28,46,0.1) 0%, transparent 60%);
+    }
+
+    .creditos-breadcrumb {
+      font-size: 0.68rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: rgba(201,168,76,0.5);
+      margin-bottom: 1.5rem;
+      position: relative;
+      z-index: 2;
+    }
+    .creditos-breadcrumb a { color: inherit; text-decoration: none; transition: color 0.2s; }
+    .creditos-breadcrumb a:hover { color: var(--gold); }
+
+    .creditos-titulo {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 600;
+      color: var(--ivory);
+      letter-spacing: 0.05em;
+      margin-bottom: 0.75rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .creditos-subtitulo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-style: italic;
+      color: rgba(240,232,216,0.6);
+      max-width: 560px;
+      margin: 0 auto;
+      line-height: 1.7;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* ── CONTEÚDO ── */
+    .creditos-content {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 5rem 2rem 8rem;
+    }
+
+    .creditos-aviso {
+      background: var(--parchment);
+      border: 1px solid var(--gold-light);
+      border-left: 3px solid var(--gold);
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 4rem;
+      font-size: 0.9rem;
+      line-height: 1.7;
+      color: var(--text-muted);
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+    }
+
+    /* ── SEÇÃO POR SANTO ── */
+    .santo-secao {
+      margin-bottom: 4rem;
+      border-bottom: 1px solid var(--gold-light);
+      padding-bottom: 3rem;
+    }
+
+    .santo-secao:last-child {
+      border-bottom: none;
+    }
+
+    .santo-secao-titulo {
+      font-family: 'Cinzel', serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--dark);
+      letter-spacing: 0.08em;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .santo-secao-titulo::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--gold-light);
+    }
+
+    /* ── TABELA DE CRÉDITOS ── */
+    .creditos-tabela {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+    }
+
+    .creditos-tabela thead tr {
+      background: var(--dark);
+      color: var(--gold);
+    }
+
+    .creditos-tabela thead th {
+      font-family: 'Cinzel', serif;
+      font-size: 0.7rem;
+      font-weight: 400;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 0.75rem 1rem;
+      text-align: left;
+    }
+
+    .creditos-tabela tbody tr {
+      border-bottom: 1px solid var(--gold-light);
+    }
+
+    .creditos-tabela tbody tr:nth-child(even) {
+      background: var(--parchment);
+    }
+
+    .creditos-tabela tbody td {
+      padding: 0.75rem 1rem;
+      color: var(--text-muted);
+      vertical-align: top;
+      line-height: 1.5;
+    }
+
+    .creditos-tabela tbody td:first-child {
+      font-family: 'Courier New', monospace;
+      font-size: 0.78rem;
+      color: var(--gold-dark);
+      white-space: nowrap;
+    }
+
+    .creditos-tabela a {
+      color: var(--gold-dark);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .creditos-tabela a:hover { color: var(--gold); }
+
+    .licenca-badge {
+      display: inline-block;
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      padding: 0.15rem 0.5rem;
+      border: 1px solid var(--gold-light);
+      color: var(--gold-dark);
+      white-space: nowrap;
+    }
+
+    .licenca-dp {
+      border-color: rgba(74,103,65,0.4);
+      color: #4A6741;
+    }
+
+    .creditos-nota {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      font-style: italic;
+      margin-top: 0.75rem;
+      font-family: 'Cormorant Garamond', serif;
+    }
+
+    @media (max-width: 768px) {
+      .creditos-tabela thead { display: none; }
+      .creditos-tabela tbody tr { display: block; padding: 1rem 0; }
+      .creditos-tabela tbody td { display: block; padding: 0.25rem 0; border: none; }
+      .creditos-tabela tbody td:first-child { font-weight: bold; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-logo">Santos da Modernidade</a>
+    <ul class="nav-links">
+      <li><a href="index.html#santos">Os Santos</a></li>
+      <li><a href="categoria.html">Categorias</a></li>
+      <li><a href="index.html#cronologia">Cronologia</a></li>
+      <li><a href="mapa.html">Mapa</a></li>
+      <li><a href="sobre.html">Sobre</a></li>
+    </ul>
+    <button id="nav-hamburguer"
+            onclick="toggleMenu()"
+            style="background:transparent; border:none; color:#C9A84C; font-size:1.5rem; cursor:pointer; padding:0.25rem 0.5rem; -webkit-appearance:none; appearance:none;">
+      ☰
+    </button>
+  </nav>
+
+  <section class="creditos-hero">
+    <div class="creditos-hero-bg"></div>
+    <p class="creditos-breadcrumb">
+      <a href="index.html">Início</a> &nbsp;·&nbsp; Créditos Fotográficos
+    </p>
+    <h1 class="creditos-titulo">Créditos Fotográficos</h1>
+    <p class="creditos-subtitulo">Todas as imagens utilizadas neste site e seus respectivos autores, fontes e licenças.</p>
+  </section>
+
+  <div class="creditos-content">
+
+    <p class="creditos-aviso">
+      As imagens utilizadas neste site foram obtidas do Wikimedia Commons e de outras fontes de domínio público ou sob licenças Creative Commons. O Santos da Modernidade não tem fins comerciais. Os créditos completos de cada fotografia estão listados abaixo, conforme exigido pelas respectivas licenças.
+    </p>
+
+    <!-- TERESA DE CALCUTÁ -->
+    <div class="santo-secao">
+      <h2 class="santo-secao-titulo">Santa Teresa de Calcutá</h2>
+      <table class="creditos-tabela">
+        <thead>
+          <tr>
+            <th>Arquivo</th>
+            <th>Autor</th>
+            <th>Fonte</th>
+            <th>Licença</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>teresa4.jpg</td>
+            <td>Manfred Ferrari, 2003</td>
+            <td><a href="https://commons.wikimedia.org/wiki/File:Mutter_Teresa_von_Kalkutta.jpg" target="_blank">Wikimedia Commons</a></td>
+            <td><span class="licenca-badge">CC BY-SA 4.0</span></td>
+          </tr>
+          <tr>
+            <td>teresa3.jpg</td>
+            <td>John Mathew Smith e www.celebrity-photos.com</td>
+            <td><a href="https://commons.wikimedia.org/wiki/File:Mother_Teresa_and_Cardinal_Keeler.jpg" target="_blank">Wikimedia Commons</a></td>
+            <td><span class="licenca-badge">CC BY-SA 2.0</span></td>
+          </tr>
+          <tr>
+            <td>teresa2.jpg</td>
+            <td>John Mathew Smith e www.celebrity-photos.com</td>
+            <td><a href="https://commons.wikimedia.org/wiki/File:Mother_Teresa_in_1996.jpg" target="_blank">Wikimedia Commons</a></td>
+            <td><span class="licenca-badge">CC BY-SA 2.0</span></td>
+          </tr>
+          <tr>
+            <td>teresa1.jpg</td>
+            <td>Kingkongphoto e www.celebrity-photos.com</td>
+            <td><a href="https://commons.wikimedia.org/wiki/File:Mother_Teresa_1.jpg" target="_blank">Wikimedia Commons</a></td>
+            <td><span class="licenca-badge">CC BY-SA 2.0</span></td>
+          </tr>
+          <tr>
+            <td>teresa0.jpg</td>
+            <td>Harbhajansingh</td>
+            <td><a href="https://commons.wikimedia.org/wiki/File:Harbhajansinghwithmothertressa.jpg" target="_blank">Wikimedia Commons</a></td>
+            <td><span class="licenca-badge">CC BY-SA 4.0</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- CARLO ACUTIS -->
+    <div class="santo-secao">
+      <h2 class="santo-secao-titulo">Beato Carlo Acutis</h2>
+      <table class="creditos-tabela">
+        <thead>
+          <tr>
+            <th>Arquivo</th>
+            <th>Autor</th>
+            <th>Fonte</th>
+            <th>Licença</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>foto_carlo*.jpg</td>
+            <td>Associação Carlo Acutis</td>
+            <td><a href="https://www.carloacutis.com/pt/association/download" target="_blank">carloacutis.com — Área de Download Oficial</a></td>
+            <td><span class="licenca-badge">Uso permitido pelo site oficial</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="creditos-nota">As fotografias de Carlo Acutis foram obtidas diretamente da área de download do site oficial da Associação Carlo Acutis, que disponibiliza imagens para uso em contextos de divulgação da sua vida e mensagem.</p>
+    </div>
+
+    <!-- PASTORINHOS DE FÁTIMA -->
+    <div class="santo-secao">
+      <h2 class="santo-secao-titulo">Os Pastorinhos de Fátima</h2>
+      <table class="creditos-tabela">
+        <thead>
+          <tr>
+            <th>Arquivo</th>
+            <th>Autor</th>
+            <th>Fonte</th>
+            <th>Licença</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>ftms.jpg</td>
+            <td>Judah Bento Ruah (1892–1958)</td>
+            <td><a href="https://commons.wikimedia.org/wiki/File:Miracle_of_the_Sun.jpg" target="_blank">Wikimedia Commons</a> · Illustração Portugueza, 29 Set 1917</td>
+            <td><span class="licenca-badge licenca-dp">Domínio Público</span></td>
+          </tr>
+          <tr>
+            <td>ftmh.jpg</td>
+            <td>Autor desconhecido</td>
+            <td><a href="https://commons.wikimedia.org/wiki/File:Fatima_children_with_rosaries.jpg" target="_blank">Wikimedia Commons</a></td>
+            <td><span class="licenca-badge licenca-dp">Domínio Público</span></td>
+          </tr>
+          <tr>
+            <td>ftmc.jpg</td>
+            <td>Atribuído a Joshua Benoliel (1873–1932)</td>
+            <td><a href="https://commons.wikimedia.org/wiki/File:ChildrensofFatima.jpg" target="_blank">Wikimedia Commons</a> · Ilustração Portuguesa nº 610, Out 1917</td>
+            <td><span class="licenca-badge licenca-dp">Domínio Público</span></td>
+          </tr>
+          <tr>
+            <td>ftm2.jpg</td>
+            <td>Jornal O Bom Católico</td>
+            <td><a href="https://commons.wikimedia.org/wiki/File:Children_of_Fatima.jpg" target="_blank">Wikimedia Commons</a></td>
+            <td><span class="licenca-badge">CC BY 2.0</span></td>
+          </tr>
+          <tr>
+            <td>ftm1.jpg</td>
+            <td>Autor desconhecido</td>
+            <td><a href="https://commons.wikimedia.org/wiki/File:Children_of_Fatima_(1917).jpg" target="_blank">Wikimedia Commons</a></td>
+            <td><span class="licenca-badge licenca-dp">Domínio Público</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- JOSÉ SÁNCHEZ -->
+    <div class="santo-secao">
+      <h2 class="santo-secao-titulo">São José Sánchez del Río</h2>
+      <table class="creditos-tabela">
+        <thead>
+          <tr>
+            <th>Arquivo</th>
+            <th>Autor</th>
+            <th>Fonte</th>
+            <th>Licença</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>js0.jpg</td>
+            <td>Autor desconhecido</td>
+            <td><a href="https://commons.wikimedia.org/wiki/File:Jos%C3%A9_S%C3%A1nchez_del_R%C3%ADo.jpg" target="_blank">Wikimedia Commons</a></td>
+            <td><span class="licenca-badge licenca-dp">Domínio Público</span></td>
+          </tr>
+          <tr>
+            <td>js1.jpg</td>
+            <td>Razerbelkin</td>
+            <td><a href="https://commons.wikimedia.org/wiki/File:EIn_Fu%C3%9F_des_M%C3%A4rtyrers.png" target="_blank">Wikimedia Commons</a></td>
+            <td><span class="licenca-badge">CC BY-SA 4.0</span></td>
+          </tr>
+          <tr>
+            <td>js2.png</td>
+            <td>Razerbelkin</td>
+            <td><a href="https://commons.wikimedia.org/wiki/File:Hohe_W%C3%BCrdentr%C3%A4ger_vor_Ort.png" target="_blank">Wikimedia Commons</a></td>
+            <td><span class="licenca-badge">CC BY-SA 4.0</span></td>
+          </tr>
+          <tr>
+            <td>js3.jpg</td>
+            <td>AlexandLeigh</td>
+            <td><a href="https://commons.wikimedia.org/wiki/File:SanchezdelRioXochi.JPG" target="_blank">Wikimedia Commons</a></td>
+            <td><span class="licenca-badge">CC BY-SA 3.0</span></td>
+          </tr>
+          <tr>
+            <td>js4.jpg</td>
+            <td>Citromike</td>
+            <td><a href="https://commons.wikimedia.org/wiki/File:San-Jose-Luis-Sanchez-del-Rio.jpg" target="_blank">Wikimedia Commons</a></td>
+            <td><span class="licenca-badge">CC BY 4.0</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- MAXIMILIANO KOLBE -->
+    <div class="santo-secao">
+      <h2 class="santo-secao-titulo">São Maximiliano Kolbe</h2>
+      <table class="creditos-tabela">
+        <thead>
+          <tr>
+            <th>Arquivo</th>
+            <th>Autor</th>
+            <th>Fonte</th>
+            <th>Licença</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>mxm0.jpg</td>
+            <td>Cruz.croce</td>
+            <td><a href="https://commons.wikimedia.org/wiki/File:12apostoli_roma_(10).jpg" target="_blank">Wikimedia Commons</a></td>
+            <td><span class="licenca-badge licenca-dp">CC Zero (Domínio Público)</span></td>
+          </tr>
+          <tr>
+            <td>mxm1.jpg</td>
+            <td>Autor desconhecido</td>
+            <td><a href="https://commons.wikimedia.org/wiki/File:Fr.Maximilian_Kolbe_in_1936.jpg" target="_blank">Wikimedia Commons</a></td>
+            <td><span class="licenca-badge licenca-dp">Domínio Público</span></td>
+          </tr>
+          <tr>
+            <td>mxm2.jpg</td>
+            <td>Lowdown</td>
+            <td><a href="https://commons.wikimedia.org/wiki/File:Commemoration_to_Maximilian_Kolbe_at_Maximilian_Kolbe_rectoral_chapel_in_Sanok_(2021)da.jpg" target="_blank">Wikimedia Commons</a></td>
+            <td><span class="licenca-badge">CC BY-SA 3.0</span></td>
+          </tr>
+          <tr>
+            <td>mxm3.jpg</td>
+            <td>Autor desconhecido</td>
+            <td><a href="https://commons.wikimedia.org/wiki/File:Fr.Maximilian_Kolbe_1939.jpg" target="_blank">Wikimedia Commons</a></td>
+            <td><span class="licenca-badge licenca-dp">Domínio Público</span></td>
+          </tr>
+          <tr>
+            <td>mxm4.jpg</td>
+            <td>Autor desconhecido</td>
+            <td><a href="https://commons.wikimedia.org/wiki/File:Korneli_Czupryk_and_Maksymilian_Kolbe_before_departure_to_Japan_(1933).jpg" target="_blank">Wikimedia Commons</a> · Misje Katolickie 12/1933</td>
+            <td><span class="licenca-badge licenca-dp">Domínio Público</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- PIER GIORGIO -->
+    <div class="santo-secao">
+      <h2 class="santo-secao-titulo">Beato Pier Giorgio Frassati</h2>
+      <table class="creditos-tabela">
+        <thead>
+          <tr>
+            <th>Arquivo</th>
+            <th>Autor</th>
+            <th>Fonte</th>
+            <th>Licença</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>pg0.jpeg</td>
+            <td>Autor desconhecido</td>
+            <td><a href="https://commons.wikimedia.org/wiki/File:Piergiorgio_Frassati_1924.jpeg" target="_blank">Wikimedia Commons</a></td>
+            <td><span class="licenca-badge licenca-dp">Domínio Público</span></td>
+          </tr>
+          <tr>
+            <td>pg1.jpg</td>
+            <td>Luciana Frassati</td>
+            <td><a href="https://commons.wikimedia.org/wiki/File:PierGiorgioFrassati-Bureau.jpg" target="_blank">Wikimedia Commons</a> · "Uma vida em imagem"</td>
+            <td><span class="licenca-badge licenca-dp">Domínio Público</span></td>
+          </tr>
+          <tr>
+            <td>pg2.jpg</td>
+            <td>Luciana Frassati (1902–2007)</td>
+            <td><a href="https://commons.wikimedia.org/wiki/File:PierGiorgioFrassati-Alpiniste.jpg" target="_blank">Wikimedia Commons</a> · "Uma vida em imagem"</td>
+            <td><span class="licenca-badge licenca-dp">Domínio Público</span></td>
+          </tr>
+          <tr>
+            <td>pg3.jpg</td>
+            <td>Luciana Frassati</td>
+            <td><a href="https://commons.wikimedia.org/wiki/File:PierGiorgioFrassati-Adolescent.jpg" target="_blank">Wikimedia Commons</a> · "Uma vida em imagem"</td>
+            <td><span class="licenca-badge licenca-dp">Domínio Público</span></td>
+          </tr>
+          <tr>
+            <td>pg4.jpg</td>
+            <td>Luciana Frassati</td>
+            <td><a href="https://commons.wikimedia.org/wiki/File:PierGiorgioFrassati-Pr%C3%A9sentation.jpg" target="_blank">Wikimedia Commons</a> · "Uma vida em imagem"</td>
+            <td><span class="licenca-badge licenca-dp">Domínio Público</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- PADRE PIO -->
+    <div class="santo-secao">
+      <h2 class="santo-secao-titulo">São Pio de Pietrelcina (Padre Pio)</h2>
+      <table class="creditos-tabela">
+        <thead>
+          <tr>
+            <th>Arquivo</th>
+            <th>Autor</th>
+            <th>Fonte</th>
+            <th>Licença</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>pio0.jpg</td>
+            <td>Manfredonia (upload original)</td>
+            <td><a href="https://commons.wikimedia.org/wiki/File:Padre_Pio_portrait.jpg" target="_blank">Wikimedia Commons</a> · www.vatican.va</td>
+            <td><span class="licenca-badge licenca-dp">Domínio Público</span></td>
+          </tr>
+          <tr>
+            <td>pio1.jpg</td>
+            <td>Jornal O Bom Católico</td>
+            <td><a href="https://commons.wikimedia.org/wiki/File:Padre_Pio_Stigmata.jpg" target="_blank">Wikimedia Commons</a></td>
+            <td><span class="licenca-badge">CC BY 2.0</span></td>
+          </tr>
+          <tr>
+            <td>pio2.jpg</td>
+            <td>Plácido Bux (1886–1968)</td>
+            <td><a href="https://commons.wikimedia.org/wiki/File:Padre-Pio-young.jpg" target="_blank">Wikimedia Commons</a> · São Pio da Pietrelcina – Oratório</td>
+            <td><span class="licenca-badge licenca-dp">Domínio Público</span></td>
+          </tr>
+          <tr>
+            <td>pio3.jpg</td>
+            <td>Muschio Di Quércia</td>
+            <td><a href="https://commons.wikimedia.org/wiki/File:Padre_Pio_da_Pietrelcina.jpg" target="_blank">Wikimedia Commons</a></td>
+            <td><span class="licenca-badge">CC BY-SA 3.0</span></td>
+          </tr>
+          <tr>
+            <td>pio4.jpg</td>
+            <td>Alpha 350 da Hungria</td>
+            <td><a href="https://commons.wikimedia.org/wiki/File:Padre_Pio_in_Rome_(25039018941).jpg" target="_blank">Wikimedia Commons</a></td>
+            <td><span class="licenca-badge">CC BY 2.0</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- GIANNA BERETTA -->
+    <div class="santo-secao">
+      <h2 class="santo-secao-titulo">Santa Gianna Beretta Molla</h2>
+      <table class="creditos-tabela">
+        <thead>
+          <tr>
+            <th>Arquivo</th>
+            <th>Autor</th>
+            <th>Fonte</th>
+            <th>Licença</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>sg0.jpg</td>
+            <td>Nheyob</td>
+            <td><a href="https://commons.wikimedia.org/wiki/File:All_Saints_Catholic_Church_(Walton,_Kentucky)_-_nave,_altar_to_St._Gianna_Beretta_Molla.jpg" target="_blank">Wikimedia Commons</a></td>
+            <td><span class="licenca-badge">CC BY-SA 3.0</span></td>
+          </tr>
+          <tr>
+            <td>sg1.jpg</td>
+            <td>AndyScott</td>
+            <td><a href="https://commons.wikimedia.org/wiki/File:Covent_Garden,_Corpus_Christi_Catholic_Church,_statue_of_St_Gianna_Beretta_Molla_(1).jpg" target="_blank">Wikimedia Commons</a></td>
+            <td><span class="licenca-badge">CC BY-SA 4.0</span></td>
+          </tr>
+          <tr>
+            <td>sg3.jpg</td>
+            <td>Fotógrafo desconhecido</td>
+            <td><a href="https://commons.wikimedia.org/wiki/File:Matrimonio_Gianna_Beretta_Molla_e_Pietro_Molla.jpg" target="_blank">Wikimedia Commons</a></td>
+            <td><span class="licenca-badge licenca-dp">Domínio Público</span></td>
+          </tr>
+          <tr>
+            <td>sg4.jpg</td>
+            <td>Autor desconhecido</td>
+            <td><a href="https://commons.wikimedia.org/wiki/File:GiannaBerettaMolla.jpg" target="_blank">Wikimedia Commons</a></td>
+            <td><span class="licenca-badge licenca-dp">Domínio Público</span></td>
+          </tr>
+          <tr>
+            <td>sg5.jpg</td>
+            <td>Autor desconhecido</td>
+            <td><a href="https://commons.wikimedia.org/wiki/File:Gianna_Beretta_Molla.jpg" target="_blank">Wikimedia Commons</a></td>
+            <td><span class="licenca-badge licenca-dp">Domínio Público</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- JOÃO PAULO II -->
+    <div class="santo-secao">
+      <h2 class="santo-secao-titulo">São João Paulo II</h2>
+      <table class="creditos-tabela">
+        <thead>
+          <tr>
+            <th>Arquivo</th>
+            <th>Autor</th>
+            <th>Fonte</th>
+            <th>Licença</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>jpii1.jpg</td>
+            <td>Pieterschoenmaekers</td>
+            <td><a href="https://commons.wikimedia.org/wiki/File:Paus_Johannes_Paulus_II_(cropped).jpg" target="_blank">Wikimedia Commons</a></td>
+            <td><span class="licenca-badge">CC BY-SA 4.0</span></td>
+          </tr>
+          <tr>
+            <td>jpii2.jpg</td>
+            <td>Lothar Schaack</td>
+            <td><a href="https://commons.wikimedia.org/wiki/File:Ioannes_Paulus_II_in_Germany_(1980).jpg" target="_blank">Wikimedia Commons</a> · Bundesarchiv</td>
+            <td><span class="licenca-badge">CC BY-SA 3.0 DE</span></td>
+          </tr>
+          <tr>
+            <td>jpii3.jpg</td>
+            <td>Stefanocec</td>
+            <td><a href="https://commons.wikimedia.org/wiki/File:Ioannes_Paulus_II_portrait_(cropped).jpg" target="_blank">Wikimedia Commons</a></td>
+            <td><span class="licenca-badge">CC BY-SA 3.0</span></td>
+          </tr>
+          <tr>
+            <td>jpii4.jpg</td>
+            <td>E911a</td>
+            <td><a href="https://commons.wikimedia.org/wiki/File:Ioannes_Paulus_II_in_1981_(2023-07-02)_E911a_06.jpg" target="_blank">Wikimedia Commons</a></td>
+            <td><span class="licenca-badge">CC BY-SA 4.0</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
+  <footer>
+    <div class="footer-inner">
+      <span class="footer-logo">Santos da Modernidade</span>
+      <span class="footer-copy">© Santos da Modernidade · Ad Maiorem Dei Gloriam</span>
+    </div>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      const menu = document.querySelector('.nav-links');
+      const btn = document.getElementById('nav-hamburguer');
+      menu.classList.toggle('aberto');
+      btn.textContent = menu.classList.contains('aberto') ? '✕' : '☰';
+    }
+  </script>
+
+</body>
+</html>
