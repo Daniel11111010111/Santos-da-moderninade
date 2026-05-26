@@ -208,7 +208,7 @@
     .fonte-link { font-size: 0.7rem; color: var(--gold-dark); text-decoration: none; letter-spacing: 0.1em; white-space: nowrap; transition: color 0.2s; }
     .fonte-link:hover { color: var(--gold); }
 
-    .nav-santos {
+     .nav-santos {
       position: static;
       background: none;
       backdrop-filter: none;
@@ -219,11 +219,31 @@
       border-top: 1px solid var(--gold-light);
       margin-top: 2rem;
     }
-    .nav-santo-link { text-decoration: none; display: flex; flex-direction: column; gap: 0.3rem; }
+    .nav-santo-link {
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+
     .nav-santo-dir { text-align: right; }
-    .nav-santo-label { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted); }
-    .nav-santo-nome { font-family: 'Cinzel', serif; font-size: 0.95rem; color: var(--gold-dark); transition: color 0.2s; }
+
+    .nav-santo-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .nav-santo-nome {
+      font-family: 'Cinzel', serif;
+      font-size: 0.95rem;
+      color: var(--gold-dark);
+      transition: color 0.2s;
+    }
+
     .nav-santo-link:hover .nav-santo-nome { color: var(--gold); }
+
 
    @media (max-width: 768px) {
       .perfil-hero { grid-template-columns: 1fr; }
