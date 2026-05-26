@@ -9,8 +9,7 @@
   <link rel="stylesheet" href="../style.css" />
   <style>
     /* ── PAGE-SPECIFIC STYLES ── */
-
-    /* HERO PERFIL */
+      /* HERO PERFIL */
     .perfil-hero {
       min-height: 100vh;
       background: var(--dark);
@@ -394,8 +393,8 @@
     }
 
     /* GALERIA */
-    .galeria-section {
-      padding: 7rem 0;
+   .galeria-section {
+      padding: 7rem 4rem;
       border-bottom: 1px solid var(--gold-light);
     }
 
@@ -432,6 +431,7 @@
       font-style: italic;
       font-family: 'Cormorant Garamond', serif;
     }
+
 
     /* ORAÇÃO */
     .oracao-section {
@@ -481,7 +481,7 @@
 
     /* FONTES */
     .fontes-section {
-      padding: 7rem 0;
+      padding: 7rem 4rem;
     }
 
     .fontes-lista {
@@ -540,7 +540,7 @@
       position: static;
       background: none;
       backdrop-filter: none;
-      padding: 3rem 0;
+      padding: 3rem 4rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -591,7 +591,7 @@
       font-style: italic;
       color: var(--text-muted);
     }
-
+   
     /* RESPONSIVO */
     @media (max-width: 768px) {
       .perfil-hero { grid-template-columns: 1fr; }
@@ -671,7 +671,7 @@
     <div class="perfil-hero-right" style="position:relative; overflow:hidden;">
         <img src="../imagens/teresa4.jpg" 
          alt="Teresa de Calcutá" 
-         style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;" />
+        style="width:100%; height:auto; display:block;" />
       <div class="perfil-hero-datas">
         <span class="perfil-hero-ano">1995</span>
       </div>
@@ -833,39 +833,55 @@
 
   <div class="perfil-content">
 
-    <!-- GALERIA -->
+   <!-- GALERIA -->
+<section class="galeria-section" id="galeria">
+  <span class="section-tag">Seção 04</span>
+
+  <div class="section-header-left">
+    <h2>Galeria</h2>
+    <p>Imagens da vida e missão de Santa Teresa de Calcutá</p>
   </div>
-   <div class="galeria-grid">
+
+  <div class="galeria-grid">
+
     <div class="galeria-item">
-  <img src="../imagens/teresa0.jpg" 
-       alt="Teresa de Calcutá" 
-       style="width:100%; height:100%; object-fit:cover;" />
-</div>
+      <img src="../imagens/teresa0.jpg"
+           alt="Teresa de Calcutá"
+           style="width:100%; height:100%; object-fit:cover;" />
+    </div>
+
     <div class="galeria-item">
-  <img src="../imagens/teresa1.jpg" 
-       alt="Teresa de Calcutá" 
-       style="width:100%; height:100%; object-fit:cover;" />
-</div>
-<div class="galeria-item">
-  <img src="../imagens/teresa2.jpg" 
-       alt="Teresa de Calcutá" 
-       style="width:100%; height:100%; object-fit:cover;" />
-</div>
-<div class="galeria-item">
-  <img src="../imagens/teresa3.jpg" 
-       alt="Teresa de Calcutá" 
-       style="width:100%; height:100%; object-fit:cover;" />
-</div>
-<div class="galeria-item">
-  <img src="../imagens/teresa4.jpg" 
-       alt="Teresa de Calcutá" 
-       style="width:100%; height:100%; object-fit:cover;" />
-</div>
+      <img src="../imagens/teresa1.jpg"
+           alt="Teresa de Calcutá"
+           style="width:100%; height:100%; object-fit:cover;" />
+    </div>
+
+    <div class="galeria-item">
+      <img src="../imagens/teresa2.jpg"
+           alt="Teresa de Calcutá"
+           style="width:100%; height:100%; object-fit:cover;" />
+    </div>
+
+    <div class="galeria-item">
+      <img src="../imagens/teresa3.jpg"
+           alt="Teresa de Calcutá"
+           style="width:100%; height:100%; object-fit:cover;" />
+    </div>
+
+    <div class="galeria-item">
+      <img src="../imagens/teresa4.jpg"
+           alt="Teresa de Calcutá"
+           style="width:100%; height:100%; object-fit:cover;" />
+    </div>
 
   </div>
-  
+
   <p class="galeria-legenda">
-    As fotografias devem ser obtidas de fontes de domínio público ou com autorização adequada de uso.
+    Imagens utilizadas sob licença de seus respectivos autores.
+    <a href="../creditos.html"
+       style="color:var(--gold-dark); text-decoration:none;">
+       Créditos completos disponíveis aqui.
+    </a>
   </p>
 </section>
 
@@ -978,13 +994,23 @@
       <span class="footer-copy">© Santos da Modernidade · Ad Maiorem Dei Gloriam</span>
     </div>
   </footer>
-  <script>
-    function toggleMenu() {
-     const menu = document.querySelector('.nav-links');
-     const btn = document.getElementById('nav-hamburguer');
-     menu.classList.toggle('aberto');
-     btn.textContent = menu.classList.contains('aberto') ? '✕' : '☰';
-    }
-  </script>
+ <script>
+  function toggleMenu() {
+    const menu = document.querySelector('.nav-links');
+    const btn = document.getElementById('nav-hamburguer');
+    menu.classList.toggle('aberto');
+    btn.textContent = menu.classList.contains('aberto') ? '✕' : '☰';
+  }
+
+  // Fecha o menu ao clicar em qualquer link
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+      const menu = document.querySelector('.nav-links');
+      const btn = document.getElementById('nav-hamburguer');
+      menu.classList.remove('aberto');
+      btn.textContent = '☰';
+    });
+  });
+</script>
 </body>
 </html>

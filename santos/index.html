@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Santos da Modernidade</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600&family=Raleway:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">Santos da Modernidade</a>
+    <ul class="nav-links">
+      <li><a href="#santos">Os Santos</a></li>
+      <li><a href="categoria.html">Categorias</a></li>
+      <li><a href="#cronologia">Cronologia</a></li>
+      <li><a href="mapa.html">Mapa</a></li>
+      <li><a href="sobre.html">Sobre</a></li>
+      <li><a href="creditos.html">Créditos das fotografias</a></li>
+   </ul>
+   <button id="nav-hamburguer" 
+        onclick="toggleMenu()" 
+        style="background:transparent; border:none; color:#C9A84C; font-size:1.5rem; cursor:pointer; padding:0.25rem 0.5rem; -webkit-appearance:none; appearance:none;">
+     ☰
+   </button>
+</nav> 
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-ornament"></div>
+    <p class="hero-eyebrow"></p>
+    <h1 class="hero-title">Santos da<br><em>Modernidade</em></h1>
+    <p class="hero-subtitle">Vidas que iluminaram os séculos XIX, XX e XXI com santidade, coragem e amor radical a Deus, mostrando ao mundo que
+       a santidade é sim possível nos tempos modernos.</p>
+    <a href="#santos" class="hero-cta">Explorar os Santos</a>
+    <div class="hero-scroll">Descer</div>
+  </section>
+
+  <!-- INTRO -->
+  <section class="intro" id="Apresentação">
+    <span class="section-tag">Apresentação</span>
+    <h2>Santidade não é coisa do passado.<br>É o mais atual dos chamados.</h2>
+    <div class="divider"><span class="divider-cross">✦</span></div>
+    <p>
+      Neste site você encontra homens e mulheres que viveram entre os séculos XIX e XXI 
+      — em meio à guerras, revoluções e crises de fé — e responderam ao chamado à santidade 
+      com total entrega. Cada perfil apresenta a vida, o contexto histórico, os milagres 
+      e a mensagem que cada santo deixou para o nosso tempo.
+    </p>
+  </section>
+
+  <!-- SANTOS GRID -->
+  <section class="santos-section" id="santos">
+    <div class="section-header">
+      <span class="section-tag">Galeria</span>
+      <h2>Os Santos</h2>
+      <p>Conheça aqueles que foram canonizados ou beatificados nos últimos dois séculos</p>
+    </div>
+
+    <div class="santos-grid">
+
+      <!-- Card 1 -->
+<a href="santos/carlo-acutis.html" class="santo-card">
+  <div class="santo-card-img">
+    <img src="imagens/foto_carlo0.jpg" 
+         alt="Carlo Acutis" 
+         style="width:100%; height:100%; object-fit:cover;" />
+    <span class="santo-card-year">2025</span>
+  </div>
+  <div class="santo-card-body">
+    <p class="santo-card-category">Jovem · Tecnologia · Eucaristia</p>
+    <h3 class="santo-card-name">São Carlo Acutis</h3>
+    <p class="santo-card-dates">1991 – 2006 · Milão, Itália</p>
+    <p class="santo-card-desc">O "influencer de Deus", apaixonado pela eucaristia, que documentou os milagres eucarísticos e morreu de leucemia aos 15 anos.</p>
+  </div>
+</a>
+      <!-- Card 2 -->
+      <a href="santos/jose-sanchez.html" class="santo-card">
+        <div class="santo-card-img">
+         <img src="imagens/js0.jpg" 
+          alt="José Sánches" 
+           style="width:100%; height:100%; object-fit:cover;" />
+          <span class="santo-card-year">2016</span>
+        </div>
+        <div class="santo-card-body">
+          <p class="santo-card-category">Mártir · Cristero · México</p>
+          <h3 class="santo-card-name">São José Sánchez del Río</h3>
+          <p class="santo-card-dates">1913 – 1928 · Michoacán, México</p>
+          <p class="santo-card-desc"> O "Joselito", adolescente de 14 anos que morreu mártir durante a Guerra Cristera gritando "Viva Cristo Rey!"</p>
+        </div>
+      </a>
+
+      <!-- Card 3 -->
+<a href="santos/teresa-calcuta.html" class="santo-card">
+  <div class="santo-card-img">
+    <img src="imagens/teresa1.jpg" 
+         alt="Teresa de Calcutá" 
+         style="width:100%; height:100%; object-fit:cover;" />
+    <span class="santo-card-year">2016</span>
+  </div>
+  <div class="santo-card-body">
+    <p class="santo-card-category">Serviço · Caridade · Altruísmo</p>
+    <h3 class="santo-card-name">Santa Teresa de Calcutá</h3>
+    <p class="santo-card-dates">1910 – 1997 · Skopje / Calcutá</p>
+    <p class="santo-card-desc">A "Santa das Sarjetas", fundadora das Missionárias da Caridade, serviu os mais pobres entre os pobres durante décadas.</p>
+  </div>
+</a>
+
+      <!-- Card 4 -->
+      <a href="santos/maximiliano-kolbe.html" class="santo-card">
+        <div class="santo-card-img">  
+          <img src="imagens/mxm1.jpg" 
+          alt="Maximiliano" 
+          style="width:100%; height:100%; object-fit:cover;" />
+          <span class="santo-card-year">1982</span>
+        </div>
+        <div class="santo-card-body">
+           <p class="santo-card-category">Mártir · Franciscano · Polônia</p>
+           <h3 class="santo-card-name">São Maximiliano Kolbe</h3>
+          <p class="santo-card-dates">1894 – 1941 · Zdunska Wola, Polônia</p>
+          <p class="santo-card-desc"> Frade franciscano que morreu como mártir no campo de extermínio de Auschwitz, 
+          oferecendo-se para morrer de fome no lugar de um pai de família.</p>
+         </div>
+      </a>
+      
+      <!-- Card 5 -->
+      <a href="santos/gianna-beretta.html" class="santo-card">
+        <div class="santo-card-img">
+          <img src="imagens/sg3.jpg" 
+            alt="Gianna Beretta" 
+            style="width:100%; height:100%; object-fit:cover;" />
+          <span class="santo-card-year">2004</span>
+        </div>
+        <div class="santo-card-body">
+          <p class="santo-card-category">Vocação · Doação · Amor</p>
+          <h3 class="santo-card-name">Santa Gianna Beretta Molla</h3>
+          <p class="santo-card-dates">1922 – 1962 · Magenta, Itália</p>
+          <p class="santo-card-desc">Pediatra e mãe que sacrificou a própria vida para salvar sua filha ainda no ventre materno.</p>
+        </div>
+      </a>
+
+      <!-- Card 6 -->
+      <a href="santos/pier-giorgio.html" class="santo-card">
+        <div class="santo-card-img">
+          <img src="imagens/pg4.jpg" 
+             alt="Pier Giorgio" 
+             style="width:100%; height:100%; object-fit:cover;" />
+           <span class="santo-card-year">2025</span>
+        </div>
+        <div class="santo-card-body">
+          <p class="santo-card-category">Justiça · Sacrifício · Oração</p>
+          <h3 class="santo-card-name">São Pier Giorgio Frassati</h3>
+          <p class="santo-card-dates">1901 – 1925 · Turim, Itália</p>
+          <p class="santo-card-desc">Jovem universitário que vivia na alegria, no esporte e no serviço aos pobres. "Homem das Oito Bem-aventuranças".</p>
+        </div>
+      </a>
+      
+      <!-- Card 7 -->
+    <a href="santos/padre-pio.html" class="santo-card">
+     <div class="santo-card-img">
+      <img src="imagens/pio0.jpg" 
+             alt="São Padre Pio" 
+             style="width:100%; height:100%; object-fit:cover;" />
+              <span class="santo-card-year">2002</span>
+      </div>
+      <div class="santo-card-body">
+        <p class="santo-card-category">Místico · Estigmas · Capuchinho</p>
+        <h3 class="santo-card-name">São Pio de Pietrelcina</h3>
+        <p class="santo-card-dates">1887 – 1968 · Pietrelcina, Itália</p>
+        <p class="santo-card-desc">O "Padre Pio", frade capuchinho que carregou as chagas de Cristo por 50 anos e tornou-se um dos maiores confessores do século XX.</p>
+      </div>
+    </a>
+      <!-- Card 8 -->
+      <a href="santos/joao-paulo-ii.html" class="santo-card">
+        <div class="santo-card-img">
+          <img src="imagens/jpii2.jpg" 
+             alt="João Paulo II" 
+             style="width:100%; height:100%; object-fit:cover;" />
+              <span class="santo-card-year">2014</span>
+           <span class="santo-card-year"></span>
+        </div>
+        <div class="santo-card-body">
+          <p class="santo-card-category">Juventude · Peregrino · Misericordioso </p>
+          <h3 class="santo-card-name">São João Paulo II</h3>
+          <p class="santo-card-dates">1920 – 2005 · Wadowice, Polônia</p>
+          <p class="santo-card-desc">"O Grande" — O Papa que mudou o mundo. O papa polonês que desafiou o comunismo, sobreviveu a um atentado, perdoou seu agressor e conduziu a Igreja pelo maior pontificado do século XX.</p>
+        </div>
+      </a>
+    
+      <!-- Card 9 -->
+      <a href="santos/pastorinhos.html" class="santo-card">
+        <div class="santo-card-img">
+          <img src="imagens/ftmc.jpg" 
+             alt="Pastorinhos de Fatima" 
+             style="width:100%; height:100%; object-fit:cover;" />
+              <span class="santo-card-year">2017</span>
+           <span class="santo-card-year"></span>
+        </div>
+        <div class="santo-card-body">
+          <p class="santo-card-category">Contemplação · Pureza · Testemunho </p>
+          <h3 class="santo-card-name">Lúcia, Francisco e Jacinta</h3>
+          <p class="santo-card-desc">"Os Três Pastorinhos de Fátima" foram as crianças portuguesas Lúcia de Jesus e seus primos, os irmãos Francisco e Jacinta Marto. Eles testemunharam as aparições do Anjo de Portugal e da Virgem Maria em 1916 e 1917, na Cova da Iria.</p>
+        </div>
+      </a>
+      <a href="santos/josefina-bakhita.html" class="santo-card">
+        <div class="santo-card-img">
+           <img src="imagens/sb1.jpeg" alt="Santa Josefina Bakhita"
+            style="width:100%; height:100%; object-fit:cover;" />
+           <span class="santo-card-year">2000</span>
+        </div>
+        <div class="santo-card-body">
+         <p class="santo-card-category">Religiosa · África · Perdão</p>
+         <h3 class="santo-card-name">Santa Josefina Bakhita</h3>
+         <p class="santo-card-dates">c. 1869 – 1947 · Sudão / Itália</p>
+         <p class="santo-card-desc">Da escravidão no Sudão à santidade na Itália — um testemunho extraordinário de perdão e amor a Deus.</p>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- QUOTE -->
+  <section class="quote-section">
+    <p class="quote-text">
+      "A santidade não é um luxo de alguns, mas uma chamada simples para todos."
+    </p>
+    <span class="quote-author">São João Paulo II · Novo Millennio Ineunte</span>
+  </section>
+
+  <!-- CATEGORIAS -->
+  <section class="cat-section" id="categorias">
+    <div class="section-header" style="text-align:center; margin-bottom:0;">
+      <span class="section-tag">Navegue por</span>
+      <h2>Categorias</h2>
+      <p>Encontre santos pelo seu contexto ou vocação</p>
+    </div>
+
+    <div class="cat-grid">
+      <a href="categoria.html?cat=martires" class="cat-item">
+        <span class="cat-name">Mártires</span>
+        
+      </a>
+      <a href="categoria.html?cat=jovens" class="cat-item">
+        <span class="cat-name">Jovens Santos</span>
+       
+      </a>
+      <a href="categoria.html?cat=religiosos" class="cat-item">
+        <span class="cat-name">Religiosos</span>
+        
+      </a>
+      <a href="categoria.html?cat=leigos" class="cat-item">
+        <span class="cat-name">Leigos</span>
+        
+      </a>
+      <a href="categoria.html?cat=fundadores" class="cat-item">
+        <span class="cat-name">Fundadores</span>
+        
+      </a>
+      <a href="categoria.html?cat=misticos" class="cat-item">
+        <span class="cat-name">Místicos</span>
+        
+      </a>
+    </div>
+  </section>
+
+  <!-- CRONOLOGIA -->
+  <section class="timeline-section" id="cronologia">
+    <div class="section-header" style="text-align:center; margin-bottom:3rem;">
+      <span class="section-tag">Linha do Tempo</span>
+      <h2 style="font-family:'Cinzel',serif; font-size:1.5rem; letter-spacing:0.08em; color:var(--dark);">Cronologia da Santidade Moderna</h2>
+    </div>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <p class="timeline-year">Século XIX · 1800–1900</p>
+        <h3 class="timeline-title">Os Precursores</h3>
+        <p class="timeline-body">Santo João Maria Vianney, São João Bosco e Santa Bernadette Soubirous marcam este período com milagres, visões e uma santidade popular e acessível que transformou a Igreja.</p>
+      </div>
+      <div class="timeline-item">
+        <p class="timeline-year">Início do Século XX · 1900–1940</p>
+        <h3 class="timeline-title">Entre Guerras e Fé</h3>
+        <p class="timeline-body">Pier Giorgio Frassati, Maximiliano Kolbe e os mártires da Espanha e México viveram santidade radical num mundo em colapso político e espiritual.</p>
+      </div>
+      <div class="timeline-item">
+        <p class="timeline-year">Pós-Guerra · 1940–1970</p>
+        <h3 class="timeline-title">Reconstrução e Esperança</h3>
+        <p class="timeline-body">Gianna Beretta Molla, Teresa de Calcutá e Chiara Lubich constroem obras que tocam milhões de vidas em meio à reconstrução do mundo pós-Segunda Guerra.</p>
+      </div>
+      <div class="timeline-item">
+        <p class="timeline-year">Era Digital · 1990–Hoje</p>
+        <h3 class="timeline-title">Santidade no Mundo Conectado</h3>
+        <p class="timeline-body">Carlo Acutis demonstra que a internet pode ser uma via para o Céu. A santidade entra no universo digital sem perder sua essência de entrega total a Deus.</p>
+      </div>
+    </div>
+  </section>
+  <!-- MAPA -->
+  <section class="mapa-atalho">
+  <a href="mapa.html" class="btn-mapa">
+    Ver Mapa Interativo
+  </a>
+</section>
+
+  <!-- NEWSLETTER -->
+  <section class="newsletter-section">
+    <span class="section-tag" style="color:var(--gold);">Fique por dentro</span>
+    <h2>Receba novos perfis toda semana</h2>
+    <p>Um santo, uma história, uma inspiração — diretamente no seu e-mail</p>
+    <div class="newsletter-form">
+      <input type="email" placeholder="seu@email.com" />
+      <button type="button">Inscrever</button>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <span class="footer-logo">Santos da Modernidade</span>
+      <span class="footer-copy">© Santos da Modernidade · Ad Maiorem Dei Gloriam</span>
+    </div>
+  </footer>
+
+<script>
+  function toggleMenu() {
+    const menu = document.querySelector('.nav-links');
+    const btn = document.getElementById('nav-hamburguer');
+    menu.classList.toggle('aberto');
+    btn.textContent = menu.classList.contains('aberto') ? '✕' : '☰';
+  }
+
+  // Fecha o menu ao clicar em qualquer link
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+      const menu = document.querySelector('.nav-links');
+      const btn = document.getElementById('nav-hamburguer');
+      menu.classList.remove('aberto');
+      btn.textContent = '☰';
+    });
+  });
+</script>
+</body>
+</html>

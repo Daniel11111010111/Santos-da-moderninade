@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>São Maximiliano Kolbe · Santos da Modernidade</title>
+  <title>Santa Josefina Bakhita · Santos da Modernidade</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600&family=Raleway:wght@300;400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../style.css" />
@@ -110,6 +110,7 @@
       overflow: hidden;
       min-height: 700px;
     }
+
     .perfil-hero-right::before {
       content: '';
       position: absolute;
@@ -185,9 +186,10 @@
     .milagre-ano-badge { display: inline-block; margin-top: 1rem; border: 1px solid var(--gold-light); color: var(--gold-dark); font-size: 0.65rem; letter-spacing: 0.18em; padding: 0.2rem 0.6rem; }
 
     .galeria-section { padding: 7rem 0; border-bottom: 1px solid var(--gold-light); }
-    .galeria-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; grid-template-rows: 200px 200px; gap: 1rem; margin-top: 3rem; }
-    .galeria-item { background: var(--dark-mid); display: flex; align-items: center; justify-content: center; color: rgba(201,168,76,0.2); font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; font-family: 'Cinzel', serif; border: 1px solid rgba(201,168,76,0.1); }
+    .galeria-grid { display:grid; grid-template-columns:2fr 1fr 1fr; grid-auto-rows:220px; gap:1rem; margin-top:3rem; }s
+    .galeria-item { background: var(--dark-mid); display: flex; align-items: center; justify-content: center; color: rgba(201,168,76,0.2); font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; font-family: 'Cinzel', serif; border: 1px solid rgba(201,168,76,0.1); overflow: hidden; }
     .galeria-item:first-child { grid-row: 1 / 3; }
+    .galeria-item img { width: 100%; height: 100%; object-fit: cover; }
     .galeria-legenda { font-size: 0.75rem; color: var(--text-muted); text-align: center; margin-top: 1rem; font-style: italic; font-family: 'Cormorant Garamond', serif; }
 
     .oracao-section { padding: 7rem 0; background: var(--blue-deep); margin: 0 -2rem; padding-left: 2rem; padding-right: 2rem; text-align: center; position: relative; overflow: hidden; }
@@ -208,24 +210,14 @@
     .fonte-link { font-size: 0.7rem; color: var(--gold-dark); text-decoration: none; letter-spacing: 0.1em; white-space: nowrap; transition: color 0.2s; }
     .fonte-link:hover { color: var(--gold); }
 
-    .nav-santos {
-      position: static;
-      background: none;
-      backdrop-filter: none;
-      padding: 3rem 0;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-top: 1px solid var(--gold-light);
-      margin-top: 2rem;
-    }
+    .nav-santos-div { padding: 3rem 0; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--gold-light); margin-top: 2rem; }
     .nav-santo-link { text-decoration: none; display: flex; flex-direction: column; gap: 0.3rem; }
     .nav-santo-dir { text-align: right; }
     .nav-santo-label { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted); }
     .nav-santo-nome { font-family: 'Cinzel', serif; font-size: 0.95rem; color: var(--gold-dark); transition: color 0.2s; }
     .nav-santo-link:hover .nav-santo-nome { color: var(--gold); }
 
-   @media (max-width: 768px) {
+     @media (max-width: 768px) {
       .perfil-hero { grid-template-columns: 1fr; }
       .perfil-hero-right { display: flex; }
       .perfil-hero-left { padding: 3rem 1.5rem; }
@@ -255,147 +247,149 @@
       <li><a href="../mapa.html">Mapa</a></li>
       <li><a href="../sobre.html">Sobre</a></li>
     </ul>
-    <button id="nav-hamburguer" 
-        onclick="toggleMenu()" 
-        style="background:transparent; border:none; color:#C9A84C; font-size:1.5rem; cursor:pointer; padding:0.25rem 0.5rem; -webkit-appearance:none; appearance:none;">
-     ☰
+    <button id="nav-hamburguer"
+            onclick="toggleMenu()"
+            style="background:transparent; border:none; color:#C9A84C; font-size:1.5rem; cursor:pointer; padding:0.25rem 0.5rem; -webkit-appearance:none; appearance:none;">
+      ☰
     </button>
   </nav>
 
+  <!-- HERO -->
   <section class="perfil-hero">
     <div class="perfil-hero-bg"></div>
     <div class="perfil-hero-left">
       <p class="perfil-breadcrumb">
         <a href="../index.html">Início</a> &nbsp;·&nbsp;
         <a href="../index.html#santos">Os Santos</a> &nbsp;·&nbsp;
-        Maximiliano Kolbe
+        Josefina Bakhita
       </p>
-      <span class="perfil-badge">Santo · Canonizado em 1982</span>
-      <h1 class="perfil-nome">Maximiliano<br>Kolbe</h1>
-      <p class="perfil-titulo">"O Mártir da Caridade de Auschwitz"</p>
+      <span class="perfil-badge">Santa · Canonizada em 2000</span>
+      <h1 class="perfil-nome">Santa Josefina<br>Bakhita</h1>
+      <p class="perfil-titulo">"A Madre Moretta" — Da escravidão à santidade</p>
       <div class="perfil-meta">
         <div class="perfil-meta-item">
           <span class="perfil-meta-label">Nascimento</span>
-          <span class="perfil-meta-value">8 de janeiro de 1894 · Zdunska Wola, Polônia</span>
+          <span class="perfil-meta-value">c. 1869 · Olgossa, Sudão</span>
         </div>
         <div class="perfil-meta-item">
           <span class="perfil-meta-label">Falecimento</span>
-          <span class="perfil-meta-value">14 de agosto de 1941 · Auschwitz, Polônia</span>
+          <span class="perfil-meta-value">8 de fevereiro de 1947 · Schio, Itália</span>
         </div>
         <div class="perfil-meta-item">
           <span class="perfil-meta-label">Beatificação</span>
-          <span class="perfil-meta-value">17 de outubro de 1971 · Roma · Paulo VI</span>
+          <span class="perfil-meta-value">17 de maio de 1992 · Roma · João Paulo II</span>
         </div>
         <div class="perfil-meta-item">
           <span class="perfil-meta-label">Canonização</span>
-          <span class="perfil-meta-value">10 de outubro de 1982 · Roma · João Paulo II</span>
+          <span class="perfil-meta-value">1 de outubro de 2000 · Roma · João Paulo II</span>
         </div>
         <div class="perfil-meta-item">
           <span class="perfil-meta-label">Festa litúrgica</span>
-          <span class="perfil-meta-value">14 de agosto</span>
+          <span class="perfil-meta-value">8 de fevereiro</span>
         </div>
         <div class="perfil-meta-item">
-          <span class="perfil-meta-label">Patrono</span>
-          <span class="perfil-meta-value">Prisioneiros, famílias e jornalistas</span>
+          <span class="perfil-meta-label">Padroeira</span>
+          <span class="perfil-meta-value">Sudão, vítimas de escravidão e tráfico humano</span>
         </div>
       </div>
-      <p class="perfil-frase">"O ódio não é força criativa. Só o amor é criativo."</p>
+      <p class="perfil-frase">"Se eu encontrasse os traficantes que me capturaram, eu os agradeceria e beijaria as mãos — porque me trouxeram até Deus."</p>
     </div>
-    <div class="perfil-hero-right" style="position:relative; overflow:hidden;">
-      <img src="../imagens/mxm2.jpg"
-       alt="Maximiliano Kolbe"
+     <div class="perfil-hero-right" style="position:relative; overflow:hidden;">
+       <img src="../imagens/sb1.jpeg"
+       alt="Santa Josefina Bakhita"
        style="width:100%; height:100%; object-fit:cover; position:absolute; inset:0;" />
-       <span class="perfil-hero-ano">1912-1915</span>
-    </div>
+
+       <span class="perfil-hero-ano">1947</span>
+      </div>
   </section>
 
+  <!-- CONTEÚDO -->
   <div class="perfil-content">
 
+    <!-- BIOGRAFIA -->
     <section class="bio-section" id="biografia">
       <div class="bio-sidebar">
         <span class="section-tag">Seção 01</span>
         <h2 class="sidebar-title">Biografia<br>Detalhada</h2>
         <div class="sidebar-ornament"></div>
-        <p class="sidebar-resumo">Frade franciscano polonês que ofereceu a própria vida em Auschwitz para salvar um pai de família, tornando-se símbolo do amor que vence o ódio.</p>
+        <p class="sidebar-resumo">Sequestrada e escravizada aos 7 anos no Sudão, vendida e revendida cinco vezes, tatuada à força como propriedade — e ainda assim encontrou em Deus não um juiz, mas um Pai. A história de Bakhita é um dos maiores testemunhos de perdão da história da Igreja.</p>
       </div>
       <div class="bio-texto">
-        <h3>Infância e Vocação Franciscana</h3>
-        <p>Raimundo Kolbe nasceu em <strong>8 de janeiro de 1894</strong> em Zdunska Wola, na Polônia, então sob domínio russo. Filho de tecelões humildes e profundamente católicos, desde criança demonstrou devoção intensa à Nossa Senhora. Conta-se que, aos 10 anos, teve uma visão de Maria oferecendo-lhe duas coroas — uma branca, de pureza, e uma vermelha, de martírio — e que ele escolheu as duas.</p>
-        <p>Ingressou na <strong>Ordem dos Frades Menores Conventuais</strong> aos 16 anos, tomando o nome de Maximiliano. Estudou filosofia e teologia em Roma, onde se doutorou. Em 1917, fundou a <strong>Militia Immacolatae</strong> — Milícia da Imaculada —, movimento de consagração a Nossa Senhora que se espalharia pelo mundo inteiro.</p>
+        <h3>O Sequestro e a Escravidão</h3>
+        <p>Bakhita nasceu por volta de <strong>1869 em Olgossa</strong>, na região de Darfur, no Sudão. Pertencia a uma família relativamente estável e recordaria mais tarde uma infância marcada pela simplicidade e pelo contato com a natureza. Seu nome verdadeiro jamais foi recuperado. Quando foi sequestrada por traficantes árabes de escravos, o trauma foi tão profundo que ela esqueceu o próprio nome — e os sequestradores passaram a chamá-la de <em>Bakhita</em>, palavra árabe que significa "afortunada" ou "sortuda", um nome carregado de amarga ironia diante do sofrimento que viveria.</p>
+        <p>Ela tinha <strong>cerca de 7 anos</strong> quando foi arrancada de sua família durante uma incursão de traficantes. Nos anos seguintes, atravessou o brutal sistema escravista que operava no nordeste africano do século XIX. Foi vendida e revendida <strong>diversas vezes</strong>, passando pelas mãos de diferentes senhores. Em alguns lugares recebeu tratamento menos severo; em outros, sofreu humilhações, espancamentos e violência extrema. O episódio mais traumático ocorreu sob domínio de um oficial turco, quando foi submetida a um ritual de marcação corporal: cerca de 60 desenhos e incisões foram gravados em sua pele com lâminas, especialmente no peito e no abdômen, sendo depois preenchidos com sal para cicatrização permanente. O processo durou semanas e ela o recordaria como a maior dor física de toda a sua vida.</p>
 
-        <h3>Missão e Apostolado</h3>
-        <p>De volta à Polônia, Maximiliano fundou em 1927 a <strong>Niepokalanów</strong> — "Cidade da Imaculada" —, uma cidade conventual que se tornaria o maior convento franciscano do mundo, com mais de 700 frades. Ali produzia jornais, revistas e programas de rádio católicos que alcançavam milhões de leitores.</p>
-        <p>Entre 1930 e 1936, foi missionário no <strong>Japão</strong>, onde fundou outra Niepokalanów perto de Nagasaki — cidade que sobreviveria à bomba atômica de 1945, protegida, segundo os moradores, pela localização escolhida pelo frade.</p>
+        <h3>A Chegada à Itália e o Encontro com Deus</h3>
+        <p>Em 1883, Bakhita foi adquirida pelo cônsul italiano <strong>Callisto Legnani</strong>, residente em Cartum. Pela primeira vez desde o sequestro, encontrou alguém que a tratasse com respeito e humanidade. Legnani não a castigava nem a agredia, experiência que marcou profundamente sua memória. Quando o cônsul retornou à Itália em 1885, Bakhita o acompanhou e acabou sendo confiada à família Michieli, tornando-se acompanhante e babá da pequena Alice Michieli.</p>
+        <p>Em 1888, enquanto os Michieli precisavam viajar, Bakhita e a criança foram deixadas num instituto administrado pelas <strong>Irmãs Canossanas</strong>, em Veneza. Foi ali que sua vida tomou um rumo decisivo. Pela primeira vez ouviu falar do cristianismo e conheceu a ideia de um Deus que era Pai amoroso e providente. Mais tarde recordaria que, ainda criança no Sudão, contemplava o céu estrelado e a beleza da natureza perguntando-se quem teria criado tudo aquilo. No Deus apresentado pelas irmãs reconheceu aquele Mistério que intuitivamente já buscava. Após um período de catequese, recebeu o batismo, a crisma e a primeira comunhão em <strong>9 de janeiro de 1890</strong>, adotando o nome de Josefina Margarida Fortunata. Sobre essa descoberta, afirmaria: <em>"Sinto que este Deus é o mesmo de quem eu sempre soube, sem saber seu nome."</em></p>
 
-        <h3>Prisão e Auschwitz</h3>
-        <p>Com a invasão nazista da Polônia em 1939, Maximiliano continuou sua missão escondendo refugiados judeus e publicando material contra o nazismo. Foi preso pela Gestapo em <strong>fevereiro de 1941</strong> e deportado para o campo de concentração de Auschwitz, onde recebeu o número de prisioneiro 16670.</p>
-        <p>Em julho de 1941, após uma fuga, os nazistas selecionaram dez prisioneiros para morrer de fome como punição coletiva. Um deles, <strong>Franciszek Gajowniczek</strong>, começou a chorar: "Minha esposa, meus filhos!" Maximiliano deu um passo à frente e disse ao comandante: "Sou um padre católico. Quero morrer no lugar desse homem."</p>
+        <h3>A Recusa em Voltar à Escravidão</h3>
+        <p>Quando a família Michieli desejou levá-la novamente para a África, Bakhita tomou uma decisão que mudaria sua história: recusou-se a partir. A questão chegou aos tribunais italianos, num caso raro e emblemático para a época. Em 1889, o tribunal decidiu que ela não podia ser obrigada a regressar nem tratada como propriedade, pois a escravidão não era reconhecida legalmente na Itália. Pela primeira vez desde o sequestro, a lei confirmava aquilo que seu coração já começava a compreender: <strong>Bakhita era livre</strong>.</p>
+        <p>Liberta juridicamente e espiritualmente transformada, decidiu permanecer com as Irmãs Canossanas. Em 1896, entrou oficialmente como noviça e professou seus votos religiosos pouco depois. Viveu os seguintes 45 anos em Schio, no norte da Itália, levando uma existência simples e silenciosa. Trabalhou como cozinheira, costureira, porteira e sacristã, acolhendo visitantes e peregrinos com um sorriso constante e uma serenidade que impressionava todos os que a conheciam.</p>
 
-        <h3>Morte e Glorificação</h3>
-        <p>Maximiliano foi colocado na cela da fome junto aos outros nove. Dois meses depois, enquanto os demais haviam morrido, ele ainda vivia — rezando, cantando hinos e animando os companheiros. Os guardas, impacientes, aplicaram-lhe uma injeção de ácido carbólico em <strong>14 de agosto de 1941</strong>, véspera da festa da Assunção de Nossa Senhora.</p>
-        <p>Franciszek Gajowniczek, o homem salvo, sobreviveu à guerra e viveu até os 93 anos — e esteve presente na canonização de Maximiliano em 1982.</p>
+        <h3>A Madre Moretta</h3>
+        <p>Em Schio, tornou-se conhecida carinhosamente como <strong>"Madre Moretta"</strong> — a "Madre Negra". O apelido, comum na linguagem italiana da época, era usado com afeto pelos habitantes locais, que viam nela uma presença de bondade incomum. Sua fama cresceu não por feitos extraordinários, mas pela maneira concreta com que vivia a fé: paciência diante das dificuldades, humildade no serviço e ausência quase absoluta de ressentimento pelo passado.</p>
+        <p>Quando lhe perguntavam sobre os traficantes e senhores que a escravizaram, surpreendia a todos com palavras de perdão radical: <em>"Se eu encontrasse os traficantes que me capturaram, eu os agradeceria e beijaria as mãos — porque me trouxeram até Deus."</em> Não se tratava de justificar a escravidão ou a violência sofrida, mas de reconhecer que a graça de Deus havia sido capaz de transformar até mesmo a maior tragédia em caminho de redenção.</p>
+        <p>Nos últimos anos, sofreu intensamente com doenças, dores físicas e limitações progressivas. Muitas vezes revivia em febres e delírios as cenas do cativeiro, clamando por liberdade como na infância roubada. Ainda assim, conservava uma confiança serena. Aos que a visitavam repetia frequentemente: <em>"Estou sofrendo. Mas estou contente. Muito contente."</em> Morreu em <strong>8 de fevereiro de 1947</strong>, em Schio, com cerca de 78 anos, deixando uma reputação de santidade que rapidamente se espalhou pela Itália e pelo mundo.</p>
       </div>
     </section>
 
+    <!-- LINHA DO TEMPO -->
     <section class="timeline-section" id="cronologia">
       <div class="timeline-header">
         <span class="section-tag">Seção 02</span>
         <div class="section-header-left">
           <h2>Linha do Tempo</h2>
-          <p>47 anos de vida marcados pelo apostolado mariano e pelo sacrifício supremo</p>
+          <p>Da escravidão no Sudão à santidade na Itália — uma vida de perdão radical</p>
         </div>
       </div>
       <div class="timeline-grid">
         <div class="tl-item">
-          <p class="tl-ano">8 Jan 1894</p>
-          <h3 class="tl-evento">Nascimento na Polônia</h3>
-          <p class="tl-desc">Nasce Raimundo Kolbe em Zdunska Wola, filho de tecelões poloneses profundamente católicos.</p>
+          <p class="tl-ano">c. 1869</p>
+          <h3 class="tl-evento">Nascimento no Sudão</h3>
+          <p class="tl-desc">Nasce em Olgossa, Sudão. Seu nome real nunca foi recuperado — ficou conhecida pelo nome árabe dado pelos traficantes.</p>
         </div>
         <div class="tl-item">
-          <p class="tl-ano">1910 · 16 anos</p>
-          <h3 class="tl-evento">Ordem Franciscana</h3>
-          <p class="tl-desc">Ingressa nos Frades Menores Conventuais tomando o nome de Maximiliano Maria.</p>
+          <p class="tl-ano">c. 1876 · 7 anos</p>
+          <h3 class="tl-evento">Sequestro</h3>
+          <p class="tl-desc">É sequestrada por traficantes de escravos enquanto brincava perto de casa. Nunca mais veria a família.</p>
         </div>
         <div class="tl-item">
-          <p class="tl-ano">1917 · Roma</p>
-          <h3 class="tl-evento">Militia Immacolatae</h3>
-          <p class="tl-desc">Funda em Roma o movimento de consagração a Nossa Senhora que se espalhará por todo o mundo.</p>
+          <p class="tl-ano">1876 – 1885</p>
+          <h3 class="tl-evento">Escravidão — cinco donos</h3>
+          <p class="tl-desc">É vendida e revendida cinco vezes. Sofre maus-tratos graves, incluindo 60 tatuagens-cortes impostas à força como marca de propriedade.</p>
         </div>
         <div class="tl-item">
-          <p class="tl-ano">1927</p>
-          <h3 class="tl-evento">Niepokalanów</h3>
-          <p class="tl-desc">Funda a "Cidade da Imaculada" na Polônia, que se tornará o maior convento franciscano do mundo com 700 frades.</p>
+          <p class="tl-ano">1885</p>
+          <h3 class="tl-evento">Casa Legnani</h3>
+          <p class="tl-desc">É comprada pelo cônsul italiano Callisto Legnani, que a trata com bondade. Acompanha a família à Itália em 1885.</p>
         </div>
         <div class="tl-item">
-          <p class="tl-ano">1930 – 1936</p>
-          <h3 class="tl-evento">Missão no Japão</h3>
-          <p class="tl-desc">Funda uma Niepokalanów perto de Nagasaki — cidade que sobreviverá à bomba atômica em 1945.</p>
+          <p class="tl-ano">1890</p>
+          <h3 class="tl-evento">Batismo e liberdade</h3>
+          <p class="tl-desc">É batizada em 9 de janeiro de 1890 em Veneza. O tribunal italiano declara sua liberdade quando a família tenta levá-la de volta ao Sudão.</p>
         </div>
         <div class="tl-item">
-          <p class="tl-ano">Fev 1941</p>
-          <h3 class="tl-evento">Preso pela Gestapo</h3>
-          <p class="tl-desc">Deportado para Auschwitz após publicar material contra o nazismo e esconder refugiados judeus.</p>
+          <p class="tl-ano">1896</p>
+          <h3 class="tl-evento">Vida religiosa</h3>
+          <p class="tl-desc">Entra como noviça nas Irmãs Canossanas. Vive os seguintes 45 anos em Schio, tornando-se a "Madre Moretta" amada por todos.</p>
         </div>
         <div class="tl-item">
-          <p class="tl-ano">Jul 1941</p>
-          <h3 class="tl-evento">O gesto heroico</h3>
-          <p class="tl-desc">Oferece a própria vida para salvar Franciszek Gajowniczek, selecionado para morrer de fome como punição coletiva.</p>
+          <p class="tl-ano">8 Fev 1947</p>
+          <h3 class="tl-evento">Morte em Schio</h3>
+          <p class="tl-desc">Falece em Schio com cerca de 78 anos, repetindo até o fim: "Estou sofrendo. Mas estou contente."</p>
         </div>
         <div class="tl-item">
-          <p class="tl-ano">14 Ago 1941</p>
-          <h3 class="tl-evento">Martírio em Auschwitz</h3>
-          <p class="tl-desc">Executado com injeção de ácido carbólico na véspera da festa da Assunção. Tinha 47 anos.</p>
-        </div>
-        <div class="tl-item">
-          <p class="tl-ano">10 Out 1982</p>
+          <p class="tl-ano">1 Out 2000</p>
           <h3 class="tl-evento">Canonização</h3>
-          <p class="tl-desc">João Paulo II o canoniza em Roma. Franciszek Gajowniczek, o homem salvo, está presente na cerimônia.</p>
+          <p class="tl-desc">João Paulo II a canoniza em Roma. É a primeira santa africana moderna e padroeira do Sudão e das vítimas de escravidão.</p>
         </div>
       </div>
     </section>
 
   </div>
 
+  <!-- MILAGRES -->
   <section class="milagres-section" id="milagres">
     <div class="milagres-inner">
       <span class="section-tag">Seção 03</span>
@@ -406,17 +400,17 @@
       <div class="milagres-grid">
         <div class="milagre-card">
           <p class="milagre-numero">01</p>
-          <p class="milagre-local">Polônia</p>
-          <h3 class="milagre-titulo">Cura de tuberculose grave</h3>
-          <p class="milagre-desc">Uma religiosa polonesa sofria de tuberculose avançada considerada incurável. Após intensa oração pela intercessão de Maximiliano Kolbe, foi curada de forma súbita e completa. O caso foi investigado pelo Vaticano e reconhecido como milagre, abrindo o caminho para a beatificação em 1971.</p>
-          <span class="milagre-ano-badge">Aprovado em 1970 · para a Beatificação</span>
+          <p class="milagre-local">Itália</p>
+          <h3 class="milagre-titulo">Cura de infecção grave considerada fatal</h3>
+          <p class="milagre-desc">Uma criança italiana sofria de infecção generalizada considerada fatal pelos médicos. Após intensa oração pela intercessão de Josefina Bakhita, a criança se recuperou completamente de forma inexplicável. O caso foi investigado e reconhecido pelo Vaticano, abrindo o caminho para a beatificação em 1992.</p>
+          <span class="milagre-ano-badge">Aprovado em 1991 · para a Beatificação</span>
         </div>
         <div class="milagre-card">
           <p class="milagre-numero">02</p>
           <p class="milagre-local">Itália</p>
-          <h3 class="milagre-titulo">Cura inexplicável aprovada para a canonização</h3>
-          <p class="milagre-desc">Uma mulher italiana com doença grave e sem perspectiva de cura foi curada de forma repentina e completa após orações pela intercessão de Kolbe. A comissão médica e teológica do Vaticano reconheceu o caso como miraculoso, habilitando a canonização em 1982 por João Paulo II.</p>
-          <span class="milagre-ano-badge">Aprovado em 1981 · para a Canonização</span>
+          <h3 class="milagre-titulo">Segundo milagre aprovado para a canonização</h3>
+          <p class="milagre-desc">Um segundo caso de cura inexplicável atribuída à intercessão de Bakhita foi investigado e aprovado pelo Dicastério para as Causas dos Santos. O milagre envolveu recuperação súbita e completa de doença grave, habilitando a canonização pelo Papa João Paulo II em outubro de 2000.</p>
+          <span class="milagre-ano-badge">Aprovado em 1999 · para a Canonização</span>
         </div>
       </div>
     </div>
@@ -424,25 +418,42 @@
 
   <div class="perfil-content">
 
+    <!-- GALERIA -->
     <section class="galeria-section" id="galeria">
-      <span class="section-tag">Seção 04</span>
-      <div class="section-header-left">
-        <h2>Galeria</h2>
-        <p>Imagens da vida, do apostolado e do martírio de Maximiliano Kolbe</p>
-      </div>
-      <div class="galeria-grid">
-        <div class="galeria-item"><img src="../imagens/mxm0.jpg" alt="Maximiliano" style="width:100%; height:100%; object-fit:cover;"/></div>
-          <div class="galeria-item"><img src="../imagens/mxm1.jpg" alt="Maximiliano" style="width:100%; height:100%; object-fit:cover;"/></div>
-          <div class="galeria-item"><img src="../imagens/mxm2.jpg" alt="Maximiliano" style="width:100%; height:100%; object-fit:cover;"/></div>
-          <div class="galeria-item"><img src="../imagens/mxm3.jpg" alt="Maximiliano" style="width:100%; height:100%; object-fit:cover;"/></div>
-          <div class="galeria-item"><img src="../imagens/mxm4.jpg" alt="Maximiliano" style="width:100%; height:100%; object-fit:cover;"/></div>
-      </div>
-      <p class="galeria-legenda">
-        Imagens utilizadas sob licença de seus respectivos autores.
-        <a href="../creditos.html" style="color:var(--gold-dark); text-decoration:none;">Créditos completos disponíveis aqui.</a>
-      </p>
-    </section>
+     <span class="section-tag">Seção 04</span>
 
+      <div class="section-header-left">
+       <h2>Galeria</h2>
+       <p>Imagens da vida, da missão em Schio e da canonização de Santa Josefina Bakhita</p>
+      </div>
+
+      <div class="galeria-grid">
+        <div class="galeria-item grande">
+        <img src="../imagens/sb2.jpg" alt="Josefina Bakhita">
+      </div>
+
+    <div class="galeria-item">
+      <img src="../imagens/sb3.webp" alt="Josefina Bakhita">
+    </div>
+
+    <div class="galeria-item">
+      <img src="../imagens/sb4.jpg" alt="Josefina Bakhita">
+    </div>
+
+    <div class="galeria-item">
+      <img src="../imagens/sb5.webp" alt="Josefina Bakhita">
+    </div>
+  </div>
+
+  <p class="galeria-legenda">
+    Imagens utilizadas sob licença de seus respectivos autores.
+    <a href="../creditos.html" style="color:var(--gold-dark); text-decoration:none;">
+      Créditos completos disponíveis aqui.
+    </a>
+  </p>
+</section>
+
+    <!-- FONTES -->
     <section class="fontes-section" id="fontes">
       <span class="section-tag">Seção 06</span>
       <div class="section-header-left">
@@ -451,77 +462,72 @@
       </div>
       <div class="fontes-lista">
         <div class="fonte-item">
-          <span class="fonte-tipo">Site Oficial</span>
-          <div><p class="fonte-titulo">niepokalanow.pl</p><p class="fonte-autor">Site oficial da Niepokalanów — Cidade da Imaculada</p></div>
-          <a href="https://www.niepokalanow.pl/en/" target="_blank" class="fonte-link">Acessar →</a>
-        </div>
-        <div class="fonte-item">
           <span class="fonte-tipo">Livro</span>
-          <div><p class="fonte-titulo">Maximiliano Kolbe — O Santo de Auschwitz</p><p class="fonte-autor">Elaine Murray Stone · Editora Paulinas, 2001</p></div>
+          <div><p class="fonte-titulo">História de Bakhita — Contada por ela mesma</p><p class="fonte-autor">Josefina Bakhita · Editora Paulinas, 2000</p></div>
           <span class="fonte-link">Impresso</span>
         </div>
         <div class="fonte-item">
           <span class="fonte-tipo">Livro</span>
-          <div><p class="fonte-titulo">São Maximiliano Kolbe — Mártir da Caridade</p><p class="fonte-autor">Anselm Romb · Editora Santuário, 1999</p></div>
+          <div><p class="fonte-titulo">Bakhita — De Escrava a Santa</p><p class="fonte-autor">Roberto Italo Zanini · Editora Canção Nova, 2001</p></div>
           <span class="fonte-link">Impresso</span>
+        </div>
+        <div class="fonte-item">
+          <span class="fonte-tipo">Encíclica</span>
+          <div><p class="fonte-titulo">Spe Salvi — Bento XVI cita Bakhita como testemunha da esperança</p><p class="fonte-autor">Papa Bento XVI · Santa Sé · 30 de novembro de 2007</p></div>
+          <a href="https://www.vatican.va/content/benedict-xvi/pt/encyclicals/documents/hf_ben-xvi_enc_20071130_spe-salvi.html" target="_blank" class="fonte-link">Acessar →</a>
         </div>
         <div class="fonte-item">
           <span class="fonte-tipo">Vatican News</span>
-          <div><p class="fonte-titulo">Canonização de Maximiliano Kolbe — Homilia de João Paulo II</p><p class="fonte-autor">Santa Sé · 10 de outubro de 1982</p></div>
-          <a href="https://www.vatican.va/content/john-paul-ii/pt/homilies/1982/documents/hf_jp-ii_hom_19821010_canonizzazione-kolbe.html" target="_blank" class="fonte-link">Acessar →</a>
+          <div><p class="fonte-titulo">Canonização de Josefina Bakhita — Homilia de João Paulo II</p><p class="fonte-autor">Santa Sé · 1 de outubro de 2000</p></div>
+          <a href="https://www.vatican.va/content/john-paul-ii/pt/homilies/2000/documents/hf_jp-ii_hom_20001001_bakhita.html" target="_blank" class="fonte-link">Acessar →</a>
         </div>
       </div>
     </section>
 
-    <div class="nav-santos">
-      <a href="teresa-calcuta.html" class="nav-santo-link">
+    <!-- NAVEGAÇÃO -->
+    <div class="nav-santos-div">
+      <a href="pastorinhos.html" class="nav-santo-link">
         <span class="nav-santo-label">← Santo Anterior</span>
-        <span class="nav-santo-nome">Santa Teresa de Calcutá</span>
+        <span class="nav-santo-nome">Pastorinhos de Fátima</span>
       </a>
-      <a href="gianna-beretta.html" class="nav-santo-link nav-santo-dir">
+      <a href="carlo-acutis.html" class="nav-santo-link nav-santo-dir">
         <span class="nav-santo-label">Próximo Santo →</span>
-        <span class="nav-santo-nome">Santa Gianna Beretta</span>
+        <span class="nav-santo-nome">São Carlo Acutis</span>
       </a>
     </div>
 
   </div>
 
+  <!-- ORAÇÃO -->
   <section class="oracao-section" id="oracao">
     <div class="oracao-inner">
       <span class="section-tag">Seção 05</span>
-      <h2 class="oracao-titulo">Oração por Intercessão de São Maximiliano Kolbe</h2>
+      <h2 class="oracao-titulo">Oração por Intercessão de Santa Josefina Bakhita</h2>
       <div class="oracao-texto">
-        <p>Senhor Jesus, Tu que és o amor que vence o ódio e a vida que triunfa sobre a morte, concede-nos, pela intercessão de São Maximiliano Kolbe, a coragem de amar até o fim — sem contar o custo.</p>
-        <p>Ele poderia ter se calado. Em vez disso, deu um passo à frente e disse: "Quero morrer no lugar desse homem." Nesse gesto, repetiu o Teu próprio gesto no Calvário.</p>
-        <p>São Maximiliano, mártir da caridade, intercede por todos os que hoje estão prisioneiros — do medo, do ódio, da desesperança. Que o teu exemplo nos lembre que o amor é a única força capaz de transformar o mundo. Amém.</p>
+        <p>Senhor Jesus, Tu que transformas o sofrimento em graça e a escravidão em liberdade, concede-nos, pela intercessão de Santa Josefina Bakhita, a graça de encontrar em Ti aquele Pai que ela descobriu depois de anos de dor.</p>
+        <p>Ela poderia ter guardado ódio para o resto da vida — e ninguém a teria culpado. Escolheu o perdão. Não por fraqueza, mas porque conheceu um amor maior do que toda a crueldade que sofreu. Que seu exemplo nos ensine que o perdão não apaga o passado — mas nos liberta dele.</p>
+        <p>Santa Bakhita, padroeira do Sudão e de todos os que sofrem a escravidão e o tráfico humano, intercede por todos os que hoje são explorados, oprimidos e sem esperança. Que encontrem, como você encontrou, um Deus que os chama pelo nome. Amém.</p>
       </div>
       <p class="oracao-fecho">· Para uso privado · Aprovação eclesiástica recomendada ·</p>
     </div>
   </section>
 
+  <!-- FOOTER -->
   <footer>
     <div class="footer-inner">
       <span class="footer-logo">Santos da Modernidade</span>
       <span class="footer-copy">© Santos da Modernidade · Ad Maiorem Dei Gloriam</span>
     </div>
   </footer>
- <script>
-   function toggleMenu() {
-    const menu = document.querySelector('.nav-links');
-    const btn = document.getElementById('nav-hamburguer');
-    menu.classList.toggle('aberto');
-    btn.textContent = menu.classList.contains('aberto') ? '✕' : '☰';
-  }
 
-  // Fecha o menu ao clicar em qualquer link
-  document.querySelectorAll('.nav-links a').forEach(link => {
-    link.addEventListener('click', () => {
+  <script>
+    function toggleMenu() {
       const menu = document.querySelector('.nav-links');
       const btn = document.getElementById('nav-hamburguer');
-      menu.classList.remove('aberto');
-      btn.textContent = '☰';
-    });
-  });
-</script>
+      menu.classList.toggle('aberto');
+      btn.textContent = menu.classList.contains('aberto') ? '✕' : '☰';
+    }
+  </script>
+
 </body>
 </html>

@@ -672,7 +672,7 @@
     </div>
     <img src="../imagens/foto_carlo4.jpg" 
      alt="Carlo Acutis" 
-     style="width:100%; height:100%; object-fit:cover;" />
+     style="width:100%; height:auto; display:block;" />
       <div class="perfil-hero-datas">
         <span class="perfil-hero-ano">2006</span>
       </div>
@@ -851,7 +851,8 @@
      style="width:100%; height:100%; object-fit:cover;" />
       </div>
       <p class="galeria-legenda">
-        As fotografias devem ser obtidas de fontes de domínio público ou com autorização da família Acutis.
+        Imagens utilizadas sob licença de seus respectivos autores.
+        <a href="../creditos.html" style="color:var(--gold-dark); text-decoration:none;">Créditos completos disponíveis aqui.</a>
       </p>
     </section>
 
@@ -901,9 +902,9 @@
 
     <!-- NAVEGAÇÃO ENTRE SANTOS -->
     <div class="nav-santos">
-      <a href="pastorinhos.html" class="nav-santo-link">
+      <a href="josefina-bakhita.html" class="nav-santo-link">
         <span class="nav-santo-label">← Santo Anterior</span>
-        <span class="nav-santo-nome">Pastorinhos</span>
+        <span class="nav-santo-nome">Santa Josefina Bakhita</span>
       </a>
       <a href="jose-sanchez.html" class="nav-santo-link nav-santo-dir">
         <span class="nav-santo-label">Próximo Santo →</span>
@@ -943,13 +944,23 @@
       <span class="footer-copy">© Santos da Modernidade · Ad Maiorem Dei Gloriam</span>
     </div>
   </footer>
-  <script>
-    function toggleMenu() {
-     const menu = document.querySelector('.nav-links');
-     const btn = document.getElementById('nav-hamburguer');
-     menu.classList.toggle('aberto');
-     btn.textContent = menu.classList.contains('aberto') ? '✕' : '☰';
-    }
-  </script>
+ <script>
+   function toggleMenu() {
+    const menu = document.querySelector('.nav-links');
+    const btn = document.getElementById('nav-hamburguer');
+    menu.classList.toggle('aberto');
+    btn.textContent = menu.classList.contains('aberto') ? '✕' : '☰';
+  }
+
+  // Fecha o menu ao clicar em qualquer link
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+      const menu = document.querySelector('.nav-links');
+      const btn = document.getElementById('nav-hamburguer');
+      menu.classList.remove('aberto');
+      btn.textContent = '☰';
+    });
+  });
+</script>
 </body>
 </html>

@@ -343,10 +343,10 @@
       <p class="perfil-frase">"Rezai o Rosário todos os dias para conseguir a paz para o mundo." — Nossa Senhora de Fátima</p>
     </div>
     <div class="perfil-hero-right" style="position:relative; overflow:hidden;">
-       <img src="../imagens/ftm2.jpg" 
-       alt="Pastorinhos" 
-       style="width:100%; height:100%; object-fit:cover; position:absolute; inset:0;" />
-      <span class="perfil-hero-ano">1917</span>
+        <img src="../imagens/ftm2.jpg"
+         alt="Pastorinhos de Fátima"
+         style="width:100%; height:auto; display:block;" />
+        <span class="perfil-hero-ano">1917</span>
     </div>
   </section>
 
@@ -578,9 +578,10 @@
 
   </div>
 
-  <p class="galeria-legenda">
-    As fotografias devem ser obtidas de fontes de domínio público ou com autorização dos detentores dos direitos.
-  </p>
+      <p class="galeria-legenda">
+        Imagens utilizadas sob licença de seus respectivos autores.
+        <a href="../creditos.html" style="color:var(--gold-dark); text-decoration:none;">Créditos completos disponíveis aqui.</a>
+      </p>
 </section>
     <!-- FONTES -->
     <section class="fontes-section" id="fontes">
@@ -624,9 +625,9 @@
         <span class="nav-santo-label">← Santo Anterior</span>
         <span class="nav-santo-nome">São João Paulo II</span>
       </a>
-      <a href="carlo-acutis.html" class="nav-santo-link nav-santo-dir">
+      <a href="josefina-bakhita.html" class="nav-santo-link nav-santo-dir">
         <span class="nav-santo-label">Próximo Santo →</span>
-        <span class="nav-santo-nome">São Carlo Acutis</span>
+        <span class="nav-santo-nome">Santa Josefina Bakhita</span>
       </a>
     </div>
 
@@ -656,12 +657,22 @@
 
   <script>
     function toggleMenu() {
+    const menu = document.querySelector('.nav-links');
+    const btn = document.getElementById('nav-hamburguer');
+    menu.classList.toggle('aberto');
+    btn.textContent = menu.classList.contains('aberto') ? '✕' : '☰';
+  }
+
+  // Fecha o menu ao clicar em qualquer link
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
       const menu = document.querySelector('.nav-links');
       const btn = document.getElementById('nav-hamburguer');
-      menu.classList.toggle('aberto');
-      btn.textContent = menu.classList.contains('aberto') ? '✕' : '☰';
-    }
-  </script>
+      menu.classList.remove('aberto');
+      btn.textContent = '☰';
+    });
+  });
+</script>
 
 </body>
 </html>

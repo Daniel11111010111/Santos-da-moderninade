@@ -641,7 +641,7 @@
     <div class="perfil-hero-right" style="position:relative; overflow:hidden;">
        <img src="../imagens/pg2.jpg" 
        alt="Pier Giorgio Frassati" 
-       style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;" />
+       style="width:100%; height:auto; display:block;" />
       <div class="perfil-hero-datas">
         <span class="perfil-hero-ano">1925</span>
       </div>
@@ -832,7 +832,8 @@
         </div>
       </div>
       <p class="galeria-legenda">
-        As fotografias devem ser obtidas de fontes de domínio público ou com autorização dos detentores dos direitos.
+        Imagens utilizadas sob licença de seus respectivos autores.
+        <a href="../creditos.html" style="color:var(--gold-dark); text-decoration:none;">Créditos completos disponíveis aqui.</a>
       </p>
     </section>
 
@@ -885,9 +886,9 @@
         <span class="nav-santo-label">← Santo Anterior</span>
         <span class="nav-santo-nome">Santa Gianna Beretta</span>
       </a>
-      <a href="carlo-acutis.html" class="nav-santo-link nav-santo-dir">
+      <a href="padre-pio.html" class="nav-santo-link nav-santo-dir">
         <span class="nav-santo-label">Próximo Santo →</span>
-        <span class="nav-santo-nome">São Carlo Acutis</span>
+        <span class="nav-santo-nome">São Pio de Pietrelcina </span>
       </a>
     </div>
 
@@ -921,12 +922,22 @@
     </div>
   </footer>
   <script>
-    function toggleMenu() {
-     const menu = document.querySelector('.nav-links');
-     const btn = document.getElementById('nav-hamburguer');
-     menu.classList.toggle('aberto');
-     btn.textContent = menu.classList.contains('aberto') ? '✕' : '☰';
-    }
-  </script>
+  function toggleMenu() {
+    const menu = document.querySelector('.nav-links');
+    const btn = document.getElementById('nav-hamburguer');
+    menu.classList.toggle('aberto');
+    btn.textContent = menu.classList.contains('aberto') ? '✕' : '☰';
+  }
+
+  // Fecha o menu ao clicar em qualquer link
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+      const menu = document.querySelector('.nav-links');
+      const btn = document.getElementById('nav-hamburguer');
+      menu.classList.remove('aberto');
+      btn.textContent = '☰';
+    });
+  });
+</script>
 </body>
 </html>

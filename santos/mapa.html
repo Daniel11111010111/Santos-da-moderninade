@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mapa · Santos da Modernidade</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600&family=Raleway:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .mapa-hero {
+      background: var(--dark);
+      padding: 9rem 2rem 4rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .mapa-hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 40%, rgba(201,168,76,0.07) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 40% at 20% 80%, rgba(123,28,46,0.1) 0%, transparent 60%);
+    }
+
+    .mapa-breadcrumb {
+      font-size: 0.68rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: rgba(201,168,76,0.5);
+      margin-bottom: 1.5rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .mapa-breadcrumb a { color: inherit; text-decoration: none; transition: color 0.2s; }
+    .mapa-breadcrumb a:hover { color: var(--gold); }
+
+    .mapa-titulo {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      font-weight: 600;
+      color: var(--ivory);
+      letter-spacing: 0.05em;
+      margin-bottom: 0.75rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .mapa-subtitulo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      font-style: italic;
+      color: rgba(240,232,216,0.65);
+      position: relative;
+      z-index: 2;
+    }
+
+    /* ── BARRA DE CONTROLES ── */
+    .mapa-controles {
+      background: var(--parchment);
+      border-bottom: 1px solid var(--gold-light);
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .controle-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-right: 0.5rem;
+    }
+
+    .filtro-tipo {
+      font-family: 'Raleway', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      background: none;
+      border: 1px solid var(--gold-light);
+      padding: 0.45rem 1rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--text-muted);
+    }
+
+    .filtro-tipo:hover {
+      border-color: var(--gold);
+      color: var(--gold-dark);
+    }
+
+    .filtro-tipo.ativo {
+      color: var(--dark);
+      border-color: transparent;
+    }
+
+    .filtro-tipo.ativo.todos     { background: var(--gold); }
+    .filtro-tipo.ativo.nasc      { background: #4A7ABF; color: white; }
+    .filtro-tipo.ativo.vida      { background: #4A6741; color: white; }
+    .filtro-tipo.ativo.morte     { background: #7B1C2E; color: white; }
+    .filtro-tipo.ativo.canon     { background: var(--gold); }
+
+    .filtro-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .filtro-dot.nasc  { background: #4A7ABF; }
+    .filtro-dot.vida  { background: #4A6741; }
+    .filtro-dot.morte { background: #7B1C2E; }
+    .filtro-dot.canon { background: var(--gold); }
+    .filtro-dot.todos { background: var(--gold-dark); }
+
+    /* ── MAPA ── */
+    .mapa-container {
+      position: relative;
+      height: 70vh;
+      min-height: 500px;
+    }
+
+    #mapa { width: 100%; height: 100%; z-index: 1; }
+
+    /* ── CARD DO MARCADOR ── */
+    .marcador-card {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1000;
+      background: var(--ivory);
+      border: 1px solid var(--gold-light);
+      border-top: 3px solid var(--gold);
+      width: 320px;
+      max-width: calc(100vw - 2rem);
+      box-shadow: 0 8px 32px rgba(26,20,16,0.2);
+      display: none;
+      animation: slideUp 0.25s ease;
+    }
+
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateX(-50%) translateY(10px); }
+      to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+    }
+
+    .marcador-card-header {
+      display: flex;
+      gap: 1rem;
+      padding: 1.25rem;
+      border-bottom: 1px solid var(--gold-light);
+    }
+
+    .marcador-card-foto {
+      width: 70px;
+      height: 70px;
+      object-fit: cover;
+      flex-shrink: 0;
+      background: var(--dark-mid);
+    }
+
+    .marcador-card-info { flex: 1; }
+
+    .marcador-card-tipo {
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold-dark);
+      margin-bottom: 0.3rem;
+    }
+
+    .marcador-card-nome {
+      font-family: 'Cinzel', serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--dark);
+      line-height: 1.3;
+      margin-bottom: 0.2rem;
+    }
+
+    .marcador-card-local {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.9rem;
+      font-style: italic;
+      color: var(--text-muted);
+    }
+
+    .marcador-card-body {
+      padding: 1rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .marcador-card-desc {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+      flex: 1;
+    }
+
+    .marcador-card-btn {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--dark);
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 0.5rem 1rem;
+      transition: background 0.2s;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .marcador-card-btn:hover { background: var(--gold-light); }
+
+    .marcador-card-fechar {
+      position: absolute;
+      top: 0.5rem;
+      right: 0.75rem;
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      font-size: 1.1rem;
+      cursor: pointer;
+      line-height: 1;
+      padding: 0.25rem;
+    }
+
+    .marcador-card-fechar:hover { color: var(--dark); }
+
+    /* ── CONTADOR ── */
+    .mapa-contador {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      z-index: 999;
+      background: rgba(26,20,16,0.85);
+      color: var(--gold-light);
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 0.4rem 0.8rem;
+      backdrop-filter: blur(4px);
+    }
+
+    /* ── STATS ── */
+    .mapa-stats {
+      background: var(--dark);
+      padding: 3rem 2rem;
+      display: flex;
+      justify-content: center;
+      gap: 4rem;
+      flex-wrap: wrap;
+      border-top: 1px solid rgba(201,168,76,0.15);
+    }
+
+    .stat-item { text-align: center; }
+
+    .stat-numero {
+      font-family: 'Cinzel', serif;
+      font-size: 2.5rem;
+      font-weight: 600;
+      color: var(--gold);
+      display: block;
+      line-height: 1;
+      margin-bottom: 0.4rem;
+    }
+
+    .stat-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(240,232,216,0.4);
+    }
+
+    .custom-marker {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      border: 2px solid white;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+      cursor: pointer;
+      transition: transform 0.15s;
+    }
+
+    .custom-marker:hover { transform: scale(1.3); }
+
+    .leaflet-popup { display: none; }
+
+    @media (max-width: 768px) {
+      .mapa-controles { gap: 0.4rem; }
+      .filtro-tipo { font-size: 0.58rem; padding: 0.4rem 0.7rem; }
+      .controle-label { display: none; }
+      .mapa-stats { gap: 2rem; }
+      .stat-numero { font-size: 2rem; }
+      .mapa-container { height: 55vh; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-logo">Santos da Modernidade</a>
+    <ul class="nav-links">
+      <li><a href="index.html#santos">Os Santos</a></li>
+      <li><a href="categoria.html">Categorias</a></li>
+      <li><a href="index.html#cronologia">Cronologia</a></li>
+      <li><a href="mapa.html">Mapa</a></li>
+      <li><a href="sobre.html">Sobre</a></li>
+    </ul>
+   <button id="nav-hamburguer" 
+        onclick="toggleMenu()" 
+        style="background:transparent; border:none; color:#C9A84C; font-size:1.5rem; cursor:pointer; padding:0.25rem 0.5rem; -webkit-appearance:none; appearance:none;">
+     ☰
+   </button>
+  </nav>
+
+  <section class="mapa-hero">
+    <div class="mapa-hero-bg"></div>
+    <p class="mapa-breadcrumb"><a href="index.html">Início</a> &nbsp;·&nbsp; Mapa</p>
+    <h1 class="mapa-titulo">Geografia da Santidade</h1>
+    <p class="mapa-subtitulo">Onde cada santo nasceu, viveu, morreu e foi elevado aos altares</p>
+  </section>
+
+  <!-- FILTROS POR TIPO -->
+  <div class="mapa-controles">
+    <span class="controle-label">Filtrar por:</span>
+    <button class="filtro-tipo ativo todos" onclick="filtrarTipo('todos', this)">
+      <span class="filtro-dot todos"></span> Todos
+    </button>
+    <button class="filtro-tipo" onclick="filtrarTipo('nascimento', this)">
+      <span class="filtro-dot nasc"></span> Nascimento
+    </button>
+    <button class="filtro-tipo" onclick="filtrarTipo('vida', this)">
+      <span class="filtro-dot vida"></span> Vida / Missão
+    </button>
+    <button class="filtro-tipo" onclick="filtrarTipo('morte', this)">
+      <span class="filtro-dot morte"></span> Morte / Martírio
+    </button>
+    <button class="filtro-tipo" onclick="filtrarTipo('canonizacao', this)">
+      <span class="filtro-dot canon"></span> Canonização
+    </button>
+  </div>
+
+  <!-- MAPA -->
+  <div class="mapa-container">
+    <div id="mapa"></div>
+
+    <!-- CONTADOR -->
+    <div class="mapa-contador" id="mapa-contador">23 locais</div>
+
+    <!-- CARD -->
+    <div class="marcador-card" id="marcador-card">
+      <button class="marcador-card-fechar" onclick="fecharCard()">✕</button>
+      <div class="marcador-card-header">
+        <img class="marcador-card-foto" id="card-foto" src="" alt="" />
+        <div class="marcador-card-info">
+          <p class="marcador-card-tipo" id="card-tipo"></p>
+          <h3 class="marcador-card-nome" id="card-nome"></h3>
+          <p class="marcador-card-local" id="card-local"></p>
+        </div>
+      </div>
+      <div class="marcador-card-body">
+        <p class="marcador-card-desc" id="card-desc"></p>
+        <a class="marcador-card-btn" id="card-btn" href="#">Ver perfil →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- STATS -->
+  <div class="mapa-stats">
+    <div class="stat-item">
+      <span class="stat-numero">10</span>
+      <span class="stat-label">Santos e Beatos</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-numero">9</span>
+      <span class="stat-label">Países</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-numero">46</span>
+      <span class="stat-label">Locais marcados</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-numero">138</span>
+      <span class="stat-label">Anos de história</span>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-inner">
+      <span class="footer-logo">Santos da Modernidade</span>
+      <span class="footer-copy">© Santos da Modernidade · Ad Maiorem Dei Gloriam</span>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+  <script>
+    // ── DADOS ──
+    const marcadores = [
+      { lat: 51.5074,  lng: -0.1278,  tipo: "nascimento",  nome: "Carlo Acutis",          local: "Londres, Inglaterra",         desc: "Local de nascimento de Carlo Acutis, em 3 de maio de 1991.",                                     foto: "imagens/foto_carlo1.jpg", link: "santos/carlo-acutis.html" },
+      { lat: 45.4654,  lng: 9.1859,   tipo: "vida",        nome: "Carlo Acutis",          local: "Milão, Itália",               desc:  "Cidade onde Carlo viveu, estudou e desenvolveu a exposição dos milagres eucarísticos.",               foto: "imagens/foto_carlo1.jpg", link: "santos/carlo-acutis.html" },
+      { lat: 45.5845,  lng: 9.2744,   tipo: "morte",       nome: "Carlo Acutis",          local: "Monza, Itália",               desc: "Faleceu no Hospital San Gerardo de Monza em 12 de outubro de 2006, aos 15 anos.",              foto: "imagens/foto_carlo1.jpg", link: "santos/carlo-acutis.html" },
+      { lat: 43.0696,  lng: 12.6197,  tipo: "beatificação", nome: "Carlo Acutis",          local: "Assis, Itália",               desc:  "Beatificado em Assis em 10 de outubro de 2020. Seu corpo repousa no Santuário da Espoliação.", foto: "imagens/foto_carlo1.jpg", link: "santos/carlo-acutis.html" },
+      { lat: 41.9029,  lng: 12.4534,  tipo: "canonizacao", nome: "Carlo Acutis",          local: "Cidade do Vaticano",          desc: "Canonizado pelo Papa Leão XIV em setembro de 2025.",                                         foto: "imagens/foto_carlo1.jpg", link: "santos/carlo-acutis.html" },
+
+      { lat: 45.0703,  lng: 7.6869,   tipo: "nascimento",  nome: "Pier Giorgio Frassati", local: "Turim, Itália",               desc: "Nasceu em Turim em 6 de abril de 1901. Viveu e morreu na mesma cidade aos 24 anos.",           foto: "imagens/pg4.jpg",       link: "santos/pier-giorgio.html" },
+      { lat: 45.0703,  lng: 7.6869,   tipo: "vida",        nome: "Pier Giorgio Frassati",  local: "Turim, Itália",              desc: "Cidade onde Pier Giorgio viveu, estudou, praticou a caridade e testemunhou sua fé católica.",          foto: "imagens/pg4.jpg",  link: "santos/pier-giorgio.html" },
+      { lat: 45.0703,  lng: 7.6970,   tipo: "morte",       nome: "Pier Giorgio Frassati", local: "Turim, Itália",               desc: "Morreu de poliomielite fulminante em Turim em 4 de julho de 1925.",             foto: "imagens/pg4.jpg",       link: "santos/pier-giorgio.html" },
+      { lat: 41.9029,  lng: 12.4634,  tipo: "beatificação", nome: "Pier Giorgio Frassati", local: "Cidade do Vaticano",          desc: "Beatificado pelo Papa João Paulo II em 20 de maio de 1990.",                                    foto: "imagens/pg4.jpg",       link: "santos/pier-giorgio.html" },
+      { lat: 41.9029,  lng: 12.4634,  tipo: "canonizacao", nome: "Pier Giorgio Frassati", local: "Cidade do Vaticano",          desc: "Canonizado pelo Papa Leão XIV em 7 de setembro de 2025.",                                    foto: "imagens/pg4.jpg",       link: "santos/pier-giorgio.html" },
+
+      { lat: 20.0457,  lng: -102.722, tipo: "nascimento",  nome: "José Sánchez del Río",  local: "Sahuayo, México",             desc: "Nasceu em Sahuayo, Michoacán, em 28 de março de 1913.",           foto: "imagens/js0.jpg",       link: "santos/jose-sanchez.html" },
+      { lat: 20.0586,  lng: -102.7167, tipo: "vida",       nome: "José Sánchez del Río",   local: "Sahuayo, México",            desc: "Cidade onde José Sánchez del Río viveu e testemunhou sua fé durante a Guerra Cristera.",              foto: "imagens/js0.jpg",  link: "santos/jose-sanches.html" },
+      { lat: 19.8097,  lng: -102.706, tipo: "morte",       nome: "José Sánchez del Río",  local: "Cotija, Michoacán",             desc: "Morreu mártir em Cotija em 10 de fevereiro de 1928, gritando 'Viva Cristo Rei!' até o fim.",           foto: "imagens/js0.jpg",       link: "santos/jose-sanchez.html" },
+      { lat: 20.6597,  lng: -103.349, tipo: "beatificação", nome: "José Sánchez del Río",  local: "Guadalajara, México",         desc: "Beatificado em Guadalajara em 20 de novembro de 2005.",                                         foto: "imagens/js0.jpg",       link: "santos/jose-sanchez.html" },
+      { lat: 41.9029,  lng: 12.4434,  tipo: "canonizacao", nome: "José Sánchez del Río",  local: "Cidade do Vaticano",          desc: "Canonizado pelo Papa Francisco em 16 de outubro de 2016.",                                      foto: "imagens/js0.jpg",       link: "santos/jose-sanchez.html" },
+
+      { lat: 51.6027,  lng: 18.9419,  tipo: "nascimento",  nome: "Maximiliano Kolbe",     local: "Zduńska Wola, Polônia",       desc: "Nasceu em 8 de janeiro de 1894 nesta cidade polonesa.",                                         foto: "imagens/mxm1.jpg",      link: "santos/maximiliano-kolbe.html" },
+      { lat: 52.0693,  lng: 20.6426,  tipo: "vida",        nome: "Maximiliano Kolbe",     local: "Niepokalanów, Polônia",       desc: "Fundou a Cidade da Imaculada (Niepokalanów), que se tornou um dos maiores centros franciscanos do mundo, com cerca de 700 frades.",          foto: "imagens/mxm1.jpg",      link: "santos/maximiliano-kolbe.html" },
+      { lat: 32.7448,  lng: 129.873,  tipo: "vida",        nome: "Maximiliano Kolbe",     local: "Nagasaki, Japão",             desc: "Fundou uma Niepokalanów perto de Nagasaki entre 1930–1936. O mosteiro escapou da destruição da bomba atômica por sua localização.", foto: "imagens/mxm1.jpg",    link: "santos/maximiliano-kolbe.html" },
+      { lat: 50.0274,  lng: 19.2078,  tipo: "morte",       nome: "Maximiliano Kolbe",     local: "Campo de Auschwitz I, Polônia",          desc: "Morreu mártir em 14 de agosto de 1941, oferecendo a vida por um pai de família.",             foto: "imagens/mxm1.jpg",      link: "santos/maximiliano-kolbe.html" },
+      { lat: 41.9029,  lng: 12.4334,  tipo: "canonizacao", nome: "Maximiliano Kolbe",     local: "Cidade do Vaticano",          desc: "Canonizado por João Paulo II em 10 de outubro de 1982.",                                        foto: "imagens/mxm1.jpg",      link: "santos/maximiliano-kolbe.html" },
+
+      { lat: 41.9961,  lng: 21.4317,  tipo: "nascimento",  nome: "Teresa de Calcutá",     local: "Skopje, Macedônia do Norte",  desc: "Nasceu em 26 de agosto de 1910 em Skopje, então parte do Império Otomano.",                  foto: "imagens/teresa1.jpg",     link: "santos/teresa-calcuta.html" },
+      { lat: 22.5726,  lng: 88.3639,  tipo: "vida",        nome: "Teresa de Calcutá",     local: "Calcutá, Índia",              desc: "Serviu os mais pobres entre os pobres nas ruas de Calcutá por mais de 50 anos.",              foto: "imagens/teresa1.jpg",     link: "santos/teresa-calcuta.html" },
+      { lat: 22.5726,  lng: 88.3739,  tipo: "morte",       nome: "Teresa de Calcutá",     local: "Calcutá, Índia",              desc: "Faleceu em 5 de setembro de 1997 em Calcutá, aos 87 anos.",                                    foto: "imagens/teresa1.jpg",     link: "santos/teresa-calcuta.html" },
+      { lat: 41.9029,  lng: 12.4234,  tipo: "canonizacao", nome: "Teresa de Calcutá",     local: "Cidade do Vaticano",          desc: "Canonizada pelo Papa Francisco em 4 de setembro de 2016.",                                      foto: "imagens/teresa1.jpg",     link: "santos/teresa-calcuta.html" },
+
+      { lat: 45.5269,  lng: 8.8796,   tipo: "nascimento",  nome: "Gianna Beretta Molla",  local: "Magenta, Itália",             desc: "Nasceu em 4 de outubro de 1922 em Magenta, na Lombardia italiana.",                           foto: "imagens/sg4.jpg",         link: "santos/gianna-beretta.html" },
+      { lat: 45.5018,  lng: 8.8554,   tipo: "vida",        nome: "Gianna Beretta Molla",  local: "Mesero, Itália",    desc: "Viveu e trabalhou como pediatra em Magenta e Mesero, servindo crianças pobres.",             foto: "imagens/sg4.jpg",         link: "santos/gianna-beretta.html" },
+      { lat: 45.5845,  lng: 9.2844,   tipo: "morte",       nome: "Gianna Beretta Molla",  local: "Monza, Itália",               desc: "Faleceu em 28 de abril de 1962 em Monza, após optar por preservar a gravidez mesmo diante de grave risco médico.",               foto: "imagens/sg4.jpg",         link: "santos/gianna-beretta.html" },
+      { lat: 41.9029,  lng: 12.4134,  tipo: "canonizacao", nome: "Gianna Beretta Molla",  local: "Cidade do Vaticano",          desc: "Canonizada por João Paulo II em 16 de maio de 2004.",                                          foto: "imagens/sg4.jpg",         link: "santos/gianna-beretta.html" },
+      
+      { lat: 41.1960, lng: 14.6914, tipo: "nascimento", nome: "São Pio de Pietrelcina", local: "Pietrelcina, Itália", desc: "Nasceu em 25 de maio de 1887 em Pietrelcina, pequena cidade do sul da Itália.", foto: "imagens/pio0.jpg", link: "santos/padre-pio.html" },
+      { lat: 41.7080, lng: 15.7240, tipo: "vida", nome: "São Pio de Pietrelcina", local: "San Giovanni Rotondo, Itália", desc: "Viveu e morreu em San Giovanni Rotondo, onde fundou a Casa do Alívio do Sofrimento. Hoje é um dos maiores centros de peregrinação do mundo.", foto: "imagens/pio0.jpg", link: "santos/padre-pio.html" },
+      { lat: 41.7080, lng: 15.7340, tipo: "morte", nome: "São Pio de Pietrelcina", local: "San Giovanni Rotondo, Itália", desc: "Faleceu em 23 de setembro de 1968, no 50º aniversário das estigmas. As chagas desapareceram completamente após a morte.", foto: "imagens/pio0.jpg", link: "santos/padre-pio.html" },
+      { lat: 41.9029, lng: 12.4534, tipo: "canonizacao", nome: "São Pio de Pietrelcina", local: "Cidade do Vaticano", desc: "Canonizado por João Paulo II em 16 de junho de 2002 diante de 500.000 pessoas.", foto: "imagens/pio0.jpg", link: "santos/padre-pio.html" },
+      
+      { lat: 50.0413, lng: 19.9450, tipo: "nascimento", nome: "São João Paulo II", local: "Wadowice, Polônia", desc: "Nasceu em 18 de maio de 1920 em Wadowice, com o nome Karol Józef Wojtyła.", foto: "imagens/jpii2.jpg", link: "santos/joao-paulo-ii.html" },
+      { lat: 50.0647, lng: 19.9450, tipo: "vida", nome: "São João Paulo II", local: "Cracóvia, Polônia", desc: "Foi seminarista, sacerdote, bispo e arcebispo de Cracóvia. Durante a ocupação nazista trabalhou em uma pedreira e participou da resistência cultural polonesa.", foto: "imagens/jpii2.jpg", link: "santos/joao-paulo-ii.html" },
+      { lat: 41.9029, lng: 12.4534, tipo: "vida", nome: "São João Paulo II", local: "Cidade do Vaticano", desc: "Eleito Papa em 16 de outubro de 1978, tornou-se o primeiro papa não italiano em mais de 450 anos e liderou a Igreja por quase 27 anos.", foto: "imagens/jpii2.jpg", link: "santos/joao-paulo-ii.html" },
+      { lat: 41.9031, lng: 12.4545, tipo: "morte", nome: "São João Paulo II", local: "Palácio Apostólico, Vaticano", desc: "Faleceu em 2 de abril de 2005 após longo período de sofrimento marcado pela doença e fragilidade física.", foto: "imagens/jpii2.jpg", link: "santos/joao-paulo-ii.html" },
+      { lat: 41.9022, lng: 12.4539, tipo: "canonizacao", nome: "São João Paulo II", local: "Praça de São Pedro, Vaticano", desc: "Canonizado em 27 de abril de 2014 pelo Papa Francisco diante de centenas de milhares de peregrinos.", foto: "imagens/jpii2.jpg", link: "santos/joao-paulo-ii.html" },
+    
+      { lat: 39.6320, lng: -8.6719, tipo: "nascimento", nome: "Pastorinhos de Fátima", local: "Aljustrel, Fátima, Portugal", desc: "Francisco Marto (1908), Jacinta Marto (1910) e Lúcia dos Santos (1907) nasceram na aldeia de Aljustrel, próxima a Fátima.", foto: "imagens/ftmc.jpg", link: "santos/pastorinhos.html" },
+      { lat: 39.6317, lng: -8.6717, tipo: "vida", nome: "Pastorinhos de Fátima", local: "Aljustrel, Portugal", desc: "Os três pastorinhos viveram infância simples como pastores de ovelhas e cresceram em ambiente profundamente religioso.", foto: "imagens/ftmc.jpg", link: "santos/pastorinhos.html" },
+      { lat: 39.6290, lng: -8.6750, tipo: "vida", nome: "Pastorinhos de Fátima", local: "Cova da Iria, Fátima, Portugal", desc: "Entre maio e outubro de 1917, testemunharam as aparições de Nossa Senhora na Cova da Iria, incluindo o Milagre do Sol.", foto: "imagens/ftmc.jpg", link: "santos/pastorinhos.html" },
+      { lat: 39.6087, lng: -8.6894, tipo: "morte", nome: "Pastorinhos de Fátima", local: "Fátima e Lisboa, Portugal", desc: "Francisco morreu em 1919 e Jacinta em 1920 vítimas da gripe espanhola. Lúcia viveu por décadas e faleceu em 2005 no Carmelo de Coimbra.", foto: "imagens/ftmc.jpg", link: "santos/pastorinhos.html" },
+      { lat: 39.6313, lng: -8.6740, tipo: "canonizacao", nome: "Pastorinhos de Fátima", local: "Santuário de Fátima, Portugal", desc: "Francisco e Jacinta Marto foram canonizados em 13 de maio de 2017 pelo Papa Francisco no centenário das aparições.", foto: "imagens/ftmc.jpg", link: "santos/pastorinhos.html" },
+    
+      { lat: 11.8251, lng: 34.3818, tipo: "nascimento", nome: "Santa Josefina Bakhita", local: "Olgossa, Sudão", desc: "Nasceu por volta de 1869 em Olgossa. Sequestrada aos 7 anos por traficantes de escravos.", foto: "imagens/sb1.jpeg", link: "santos/josefina-bakhita.html" },
+      { lat: 45.5483, lng: 11.3548, tipo: "vida", nome: "Santa Josefina Bakhita", local: "Schio, Itália", desc: "Viveu 45 anos como religiosa Canossana em Schio, a amada Madre Moretta.", foto: "imagens/sb1.jpeg", link: "santos/josefina-bakhita.html" },
+      { lat: 45.5483, lng: 11.3648, tipo: "morte", nome: "Santa Josefina Bakhita", local: "Schio, Itália", desc: "Faleceu em 8 de fevereiro de 1947 repetindo: 'Estou sofrendo. Mas estou contente.'", foto: "imagens/sb1.jpeg", link: "santos/josefina-bakhita.html" },
+      { lat: 41.9029, lng: 12.4034, tipo: "canonizacao", nome: "Santa Josefina Bakhita", local: "Cidade do Vaticano", desc: "Canonizada por João Paulo II em 1 de outubro de 2000.", foto: "imagens/sb1.jpeg", link: "santos/josefina-bakhita.html" },
+    ];
+
+    const cores = {
+      nascimento:  "#4A7ABF",
+      vida:        "#4A6741",
+      morte:       "#7B1C2E",
+      canonizacao: "#C9A84C"
+    };
+
+    const tipoLabel = {
+      nascimento:  "Nascimento",
+      vida:        "Local de Vida / Missão",
+      morte:       "Morte / Martírio",
+      canonizacao: "Canonização / Beatificação"
+    };
+
+    // ── INICIALIZA MAPA ──
+    const mapa = L.map('mapa', { center: [30, 15], zoom: 2 });
+
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+      attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> © <a href="https://carto.com/">CARTO</a>',
+      maxZoom: 18
+    }).addTo(mapa);
+
+    // ── CRIA MARCADORES ──
+    let camadas = [];
+
+    marcadores.forEach(m => {
+      const icone = L.divIcon({
+        className: '',
+        html: `<div class="custom-marker" style="background:${cores[m.tipo]};"></div>`,
+        iconSize: [14, 14],
+        iconAnchor: [7, 7]
+      });
+
+      const layer = L.marker([m.lat, m.lng], { icon: icone });
+      layer.dados = m;
+      layer.on('click', () => abrirCard(m));
+      layer.addTo(mapa);
+      camadas.push({ layer, tipo: m.tipo });
+    });
+
+    atualizarContador(marcadores.length);
+
+    // ── FILTRO POR TIPO ──
+    function filtrarTipo(tipo, botao) {
+      document.querySelectorAll('.filtro-tipo').forEach(b => {
+        b.classList.remove('ativo', 'todos', 'nasc', 'vida', 'morte', 'canon');
+      });
+
+      const classeAtivo = {
+        todos: 'todos', nascimento: 'nasc',
+        vida: 'vida', morte: 'morte', canonizacao: 'canon'
+      };
+
+      botao.classList.add('ativo', classeAtivo[tipo]);
+
+      fecharCard();
+
+      let visiveis = 0;
+      camadas.forEach(({ layer, tipo: t }) => {
+        if (tipo === 'todos' || t === tipo) {
+          layer.addTo(mapa);
+          visiveis++;
+        } else {
+          mapa.removeLayer(layer);
+        }
+      });
+
+      atualizarContador(visiveis);
+    }
+
+    function atualizarContador(n) {
+      document.getElementById('mapa-contador').textContent =
+        n === 1 ? '1 local' : `${n} locais`;
+    }
+
+    // ── CARD ──
+    function abrirCard(m) {
+      const foto = document.getElementById('card-foto');
+      document.getElementById('card-tipo').textContent  = tipoLabel[m.tipo];
+      document.getElementById('card-nome').textContent  = m.nome;
+      document.getElementById('card-local').textContent = m.local;
+      document.getElementById('card-desc').textContent  = m.desc;
+      document.getElementById('card-btn').href          = m.link;
+      foto.src = m.foto;
+      foto.alt = m.nome;
+      foto.onerror = () => { foto.style.display = 'none'; };
+      foto.style.display = 'block';
+      document.getElementById('marcador-card').style.display = 'block';
+    }
+
+    function fecharCard() {
+      document.getElementById('marcador-card').style.display = 'none';
+    }
+
+    mapa.on('click', fecharCard);
+  </script>
+  <script>
+  function toggleMenu() {
+    const menu = document.querySelector('.nav-links');
+    const btn = document.getElementById('nav-hamburguer');
+    menu.classList.toggle('aberto');
+    btn.textContent = menu.classList.contains('aberto') ? '✕' : '☰';
+  }
+
+  // Fecha o menu ao clicar em qualquer link
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+      const menu = document.querySelector('.nav-links');
+      const btn = document.getElementById('nav-hamburguer');
+      menu.classList.remove('aberto');
+      btn.textContent = '☰';
+    });
+  });
+</script>
+</body>
+</html>
