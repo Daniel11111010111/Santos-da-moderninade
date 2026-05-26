@@ -562,12 +562,22 @@
     mapa.on('click', fecharCard);
   </script>
   <script>
-    function toggleMenu() {
-     const menu = document.querySelector('.nav-links');
-     const btn = document.getElementById('nav-hamburguer');
-     menu.classList.toggle('aberto');
-     btn.textContent = menu.classList.contains('aberto') ? '✕' : '☰';
-    }
-  </script>
+  function toggleMenu() {
+    const menu = document.querySelector('.nav-links');
+    const btn = document.getElementById('nav-hamburguer');
+    menu.classList.toggle('aberto');
+    btn.textContent = menu.classList.contains('aberto') ? '✕' : '☰';
+  }
+
+  // Fecha o menu ao clicar em qualquer link
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+      const menu = document.querySelector('.nav-links');
+      const btn = document.getElementById('nav-hamburguer');
+      menu.classList.remove('aberto');
+      btn.textContent = '☰';
+    });
+  });
+</script>
 </body>
 </html>

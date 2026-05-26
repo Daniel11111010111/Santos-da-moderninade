@@ -274,7 +274,7 @@
 
     <!-- CARLO ACUTIS -->
     <div class="santo-secao">
-      <h2 class="santo-secao-titulo">Beato Carlo Acutis</h2>
+      <h2 class="santo-secao-titulo">São Carlo Acutis</h2>
       <table class="creditos-tabela">
         <thead>
           <tr>
@@ -439,7 +439,7 @@
 
     <!-- PIER GIORGIO -->
     <div class="santo-secao">
-      <h2 class="santo-secao-titulo">Beato Pier Giorgio Frassati</h2>
+      <h2 class="santo-secao-titulo">São Pier Giorgio Frassati</h2>
       <table class="creditos-tabela">
         <thead>
           <tr>
@@ -629,13 +629,23 @@
   </footer>
 
   <script>
-    function toggleMenu() {
+  function toggleMenu() {
+    const menu = document.querySelector('.nav-links');
+    const btn = document.getElementById('nav-hamburguer');
+    menu.classList.toggle('aberto');
+    btn.textContent = menu.classList.contains('aberto') ? '✕' : '☰';
+  }
+
+  // Fecha o menu ao clicar em qualquer link
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
       const menu = document.querySelector('.nav-links');
       const btn = document.getElementById('nav-hamburguer');
-      menu.classList.toggle('aberto');
-      btn.textContent = menu.classList.contains('aberto') ? '✕' : '☰';
-    }
-  </script>
+      menu.classList.remove('aberto');
+      btn.textContent = '☰';
+    });
+  });
+</script>
 
 </body>
 </html>

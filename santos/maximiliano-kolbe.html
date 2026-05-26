@@ -437,7 +437,10 @@
           <div class="galeria-item"><img src="../imagens/mxm3.jpg" alt="Maximiliano" style="width:100%; height:100%; object-fit:cover;"/></div>
           <div class="galeria-item"><img src="../imagens/mxm4.jpg" alt="Maximiliano" style="width:100%; height:100%; object-fit:cover;"/></div>
       </div>
-      <p class="galeria-legenda">As fotografias devem ser obtidas de fontes de domínio público ou com autorização dos detentores dos direitos.</p>
+      <p class="galeria-legenda">
+        Imagens utilizadas sob licença de seus respectivos autores.
+        <a href="../creditos.html" style="color:var(--gold-dark); text-decoration:none;">Créditos completos disponíveis aqui.</a>
+      </p>
     </section>
 
     <section class="fontes-section" id="fontes">
@@ -502,13 +505,23 @@
       <span class="footer-copy">© Santos da Modernidade · Ad Maiorem Dei Gloriam</span>
     </div>
   </footer>
-  <script>
-    function toggleMenu() {
-     const menu = document.querySelector('.nav-links');
-     const btn = document.getElementById('nav-hamburguer');
-     menu.classList.toggle('aberto');
-     btn.textContent = menu.classList.contains('aberto') ? '✕' : '☰';
-    }
-  </script>
+ <script>
+   function toggleMenu() {
+    const menu = document.querySelector('.nav-links');
+    const btn = document.getElementById('nav-hamburguer');
+    menu.classList.toggle('aberto');
+    btn.textContent = menu.classList.contains('aberto') ? '✕' : '☰';
+  }
+
+  // Fecha o menu ao clicar em qualquer link
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+      const menu = document.querySelector('.nav-links');
+      const btn = document.getElementById('nav-hamburguer');
+      menu.classList.remove('aberto');
+      btn.textContent = '☰';
+    });
+  });
+</script>
 </body>
 </html>
