@@ -596,7 +596,14 @@
     }
 
     .newsletter-form button:hover { background: var(--gold-light); }
-
+     
+      #newsletter-msg {
+       margin-top: 1rem;
+       font-size: 0.95rem;
+       color: var(--gold);
+       font-family: 'Cormorant Garamond', serif;
+     }
+     s
     /* ── FOOTER ── */
     footer {
       background: var(--dark-mid);

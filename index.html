@@ -7,6 +7,13 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600&family=Raleway:wght@300;400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
+  
+  <title>Santos da Modernidade — Biografias e Testemunhas de Fé</title>
+  <meta name="description" content="Conheça a história, os milagres e o legado dos santos, beatos e mártires dos séculos XIX, XX e XXI. Inspire-se com as testemunhas da fé moderna." />
+  <meta name="keywords" content="santos modernos, igreja catolica, carlo acutis, padre pio, biografia de santos, santos da atualidade" />
+  <meta property="og:title" content="Santos da Modernidade" />
+  <meta property="og:description" content="Conheça a história e o legado dos santos e beatos dos últimos séculos." />
+  <meta property="og:url" content="https://santosdamodernidade.com.br" />
 </head>
 <body>
 
@@ -304,15 +311,59 @@
 </section>
 
   <!-- NEWSLETTER -->
+ 
   <section class="newsletter-section">
-    <span class="section-tag" style="color:var(--gold);">Fique por dentro</span>
-    <h2>Receba novos perfis toda semana</h2>
-    <p>Um santo, uma história, uma inspiração — diretamente no seu e-mail</p>
-    <div class="newsletter-form">
-      <input type="email" placeholder="seu@email.com" />
-      <button type="button">Inscrever</button>
-    </div>
-  </section>
+  <span class="section-tag" style="color:var(--gold);">
+    Fique por dentro
+  </span>
+
+  <h2>Receba novos perfis toda semana</h2>
+
+  <p>
+    Um santo, uma história, uma inspiração — diretamente no seu e-mail
+  </p>
+
+ <form
+  class="newsletter-form"
+  id="newsletter-form"
+  method="POST"
+  target="hidden_iframe"
+  action="https://3d7b3616.sibforms.com/serve/MUIFAKFA7b67XoLM_YTlxxqzuq2BM92ORRNJcvvn-whoxdWqasg-0NMd6iwnaQknaR9bS6jwqCYJ58WQw9Y28OmIjmwQ3ebKYGHNWNXCpGyvTRpJku6ja5RGj6UJLWFgLdlZWnnb30DUNZoQAeTuVH9nkt5OvqD91SqJxgy_TyEKSvt8uJs0RylsoAtAtGQHbUaPRR86-LoxhGWXJQ=="
+>
+
+  <input
+    type="email"
+    name="EMAIL"
+    id="newsletter-email"
+    placeholder="seu@email.com"
+    required
+    autocomplete="email"
+  />
+
+  <button type="submit">
+    Inscrever
+  </button>
+
+  <p id="newsletter-msg"></p>
+
+  <!-- Anti-spam Brevo -->
+  <input
+    type="text"
+    name="email_address_check"
+    value=""
+    style="display:none;"
+  />
+
+  <input type="hidden" name="locale" value="pt">
+  <input type="hidden" name="html_type" value="simple">
+
+</form>
+
+<iframe
+  name="hidden_iframe"
+  style="display:none;">
+</iframe>
+</section>
 
   <!-- FOOTER -->
   <footer>
@@ -340,5 +391,23 @@
     });
   });
 </script>
+
+ <!-- SCRIPT NEWSLETTER -->
+<script>
+const form = document.getElementById('newsletter-form');
+const msg = document.getElementById('newsletter-msg');
+
+form.addEventListener('submit', function() {
+
+  msg.textContent =
+    '✓ Inscrição enviada com sucesso.';
+
+  setTimeout(() => {
+    form.reset();
+  }, 500);
+
+});
+</script>
+
 </body>
 </html>
