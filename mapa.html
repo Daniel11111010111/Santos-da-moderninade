@@ -135,6 +135,7 @@
       position: relative;
       height: 70vh;
       min-height: 500px;
+      overflow: hidden; /* Mantém caixas absolutas presas nos limites do mapa */
     }
 
     #mapa { width: 100%; height: 100%; z-index: 1; }
@@ -304,6 +305,109 @@
       transition: transform 0.15s;
     }
 
+    /* ── PAINEL DO VATICANO CORRIGIDO ── */
+    .vaticano-painel {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      z-index: 1000;
+      background: var(--ivory);
+      border: 1px solid var(--gold-light);
+      border-top: 3px solid var(--gold);
+      width: 300px;
+      max-width: calc(100vw - 2rem);
+      /* Controla a altura perfeitamente para nunca vazar os limites do mapa */
+      max-height: calc(100% - 2rem); 
+      display: none;
+      flex-direction: column;
+      box-shadow: 0 8px 32px rgba(26,20,16,0.2);
+      animation: slideUp 0.25s ease;
+    }
+
+    .vaticano-painel-titulo {
+      padding: 1rem 1.25rem;
+      border-bottom: 1px solid var(--gold-light);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--ivory);
+    }
+
+    .vaticano-painel-titulo h3 {
+      font-family: 'Cinzel', serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--dark);
+      letter-spacing: 0.06em;
+      margin: 0;
+    }
+
+    .vaticano-painel-titulo span {
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold-dark);
+    }
+
+    .vaticano-painel-fechar {
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      font-size: 1rem;
+      cursor: pointer;
+      padding: 0.25rem;
+    }
+
+    /* Área interna de rolagem dinâmica da listagem de santos */
+    #vaticano-lista {
+      overflow-y: auto;
+      flex: 1;
+    }
+
+    .vaticano-item {
+      display: flex;
+      gap: 0.75rem;
+      align-items: center;
+      padding: 0.85rem 1.25rem;
+      border-bottom: 1px solid var(--gold-light);
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+
+    .vaticano-item:hover { background: var(--parchment); }
+    .vaticano-item:last-child { border-bottom: none; }
+
+    .vaticano-item-foto {
+      width: 44px;
+      height: 44px;
+      object-fit: cover;
+      flex-shrink: 0;
+      background: var(--dark-mid);
+    }
+
+    .vaticano-item-info { flex: 1; }
+
+    .vaticano-item-nome {
+      font-family: 'Cinzel', serif;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--dark);
+      line-height: 1.3;
+      margin-bottom: 0.2rem;
+    }
+
+    .vaticano-item-data {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+    }
+
+    .vaticano-item-seta {
+      color: var(--gold-dark);
+      font-size: 0.8rem;
+      flex-shrink: 0;
+    }
     .custom-marker:hover { transform: scale(1.3); }
 
     .leaflet-popup { display: none; }
@@ -329,11 +433,11 @@
       <li><a href="mapa.html">Mapa</a></li>
       <li><a href="sobre.html">Sobre</a></li>
     </ul>
-   <button id="nav-hamburguer" 
+    <button id="nav-hamburguer" 
         onclick="toggleMenu()" 
         style="background:transparent; border:none; color:#C9A84C; font-size:1.5rem; cursor:pointer; padding:0.25rem 0.5rem; -webkit-appearance:none; appearance:none;">
-     ☰
-   </button>
+      ☰
+    </button>
   </nav>
 
   <section class="mapa-hero">
@@ -368,9 +472,21 @@
     <div id="mapa"></div>
 
     <!-- CONTADOR -->
-    <div class="mapa-contador" id="mapa-contador">23 locais</div>
-
-    <!-- CARD -->
+    <div class="mapa-contador" id="mapa-contador">0 locais</div>
+  
+    <!-- PAINEL DO VATICANO -->
+    <div class="vaticano-painel" id="vaticano-painel">
+      <div class="vaticano-painel-titulo">
+        <div>
+          <h3>Cidade do Vaticano</h3>
+          <span id="vaticano-count">0 canonizações</span>
+        </div>
+        <button class="vaticano-painel-fechar" onclick="fecharVaticano()">✕</button>
+      </div>
+      <div id="vaticano-lista"></div>
+    </div>
+        
+    <!-- CARD DE MARCADOR COMUM -->
     <div class="marcador-card" id="marcador-card">
       <button class="marcador-card-fechar" onclick="fecharCard()">✕</button>
       <div class="marcador-card-header">
@@ -417,65 +533,61 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
   <script>
-    // ── DADOS ──
-    const marcadores = [
+    // ── DADOS (Padronizado beatificação para canonizacao) ──
+   const marcadores = [
       { lat: 51.5074,  lng: -0.1278,  tipo: "nascimento",  nome: "Carlo Acutis",          local: "Londres, Inglaterra",         desc: "Local de nascimento de Carlo Acutis, em 3 de maio de 1991.",                                     foto: "imagens/foto_carlo1.jpg", link: "santos/carlo-acutis.html" },
-      { lat: 45.4654,  lng: 9.1859,   tipo: "vida",        nome: "Carlo Acutis",          local: "Milão, Itália",               desc:  "Cidade onde Carlo viveu, estudou e desenvolveu a exposição dos milagres eucarísticos.",               foto: "imagens/foto_carlo1.jpg", link: "santos/carlo-acutis.html" },
+      { lat: 45.4654,  lng: 9.1859,   tipo: "vida",        nome: "Carlo Acutis",          local: "Milão, Itália",               desc:  "Cidade onde Carlo viveu, estudou e desenvolveu a exposição dos milagres eucarísticos.",                foto: "imagens/foto_carlo1.jpg", link: "santos/carlo-acutis.html" },
       { lat: 45.5845,  lng: 9.2744,   tipo: "morte",       nome: "Carlo Acutis",          local: "Monza, Itália",               desc: "Faleceu no Hospital San Gerardo de Monza em 12 de outubro de 2006, aos 15 anos.",              foto: "imagens/foto_carlo1.jpg", link: "santos/carlo-acutis.html" },
-      { lat: 43.0696,  lng: 12.6197,  tipo: "beatificação", nome: "Carlo Acutis",          local: "Assis, Itália",               desc:  "Beatificado em Assis em 10 de outubro de 2020. Seu corpo repousa no Santuário da Espoliação.", foto: "imagens/foto_carlo1.jpg", link: "santos/carlo-acutis.html" },
-      { lat: 41.9029,  lng: 12.4734,  tipo: "canonizacao", nome: "Carlo Acutis",          local: "Cidade do Vaticano",          desc: "Canonizado pelo Papa Leão XIV em setembro de 2025.",                                         foto: "imagens/foto_carlo1.jpg", link: "santos/carlo-acutis.html" },
+      { lat: 41.9029,  lng: 12.4534,  tipo: "canonizacao", nome: "Carlo Acutis",          local: "Cidade do Vaticano",          desc: "Canonizado pelo Papa Leão XIV em setembro de 2025.",                                         foto: "imagens/foto_carlo1.jpg", link: "santos/carlo-acutis.html" },
 
       { lat: 45.0703,  lng: 7.6869,   tipo: "nascimento",  nome: "Pier Giorgio Frassati", local: "Turim, Itália",               desc: "Nasceu em Turim em 6 de abril de 1901. Viveu e morreu na mesma cidade aos 24 anos.",           foto: "imagens/pg4.jpg",       link: "santos/pier-giorgio.html" },
       { lat: 45.0703,  lng: 7.6869,   tipo: "vida",        nome: "Pier Giorgio Frassati",  local: "Turim, Itália",              desc: "Cidade onde Pier Giorgio viveu, estudou, praticou a caridade e testemunhou sua fé católica.",          foto: "imagens/pg4.jpg",  link: "santos/pier-giorgio.html" },
-      { lat: 45.0703,  lng: 7.6970,   tipo: "morte",       nome: "Pier Giorgio Frassati", local: "Turim, Itália",               desc: "Morreu de poliomielite fulminante em Turim em 4 de julho de 1925.",             foto: "imagens/pg4.jpg",       link: "santos/pier-giorgio.html" },
-      { lat: 41.9029,  lng: 12.4634,  tipo: "beatificação", nome: "Pier Giorgio Frassati", local: "Cidade do Vaticano",          desc: "Beatificado pelo Papa João Paulo II em 20 de maio de 1990.",                                    foto: "imagens/pg4.jpg",       link: "santos/pier-giorgio.html" },
-      { lat: 41.9029,  lng: 12.4634,  tipo: "canonizacao", nome: "Pier Giorgio Frassati", local: "Cidade do Vaticano",          desc: "Canonizado pelo Papa Leão XIV em 7 de setembro de 2025.",                                    foto: "imagens/pg4.jpg",       link: "santos/pier-giorgio.html" },
+      { lat: 45.0703,  lng: 7.6970,   tipo: "morte",       nome: "Pier Giorgio Frassati", local: "Turim, Itália",               desc: "Morreu de poliomielite fulminante em Turim em 4 de julho de 1925.",                             foto: "imagens/pg4.jpg",       link: "santos/pier-giorgio.html" },
+      { lat: 41.9029,  lng: 12.4534,  tipo: "canonizacao", nome: "Pier Giorgio Frassati", local: "Cidade do Vaticano",          desc: "Beatificado pelo Papa João Paulo II em 20 de maio de 1990.",                                   foto: "imagens/pg4.jpg",       link: "santos/pier-giorgio.html" },
 
-      { lat: 20.0457,  lng: -102.722, tipo: "nascimento",  nome: "José Sánchez del Río",  local: "Sahuayo, México",             desc: "Nasceu em Sahuayo, Michoacán, em 28 de março de 1913.",           foto: "imagens/js0.jpg",       link: "santos/jose-sanchez.html" },
+      { lat: 20.0457,  lng: -102.722, tipo: "nascimento",  nome: "José Sánchez del Río",  local: "Sahuayo, México",             desc: "Nasceu em Sahuayo, Michoacán, em 28 de março de 1913.",                                          foto: "imagens/js0.jpg",       link: "santos/jose-sanchez.html" },
       { lat: 20.0586,  lng: -102.7167, tipo: "vida",       nome: "José Sánchez del Río",   local: "Sahuayo, México",            desc: "Cidade onde José Sánchez del Río viveu e testemunhou sua fé durante a Guerra Cristera.",              foto: "imagens/js0.jpg",  link: "santos/jose-sanches.html" },
       { lat: 19.8097,  lng: -102.706, tipo: "morte",       nome: "José Sánchez del Río",  local: "Cotija, Michoacán",             desc: "Morreu mártir em Cotija em 10 de fevereiro de 1928, gritando 'Viva Cristo Rei!' até o fim.",           foto: "imagens/js0.jpg",       link: "santos/jose-sanchez.html" },
-      { lat: 20.6597,  lng: -103.349, tipo: "beatificação", nome: "José Sánchez del Río",  local: "Guadalajara, México",         desc: "Beatificado em Guadalajara em 20 de novembro de 2005.",                                         foto: "imagens/js0.jpg",       link: "santos/jose-sanchez.html" },
-      { lat: 41.9029,  lng: 12.4434,  tipo: "canonizacao", nome: "José Sánchez del Río",  local: "Cidade do Vaticano",          desc: "Canonizado pelo Papa Francisco em 16 de outubro de 2016.",                                      foto: "imagens/js0.jpg",       link: "santos/jose-sanchez.html" },
+      { lat: 41.9029,  lng: 12.4534,  tipo: "canonizacao", nome: "José Sánchez del Río",  local: "Cidade do Vaticano",          desc: "Canonizado pelo Papa Francisco em 16 de outubro de 2016.",                                     foto: "imagens/js0.jpg",       link: "santos/jose-sanchez.html" },
 
-      { lat: 51.6027,  lng: 18.9419,  tipo: "nascimento",  nome: "Maximiliano Kolbe",     local: "Zduńska Wola, Polônia",       desc: "Nasceu em 8 de janeiro de 1894 nesta cidade polonesa.",                                         foto: "imagens/mxm1.jpg",      link: "santos/maximiliano-kolbe.html" },
+      { lat: 51.6027,  lng: 18.9419,  tipo: "nascimento",  nome: "Maximiliano Kolbe",     local: "Zduńska Wola, Polônia",       desc: "Nasceu em 8 de janeiro de 1894 nesta cidade polonesa.",                                        foto: "imagens/mxm1.jpg",      link: "santos/maximiliano-kolbe.html" },
       { lat: 52.0693,  lng: 20.6426,  tipo: "vida",        nome: "Maximiliano Kolbe",     local: "Niepokalanów, Polônia",       desc: "Fundou a Cidade da Imaculada (Niepokalanów), que se tornou um dos maiores centros franciscanos do mundo, com cerca de 700 frades.",          foto: "imagens/mxm1.jpg",      link: "santos/maximiliano-kolbe.html" },
       { lat: 32.7448,  lng: 129.873,  tipo: "vida",        nome: "Maximiliano Kolbe",     local: "Nagasaki, Japão",             desc: "Fundou uma Niepokalanów perto de Nagasaki entre 1930–1936. O mosteiro escapou da destruição da bomba atômica por sua localização.", foto: "imagens/mxm1.jpg",    link: "santos/maximiliano-kolbe.html" },
-      { lat: 50.0274,  lng: 19.2078,  tipo: "morte",       nome: "Maximiliano Kolbe",     local: "Campo de Auschwitz I, Polônia",          desc: "Morreu mártir em 14 de agosto de 1941, oferecendo a vida por um pai de família.",             foto: "imagens/mxm1.jpg",      link: "santos/maximiliano-kolbe.html" },
-      { lat: 41.9029,  lng: 12.4334,  tipo: "canonizacao", nome: "Maximiliano Kolbe",     local: "Cidade do Vaticano",          desc: "Canonizado por João Paulo II em 10 de outubro de 1982.",                                        foto: "imagens/mxm1.jpg",      link: "santos/maximiliano-kolbe.html" },
+      { lat: 50.0274,  lng: 19.2078,  tipo: "morte",       nome: "Maximiliano Kolbe",     local: "Campo de Auschwitz I, Polônia",          desc: "Morreu mártir em 14 de agosto de 1941, oferecendo a via por um pai de família.",             foto: "imagens/mxm1.jpg",      link: "santos/maximiliano-kolbe.html" },
+      { lat: 41.9029,  lng: 12.4534,  tipo: "canonizacao", nome: "Maximiliano Kolbe",     local: "Cidade do Vaticano",          desc: "Canonizado por João Paulo II em 10 de outubro de 1982.",                                       foto: "imagens/mxm1.jpg",      link: "santos/maximiliano-kolbe.html" },
 
       { lat: 41.9961,  lng: 21.4317,  tipo: "nascimento",  nome: "Teresa de Calcutá",     local: "Skopje, Macedônia do Norte",  desc: "Nasceu em 26 de agosto de 1910 em Skopje, então parte do Império Otomano.",                  foto: "imagens/teresa1.jpg",     link: "santos/teresa-calcuta.html" },
       { lat: 22.5726,  lng: 88.3639,  tipo: "vida",        nome: "Teresa de Calcutá",     local: "Calcutá, Índia",              desc: "Serviu os mais pobres entre os pobres nas ruas de Calcutá por mais de 50 anos.",              foto: "imagens/teresa1.jpg",     link: "santos/teresa-calcuta.html" },
       { lat: 22.5726,  lng: 88.3739,  tipo: "morte",       nome: "Teresa de Calcutá",     local: "Calcutá, Índia",              desc: "Faleceu em 5 de setembro de 1997 em Calcutá, aos 87 anos.",                                    foto: "imagens/teresa1.jpg",     link: "santos/teresa-calcuta.html" },
-      { lat: 41.9029,  lng: 12.4234,  tipo: "canonizacao", nome: "Teresa de Calcutá",     local: "Cidade do Vaticano",          desc: "Canonizada pelo Papa Francisco em 4 de setembro de 2016.",                                      foto: "imagens/teresa1.jpg",     link: "santos/teresa-calcuta.html" },
+      { lat: 41.9029,  lng: 12.4534,  tipo: "canonizacao", nome: "Teresa de Calcutá",     local: "Cidade do Vaticano",          desc: "Canonizada pelo Papa Francisco em 4 de setembro de 2016.",                                     foto: "imagens/teresa1.jpg",     link: "santos/teresa-calcuta.html" },
 
-      { lat: 45.5269,  lng: 8.8796,   tipo: "nascimento",  nome: "Gianna Beretta Molla",  local: "Magenta, Itália",             desc: "Nasceu em 4 de outubro de 1922 em Magenta, na Lombardia italiana.",                           foto: "imagens/sg4.jpg",         link: "santos/gianna-beretta.html" },
-      { lat: 45.5018,  lng: 8.8554,   tipo: "vida",        nome: "Gianna Beretta Molla",  local: "Mesero, Itália",    desc: "Viveu e trabalhou como pediatra em Magenta e Mesero, servindo crianças pobres.",             foto: "imagens/sg4.jpg",         link: "santos/gianna-beretta.html" },
-      { lat: 45.5845,  lng: 9.2844,   tipo: "morte",       nome: "Gianna Beretta Molla",  local: "Monza, Itália",               desc: "Faleceu em 28 de abril de 1962 em Monza, após optar por preservar a gravidez mesmo diante de grave risco médico.",               foto: "imagens/sg4.jpg",         link: "santos/gianna-beretta.html" },
-      { lat: 41.9029,  lng: 12.4134,  tipo: "canonizacao", nome: "Gianna Beretta Molla",  local: "Cidade do Vaticano",          desc: "Canonizada por João Paulo II em 16 de maio de 2004.",                                          foto: "imagens/sg4.jpg",         link: "santos/gianna-beretta.html" },
+      { lat: 45.5269,  lng: 8.8796,   tipo: "nascimento",  nome: "Gianna Beretta Molla",  local: "Magenta, Itália",             desc: "Nasceu em 4 de outubro de 1922 em Magenta, na Lombardia italiana.",                            foto: "imagens/sg4.jpg",         link: "santos/gianna-beretta.html" },
+      { lat: 45.5018,  lng: 8.8554,   tipo: "vida",        nome: "Gianna Beretta Molla",  local: "Mesero, Itália",              desc: "Viveu e trabalhou como pediatra em Magenta e Mesero, servindo crianças pobres.",              foto: "imagens/sg4.jpg",         link: "santos/gianna-beretta.html" },
+      { lat: 45.5845,  lng: 9.2844,   tipo: "morte",       nome: "Gianna Beretta Molla",  local: "Monza, Itália",               desc: "Faleceu em 28 de abril de 1962 em Monza, após optar por preservar a gravidez mesmo diante de grave risco médico.",                foto: "imagens/sg4.jpg",         link: "santos/gianna-beretta.html" },
+      { lat: 41.9029,  lng: 12.4534,  tipo: "canonizacao", nome: "Gianna Beretta Molla",  local: "Cidade do Vaticano",          desc: "Canonizada por João Paulo II em 16 de maio de 2004.",                                          foto: "imagens/sg4.jpg",         link: "santos/gianna-beretta.html" },
       
-      { lat: 41.1960, lng: 14.6914, tipo: "nascimento", nome: "São Pio de Pietrelcina", local: "Pietrelcina, Itália", desc: "Nasceu em 25 de maio de 1887 em Pietrelcina, pequena cidade do sul da Itália.", foto: "imagens/pio0.jpg", link: "santos/padre-pio.html" },
-      { lat: 41.7080, lng: 15.7240, tipo: "vida", nome: "São Pio de Pietrelcina", local: "San Giovanni Rotondo, Itália", desc: "Viveu e morreu em San Giovanni Rotondo, onde fundou a Casa do Alívio do Sofrimento. Hoje é um dos maiores centros de peregrinação do mundo.", foto: "imagens/pio0.jpg", link: "santos/padre-pio.html" },
-      { lat: 41.7080, lng: 15.7340, tipo: "morte", nome: "São Pio de Pietrelcina", local: "San Giovanni Rotondo, Itália", desc: "Faleceu em 23 de setembro de 1968, no 50º aniversário das estigmas. As chagas desapareceram completamente após a morte.", foto: "imagens/pio0.jpg", link: "santos/padre-pio.html" },
-      { lat: 41.9029, lng: 12.4534, tipo: "canonizacao", nome: "São Pio de Pietrelcina", local: "Cidade do Vaticano", desc: "Canonizado por João Paulo II em 16 de junho de 2002 diante de 500.000 pessoas.", foto: "imagens/pio0.jpg", link: "santos/padre-pio.html" },
+      { lat: 41.1960,  lng: 14.6914,  tipo: "nascimento",  nome: "São Pio de Pietrelcina", local: "Pietrelcina, Itália",         desc: "Nasceu em 25 de maio de 1887 em Pietrelcina, pequena cidade do sul da Itália.",                foto: "imagens/pio0.jpg",        link: "santos/padre-pio.html" },
+      { lat: 41.7080,  lng: 15.7240,  tipo: "vida",        nome: "São Pio de Pietrelcina", local: "San Giovanni Rotondo, Itália", desc: "Viveu e morreu em San Giovanni Rotondo, onde fundou a Casa do Alívio do Sofrimento. Hoje é um dos maiores centros de peregrinação do mundo.", foto: "imagens/pio0.jpg", link: "santos/padre-pio.html" },
+      { lat: 41.7080,  lng: 15.7340,  tipo: "morte",       nome: "São Pio de Pietrelcina", local: "San Giovanni Rotondo, Itália", desc: "Faleceu em 23 de setembro de 1968, no 50º aniversário das estigmas. As chagas desapareceram completamente após a morte.", foto: "imagens/pio0.jpg", link: "santos/padre-pio.html" },
+      { lat: 41.9029,  lng: 12.4534,  tipo: "canonizacao", nome: "São Pio de Pietrelcina", local: "Cidade do Vaticano",          desc: "Canonizado por João Paulo II em 16 de junho de 2002 diante de 500.000 pessoas.",                foto: "imagens/pio0.jpg",        link: "santos/padre-pio.html" },
       
-      { lat: 50.0413, lng: 19.9450, tipo: "nascimento", nome: "São João Paulo II", local: "Wadowice, Polônia", desc: "Nasceu em 18 de maio de 1920 em Wadowice, com o nome Karol Józef Wojtyła.", foto: "imagens/jpii2.jpg", link: "santos/joao-paulo-ii.html" },
-      { lat: 50.0647, lng: 19.9450, tipo: "vida", nome: "São João Paulo II", local: "Cracóvia, Polônia", desc: "Foi seminarista, sacerdote, bispo e arcebispo de Cracóvia. Durante a ocupação nazista trabalhou em uma pedreira e participou da resistência cultural polonesa.", foto: "imagens/jpii2.jpg", link: "santos/joao-paulo-ii.html" },
-      { lat: 41.9029, lng: 12.4534, tipo: "vida", nome: "São João Paulo II", local: "Cidade do Vaticano", desc: "Eleito Papa em 16 de outubro de 1978, tornou-se o primeiro papa não italiano em mais de 450 anos e liderou a Igreja por quase 27 anos.", foto: "imagens/jpii2.jpg", link: "santos/joao-paulo-ii.html" },
-      { lat: 41.9031, lng: 12.4545, tipo: "morte", nome: "São João Paulo II", local: "Palácio Apostólico, Vaticano", desc: "Faleceu em 2 de abril de 2005 após longo período de sofrimento marcado pela doença e fragilidade física.", foto: "imagens/jpii2.jpg", link: "santos/joao-paulo-ii.html" },
-      { lat: 41.9022, lng: 12.4539, tipo: "canonizacao", nome: "São João Paulo II", local: "Praça de São Pedro, Vaticano", desc: "Canonizado em 27 de abril de 2014 pelo Papa Francisco diante de centenas de milhares de peregrinos.", foto: "imagens/jpii2.jpg", link: "santos/joao-paulo-ii.html" },
+      { lat: 50.0413,  lng: 19.9450,  tipo: "nascimento",  nome: "São João Paulo II",     local: "Wadowice, Polônia",           desc: "Nasceu em 18 de maio de 1920 em Wadowice, com o nome Karol Józef Wojtyła.",                     foto: "imagens/jpii2.jpg",       link: "santos/joao-paulo-ii.html" },
+      { lat: 50.0647,  lng: 19.9450,  tipo: "vida",        nome: "São João Paulo II",     local: "Cracóvia, Polônia",           desc: "Foi seminarista, sacerdote, bispo e arcebispo de Cracóvia. Durante a ocupação nazista trabalhou em uma pedreira e participou da resistência cultural polonesa.", foto: "imagens/jpii2.jpg", link: "santos/joao-paulo-ii.html" },
+      { lat: 41.9029,  lng: 12.4534,  tipo: "vida",        nome: "São João Paulo II",     local: "Cidade do Vaticano",          desc: "Eleito Papa em 16 de outubro de 1978, tornou-se o primeiro papa não italiano em mais de 450 anos e liderou a Igreja por quase 27 anos.", foto: "imagens/jpii2.jpg", link: "santos/joao-paulo-ii.html" },
+      { lat: 41.9031,  lng: 12.4545,  tipo: "morte",       nome: "São João Paulo II",     local: "Palácio Apostólico, Vaticano", desc: "Faleceu em 2 de abril de 2005 após longo período de sofrimento marcado pela doença e fragilidade física.", foto: "imagens/jpii2.jpg", link: "santos/joao-paulo-ii.html" },
+      { lat: 41.9029,  lng: 12.4534,  tipo: "canonizacao", nome: "São João Paulo II",     local: "Cidade do Vaticano",          desc: "Canonizado em 27 de abril de 2014 pelo Papa Francisco diante de centenas de quaisquer de peregrinos.", foto: "imagens/jpii2.jpg", link: "santos/joao-paulo-ii.html" },
     
-      { lat: 39.6320, lng: -8.6719, tipo: "nascimento", nome: "Pastorinhos de Fátima", local: "Aljustrel, Fátima, Portugal", desc: "Francisco Marto (1908), Jacinta Marto (1910) e Lúcia dos Santos (1907) nasceram na aldeia de Aljustrel, próxima a Fátima.", foto: "imagens/ftmc.jpg", link: "santos/pastorinhos.html" },
-      { lat: 39.6317, lng: -8.6717, tipo: "vida", nome: "Pastorinhos de Fátima", local: "Aljustrel, Portugal", desc: "Os três pastorinhos viveram infância simples como pastores de ovelhas e cresceram em ambiente profundamente religioso.", foto: "imagens/ftmc.jpg", link: "santos/pastorinhos.html" },
-      { lat: 39.6290, lng: -8.6750, tipo: "vida", nome: "Pastorinhos de Fátima", local: "Cova da Iria, Fátima, Portugal", desc: "Entre maio e outubro de 1917, testemunharam as aparições de Nossa Senhora na Cova da Iria, incluindo o Milagre do Sol.", foto: "imagens/ftmc.jpg", link: "santos/pastorinhos.html" },
-      { lat: 39.6087, lng: -8.6894, tipo: "morte", nome: "Pastorinhos de Fátima", local: "Fátima e Lisboa, Portugal", desc: "Francisco morreu em 1919 e Jacinta em 1920 vítimas da gripe espanhola. Lúcia viveu por décadas e faleceu em 2005 no Carmelo de Coimbra.", foto: "imagens/ftmc.jpg", link: "santos/pastorinhos.html" },
-      { lat: 39.6313, lng: -8.6740, tipo: "canonizacao", nome: "Pastorinhos de Fátima", local: "Santuário de Fátima, Portugal", desc: "Francisco e Jacinta Marto foram canonizados em 13 de maio de 2017 pelo Papa Francisco no centenário das aparições.", foto: "imagens/ftmc.jpg", link: "santos/pastorinhos.html" },
+      { lat: 39.6320,  lng: -8.6719,  tipo: "nascimento",  nome: "Pastorinhos de Fátima", local: "Aljustrel, Fátima, Portugal", desc: "Francisco Marto (1908), Jacinta Marto (1910) e Lúcia dos Santos (1907) nasceram na aldeia de Aljustrel, próxima a Fátima.", foto: "imagens/ftmc.jpg", link: "santos/pastorinhos.html" },
+      { lat: 39.6317,  lng: -8.6717,  tipo: "vida",        nome: "Pastorinhos de Fátima", local: "Aljustrel, Portugal",          desc: "Os três pastorinhos viveram infância simples como pastores de ovelhas e cresceram em ambiente profundamente religioso.", foto: "imagens/ftmc.jpg", link: "santos/pastorinhos.html" },
+      { lat: 39.6290,  lng: -8.6750,  tipo: "vida",        nome: "Pastorinhos de Fátima", local: "Cova da Iria, Fátima, Portugal", desc: "Entre maio e outubro de 1917, testemunharam as aparições de Nossa Senhora na Cova da Iria, incluindo o Milagre do Sol.", foto: "imagens/ftmc.jpg", link: "santos/pastorinhos.html" },
+      { lat: 39.6087,  lng: -8.6894,  tipo: "morte",       nome: "Pastorinhos de Fátima", local: "Fátima e Lisboa, Portugal",    desc: "Francisco morreu em 1919 e Jacinta em 1920 vítimas da gripe espanhola. Lúcia viu por décadas e faleceu em 2005 no Carmelo de Coimbra.", foto: "imagens/ftmc.jpg", link: "santos/pastorinhos.html" },
+      { lat: 39.6313,  lng: -8.6740,  tipo: "canonizacao", nome: "Pastorinhos de Fátima", local: "Santuário de Fátima, Portugal", desc: "Francisco e Jacinta Marto foram canonizados em 13 de maio de 2017 pelo Papa Francisco no centenário das aparições.", foto: "imagens/ftmc.jpg", link: "santos/pastorinhos.html" },
     
-      { lat: 11.8251, lng: 34.3818, tipo: "nascimento", nome: "Santa Josefina Bakhita", local: "Olgossa, Sudão", desc: "Nasceu por volta de 1869 em Olgossa. Sequestrada aos 7 anos por traficantes de escravos.", foto: "imagens/sb1.jpeg", link: "santos/josefina-bakhita.html" },
-      { lat: 45.5483, lng: 11.3548, tipo: "vida", nome: "Santa Josefina Bakhita", local: "Schio, Itália", desc: "Viveu 45 anos como religiosa Canossana em Schio, a amada Madre Moretta.", foto: "imagens/sb1.jpeg", link: "santos/josefina-bakhita.html" },
-      { lat: 45.5483, lng: 11.3648, tipo: "morte", nome: "Santa Josefina Bakhita", local: "Schio, Itália", desc: "Faleceu em 8 de fevereiro de 1947 repetindo: 'Estou sofrendo. Mas estou contente.'", foto: "imagens/sb1.jpeg", link: "santos/josefina-bakhita.html" },
-      { lat: 41.9029, lng: 12.4034, tipo: "canonizacao", nome: "Santa Josefina Bakhita", local: "Cidade do Vaticano", desc: "Canonizada por João Paulo II em 1 de outubro de 2000.", foto: "imagens/sb1.jpeg", link: "santos/josefina-bakhita.html" },
+      { lat: 11.8251,  lng: 34.3818,  tipo: "nascimento",  nome: "Santa Josefina Bakhita", local: "Olgossa, Sudão",             desc: "Nasceu por volta de 1869 em Olgossa. Sequestrada aos 7 anos por traficantes de escravos.",    foto: "imagens/sb1.jpeg",       link: "santos/josefina-bakhita.html" },
+      { lat: 45.5483,  lng: 11.3548,  tipo: "vida",        nome: "Santa Josefina Bakhita", local: "Schio, Itália",               desc: "Viveu 45 anos como religiosa Canossana em Schio, a amada Madre Moretta.",                     foto: "imagens/sb1.jpeg",       link: "santos/josefina-bakhita.html" },
+      { lat: 45.5483,  lng: 11.3648,  tipo: "morte",       nome: "Santa Josefina Bakhita", local: "Schio, Itália",               desc: "Faleceu em 8 de fevereiro de 1947 repetindo: 'Estou sofrendo. Mas estou contente.'",          foto: "imagens/sb1.jpeg",       link: "santos/josefina-bakhita.html" },
+      { lat: 41.9029,  lng: 12.4534,  tipo: "canonizacao", nome: "Santa Josefina Bakhita", local: "Cidade do Vaticano",          desc: "Canonizada por João Paulo II em 1 de outubro de 2000.",                                        foto: "imagens/sb1.jpeg",       link: "santos/josefina-bakhita.html" },
     ];
-
     const cores = {
       nascimento:  "#4A7ABF",
       vida:        "#4A6741",
@@ -501,24 +613,95 @@
     // ── CRIA MARCADORES ──
     let camadas = [];
 
-    marcadores.forEach(m => {
-      const icone = L.divIcon({
-        className: '',
-        html: `<div class="custom-marker" style="background:${cores[m.tipo]};"></div>`,
-        iconSize: [14, 14],
-        iconAnchor: [7, 7]
-      });
+    // Coleta todos os marcadores do Vaticano
+    const canonizacoesVaticano = marcadores.filter(m =>
+      m.tipo === 'canonizacao' && m.local === 'Cidade do Vaticano'
+    );
 
-      const layer = L.marker([m.lat, m.lng], { icon: icone });
-      layer.dados = m;
-      layer.on('click', () => abrirCard(m));
-      layer.addTo(mapa);
-      camadas.push({ layer, tipo: m.tipo });
+    // Marcador único do Vaticano
+    const iconeVaticano = L.divIcon({
+      className: '',
+      html: `<div class="custom-marker" style="background:#C9A84C; width:22px; height:22px; border:3px solid white; display:flex; align-items:center; justify-content:center; font-family:sans-serif; font-size:10px; font-weight:bold; color:#1A1410;">${canonizacoesVaticano.length}</div>`,
+      iconSize: [22, 22],
+      iconAnchor: [11, 11]
     });
+
+    const layerVaticano = L.marker([41.9029, 12.4534], { icon: iconeVaticano });
+    layerVaticano.on('click', () => abrirVaticano());
+    layerVaticano.addTo(mapa);
+    camadas.push({ layer: layerVaticano, tipo: 'canonizacao', isVaticano: true });
+
+    // Demais marcadores — exclui os do Vaticano
+    marcadores.filter(m => !(m.tipo === 'canonizacao' && m.local === 'Cidade do Vaticano'))
+      .forEach(m => {
+        const icone = L.divIcon({
+          className: '',
+          html: `<div class="custom-marker" style="background:${cores[m.tipo]};"></div>`,
+          iconSize: [14, 14],
+          iconAnchor: [7, 7]
+        });
+
+        const layer = L.marker([m.lat, m.lng], { icon: icone });
+        layer.dados = m;
+        layer.on('click', () => abrirCard(m));
+        layer.addTo(mapa);
+        camadas.push({ layer, tipo: m.tipo, isVaticano: false });
+      });
 
     atualizarContador(marcadores.length);
 
-    // ── FILTRO POR TIPO ──
+    // ── ATUALIZAR CONTADOR GERAL ──
+    function atualizarContador(total) {
+      document.getElementById('mapa-contador').textContent = `${total} locais`;
+    }
+
+    // ── POPUP CARD PADRÃO ──
+    function abrirCard(m) {
+      fecharVaticano();
+      const card = document.getElementById('marcador-card');
+      document.getElementById('card-foto').src = m.foto;
+      document.getElementById('card-foto').alt = m.nome;
+      document.getElementById('card-tipo').textContent = tipoLabel[m.tipo];
+      document.getElementById('card-nome').textContent = m.nome;
+      document.getElementById('card-local').textContent = m.local;
+      document.getElementById('card-desc').textContent = m.desc;
+      document.getElementById('card-btn').href = m.link;
+      card.style.display = 'block';
+    }
+
+    function fecharCard() {
+      document.getElementById('marcador-card').style.display = 'none';
+    }
+
+    // ── PAINEL DO VATICANO ──
+    function abrirVaticano() {
+      fecharCard();
+      const painel = document.getElementById('vaticano-painel');
+      const lista = document.getElementById('vaticano-lista');
+      const count = document.getElementById('vaticano-count');
+
+      count.textContent = `${canonizacoesVaticano.length} canonizações`;
+
+      lista.innerHTML = canonizacoesVaticano.map(m => `
+        <a href="${m.link}" class="vaticano-item">
+          <img class="vaticano-item-foto" src="${m.foto}" alt="${m.nome}"
+               onerror="this.style.display='none'" />
+          <div class="vaticano-item-info">
+            <p class="vaticano-item-nome">${m.nome}</p>
+            <p class="vaticano-item-data">${m.desc.replace('Canonizado', '').replace('Canonizada', '').trim()}</p>
+          </div>
+          <span class="vaticano-item-seta">→</span>
+        </a>
+      `).join('');
+
+      painel.style.display = 'flex';
+    }
+
+    function fecharVaticano() {
+      document.getElementById('vaticano-painel').style.display = 'none';
+    }
+
+    // ── FILTRO POR TIPO CORRIGIDO E REMONTADO ──
     function filtrarTipo(tipo, botao) {
       document.querySelectorAll('.filtro-tipo').forEach(b => {
         b.classList.remove('ativo', 'todos', 'nasc', 'vida', 'morte', 'canon');
@@ -532,63 +715,27 @@
       botao.classList.add('ativo', classeAtivo[tipo]);
 
       fecharCard();
-
+      fecharVaticano();
+      
       let visiveis = 0;
-      camadas.forEach(({ layer, tipo: t }) => {
-        if (tipo === 'todos' || t === tipo) {
-          layer.addTo(mapa);
-          visiveis++;
+
+      camadas.forEach(item => {
+        if (tipo === 'todos' || item.tipo === tipo) {
+          item.layer.addTo(mapa);
+          
+          // Tratamento para contagem correta (Vaticano conta múltiplos registros internos)
+          if (item.isVaticano) {
+            visiveis += canonizacoesVaticano.length;
+          } else {
+            visiveis++;
+          }
         } else {
-          mapa.removeLayer(layer);
+          mapa.removeLayer(item.layer);
         }
       });
 
       atualizarContador(visiveis);
     }
-
-    function atualizarContador(n) {
-      document.getElementById('mapa-contador').textContent =
-        n === 1 ? '1 local' : `${n} locais`;
-    }
-
-    // ── CARD ──
-    function abrirCard(m) {
-      const foto = document.getElementById('card-foto');
-      document.getElementById('card-tipo').textContent  = tipoLabel[m.tipo];
-      document.getElementById('card-nome').textContent  = m.nome;
-      document.getElementById('card-local').textContent = m.local;
-      document.getElementById('card-desc').textContent  = m.desc;
-      document.getElementById('card-btn').href          = m.link;
-      foto.src = m.foto;
-      foto.alt = m.nome;
-      foto.onerror = () => { foto.style.display = 'none'; };
-      foto.style.display = 'block';
-      document.getElementById('marcador-card').style.display = 'block';
-    }
-
-    function fecharCard() {
-      document.getElementById('marcador-card').style.display = 'none';
-    }
-
-    mapa.on('click', fecharCard);
   </script>
-  <script>
-  function toggleMenu() {
-    const menu = document.querySelector('.nav-links');
-    const btn = document.getElementById('nav-hamburguer');
-    menu.classList.toggle('aberto');
-    btn.textContent = menu.classList.contains('aberto') ? '✕' : '☰';
-  }
-
-  // Fecha o menu ao clicar em qualquer link
-  document.querySelectorAll('.nav-links a').forEach(link => {
-    link.addEventListener('click', () => {
-      const menu = document.querySelector('.nav-links');
-      const btn = document.getElementById('nav-hamburguer');
-      menu.classList.remove('aberto');
-      btn.textContent = '☰';
-    });
-  });
-</script>
 </body>
 </html>
