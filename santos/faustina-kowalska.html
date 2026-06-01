@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>São Maximiliano Kolbe · Santos da Modernidade</title>
+  <title>Santa Faustina Kowalska · Santos da Modernidade</title>
+  <meta name="description" content="Conheça a vida de Santa Faustina Kowalska — a religiosa polonesa que recebeu as revelações sobre a Divina Misericórdia e foi canonizada por João Paulo II em 2000." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600&family=Raleway:wght@300;400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../style.css" />
@@ -108,8 +109,8 @@
       align-items: center;
       justify-content: center;
       overflow: hidden;
-      min-height: 700px;
     }
+
     .perfil-hero-right::before {
       content: '';
       position: absolute;
@@ -186,8 +187,9 @@
 
     .galeria-section { padding: 7rem 0; border-bottom: 1px solid var(--gold-light); }
     .galeria-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; grid-template-rows: 200px 200px; gap: 1rem; margin-top: 3rem; }
-    .galeria-item { background: var(--dark-mid); display: flex; align-items: center; justify-content: center; color: rgba(201,168,76,0.2); font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; font-family: 'Cinzel', serif; border: 1px solid rgba(201,168,76,0.1); }
+    .galeria-item { background: var(--dark-mid); display: flex; align-items: center; justify-content: center; color: rgba(201,168,76,0.2); font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; font-family: 'Cinzel', serif; border: 1px solid rgba(201,168,76,0.1); overflow: hidden; }
     .galeria-item:first-child { grid-row: 1 / 3; }
+    .galeria-item img { width: 100%; height: 100%; object-fit: cover; }
     .galeria-legenda { font-size: 0.75rem; color: var(--text-muted); text-align: center; margin-top: 1rem; font-style: italic; font-family: 'Cormorant Garamond', serif; }
 
     .oracao-section { padding: 7rem 0; background: var(--blue-deep); margin: 0 -2rem; padding-left: 2rem; padding-right: 2rem; text-align: center; position: relative; overflow: hidden; }
@@ -208,23 +210,14 @@
     .fonte-link { font-size: 0.7rem; color: var(--gold-dark); text-decoration: none; letter-spacing: 0.1em; white-space: nowrap; transition: color 0.2s; }
     .fonte-link:hover { color: var(--gold); }
 
-    .nav-santos {
-      position: static;
-      background: none;
-      backdrop-filter: none;
-      padding: 3rem 0;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-top: 1px solid var(--gold-light);
-      margin-top: 2rem;
-    }
+    .nav-santos-div { padding: 3rem 0; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--gold-light); margin-top: 2rem; }
     .nav-santo-link { text-decoration: none; display: flex; flex-direction: column; gap: 0.3rem; }
     .nav-santo-dir { text-align: right; }
     .nav-santo-label { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted); }
     .nav-santo-nome { font-family: 'Cinzel', serif; font-size: 0.95rem; color: var(--gold-dark); transition: color 0.2s; }
     .nav-santo-link:hover .nav-santo-nome { color: var(--gold); }
 
+     /* RESPONSIVO */
    @media (max-width: 768px) {
       .perfil-hero { grid-template-columns: 1fr; }
       .perfil-hero-right { display: flex; }
@@ -255,147 +248,169 @@
       <li><a href="../mapa.html">Mapa</a></li>
       <li><a href="../sobre.html">Sobre</a></li>
     </ul>
-    <button id="nav-hamburguer" 
-        onclick="toggleMenu()" 
-        style="background:transparent; border:none; color:#C9A84C; font-size:1.5rem; cursor:pointer; padding:0.25rem 0.5rem; -webkit-appearance:none; appearance:none;">
-     ☰
+    <button id="nav-hamburguer" onclick="toggleMenu()"
+            style="background:transparent; border:none; color:#C9A84C; font-size:1.5rem; cursor:pointer; padding:0.25rem 0.5rem; -webkit-appearance:none; appearance:none;">
+      ☰
     </button>
   </nav>
 
+  <!-- HERO -->
   <section class="perfil-hero">
     <div class="perfil-hero-bg"></div>
     <div class="perfil-hero-left">
       <p class="perfil-breadcrumb">
         <a href="../index.html">Início</a> &nbsp;·&nbsp;
         <a href="../index.html#santos">Os Santos</a> &nbsp;·&nbsp;
-        Maximiliano Kolbe
+        Faustina Kowalska
       </p>
-      <span class="perfil-badge">Santo · Canonizado em 1982</span>
-      <h1 class="perfil-nome">Maximiliano<br>Kolbe</h1>
-      <p class="perfil-titulo">"O Mártir da Caridade de Auschwitz"</p>
+      <span class="perfil-badge">Santa · Canonizada em 2000</span>
+      <h1 class="perfil-nome">Santa Faustina<br>Kowalska</h1>
+      <p class="perfil-titulo">"A Apóstola da Divina Misericórdia"</p>
       <div class="perfil-meta">
         <div class="perfil-meta-item">
           <span class="perfil-meta-label">Nascimento</span>
-          <span class="perfil-meta-value">8 de janeiro de 1894 · Zdunska Wola, Polônia</span>
+          <span class="perfil-meta-value">25 de agosto de 1905 · Głogowiec, Polônia</span>
         </div>
         <div class="perfil-meta-item">
           <span class="perfil-meta-label">Falecimento</span>
-          <span class="perfil-meta-value">14 de agosto de 1941 · Auschwitz, Polônia</span>
+          <span class="perfil-meta-value">5 de outubro de 1938 · Cracóvia, Polônia</span>
         </div>
         <div class="perfil-meta-item">
           <span class="perfil-meta-label">Beatificação</span>
-          <span class="perfil-meta-value">17 de outubro de 1971 · Roma · Paulo VI</span>
+          <span class="perfil-meta-value">18 de abril de 1993 · Roma · João Paulo II</span>
         </div>
         <div class="perfil-meta-item">
           <span class="perfil-meta-label">Canonização</span>
-          <span class="perfil-meta-value">10 de outubro de 1982 · Roma · João Paulo II</span>
+          <span class="perfil-meta-value">30 de abril de 2000 · Roma · João Paulo II</span>
         </div>
         <div class="perfil-meta-item">
           <span class="perfil-meta-label">Festa litúrgica</span>
-          <span class="perfil-meta-value">14 de agosto</span>
+          <span class="perfil-meta-value">5 de outubro</span>
         </div>
         <div class="perfil-meta-item">
-          <span class="perfil-meta-label">Patrono</span>
-          <span class="perfil-meta-value">Prisioneiros, famílias e jornalistas</span>
+          <span class="perfil-meta-label">Padroeira</span>
+          <span class="perfil-meta-value">Misericórdia Divina · Polônia</span>
         </div>
       </div>
-      <p class="perfil-frase">"O ódio não é força criativa. Só o amor é criativo."</p>
+      <p class="perfil-frase">"Jesus, eu confio em Ti."</p>
     </div>
     <div class="perfil-hero-right" style="position:relative; overflow:hidden;">
-      <img src="../imagens/mxm2.jpg"
-       alt="Maximiliano Kolbe"
-       style="width:100%; height:100%; object-fit:cover; position:absolute; inset:0;" />
-       <span class="perfil-hero-ano">1912-1915</span>
+       <img src="../imagens/sfk1.png" 
+       alt="Faustina Kowalska" 
+       style="width:100%; height:auto; display:block;" />
+      <span class="perfil-hero-ano">1938</span>
     </div>
   </section>
 
+  <!-- CONTEÚDO -->
   <div class="perfil-content">
 
+    <!-- BIOGRAFIA -->
     <section class="bio-section" id="biografia">
       <div class="bio-sidebar">
         <span class="section-tag">Seção 01</span>
         <h2 class="sidebar-title">Biografia<br>Detalhada</h2>
         <div class="sidebar-ornament"></div>
-        <p class="sidebar-resumo">Frade franciscano polonês que ofereceu a própria vida em Auschwitz para salvar um pai de família, tornando-se símbolo do amor que vence o ódio.</p>
+        <p class="sidebar-resumo">Religiosa polonesa de origem humilde que recebeu revelações extraordinárias sobre a Misericórdia Divina e as registrou num diário que se tornaria um dos textos espirituais mais lidos do século XX.</p>
       </div>
       <div class="bio-texto">
-        <h3>Infância e Vocação Franciscana</h3>
-        <p>Raimundo Kolbe nasceu em <strong>8 de janeiro de 1894</strong> em Zdunska Wola, na Polônia, então sob domínio russo. Filho de tecelões humildes e profundamente católicos, desde criança demonstrou devoção intensa à Nossa Senhora. Conta-se que, aos 10 anos, teve uma visão de Maria oferecendo-lhe duas coroas — uma branca, de pureza, e uma vermelha, de martírio — e que ele escolheu as duas.</p>
-        <p>Ingressou na <strong>Ordem dos Frades Menores Conventuais</strong> aos 16 anos, tomando o nome de Maximiliano. Estudou filosofia e teologia em Roma, onde se doutorou. Em 1917, fundou a <strong>Militia Immacolatae</strong> — Milícia da Imaculada —, movimento de consagração a Nossa Senhora que se espalharia pelo mundo inteiro.</p>
+  <h3>A Jovem que Dançou com o Invisível</h3>
+  <p>Antes de ser conhecida mundialmente como a secretária da Divina Misericórdia, ela era apenas Helena Kowalska: uma jovem camponesa nascida em <strong>25 de agosto de 1905</strong> no humilde vilarejo de Głogowiec, na Polônia. Terceira de dez irmãos, Helena cresceu em uma rotina de privações econômicas e orações profundas, desenvolvendo desde os sete anos um desejo ardente de se consagrar a Deus.</p>
+  
+  <p>A pobreza extrema de sua família parecia um obstáculo intransponível, pois os conventos da época exigiam um dote financeiro que seus pais jamais poderiam pagar. Enviada para trabalhar como empregada doméstica nas cidades vizinhas, Helena tentou, por um tempo, sufocar aquela voz interior que a chamava, buscando viver como uma jovem comum de seu tempo.</p>
 
-        <h3>Missão e Apostolado</h3>
-        <p>De volta à Polônia, Maximiliano fundou em 1927 a <strong>Niepokalanów</strong> — "Cidade da Imaculada" —, uma cidade conventual que se tornaria o maior convento franciscano do mundo, com mais de 700 frades. Ali produzia jornais, revistas e programas de rádio católicos que alcançavam milhões de leitores.</p>
-        <p>Entre 1930 e 1936, foi missionário no <strong>Japão</strong>, onde fundou outra Niepokalanów perto de Nagasaki — cidade que sobreviveria à bomba atômica de 1945, protegida, segundo os moradores, pela localização escolhida pelo frade.</p>
+  <p>A reviravolta definitiva de sua vida aconteceu em 1924, de forma cinematográfica. Durante um baile na cidade de Łódź, enquanto dançava, Helena congelou: ao seu lado, surgiu a figura de Jesus Cristo, desfigurado, coberto de chagas e despojado de suas vestes. O olhar do Nazareno cruzou com o dela, desferindo uma pergunta que ecoaria por toda a sua eternidade: <em>"Até quando te suportarei e até quando me deixarás esperando?"</em></p>
 
-        <h3>Prisão e Auschwitz</h3>
-        <p>Com a invasão nazista da Polônia em 1939, Maximiliano continuou sua missão escondendo refugiados judeus e publicando material contra o nazismo. Foi preso pela Gestapo em <strong>fevereiro de 1941</strong> e deportado para o campo de concentração de Auschwitz, onde recebeu o número de prisioneiro 16670.</p>
-        <p>Em julho de 1941, após uma fuga, os nazistas selecionaram dez prisioneiros para morrer de fome como punição coletiva. Um deles, <strong>Franciszek Gajowniczek</strong>, começou a chorar: "Minha esposa, meus filhos!" Maximiliano deu um passo à frente e disse ao comandante: "Sou um padre católico. Quero morrer no lugar desse homem."</p>
+  <p>Tomada por um choque profundo, ela abandonou a festa às pressas, caiu de joelhos na catedral local e, seguindo uma instrução divina que ecoou em seu peito, embarcou no primeiro trem para Varsóvia. Sem dinheiro, sem malas e sem conhecidos, Helena caminhava rumo ao seu destino.</p>
 
-        <h3>Morte e Glorificação</h3>
-        <p>Maximiliano foi colocado na cela da fome junto aos outros nove. Dois meses depois, enquanto os demais haviam morrido, ele ainda vivia — rezando, cantando hinos e animando os companheiros. Os guardas, impacientes, aplicaram-lhe uma injeção de ácido carbólico em <strong>14 de agosto de 1941</strong>, véspera da festa da Assunção de Nossa Senhora.</p>
-        <p>Franciszek Gajowniczek, o homem salvo, sobreviveu à guerra e viveu até os 93 anos — e esteve presente na canonização de Maximiliano em 1982.</p>
-      </div>
+  <h3>A Irmã Silenciosa e o Mistério de Płock</h3>
+  <p>Após ser rejeitada por inúmeros mosteiros devido à sua aparência simples e falta de recursos, Helena foi acolhida em 1 de agosto de 1925 pela <strong>Congregação das Irmãs de Nossa Senhora da Misericórdia</strong>. Para pagar seu próprio enxoval, trabalhou mais um ano como doméstica antes de receber o hábito e o nome que marcaria a história cristã: <strong>Irmã Maria Faustina do Santíssimo Sacramento</strong>.</p>
+
+  <p>Na rotina dos conventos, Faustina era o retrato da simplicidade oculta. Exercia as funções mais humildes — cozinheira, jardineira e porteira. Para as outras freiras, ela era apenas uma irmã silenciosa, prestativa e recolhida. Ninguém imaginava que aquela mulher de saúde frágil vivia um misticismo avassalador em sua alma.</p>
+
+  <p>Em <strong>22 de fevereiro de 1931</strong>, na solidão de sua cela em Płock, o invisível rasgou o véu da realidade novamente. Jesus manifestou-se a ela com uma túnica branca. De Seu coração transpassado emanavam dois grandes feixes de luz: um raio vermelho, simbolizando o sangue que é a vida das almas, e um raio pálido, representando a água que as justifica. Ali, a freira que mal sabia escrever recebeu uma ordem monumental: <em>"Pinta uma imagem de acordo com o modelo que estás vendo, com a inscrição: Jesus, eu confio em Vós."</em></p>
+
+  <h3>O Peso da Promessa e as Mãos de um Pintor</h3>
+  <p>A missão esbarrou na incompreensão humana. Superioras e confessores desconfiavam daquela jovem, sugerindo que as visões eram frutos de histeria ou alucinação. Como uma freira de clausura, isolada e sem talentos artísticos, faria um quadro ser venerado no mundo inteiro? A resposta divina veio em 1933, em Vilnius, através do **Padre Miguel Sopoćko**.</p>
+  
+  <p>O teólogo e confessor submeteu Faustina a rigorosos exames psiquiátricos. Constatada a sua perfeita lucidez, Sopoćko tornou-se o braço direito da profetisa. Foi ele quem financiou o pintor Eugeniusz Kazimirowski para traduzir as visões de Faustina na tela. Durante meses, ela visitou o ateliê secretamente, mas ao ver a obra terminada, chorou de desilusão. Ela correu para a capela e queixou-se: <em>"Quem Vos pintará tão belo como Vos sois?"</em>. No silêncio de sua alma, Jesus a confortou: </p>
+
+  <blockquote>
+    "O valor da imagem não está na beleza da tinta nem do pincel, mas na Minha graça."
+  </blockquote>
+
+  <h3>O Diário a Lápis e a Noite Escura</h3>
+  <p>Por obediência ao Padre Sopoćko, Faustina começou a registrar suas experiências místicas. Nascia o <strong>Diário: A Misericórdia Divina na Minha Alma</strong>, uma obra-prima da literatura espiritual escrita a lápis em cadernos escolares comuns. Nessas páginas, ela ditou ao mundo as novas práticas pedidas por Cristo: a <strong>Coroa da Divina Misericórdia</strong>, a Hora da Misericórdia (às três da tarde) e a instituição do Domingo da Misericórdia.</p>
+
+  <p>Mas o privilégio místico cobrou um preço altíssimo. Faustina atravessou a dolorosa "noite escura da alma" — um estado de abandono espiritual profundo onde sentia o peso esmagador de todos os pecados da humanidade, experimentando a terrível sensação de solidão cósmica.</p>
+  
+  <p>Paralelamente, seu corpo físico era consumido por uma tuberculose pulmonar e intestinal implacável. Faustina tossia sangue nos bastidores do convento, mas cruzava os corredores sorrindo, oferecendo sua agonia silenciosa pela conversão dos pecadores. Seu calvário físico terminou em <strong>5 de outubro de 1938</strong>, em Cracóvia. Com apenas 33 anos — a mesma idade de Cristo — ela entregou sua alma, sussurrando sua última jaculatória de confiança.</p>
+
+  <h3>Do Silêncio Forçado ao Altar do Novo Milênio</h3>
+  <p>A história de Faustina na modernidade é marcada por um paradoxo impressionante. Logo após sua morte, a Segunda Guerra Mundial estourou, e seu quadro tornou-se o único consolo de uma Polônia pisoteada pelo horror nazista e soviético. No entanto, devido a traduções errôneas e imprecisas de seu Diário enviadas a Roma, o Vaticano emitiu em 1959 uma proibição severa: os escritos e as imagens de Faustina foram banidos por duas décadas.</p>
+
+  <p>A humilhação póstuma da "santa proibida" só começou a ser desfeita pelas mãos de outro gigante polonês: o Cardeal Karol Wojtyła. Como Arcebispo de Cracóvia, ele liderou uma reavaliação teológica impecável que culminou na revogação da proibição em 1978. Apenas duas semanas depois, Wojtyła foi eleito Papa, tornando-se **João Paulo II**.</p>
+
+  <p>O destino divino se cumpriu de forma poética: no dia <strong>30 de abril de 2000</strong>, cruzando as portas do novo milênio, o Papa João Paulo II canonizou solenemente a humilde faxineira polonesa, instituindo a Festa da Divina Misericórdia para o mundo inteiro. A jovem que fugiu de um baile para seguir uma visão entrava definitivamente para a história como a primeira santa do século XXI.</p>
+</div>
     </section>
 
+    <!-- LINHA DO TEMPO -->
     <section class="timeline-section" id="cronologia">
       <div class="timeline-header">
         <span class="section-tag">Seção 02</span>
         <div class="section-header-left">
           <h2>Linha do Tempo</h2>
-          <p>47 anos de vida marcados pelo apostolado mariano e pelo sacrifício supremo</p>
+          <p>33 anos de vida — humildade, sofrimento e uma mensagem que mudou a espiritualidade do século XX</p>
         </div>
       </div>
       <div class="timeline-grid">
         <div class="tl-item">
-          <p class="tl-ano">8 Jan 1894</p>
-          <h3 class="tl-evento">Nascimento na Polônia</h3>
-          <p class="tl-desc">Nasce Raimundo Kolbe em Zdunska Wola, filho de tecelões poloneses profundamente católicos.</p>
+          <p class="tl-ano">25 Ago 1905</p>
+          <h3 class="tl-evento">Nascimento em Głogowiec</h3>
+          <p class="tl-desc">Nasce Helena Kowalska em família camponesa polonesa, terceira de dez filhos.</p>
         </div>
         <div class="tl-item">
-          <p class="tl-ano">1910 · 16 anos</p>
-          <h3 class="tl-evento">Ordem Franciscana</h3>
-          <p class="tl-desc">Ingressa nos Frades Menores Conventuais tomando o nome de Maximiliano Maria.</p>
+          <p class="tl-ano">1925 · 20 anos</p>
+          <h3 class="tl-evento">Ingresso na vida religiosa</h3>
+          <p class="tl-desc">Após visão de Jesus sofredor, entra na Congregação das Irmãs da Nossa Senhora da Misericórdia em Varsóvia.</p>
         </div>
         <div class="tl-item">
-          <p class="tl-ano">1917 · Roma</p>
-          <h3 class="tl-evento">Militia Immacolatae</h3>
-          <p class="tl-desc">Funda em Roma o movimento de consagração a Nossa Senhora que se espalhará por todo o mundo.</p>
+          <p class="tl-ano">1931</p>
+          <h3 class="tl-evento">Primeira visão de Jesus</h3>
+          <p class="tl-desc">Jesus aparece com dois raios saindo do coração e pede que seja pintado o quadro da Divina Misericórdia com a inscrição "Jesus, eu confio em Ti."</p>
         </div>
         <div class="tl-item">
-          <p class="tl-ano">1927</p>
-          <h3 class="tl-evento">Niepokalanów</h3>
-          <p class="tl-desc">Funda a "Cidade da Imaculada" na Polônia, que se tornará o maior convento franciscano do mundo com 700 frades.</p>
+          <p class="tl-ano">1934</p>
+          <h3 class="tl-evento">Início do Diário</h3>
+          <p class="tl-desc">A pedido de seu diretor espiritual, o Padre Miguel Sopocko, começa a registrar suas revelações num diário que terá quase 700 páginas.</p>
         </div>
         <div class="tl-item">
-          <p class="tl-ano">1930 – 1936</p>
-          <h3 class="tl-evento">Missão no Japão</h3>
-          <p class="tl-desc">Funda uma Niepokalanów perto de Nagasaki — cidade que sobreviverá à bomba atômica em 1945.</p>
+          <p class="tl-ano">1935</p>
+          <h3 class="tl-evento">A Coroa da Misericórdia</h3>
+          <p class="tl-desc">Jesus revela a Faustina a Coroa da Divina Misericórdia — oração que hoje é rezada por milhões de católicos em todo o mundo.</p>
         </div>
         <div class="tl-item">
-          <p class="tl-ano">Fev 1941</p>
-          <h3 class="tl-evento">Preso pela Gestapo</h3>
-          <p class="tl-desc">Deportado para Auschwitz após publicar material contra o nazismo e esconder refugiados judeus.</p>
+          <p class="tl-ano">5 Out 1938</p>
+          <h3 class="tl-evento">Morte aos 33 anos</h3>
+          <p class="tl-desc">Falece de tuberculose em Cracóvia com a mesma idade de Cristo. Suas últimas palavras foram "Jesus, eu confio em Ti."</p>
         </div>
         <div class="tl-item">
-          <p class="tl-ano">Jul 1941</p>
-          <h3 class="tl-evento">O gesto heroico</h3>
-          <p class="tl-desc">Oferece a própria vida para salvar Franciszek Gajowniczek, selecionado para morrer de fome como punição coletiva.</p>
+          <p class="tl-ano">18 Abr 1993</p>
+          <h3 class="tl-evento">Beatificação</h3>
+          <p class="tl-desc">João Paulo II a beatifica em Roma — seu compatriota polonês que foi um dos maiores promotores da devoção à Divina Misericórdia.</p>
         </div>
         <div class="tl-item">
-          <p class="tl-ano">14 Ago 1941</p>
-          <h3 class="tl-evento">Martírio em Auschwitz</h3>
-          <p class="tl-desc">Executado com injeção de ácido carbólico na véspera da festa da Assunção. Tinha 47 anos.</p>
-        </div>
-        <div class="tl-item">
-          <p class="tl-ano">10 Out 1982</p>
-          <h3 class="tl-evento">Canonização</h3>
-          <p class="tl-desc">João Paulo II o canoniza em Roma. Franciszek Gajowniczek, o homem salvo, está presente na cerimônia.</p>
+          <p class="tl-ano">30 Abr 2000</p>
+          <h3 class="tl-evento">Canonização e Domingo da Misericórdia</h3>
+          <p class="tl-desc">João Paulo II a canoniza e institui oficialmente o Domingo da Divina Misericórdia para a Igreja universal.</p>
         </div>
       </div>
     </section>
 
   </div>
 
+  <!-- MILAGRES -->
   <section class="milagres-section" id="milagres">
     <div class="milagres-inner">
       <span class="section-tag">Seção 03</span>
@@ -406,17 +421,17 @@
       <div class="milagres-grid">
         <div class="milagre-card">
           <p class="milagre-numero">01</p>
-          <p class="milagre-local">Polônia</p>
-          <h3 class="milagre-titulo">Cura de tuberculose grave</h3>
-          <p class="milagre-desc">Uma religiosa polonesa sofria de tuberculose avançada considerada incurável. Após intensa oração pela intercessão de Maximiliano Kolbe, foi curada de forma súbita e completa. O caso foi investigado pelo Vaticano e reconhecido como milagre, abrindo o caminho para a beatificação em 1971.</p>
-          <span class="milagre-ano-badge">Aprovado em 1970 · para a Beatificação</span>
+          <p class="milagre-local">Estados Unidos</p>
+          <h3 class="milagre-titulo">Cura de linfoma grave</h3>
+          <p class="milagre-desc">Uma mulher americana sofria de linfoma em estágio avançado considerado incurável. Após intensa oração pela intercessão de Faustina Kowalska e novena da Divina Misericórdia, foi curada completamente de forma inexplicável. O caso foi investigado e reconhecido pelo Vaticano, abrindo o caminho para a beatificação em 1993.</p>
+          <span class="milagre-ano-badge">Aprovado em 1992 · para a Beatificação</span>
         </div>
         <div class="milagre-card">
           <p class="milagre-numero">02</p>
-          <p class="milagre-local">Itália</p>
+          <p class="milagre-local">El Salvador</p>
           <h3 class="milagre-titulo">Cura inexplicável aprovada para a canonização</h3>
-          <p class="milagre-desc">Uma mulher italiana com doença grave e sem perspectiva de cura foi curada de forma repentina e completa após orações pela intercessão de Kolbe. A comissão médica e teológica do Vaticano reconheceu o caso como miraculoso, habilitando a canonização em 1982 por João Paulo II.</p>
-          <span class="milagre-ano-badge">Aprovado em 1981 · para a Canonização</span>
+          <p class="milagre-desc">Uma mulher salvadorenha com doença grave e sem perspectiva de cura foi curada de forma súbita e completa após orações pela intercessão de Faustina. O caso foi investigado e aprovado pelo Dicastério para as Causas dos Santos, habilitando a canonização por João Paulo II em 30 de abril de 2000.</p>
+          <span class="milagre-ano-badge">Aprovado em 1999 · para a Canonização</span>
         </div>
       </div>
     </div>
@@ -424,18 +439,39 @@
 
   <div class="perfil-content">
 
+    <!-- GALERIA -->
     <section class="galeria-section" id="galeria">
       <span class="section-tag">Seção 04</span>
       <div class="section-header-left">
         <h2>Galeria</h2>
-        <p>Imagens da vida, do apostolado e do martírio de Maximiliano Kolbe</p>
       </div>
-      <div class="galeria-grid">
-        <div class="galeria-item"><img src="../imagens/mxm0.jpg" alt="Maximiliano" style="width:100%; height:100%; object-fit:cover;"/></div>
-          <div class="galeria-item"><img src="../imagens/mxm1.jpg" alt="Maximiliano" style="width:100%; height:100%; object-fit:cover;"/></div>
-          <div class="galeria-item"><img src="../imagens/mxm2.jpg" alt="Maximiliano" style="width:100%; height:100%; object-fit:cover;"/></div>
-          <div class="galeria-item"><img src="../imagens/mxm3.jpg" alt="Maximiliano" style="width:100%; height:100%; object-fit:cover;"/></div>
-          <div class="galeria-item"><img src="../imagens/mxm4.jpg" alt="Maximiliano" style="width:100%; height:100%; object-fit:cover;"/></div>
+       <div class="galeria-grid">
+  <div class="galeria-item">
+    <img src="../imagens/sfk3.jpg" 
+         alt="Santa Faustina Kowalska" 
+         style="width:100%; height:100%; object-fit:cover;" />
+  </div>
+  <div class="galeria-item">
+    <img src="../imagens/sfk2.jpg" 
+         alt="Santa Faustina Kowalska" 
+         style="width:100%; height:100%; object-fit:cover;" />
+  </div>
+  <div class="galeria-item">
+    <img src="../imagens/sfk1.png" 
+         alt="Santa Faustina Kowalska" 
+         style="width:100%; height:100%; object-fit:cover;" />
+  </div>
+  <div class="galeria-item">
+    <img src="../imagens/sfk0.jpg" 
+         alt="Santa Faustina Kowalska" 
+         style="width:100%; height:100%; object-fit:cover;" />
+  </div>
+  <div class="galeria-item">
+    <img src="../imagens/sfk4.jpg" 
+         alt="Santa Faustina Kowalska" 
+         style="width:100%; height:100%; object-fit:cover;" />
+  </div>
+</div>
       </div>
       <p class="galeria-legenda">
         Imagens utilizadas sob licença de seus respectivos autores.
@@ -443,85 +479,112 @@
       </p>
     </section>
 
+    <!-- IMPORTANTE: Adicionei esta div para fechar o conteúdo anterior e garantir que as fontes fiquem no bloco centralizado -->
+  </div> 
+
+  <!-- FONTES -->
+  <!-- Se nas outras páginas você usa uma div com classe 'container' ou 'content' para dar a margem lateral, envolva esta seção com ela -->
+  <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 2rem;">
+    
     <section class="fontes-section" id="fontes">
       <span class="section-tag">Seção 06</span>
       <div class="section-header-left">
         <h2>Fontes e Referências</h2>
         <p>Documentação utilizada para a elaboração deste perfil</p>
       </div>
+      
       <div class="fontes-lista">
         <div class="fonte-item">
           <span class="fonte-tipo">Site Oficial</span>
-          <div><p class="fonte-titulo">niepokalanow.pl</p><p class="fonte-autor">Site oficial da Niepokalanów — Cidade da Imaculada</p></div>
-          <a href="https://www.niepokalanow.pl/en/" target="_blank" class="fonte-link">Acessar →</a>
+          <div>
+            <p class="fonte-titulo">faustyna.pl</p>
+            <p class="fonte-autor">Site oficial do Santuário da Divina Misericórdia em Cracóvia</p>
+          </div>
+          <a href="https://www.faustyna.pl" target="_blank" class="fonte-link">Acessar →</a>
         </div>
+        
         <div class="fonte-item">
           <span class="fonte-tipo">Livro</span>
-          <div><p class="fonte-titulo">Maximiliano Kolbe — O Santo de Auschwitz</p><p class="fonte-autor">Elaine Murray Stone · Editora Paulinas, 2001</p></div>
-          <span class="fonte-link">Impresso</span>
+          <div>
+            <p class="fonte-titulo">Diário — A Misericórdia Divina na Minha Alma</p>
+            <p class="fonte-autor">Santa Faustina Kowalska · Editora Loyola, 2003</p>
+          </div>
+          <span class="fonte-link" style="color: var(--text-muted); cursor: default;">Impresso</span>
         </div>
+        
         <div class="fonte-item">
           <span class="fonte-tipo">Livro</span>
-          <div><p class="fonte-titulo">São Maximiliano Kolbe — Mártir da Caridade</p><p class="fonte-autor">Anselm Romb · Editora Santuário, 1999</p></div>
-          <span class="fonte-link">Impresso</span>
+          <div>
+            <p class="fonte-titulo">Santa Faustina — A Apóstola da Misericórdia Divina</p>
+            <p class="fonte-autor">Sophia Michalenko · Editora Canção Nova, 2000</p>
+          </div>
+          <span class="fonte-link" style="color: var(--text-muted); cursor: default;">Impresso</span>
         </div>
+        
         <div class="fonte-item">
           <span class="fonte-tipo">Vatican News</span>
-          <div><p class="fonte-titulo">Canonização de Maximiliano Kolbe — Homilia de João Paulo II</p><p class="fonte-autor">Santa Sé · 10 de outubro de 1982</p></div>
-          <a href="https://www.vatican.va/content/john-paul-ii/pt/homilies/1982/documents/hf_jp-ii_hom_19821010_canonizzazione-kolbe.html" target="_blank" class="fonte-link">Acessar →</a>
+          <div>
+            <p class="fonte-titulo">Canonização de Faustina Kowalska — Homilia de João Paulo II</p>
+            <p class="fonte-autor">Santa Sé · 30 de abril de 2000</p>
+          </div>
+          <a href="https://www.vatican.va/content/john-paul-ii/pt/homilies/2000/documents/hf_jp-ii_hom_20000430_faustina.html" target="_blank" class="fonte-link">Acessar →</a>
         </div>
       </div>
     </section>
 
-    <div class="nav-santos">
-      <a href="teresa-calcuta.html" class="nav-santo-link">
+    <!-- NAVEGAÇÃO -->
+    <div class="nav-santos-div">
+      <a href="josefina-bakhita.html" class="nav-santo-link">
         <span class="nav-santo-label">← Santo Anterior</span>
-        <span class="nav-santo-nome">Santa Teresa de Calcutá</span>
+        <span class="nav-santo-nome">Santa Josefina Bakhita</span>
       </a>
-      <a href="gianna-beretta.html" class="nav-santo-link nav-santo-dir">
+      <a href="carlo-acutis.html" class="nav-santo-link nav-santo-dir">
         <span class="nav-santo-label">Próximo Santo →</span>
-        <span class="nav-santo-nome">Santa Gianna Beretta</span>
+        <span class="nav-santo-nome">São Carlo Acutis</span>
       </a>
     </div>
 
-  </div>
+  </div> <!-- Fecha a div container que criamos ali em cima -->
 
+  <!-- ORAÇÃO -->
   <section class="oracao-section" id="oracao">
     <div class="oracao-inner">
       <span class="section-tag">Seção 05</span>
-      <h2 class="oracao-titulo">Oração por Intercessão de São Maximiliano Kolbe</h2>
+      <h2 class="oracao-titulo">Oração por Intercessão de Santa Faustina Kowalska</h2>
       <div class="oracao-texto">
-        <p>Senhor Jesus, Tu que és o amor que vence o ódio e a vida que triunfa sobre a morte, concede-nos, pela intercessão de São Maximiliano Kolbe, a coragem de amar até o fim — sem contar o custo.</p>
-        <p>Ele poderia ter se calado. Em vez disso, deu um passo à frente e disse: "Quero morrer no lugar desse homem." Nesse gesto, repetiu o Teu próprio gesto no Calvário.</p>
-        <p>São Maximiliano, mártir da caridade, intercede por todos os que hoje estão prisioneiros — do medo, do ódio, da desesperança. Que o teu exemplo nos lembre que o amor é a única força capaz de transformar o mundo. Amém.</p>
+        <p>Senhor Jesus, Tu que revelaste a Santa Faustina a profundidade da Tua misericórdia, concede-nos, por sua intercessão, a graça de confiar em Ti — não apenas quando a vida é fácil, mas especialmente quando parece impossível.</p>
+        <p>Ela era uma camponesa simples sem instrução, e Tu a escolheste para proclamar ao mundo que a Tua misericórdia é maior do que qualquer pecado, maior do que qualquer medo, maior do que a própria morte. Que sua mensagem ressoe em nossos corações como um convite permanente à esperança.</p>
+        <p>Santa Faustina, apóstola da Divina Misericórdia, intercede por nós. Ensina-nos a rezar com a mesma confiança com que rezavas: Jesus, eu confio em Ti. Amém.</p>
       </div>
       <p class="oracao-fecho">· Para uso privado · Aprovação eclesiástica recomendada ·</p>
     </div>
   </section>
 
+  <!-- FOOTER -->
   <footer>
     <div class="footer-inner">
       <span class="footer-logo">Santos da Modernidade</span>
       <span class="footer-copy">© Santos da Modernidade · Ad Maiorem Dei Gloriam</span>
     </div>
   </footer>
- <script>
-   function toggleMenu() {
-    const menu = document.querySelector('.nav-links');
-    const btn = document.getElementById('nav-hamburguer');
-    menu.classList.toggle('aberto');
-    btn.textContent = menu.classList.contains('aberto') ? '✕' : '☰';
-  }
 
-  // Fecha o menu ao clicar em qualquer link
-  document.querySelectorAll('.nav-links a').forEach(link => {
-    link.addEventListener('click', () => {
+  <script>
+    function toggleMenu() {
       const menu = document.querySelector('.nav-links');
       const btn = document.getElementById('nav-hamburguer');
-      menu.classList.remove('aberto');
-      btn.textContent = '☰';
+      menu.classList.toggle('aberto');
+      btn.textContent = menu.classList.contains('aberto') ? '✕' : '☰';
+    }
+
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        const menu = document.querySelector('.nav-links');
+        const btn = document.getElementById('nav-hamburguer');
+        menu.classList.remove('aberto');
+        btn.textContent = '☰';
+      });
     });
-  });
-</script>
+  </script>
+
 </body>
 </html>
