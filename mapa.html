@@ -507,15 +507,15 @@
   <!-- STATS -->
   <div class="mapa-stats">
     <div class="stat-item">
-      <span class="stat-numero">11</span>
+      <span class="stat-numero">12</span>
       <span class="stat-label">Santos e Beatos</span>
     </div>
     <div class="stat-item">
-      <span class="stat-numero">9</span>
+      <span class="stat-numero">10</span>
       <span class="stat-label">Países</span>
     </div>
     <div class="stat-item">
-      <span class="stat-numero">47</span>
+      <span class="stat-numero">51</span>
       <span class="stat-label">Locais marcados</span>
     </div>
     <div class="stat-item">
@@ -592,6 +592,11 @@
       { lat: 50.0647,  lng: 19.9450,  tipo: "vida",        nome: "Santa Faustina Kowalska", local: "Cracóvia, Polônia",     desc: "Viveu no convento da Congregação das Irmãs de Nossa Senhora da Misericórdia, onde recebeu as revelações de Jesus Misericordioso.", foto: "imagens/sfk3.jpg",       link: "santos/faustina-kowalska.html" },
       { lat: 50.0202,  lng: 19.9383,  tipo: "morte",       nome: "Santa Faustina Kowalska", local: "Cracóvia, Polônia",     desc: "Faleceu em 5 de outubro de 1938, com apenas 33 anos, consumida pela tuberculose.", foto: "imagens/sfk3.jpg",       link: "santos/faustina-kowalska.html" },
       { lat: 41.9029,  lng: 12.4534,  tipo: "canonizacao", nome: "Santa Faustina Kowalska", local: "Cidade do Vaticano",    desc: "Canonizada por São João Paulo II em 30 de abril de 2000, tornando-se a primeira santa do novo milênio.", foto: "imagens/sfk3.jpg",       link: "santos/faustina-kowalska.html" },
+   
+      { lat: -12.9714, lng: -38.5014, tipo: "nascimento", nome: "Santa Dulce dos Pobres", local: "Salvador, Brasil", desc: "Nasceu em 26 de maio de 1914 em Salvador. Batizada como Maria Rita de Souza Brito Lopes Pontes.", foto: "imagens/sdp1.jpg", link: "santos/dulce.html" },
+      { lat: -12.9667, lng: -38.5083, tipo: "vida", nome: "Santa Dulce dos Pobres", local: "Salvador, Brasil", desc: "Dedicou sua vida ao cuidado dos enfermos e pobres, fundando as Obras Sociais Irmã Dulce (OSID) a partir de um galinheiro no convento.", foto: "imagens/sdp1.jpg", link: "santos/dulce.html" },
+      { lat: -12.9686, lng: -38.5042, tipo: "morte", nome: "Santa Dulce dos Pobres", local: "Salvador, Brasil", desc: "Faleceu em 13 de março de 1992, aos 77 anos, após décadas de dedicação incansável aos mais necessitados.", foto: "imagens/sdp1.jpg", link: "santos/dulce.html" },
+      { lat: 41.9029, lng: 12.4534, tipo: "canonizacao", nome: "Santa Dulce dos Pobres", local: "Cidade do Vaticano", desc: "Canonizada pelo Papa Francisco em 13 de outubro de 2019, tornando-se a primeira santa nascida no Brasil.", foto: "imagens/sdp1.jpg", link: "santos/dulce.html" }
     ];
     const cores = {
       nascimento:  "#4A7ABF",
@@ -607,14 +612,32 @@
       canonizacao: "Canonização / Beatificação"
     };
 
-    // ── INICIALIZA MAPA ──
-    const mapa = L.map('mapa', { center: [30, 15], zoom: 2 });
+   // ── INICIALIZA MAPA ──
+const mapa = L.map('mapa', {
+  center: [30, 15],
+  zoom: 2,
+  minZoom: 2,
+  worldCopyJump: true
+});
 
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-      attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> © <a href="https://carto.com/">CARTO</a>',
-      maxZoom: 18
-    }).addTo(mapa);
+// Limite suave de navegação
+const bounds = L.latLngBounds(
+  [-70, -200],
+  [85, 200]
+);
 
+mapa.setMaxBounds(bounds);
+
+// --- NOVO ESTILO STADIA MAPS ---
+const apiKey = '38bc6234-bb90-4944-95ea-af0b75c12fbf';
+
+L.tileLayer(
+  'https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png?api_key=' + apiKey,
+  {
+    attribution: '&copy; <a href="https://www.stadiamaps.com/" target="_blank">Stadia Maps</a> &copy; <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+    maxZoom: 20
+  }
+).addTo(mapa);
     // ── CRIA MARCADORES ──
     let camadas = [];
 
