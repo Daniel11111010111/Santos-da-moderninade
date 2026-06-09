@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>São Charles de Foucauld · Santos da Modernidade</title>
+  <meta name="description" content="Conheça a vida de São Charles de Foucauld — oficial do exército francês convertido que viveu como eremita no deserto do Saara entre os tuaregues e foi canonizado em 2022." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600&family=Raleway:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../style.css" />
+  <style>
+    .perfil-hero {
+      min-height: 100vh;
+      background: var(--dark);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      position: relative;
+      overflow: hidden;
+      padding-top: 80px;
+    }
+    .perfil-hero-bg {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 40%, rgba(201,168,76,0.07) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 40% at 20% 80%, rgba(123,28,46,0.1) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 40% at 80% 20%, rgba(27,45,79,0.12) 0%, transparent 60%);
+    }
+    .perfil-hero-left {
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 5rem 4rem 5rem 5rem; position: relative; z-index: 2;
+    }
+    .perfil-breadcrumb {
+      font-size: 0.68rem; letter-spacing: 0.25em; text-transform: uppercase;
+      color: rgba(201,168,76,0.5); margin-bottom: 2rem;
+    }
+    .perfil-breadcrumb a { color: inherit; text-decoration: none; transition: color 0.2s; }
+    .perfil-breadcrumb a:hover { color: var(--gold); }
+    .perfil-badge {
+      display: inline-block; border: 1px solid rgba(201,168,76,0.4);
+      color: var(--gold); font-size: 0.65rem; letter-spacing: 0.25em;
+      text-transform: uppercase; padding: 0.35rem 0.9rem; margin-bottom: 1.5rem;
+    }
+    .perfil-nome {
+      font-family: 'Cinzel', serif; font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 600; color: var(--ivory); line-height: 1.15;
+      margin-bottom: 0.5rem; letter-spacing: 0.03em;
+    }
+    .perfil-titulo {
+      font-family: 'Cormorant Garamond', serif; font-size: 1.2rem;
+      font-style: italic; font-weight: 300; color: var(--gold-light);
+      margin-bottom: 2rem; opacity: 0.8;
+    }
+    .perfil-meta { display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 2.5rem; }
+    .perfil-meta-item { display: flex; gap: 1rem; align-items: baseline; }
+    .perfil-meta-label {
+      color: rgba(201,168,76,0.6); font-weight: 500; letter-spacing: 0.1em;
+      min-width: 110px; font-size: 0.72rem; text-transform: uppercase; flex-shrink: 0;
+    }
+    .perfil-meta-value { color: rgba(240,232,216,0.75); font-size: 0.85rem; line-height: 1.4; }
+    .perfil-frase {
+      font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-style: italic;
+      color: var(--gold-light); border-left: 2px solid var(--gold);
+      padding-left: 1.25rem; line-height: 1.65; opacity: 0.9;
+    }
+    .perfil-hero-right {
+      position: relative; background: var(--dark-mid);
+      display: flex; align-items: center; justify-content: center; overflow: hidden;
+    }
+    .perfil-hero-right::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse at center, rgba(201,168,76,0.06) 0%, transparent 70%);
+    }
+    .perfil-hero-ano {
+      position: absolute; bottom: 2rem; right: 2rem;
+      font-family: 'Cinzel', serif; font-size: 4rem; font-weight: 600;
+      color: rgba(201,168,76,0.08); line-height: 1;
+    }
+    .perfil-content { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+    .section-tag {
+      font-size: 0.65rem; font-weight: 500; letter-spacing: 0.3em;
+      text-transform: uppercase; color: var(--gold-dark); display: block; margin-bottom: 1rem;
+    }
+    .section-header-left h2 {
+      font-family: 'Cinzel', serif; font-size: 1.5rem; font-weight: 400;
+      color: var(--dark); letter-spacing: 0.08em; margin-bottom: 0.5rem;
+    }
+    .section-header-left p {
+      font-family: 'Cormorant Garamond', serif; font-size: 1rem;
+      font-style: italic; color: var(--text-muted);
+    }
+    .bio-section {
+      padding: 7rem 0; display: grid; grid-template-columns: 1fr 2fr;
+      gap: 5rem; border-bottom: 1px solid var(--gold-light);
+    }
+    .bio-sidebar { position: sticky; top: 100px; align-self: start; }
+    .sidebar-title {
+      font-family: 'Cinzel', serif; font-size: 1.3rem; font-weight: 400;
+      color: var(--dark); letter-spacing: 0.06em; line-height: 1.4;
+    }
+    .sidebar-ornament { width: 30px; height: 1px; background: var(--gold); margin: 1.5rem 0; }
+    .sidebar-resumo {
+      font-family: 'Cormorant Garamond', serif; font-size: 1rem;
+      font-style: italic; color: var(--text-muted); line-height: 1.7;
+    }
+    .bio-texto h3 {
+      font-family: 'Cinzel', serif; font-size: 1rem; font-weight: 400;
+      letter-spacing: 0.1em; color: var(--dark); margin: 2rem 0 0.75rem;
+    }
+    .bio-texto h3:first-child { margin-top: 0; }
+    .bio-texto p { font-size: 0.97rem; line-height: 1.9; color: var(--text-muted); margin-bottom: 1rem; }
+    .bio-texto p strong { color: var(--text); font-weight: 500; }
+    .timeline-section { padding: 7rem 0; border-bottom: 1px solid var(--gold-light); }
+    .timeline-header { margin-bottom: 3.5rem; }
+    .timeline-grid { display: grid; grid-template-columns: 1fr 1fr; position: relative; }
+    .timeline-grid::before {
+      content: ''; position: absolute; left: 50%; top: 0; bottom: 0; width: 1px;
+      background: linear-gradient(to bottom, transparent, var(--gold-light), transparent);
+      transform: translateX(-50%);
+    }
+    .tl-item { padding: 2rem; position: relative; }
+    .tl-item:nth-child(odd) { text-align: right; padding-right: 3rem; }
+    .tl-item:nth-child(even) { padding-left: 3rem; }
+    .tl-item::after {
+      content: ''; position: absolute; top: 2.5rem; width: 8px; height: 8px;
+      background: var(--gold); transform: rotate(45deg);
+    }
+    .tl-item:nth-child(odd)::after { right: -4px; }
+    .tl-item:nth-child(even)::after { left: -4px; }
+    .tl-ano { font-family: 'Cinzel', serif; font-size: 0.72rem; letter-spacing: 0.2em; color: var(--gold-dark); margin-bottom: 0.4rem; }
+    .tl-evento { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; color: var(--dark); margin-bottom: 0.3rem; }
+    .tl-desc { font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; }
+    .milagres-section { padding: 7rem 0; background: var(--parchment); margin: 0 -2rem; padding-left: 2rem; padding-right: 2rem; border-top: 1px solid var(--gold-light); border-bottom: 1px solid var(--gold-light); }
+    .milagres-inner { max-width: 1100px; margin: 0 auto; }
+    .milagres-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 3rem; }
+    .milagre-card { background: var(--ivory); border: 1px solid var(--gold-light); padding: 2rem; }
+    .milagre-numero { font-family: 'Cinzel', serif; font-size: 2.5rem; font-weight: 600; color: var(--gold-light); line-height: 1; margin-bottom: 1rem; }
+    .milagre-local { font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold-dark); margin-bottom: 0.5rem; }
+    .milagre-titulo { font-family: 'Cinzel', serif; font-size: 0.95rem; color: var(--dark); margin-bottom: 0.75rem; }
+    .milagre-desc { font-size: 0.88rem; line-height: 1.75; color: var(--text-muted); }
+    .milagre-ano-badge { display: inline-block; margin-top: 1rem; border: 1px solid var(--gold-light); color: var(--gold-dark); font-size: 0.65rem; letter-spacing: 0.18em; padding: 0.2rem 0.6rem; }
+
+    .galeria-section { padding: 7rem 0; border-bottom: 1px solid var(--gold-light); }
+    .galeria-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; grid-template-rows: 200px 200px; gap: 1rem; margin-top: 3rem; }
+    .galeria-item {
+      background: var(--dark-mid); display: flex; align-items: center; justify-content: center;
+      color: rgba(201,168,76,0.2); font-size: 0.65rem; letter-spacing: 0.2em;
+      text-transform: uppercase; font-family: 'Cinzel', serif;
+      border: 1px solid rgba(201,168,76,0.1); overflow: hidden;
+    }
+    .galeria-item:first-child { grid-row: 1 / 3; }
+    .galeria-item img { width: 100%; height: 100%; object-fit: cover; }
+    .galeria-legenda { font-size: 0.75rem; color: var(--text-muted); text-align: center; margin-top: 1rem; font-style: italic; font-family: 'Cormorant Garamond', serif; }
+    .oracao-section {
+      padding: 7rem 0; background: var(--blue-deep); margin: 0 -2rem;
+      padding-left: 2rem; padding-right: 2rem; text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .oracao-section::before {
+      content: '"'; position: absolute; top: -2rem; left: 50%; transform: translateX(-50%);
+      font-family: 'Cormorant Garamond', serif; font-size: 20rem;
+      color: rgba(201,168,76,0.05); line-height: 1; pointer-events: none;
+    }
+    .oracao-inner { max-width: 680px; margin: 0 auto; position: relative; z-index: 2; }
+    .oracao-section .section-tag { color: var(--gold); }
+    .oracao-titulo { font-family: 'Cinzel', serif; font-size: 1.4rem; color: var(--ivory); letter-spacing: 0.08em; margin-bottom: 2.5rem; }
+    .oracao-texto { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 300; line-height: 2; color: rgba(240,232,216,0.8); text-align: left; }
+    .oracao-texto p { margin-bottom: 1rem; }
+    .oracao-fecho { font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); opacity: 0.7; margin-top: 2rem; }
+    .fontes-section { padding: 7rem 0; }
+    .fontes-lista { margin-top: 2.5rem; display: flex; flex-direction: column; }
+    .fonte-item { display: grid; grid-template-columns: auto 1fr auto; gap: 1.5rem; align-items: center; padding: 1.25rem 0; border-bottom: 1px solid var(--gold-light); }
+    .fonte-tipo { font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold-dark); border: 1px solid var(--gold-light); padding: 0.2rem 0.6rem; white-space: nowrap; }
+    .fonte-titulo { font-size: 0.92rem; color: var(--text); }
+    .fonte-autor { font-size: 0.8rem; color: var(--text-muted); margin-top: 0.2rem; font-family: 'Cormorant Garamond', serif; font-style: italic; }
+    .fonte-link { font-size: 0.7rem; color: var(--gold-dark); text-decoration: none; letter-spacing: 0.1em; white-space: nowrap; transition: color 0.2s; }
+    .fonte-link:hover { color: var(--gold); }
+    .nav-santos-div { padding: 3rem 0; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--gold-light); margin-top: 2rem; }
+    .nav-santo-link { text-decoration: none; display: flex; flex-direction: column; gap: 0.3rem; }
+    .nav-santo-dir { text-align: right; }
+    .nav-santo-label { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted); }
+    .nav-santo-nome { font-family: 'Cinzel', serif; font-size: 0.95rem; color: var(--gold-dark); transition: color 0.2s; }
+    .nav-santo-link:hover .nav-santo-nome { color: var(--gold); }
+      /* RESPONSIVO */
+   @media (max-width: 768px) {
+      .perfil-hero { grid-template-columns: 1fr; }
+      .perfil-hero-right { display: flex; }
+      .perfil-hero-left { padding: 3rem 1.5rem; }
+      .bio-section { grid-template-columns: 1fr; gap: 2rem; }
+      .bio-sidebar { position: static; }
+      .timeline-grid { grid-template-columns: 1fr; }
+      .timeline-grid::before { display: none; }
+      .tl-item { text-align: left !important; padding: 1rem 0 1rem 2rem !important; }
+      .tl-item::after { left: 0 !important; right: auto !important; }
+      .milagres-grid { grid-template-columns: 1fr; }
+      .galeria-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+      .galeria-item:first-child { grid-row: auto; }
+      .fonte-item { grid-template-columns: 1fr; gap: 0.5rem; }
+      .section-header-left { padding: 0 24px; }
+      .section-tag { padding-left: 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="../index.html" class="nav-logo">Santos da Modernidade</a>
+    <ul class="nav-links">
+      <li><a href="../index.html#santos">Os Santos</a></li>
+      <li><a href="../categoria.html">Categorias</a></li>
+      <li><a href="../index.html#cronologia">Cronologia</a></li>
+      <li><a href="../mapa.html">Mapa</a></li>
+      <li><a href="../sobre.html">Sobre</a></li>
+    </ul>
+    <button id="nav-hamburguer" onclick="toggleMenu()"
+            style="background:transparent;border:none;color:#C9A84C;font-size:1.5rem;cursor:pointer;padding:0.25rem 0.5rem;-webkit-appearance:none;appearance:none;">☰</button>
+  </nav>
+
+  <!-- HERO -->
+  <section class="perfil-hero">
+    <div class="perfil-hero-bg"></div>
+    <div class="perfil-hero-left">
+      <p class="perfil-breadcrumb">
+        <a href="../index.html">Início</a> &nbsp;·&nbsp;
+        <a href="../index.html#santos">Os Santos</a> &nbsp;·&nbsp;
+        Charles de Foucauld
+      </p>
+      <span class="perfil-badge">Santo · Canonizado em 2022</span>
+      <h1 class="perfil-nome">São Charles<br>de Foucauld</h1>
+      <p class="perfil-titulo">"O Irmão Universal" — Do libertinismo ao deserto de Deus</p>
+      <div class="perfil-meta">
+        <div class="perfil-meta-item">
+          <span class="perfil-meta-label">Nascimento</span>
+          <span class="perfil-meta-value">15 de setembro de 1858 · Estrasburgo, França</span>
+        </div>
+        <div class="perfil-meta-item">
+          <span class="perfil-meta-label">Falecimento</span>
+          <span class="perfil-meta-value">1 de dezembro de 1916 · Tamanrasset, Argélia</span>
+        </div>
+        <div class="perfil-meta-item">
+          <span class="perfil-meta-label">Beatificação</span>
+          <span class="perfil-meta-value">13 de novembro de 2005 · Roma · Bento XVI</span>
+        </div>
+        <div class="perfil-meta-item">
+          <span class="perfil-meta-label">Canonização</span>
+          <span class="perfil-meta-value">15 de maio de 2022 · Roma · Francisco</span>
+        </div>
+        <div class="perfil-meta-item">
+          <span class="perfil-meta-label">Festa litúrgica</span>
+          <span class="perfil-meta-value">1 de dezembro</span>
+        </div>
+        <div class="perfil-meta-item">
+          <span class="perfil-meta-label">Padroeiro</span>
+          <span class="perfil-meta-value">Missionários · Viajantes · Fraternidades religiosas</span>
+        </div>
+      </div>
+      <p class="perfil-frase">"Pensa que deves levar uma vida tal que, se não existisse Deus, ela seria absurda."</p>
+    </div>
+    <div class="perfil-hero-right" style="position:relative;overflow:hidden;">
+      <img src="../imagens/foucauld3.jpg" alt="São Charles de Foucauld"
+           style="width:100%;height:100%;object-fit:cover;object-position:top;" />
+      <span class="perfil-hero-ano">1910</span>
+    </div>
+  </section>
+
+  <!-- CONTEÚDO -->
+  <div class="perfil-content">
+
+    <!-- BIOGRAFIA -->
+    <section class="bio-section" id="biografia">
+      <div class="bio-sidebar">
+        <span class="section-tag">Seção 01</span>
+        <h2 class="sidebar-title">Biografia<br>Detalhada</h2>
+        <div class="sidebar-ornament"></div>
+        <p class="sidebar-resumo">Oficial do exército francês, explorador do Saara, agnóstico declarado — e depois eremita, sacerdote e mártir no deserto da Argélia. A vida de Charles de Foucauld é uma das conversões mais radicais e fascinantes da história cristã moderna.</p>
+      </div>
+      <div class="bio-texto">
+
+        <h3>Infância — Órfão Rico e Sem Raízes</h3>
+        <p>Charles Eugène de Foucauld nasceu em <strong>15 de setembro de 1858</strong>, em Estrasburgo, numa família da aristocracia militar alsaciana. A infância foi marcada pela tragédia: perdeu a mãe e o pai com poucos meses de intervalo, aos seis anos de idade. Foi criado pelo avô materno, o Coronel de Morlet, um militar de postura rígida que, apesar do afeto, não conseguiu preencher o vazio emocional do menino. Charles cresceu num ambiente de privilégio, mas profundamente marcado pela melancolia e pela falta de um lar estruturado.</p>
+        <p>Aos 15 anos, a fé que recebeu no batismo tornou-se para ele um conceito estranho. Charles tornou-se agnóstico, movido não por uma revolta intelectual profunda, mas por uma indiferença cínica. Deus, para o jovem aristocrata, era uma questão irrelevante diante da urgência dos prazeres mundanos e da gestão de sua considerável fortuna herdada.</p>
+
+        <h3>O Oficial Libertino — Glória, Escândalo e Deserto</h3>
+        <p>Em 1876, ingressou na prestigiosa academia de Saint-Cyr. Inteligente, porém indisciplinado, Charles tornou-se lendário por seus excessos: festas extravagantes, dívidas impagáveis e um comportamento que desafiava a etiqueta militar. A situação atingiu o limite na Argélia, onde, após manter abertamente uma amante em seu regimento, foi desligado do exército. A punição, contudo, revelou seu caráter: ao saber de uma revolta tribal na região, apresentou-se como voluntário e lutou com bravura, sendo reintegrado por bravura.</p>
+        <p>Nessa fase, o deserto começou a exercer um fascínio inexplicável sobre sua alma. Em 1882, deixou a carreira militar para realizar uma expedição científica de alto risco: <strong>explorar o interior do Marrocos</strong>, então proibido aos cristãos. Disfarçado de rabino — identidade que adotou não apenas por estratégia, mas pela proximidade que sentia com a cultura judaica — mapeou regiões inexploradas. Seu relato, publicado em 1888, foi premiado pela <strong>Sociedade de Geografia de Paris</strong>, elevando-o ao status de explorador renomado. Contudo, o sucesso exterior apenas amplificava o eco do seu vazio interior.</p>
+
+        <h3>A Conversão — "Meu Deus, se existis, fazei-me conhecer-Vos"</h3>
+        <p>De volta a Paris, a inquietação persistia. O contato com a vida religiosa dos muçulmanos durante sua viagem — a seriedade com que se submetiam a Deus cinco vezes ao dia — contrastava com a superficialidade dos salões parisienses. Movido por uma curiosidade que virou sede, buscou o <strong>Padre Henri Huvelin</strong> na Igreja de Santo Agostinho.</p>
+        <p>Huvelin, discernindo o espírito daquele homem, não aceitou debates intelectuais e foi direto ao ponto: <em>"Confesse-se e ajoelhe-se."</em> Charles obedeceu. Em outubro de <strong>1886</strong>, ocorreu sua conversão radical. Mais do que uma mudança de crença, foi uma mudança de centro: Deus deixou de ser uma ideia para tornar-se o único objetivo. Sua famosa oração — <em>"Meu Deus, se existis, fazei-me conhecer-Vos"</em> — sintetiza a honestidade de um homem que, despojado de tudo, coloca-se diante da possibilidade absoluta do Transcendente.</p>
+
+        <h3>Nazaré — A Escola do Silêncio e da Obscuridade</h3>
+        <p>A conversão o lançou a uma busca obsessiva por imitar a vida de Jesus. Após uma tentativa na Ordem Trapista, percebeu que precisava de uma radicalidade ainda maior. Em 1897, partiu para Nazaré, onde viveu anos como servo das Irmãs Clarisas. Ali, vivendo em uma pequena cabana, realizava os serviços braçais mais humildes, meditando sobre os "trinta anos de vida oculta" de Cristo.</p>
+        <p>Para Charles, a santidade não estava no heroísmo de púlpito, mas na <strong>"vida de Nazaré"</strong>: a dignidade do trabalho cotidiano, o anonimato e a presença discreta. Ele compreendeu que Jesus não viveu como um poderoso, mas como um artesão marginalizado em uma cidade sem importância. Esse tornou-se o eixo de toda a sua espiritualidade: estar onde ninguém quer estar, sendo irmão universal.</p>
+
+        <h3>O Sacerdócio e o Retorno ao Deserto</h3>
+        <p>Ordenado sacerdote em <strong>9 de junho de 1901</strong>, na França, partiu imediatamente para o Saara. Instalou-se em <strong>Béni Abbès</strong>, na fronteira argelina, com o projeto de criar uma "Fraternidade". Em 1905, avançou para <strong>Tamanrasset</strong>, no coração do Hoggar, habitado pelos tuaregues. </p>
+        <p>Longe de ser apenas um missionário, Charles tornou-se um cientista cultural: aprendeu a língua tuaregue (tamahaq), compilou um dicionário monumental e preservou a poesia oral daquele povo. Sua ermida era um hospital, um refúgio e, sobretudo, uma casa aberta. Ele não buscava converter pelo proselitismo, mas pelo que chamava de "apostolado da bondade", desejando que os outros vissem Jesus em seu estilo de vida antes de ouvirem sobre Ele.</p>
+
+        <h3>O Projeto que Não Viu Nascer</h3>
+        <p>Charles morreu convicto de que havia fracassado. Sonhou em fundar uma nova família religiosa de "pequenos irmãos" presentes no mundo secular, mas, apesar de anos de redação de regras e apelos por companheiros, ninguém se juntou a ele na vida cotidiana do Saara. O projeto parecia fadado ao esquecimento.</p>
+        <p>O tempo, entretanto, provou o contrário. Após sua morte, a publicação de sua correspondência revelou a profundidade de sua alma. Surgiram então as <strong>Pequenas Irmãs de Jesus</strong>, os <strong>Pequenos Irmãos de Jesus</strong> e diversas outras fraternidades que, seguindo seus passos, espalharam-se pelo mundo. Hoje, sua intuição de estar entre os mais pobres e marginalizados, vivendo a fraternidade sem proselitismo, é um pilar da missão da Igreja Católica contemporânea.</p>
+
+        <h3>O Martírio — Assassinado no Deserto</h3>
+        <p>Em <strong>1 de dezembro de 1916</strong>, em meio ao turbilhão da Primeira Guerra Mundial, Tamanrasset tornou-se um local perigoso. Durante um ataque de facções tuaregues hostis ao governo francês, Charles foi capturado em sua ermida. Foi executado com um tiro na cabeça por um adolescente, em um momento de confusão e medo. </p>
+        <p>Morreu aos 58 anos, sozinho no deserto, como desejava. Quando os soldados franceses chegaram, encontraram o Santíssimo Sacramento exposto em sua mesa, onde ele adorava antes de morrer. Sua morte, desprovida de pompa, foi a conclusão lógica de uma vida que escolheu a "última fila" para poder estar mais próxima do Mestre, que também morreu como um pária, do lado de fora das muralhas.</p>
+
+        <h3>O Legado — O Santo da Modernidade Secular</h3>
+        <p>Charles de Foucauld é um profeta da globalização e da pluralidade. Em uma época de choques entre religiões e nacionalismos, ele propôs a <strong>presença fraterna</strong> como a forma mais alta de testemunho. Sua vida demonstra que, em um mundo secularizado, o cristianismo não deve ser uma estrutura de poder, mas um "fermento" de bondade, fraternidade e amizade gratuita.</p>
+        <p>Canonizado pelo Papa Francisco em <strong>15 de maio de 2022</strong>, ele é reconhecido não apenas pela Igreja, mas como uma figura de humanidade universal. Como Francisco destacou, ele nos recorda que o centro da vida cristã não é uma doutrina abstrata, mas o amor concreto ao próximo. Aquele grão de trigo que morreu solitário no Saara transformou-se em uma colheita que floresce hoje nos lugares mais humildes da terra.</p>
+        
+        <h3>A Espiritualidade do Deserto — O Silêncio como Resistência</h3>
+        <p>A escolha de Charles pelo deserto não foi uma fuga do mundo, mas um retorno ao essencial. Em uma época marcada pelo ruído da Segunda Revolução Industrial e pela euforia do progresso tecnológico, Charles compreendeu que o excesso de informação e a busca desenfreada por produtividade tendem a fragmentar o espírito humano. O deserto, para ele, era o lugar da "verdade nua": lá, não há onde se esconder de si mesmo nem de Deus.</p>
+        <p>Sua teologia do silêncio ensina que a presença mais eficaz não é a que grita, mas a que sustenta. Ao escolher viver entre os tuaregues sem tentar impor sua cultura ou seus dogmas, ele inaugurou uma nova forma de missão: a <strong>missão de presença</strong>. Ele provou que, quando uma pessoa se faz verdadeiramente "irmã" do outro, as barreiras linguísticas e religiosas tornam-se secundárias diante da linguagem universal da compaixão.</p>
+
+        <h3>Um Santo para um Mundo Hiperconectado</h3>
+        <p>Charles de Foucauld antecipou as dores da nossa modernidade: a solidão em meio às multidões, a crise de sentido que atinge as gerações mais jovens e o isolamento causado pelo tecnicismo. Ele é o santo da "fraternidade gratuita" — aquela que não espera retorno, não busca influência e não contabiliza seguidores.</p>
+        <p>Sua importância para o século XXI reside na sua capacidade de habitar as margens. Enquanto o mundo moderno exige que estejamos no centro, nos palcos, nas redes sociais e em posições de destaque, Foucauld nos recorda a força da "vida escondida". Ele nos mostra que a transformação social mais profunda começa, muitas vezes, em lugares obscuros, com pessoas anônimas e gestos que a história oficial muitas vezes ignora, mas que sustentam o tecido da humanidade.</p>
+    </div>
+    </section>
+
+    <!-- LINHA DO TEMPO -->
+    <section class="timeline-section" id="cronologia">
+      <div class="timeline-header">
+        <span class="section-tag">Seção 02</span>
+        <div class="section-header-left">
+          <h2>Linha do Tempo</h2>
+          <p>58 anos de vida — do libertinismo parisiense ao silêncio eterno do Saara</p>
+        </div>
+      </div>
+      <div class="timeline-grid">
+        <div class="tl-item">
+          <p class="tl-ano">15 Set 1858</p>
+          <h3 class="tl-evento">Nascimento em Estrasburgo</h3>
+          <p class="tl-desc">Nasce numa família nobre da Alsácia. Perde a mãe aos 6 anos e o pai pouco depois — criado pelo avô militar.</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-ano">1876 – 1882</p>
+          <h3 class="tl-evento">Oficial do exército</h3>
+          <p class="tl-desc">Ingressa na academia de Saint-Cyr. Leva vida de escândalos e festas, mas descobre o fascínio pelo deserto argelino.</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-ano">1882 – 1884</p>
+          <h3 class="tl-evento">Exploração do Marrocos</h3>
+          <p class="tl-desc">Disfarçado de rabino judeu, mapeia o Marrocos desconhecido por 11 meses. Recebe a Medalha de Ouro da Sociedade de Geografia de Paris.</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-ano">Out 1886</p>
+          <h3 class="tl-evento">Conversão em Paris</h3>
+          <p class="tl-desc">O Padre Henri Huvelin o convida a se confessar. Ali acontece a conversão radical que mudará toda a sua vida.</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-ano">1897 – 1900</p>
+          <h3 class="tl-evento">Vida oculta em Nazaré</h3>
+          <p class="tl-desc">Vive como servo das Irmãs Clarisas em Nazaré, varrendo e lavando em silêncio total. Nasce sua espiritualidade da "vida oculta".</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-ano">9 Jun 1901</p>
+          <h3 class="tl-evento">Ordenação sacerdotal</h3>
+          <p class="tl-desc">Ordenado padre aos 43 anos em Viviers. No dia seguinte parte para a Argélia — nunca mais voltará à Europa.</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-ano">1901 – 1905</p>
+          <h3 class="tl-evento">Ermida em Béni Abbès</h3>
+          <p class="tl-desc">Constrói uma fraternidade aberta a todos no oásis de Béni Abbès — árabes, berberes, soldados e escravos libertos à mesma mesa.</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-ano">1905 – 1916</p>
+          <h3 class="tl-evento">Entre os tuaregues em Tamanrasset</h3>
+          <p class="tl-desc">Instala-se no coração do Saara, aprende a língua tuaregue, compila um dicionário e vive como "irmão universal" por onze anos.</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-ano">1 Dez 1916</p>
+          <h3 class="tl-evento">Martírio em Tamanrasset</h3>
+          <p class="tl-desc">Assassinado por combatentes tuaregues radicais. Morreu sozinho, no deserto, diante do Santíssimo exposto — como havia vivido.</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-ano">15 Mai 2022</p>
+          <h3 class="tl-evento">Canonização</h3>
+          <p class="tl-desc">Canonizado pelo Papa Francisco em Roma. Suas comunidades inspiradas estão hoje presentes em mais de 60 países.</p>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- MILAGRES -->
+  <section class="milagres-section" id="milagres">
+    <div class="milagres-inner">
+      <span class="section-tag">Seção 03</span>
+      <div class="section-header-left">
+        <h2>Milagres Aprovados</h2>
+        <p>Os prodígios reconhecidos pela Igreja para sua beatificação e canonização</p>
+      </div>
+      <div class="milagres-grid">
+        <div class="milagre-card">
+          <p class="milagre-numero">01</p>
+          <p class="milagre-local">Itália</p>
+          <h3 class="milagre-titulo">Cura de doença grave sem explicação médica</h3>
+          <p class="milagre-desc">Uma mulher italiana sofria de doença grave considerada irreversível pelos médicos. Após intensa oração pela intercessão de Charles de Foucauld, recuperou-se completamente de forma que os especialistas não conseguiram explicar pela medicina. O caso foi investigado e reconhecido pelo Vaticano, abrindo o caminho para a beatificação em 2005.</p>
+          <span class="milagre-ano-badge">Aprovado em 2004 · para a Beatificação</span>
+        </div>
+        <div class="milagre-card">
+          <p class="milagre-numero">02</p>
+          <p class="milagre-local">França</p>
+          <h3 class="milagre-titulo">Segundo milagre para a canonização</h3>
+          <p class="milagre-desc">Uma francesa com doença neurológica grave sem perspectiva de recuperação foi curada de forma súbita e completa após orações pela intercessão de Charles de Foucauld. O caso foi investigado e aprovado pelo Dicastério para as Causas dos Santos, habilitando a canonização pelo Papa Francisco em 15 de maio de 2022.</p>
+          <span class="milagre-ano-badge">Aprovado em 2021 · para a Canonização</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="perfil-content">
+
+    <!-- GALERIA -->
+    <section class="galeria-section" id="galeria">
+      <span class="section-tag">Seção 04</span>
+      <div class="section-header-left">
+        <h2>Galeria</h2>
+        <p>Imagens da vida, das expedições e do ministério de São Charles de Foucauld</p>
+      </div>
+      <div class="galeria-grid">
+        <div class="galeria-item">
+          <img src="../imagens/foucauld1.jpg" alt="Charles de Foucauld" style="width:100%;height:100%;object-fit:cover;" />
+        </div>
+        <div class="galeria-item">
+          <img src="../imagens/foucauld2.jpg" alt="Charles de Foucauld jovem" style="width:100%;height:100%;object-fit:cover;" />
+        </div>
+        <div class="galeria-item">
+          <img src="../imagens/foucauld3.jpg" alt="Charles de Foucauld no deserto" style="width:100%;height:100%;object-fit:cover;" />
+        </div>
+        <div class="galeria-item">
+          <img src="../imagens/foucauld4.jpg" alt="Charles de Foucauld militar" style="width:100%;height:100%;object-fit:cover;" />
+        </div>
+        <div class="galeria-item">
+          <img src="../imagens/foucauld5.jpg" alt="Charles de Foucauld última foto" style="width:100%;height:100%;object-fit:cover;" />
+        </div>
+      </div>
+      <p class="galeria-legenda">
+        Imagens utilizadas sob licença de seus respectivos autores.
+        <a href="../creditos.html" style="color:var(--gold-dark);text-decoration:none;">Créditos completos disponíveis aqui.</a>
+      </p>
+    </section>
+
+    <!-- FONTES -->
+    <section class="fontes-section" id="fontes">
+      <span class="section-tag">Seção 06</span>
+      <div class="section-header-left">
+        <h2>Fontes e Referências</h2>
+        <p>Documentação utilizada para a elaboração deste perfil</p>
+      </div>
+      <div class="fontes-lista">
+        <div class="fonte-item">
+          <span class="fonte-tipo">Site Oficial</span>
+          <div><p class="fonte-titulo">charlesdefoucauld.org</p><p class="fonte-autor">Site oficial das Fraternidades de Charles de Foucauld</p></div>
+          <a href="https://www.charlesdefoucauld.org" target="_blank" class="fonte-link">Acessar →</a>
+        </div>
+        <div class="fonte-item">
+          <span class="fonte-tipo">Livro</span>
+          <div><p class="fonte-titulo">Charles de Foucauld — Explorador e Ermita</p><p class="fonte-autor">Jean-François Six · Editora Paulinas, 1998</p></div>
+          <span class="fonte-link">Impresso</span>
+        </div>
+        <div class="fonte-item">
+          <span class="fonte-tipo">Livro</span>
+          <div><p class="fonte-titulo">Escritos Espirituais de Charles de Foucauld</p><p class="fonte-autor">Charles de Foucauld · Editora Loyola, 2004</p></div>
+          <span class="fonte-link">Impresso</span>
+        </div>
+        <div class="fonte-item">
+          <span class="fonte-tipo">Livro</span>
+          <div><p class="fonte-titulo">Reconhecimento do Marrocos</p><p class="fonte-autor">Charles de Foucauld · Société de Géographie de Paris, 1888</p></div>
+          <span class="fonte-link">Impresso</span>
+        </div>
+        <div class="fonte-item">
+          <span class="fonte-tipo">Vatican News</span>
+          <div><p class="fonte-titulo">Canonização de Charles de Foucauld — Homilia do Papa Francisco</p><p class="fonte-autor">Santa Sé · 15 de maio de 2022</p></div>
+          <a href="https://www.vatican.va/content/francesco/pt/homilies/2022/documents/20220515-omelia-canonizzazione.html" target="_blank" class="fonte-link">Acessar →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- NAVEGAÇÃO -->
+    <div class="nav-santos-div">
+      <a href="oscar-romero.html" class="nav-santo-link">
+        <span class="nav-santo-label">← Santo Anterior</span>
+        <span class="nav-santo-nome">São Oscar Romero</span>
+      </a>
+      <a href="carlo-acutis.html" class="nav-santo-link nav-santo-dir">
+        <span class="nav-santo-label">Próximo Santo →</span>
+        <span class="nav-santo-nome">São Carlo Acutis</span>
+      </a>
+    </div>
+
+  </div>
+
+  <!-- ORAÇÃO -->
+  <section class="oracao-section" id="oracao">
+    <div class="oracao-inner">
+      <span class="section-tag">Seção 05</span>
+      <h2 class="oracao-titulo">Oração por Intercessão de São Charles de Foucauld</h2>
+      <div class="oracao-texto">
+        <p>Senhor Jesus, Tu que passaste trinta anos em Nazaré na obscuridade e no silêncio, concede-nos, pela intercessão de São Charles de Foucauld, a graça de encontrar-Te não apenas nos altares e nas igrejas, mas nos desertos da vida ordinária — no trabalho humilde, na amizade desinteressada, na presença fraterna com os que a sociedade ignora.</p>
+        <p>Charles partiu para o deserto procurando solidão e encontrou um povo inteiro esperando por um irmão. Morreu sozinho sem ver nenhum de seus sonhos realizados — e tornou-se pai espiritual de dezenas de milhares. Que seu exemplo nos cure da ansiedade pelos resultados e nos ensine a semear em fidelidade, deixando a Deus o tempo e o fruto da colheita.</p>
+        <p>São Charles de Foucauld, irmão universal, intercede por todos os missionários, por todos os que vivem entre povos que não conhecem Cristo e por todos os que buscam a Deus com coração honesto, mesmo sem saber ainda o Seu nome. Amém.</p>
+      </div>
+      <p class="oracao-fecho">· Para uso privado · Aprovação eclesiástica recomendada ·</p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <span class="footer-logo">Santos da Modernidade</span>
+      <span class="footer-copy">© Santos da Modernidade · Ad Maiorem Dei Gloriam</span>
+    </div>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      const menu = document.querySelector('.nav-links');
+      const btn = document.getElementById('nav-hamburguer');
+      menu.classList.toggle('aberto');
+      btn.textContent = menu.classList.contains('aberto') ? '✕' : '☰';
+    }
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        document.querySelector('.nav-links').classList.remove('aberto');
+        document.getElementById('nav-hamburguer').textContent = '☰';
+      });
+    });
+  </script>
+
+</body>
+</html>
