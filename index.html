@@ -70,7 +70,7 @@
     <div class="section-header">
       <span class="section-tag">Galeria</span>
       <h2>Os Santos</h2>
-      <p>Conheça aqueles que foram canonizados ou beatificados nos últimos dois séculos</p>
+      <p>Conheça as grandes testemunhas de fé dos séculos XIX, XX e XXI, entre santos canonizados e causas em andamento</p>
     </div>
 
     <div class="santos-grid">
@@ -296,6 +296,39 @@
             <p class="santo-card-desc">O "Irmão Universal" — ex-oficial do exército que encontrou a santidade na vida oculta de Nazaré e no deserto do Saara, vivendo em fraternidade radical entre os tuaregues.</p>
          </div>
        </a>
+
+     <!-- Card 15 -->
+       
+       <a href="santos/takashi.html" class="santo-card">
+          <div class="santo-card-img">
+           <img src="imagens/takashi1.gif" alt="S.D. Takashi Nagai" 
+           style="width:100%; height:100%; object-fit:cover;" />
+           <span class="santo-card-year">2021</span>
+         </div>
+         <div class="santo-card-body">
+            <p class="santo-card-category">Servo de Deus · Leigo · Místico</p>
+            <h3 class="santo-card-name">Takashi Nagai</h3>
+            <p class="santo-card-dates">1908 – 1951 · Japão</p>
+            <p class="santo-card-desc">O "Anjo de Nagasaki" — médico radiologista e sobrevivente da bomba atômica que, de sua cabana de dois tatames, tornou-se um farol de reconciliação, ciência e profunda entrega espiritual.</p>
+         </div>
+        </a>
+
+        <!-- Card 16 -->
+
+         <a href="santos/edith.html" class="santo-card">
+            <div class="santo-card-img">
+              <img src="imagens/edith1.jpg" alt="Santa Edith Stein"
+              style="width:100%; height:100%; object-fit:cover;" />
+              <span class="santo-card-year">1998</span>
+            </div>
+           <div class="santo-card-body">
+              <p class="santo-card-category">Santa · Mártir · Filósofa</p>
+              <h3 class="santo-card-name">Santa Teresa Benedita da Cruz</h3>
+              <p class="santo-card-subtitle">Edith Stein</p>   
+              <p class="santo-card-dates">1891 – 1942 · Alemanha</p>
+              <p class="santo-card-desc">Intelectual brilhante convertida do judaísmo ao catolicismo, tornou-se carmelita com o nome de Teresa Benedita da Cruz. Morta em Auschwitz durante a perseguição nazista, uniu fé, razão e testemunho heroico até o martírio.</p>
+           </div>
+         </a>
     </div>
   </section>
 
@@ -374,10 +407,65 @@
     </div>
   </section>
   <!-- MAPA -->
-  <section class="mapa-atalho">
-  <a href="mapa.html" class="btn-mapa">
-    Ver Mapa Interativo
-  </a>
+<section class="mapa-section">
+  <div class="mapa-section-bg"></div>
+  <div class="mapa-section-inner">
+
+    <div class="mapa-section-texto">
+      <span class="section-tag" style="color:var(--gold);">Geografia da Santidade</span>
+      <h2 class="mapa-section-titulo">Os Santos no Mapa do Mundo</h2>
+      <p class="mapa-section-desc">Descubra onde cada santo nasceu, viveu, morreu e foi elevado aos altares. De Pietrelcina ao Sudão, de Cracóvia a Calcutá — a santidade não tem fronteiras.</p>
+
+      <div class="mapa-section-stats">
+        <div class="mapa-stat">
+          <span class="mapa-stat-num">16</span>
+          <span class="mapa-stat-label">Santos catalogados</span>
+        </div>
+        <div class="mapa-stat">
+          <span class="mapa-stat-num">15</span>
+          <span class="mapa-stat-label">Países representados</span>
+        </div>
+        <div class="mapa-stat">
+          <span class="mapa-stat-num">4</span>
+          <span class="mapa-stat-label">Tipos de marcador</span>
+        </div>
+      </div>
+
+      <div class="mapa-section-legenda">
+        <div class="mapa-leg-item"><span class="mapa-leg-dot" style="background:#4A7ABF;"></span>Nascimento</div>
+        <div class="mapa-leg-item"><span class="mapa-leg-dot" style="background:#4A6741;"></span>Vida / Missão</div>
+        <div class="mapa-leg-item"><span class="mapa-leg-dot" style="background:#7B1C2E;"></span>Morte / Martírio</div>
+        <div class="mapa-leg-item"><span class="mapa-leg-dot" style="background:#C9A84C;"></span>Canonização</div>
+      </div>
+
+      <a href="mapa.html" class="mapa-section-btn">Explorar o Mapa →</a>
+    </div>
+
+    <div class="mapa-section-preview">
+      <div class="mapa-preview-frame" onclick="window.location='mapa.html'">
+        <div class="mapa-preview-pais">
+          <!-- Europa -->
+          <span class="mapa-preview-dot" style="background:#4A7ABF; top:28%; left:48%;"></span>
+          <span class="mapa-preview-dot" style="background:#7B1C2E; top:32%; left:51%;"></span>
+          <span class="mapa-preview-dot" style="background:#4A6741; top:30%; left:54%;"></span>
+          <span class="mapa-preview-dot" style="background:#C9A84C; top:35%; left:50%;"></span>
+          <!-- Américas -->
+          <span class="mapa-preview-dot" style="background:#7B1C2E; top:38%; left:22%;"></span>
+          <span class="mapa-preview-dot" style="background:#4A7ABF; top:45%; left:18%;"></span>
+          <!-- Ásia -->
+          <span class="mapa-preview-dot" style="background:#4A6741; top:40%; left:72%;"></span>
+          <span class="mapa-preview-dot" style="background:#7B1C2E; top:35%; left:68%;"></span>
+          <!-- África -->
+          <span class="mapa-preview-dot" style="background:#4A7ABF; top:52%; left:50%;"></span>
+          <span class="mapa-preview-dot" style="background:#C9A84C; top:48%; left:53%;"></span>
+        </div>
+        <div class="mapa-preview-overlay">
+          <span>Clique para explorar</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
 </section>
 
   <!-- NEWSLETTER -->

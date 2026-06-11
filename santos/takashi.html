@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Servo de Deus Takashi Nagai · Santos da Modernidade</title>
+  <meta name="description" content="Conheça a vida de Takashi Nagai — médico japonês, sobrevivente da bomba atômica de Nagasaki, convertido ao catolicismo, que transformou seu sofrimento em mensagem de paz e perdão." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600&family=Raleway:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../style.css" />
+  <style>
+    .perfil-hero {
+      min-height: 100vh;
+      background: var(--dark);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      position: relative;
+      overflow: hidden;
+      padding-top: 80px;
+    }
+    .perfil-hero-bg {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 40%, rgba(201,168,76,0.07) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 40% at 20% 80%, rgba(123,28,46,0.1) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 40% at 80% 20%, rgba(27,45,79,0.12) 0%, transparent 60%);
+    }
+    .perfil-hero-left {
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 5rem 4rem 5rem 5rem; position: relative; z-index: 2;
+    }
+    .perfil-breadcrumb {
+      font-size: 0.68rem; letter-spacing: 0.25em; text-transform: uppercase;
+      color: rgba(201,168,76,0.5); margin-bottom: 2rem;
+    }
+    .perfil-breadcrumb a { color: inherit; text-decoration: none; transition: color 0.2s; }
+    .perfil-breadcrumb a:hover { color: var(--gold); }
+    .perfil-badge {
+      display: inline-block; border: 1px solid rgba(201,168,76,0.4);
+      color: var(--gold); font-size: 0.65rem; letter-spacing: 0.25em;
+      text-transform: uppercase; padding: 0.35rem 0.9rem; margin-bottom: 1.5rem;
+    }
+    .perfil-nome {
+      font-family: 'Cinzel', serif; font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 600; color: var(--ivory); line-height: 1.15;
+      margin-bottom: 0.5rem; letter-spacing: 0.03em;
+    }
+    .perfil-titulo {
+      font-family: 'Cormorant Garamond', serif; font-size: 1.2rem;
+      font-style: italic; font-weight: 300; color: var(--gold-light);
+      margin-bottom: 2rem; opacity: 0.8;
+    }
+    .perfil-meta { display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 2.5rem; }
+    .perfil-meta-item { display: flex; gap: 1rem; align-items: baseline; }
+    .perfil-meta-label {
+      color: rgba(201,168,76,0.6); font-weight: 500; letter-spacing: 0.1em;
+      min-width: 110px; font-size: 0.72rem; text-transform: uppercase; flex-shrink: 0;
+    }
+    .perfil-meta-value { color: rgba(240,232,216,0.75); font-size: 0.85rem; line-height: 1.4; }
+    .perfil-frase {
+      font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-style: italic;
+      color: var(--gold-light); border-left: 2px solid var(--gold);
+      padding-left: 1.25rem; line-height: 1.65; opacity: 0.9;
+    }
+    .perfil-hero-right {
+      position: relative; background: var(--dark-mid);
+      display: flex; align-items: center; justify-content: center; overflow: hidden;
+    }
+    .perfil-hero-right::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse at center, rgba(201,168,76,0.06) 0%, transparent 70%);
+    }
+    .perfil-hero-ano {
+      position: absolute; bottom: 2rem; right: 2rem;
+      font-family: 'Cinzel', serif; font-size: 4rem; font-weight: 600;
+      color: rgba(201,168,76,0.08); line-height: 1;
+    }
+    .perfil-content { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+    .section-tag {
+      font-size: 0.65rem; font-weight: 500; letter-spacing: 0.3em;
+      text-transform: uppercase; color: var(--gold-dark); display: block; margin-bottom: 1rem;
+    }
+    .section-header-left h2 {
+      font-family: 'Cinzel', serif; font-size: 1.5rem; font-weight: 400;
+      color: var(--dark); letter-spacing: 0.08em; margin-bottom: 0.5rem;
+    }
+    .section-header-left p {
+      font-family: 'Cormorant Garamond', serif; font-size: 1rem;
+      font-style: italic; color: var(--text-muted);
+    }
+    .bio-section {
+      padding: 7rem 0; display: grid; grid-template-columns: 1fr 2fr;
+      gap: 5rem; border-bottom: 1px solid var(--gold-light);
+    }
+    .bio-sidebar { position: sticky; top: 100px; align-self: start; }
+    .sidebar-title {
+      font-family: 'Cinzel', serif; font-size: 1.3rem; font-weight: 400;
+      color: var(--dark); letter-spacing: 0.06em; line-height: 1.4;
+    }
+    .sidebar-ornament { width: 30px; height: 1px; background: var(--gold); margin: 1.5rem 0; }
+    .sidebar-resumo {
+      font-family: 'Cormorant Garamond', serif; font-size: 1rem;
+      font-style: italic; color: var(--text-muted); line-height: 1.7;
+    }
+    .bio-texto h3 {
+      font-family: 'Cinzel', serif; font-size: 1rem; font-weight: 400;
+      letter-spacing: 0.1em; color: var(--dark); margin: 2rem 0 0.75rem;
+    }
+    .bio-texto h3:first-child { margin-top: 0; }
+    .bio-texto p { font-size: 0.97rem; line-height: 1.9; color: var(--text-muted); margin-bottom: 1rem; }
+    .bio-texto p strong { color: var(--text); font-weight: 500; }
+    .timeline-section { padding: 7rem 0; border-bottom: 1px solid var(--gold-light); }
+    .timeline-header { margin-bottom: 3.5rem; }
+    .timeline-grid { display: grid; grid-template-columns: 1fr 1fr; position: relative; }
+    .timeline-grid::before {
+      content: ''; position: absolute; left: 50%; top: 0; bottom: 0; width: 1px;
+      background: linear-gradient(to bottom, transparent, var(--gold-light), transparent);
+      transform: translateX(-50%);
+    }
+    .tl-item { padding: 2rem; position: relative; }
+    .tl-item:nth-child(odd) { text-align: right; padding-right: 3rem; }
+    .tl-item:nth-child(even) { padding-left: 3rem; }
+    .tl-item::after {
+      content: ''; position: absolute; top: 2.5rem; width: 8px; height: 8px;
+      background: var(--gold); transform: rotate(45deg);
+    }
+    .tl-item:nth-child(odd)::after { right: -4px; }
+    .tl-item:nth-child(even)::after { left: -4px; }
+    .tl-ano { font-family: 'Cinzel', serif; font-size: 0.72rem; letter-spacing: 0.2em; color: var(--gold-dark); margin-bottom: 0.4rem; }
+    .tl-evento { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; color: var(--dark); margin-bottom: 0.3rem; }
+    .tl-desc { font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; }
+    .milagres-section { padding: 7rem 0; background: var(--parchment); margin: 0 -2rem; padding-left: 2rem; padding-right: 2rem; border-top: 1px solid var(--gold-light); border-bottom: 1px solid var(--gold-light); }
+    .milagres-inner { max-width: 1100px; margin: 0 auto; }
+    .milagres-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 3rem; }
+    .milagre-card { background: var(--ivory); border: 1px solid var(--gold-light); padding: 2rem; }
+    .milagre-numero { font-family: 'Cinzel', serif; font-size: 2.5rem; font-weight: 600; color: var(--gold-light); line-height: 1; margin-bottom: 1rem; }
+    .milagre-local { font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold-dark); margin-bottom: 0.5rem; }
+    .milagre-titulo { font-family: 'Cinzel', serif; font-size: 0.95rem; color: var(--dark); margin-bottom: 0.75rem; }
+    .milagre-desc { font-size: 0.88rem; line-height: 1.75; color: var(--text-muted); }
+    .milagre-ano-badge { display: inline-block; margin-top: 1rem; border: 1px solid var(--gold-light); color: var(--gold-dark); font-size: 0.65rem; letter-spacing: 0.18em; padding: 0.2rem 0.6rem; }
+
+    .galeria-section { padding: 7rem 0; border-bottom: 1px solid var(--gold-light); }
+    .galeria-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; grid-template-rows: 200px 200px; gap: 1rem; margin-top: 3rem; }
+    .galeria-item {
+      background: var(--dark-mid); display: flex; align-items: center; justify-content: center;
+      color: rgba(201,168,76,0.2); font-size: 0.65rem; letter-spacing: 0.2em;
+      text-transform: uppercase; font-family: 'Cinzel', serif;
+      border: 1px solid rgba(201,168,76,0.1); overflow: hidden;
+    }
+    .galeria-item:first-child { grid-row: 1 / 3; }
+    .galeria-item img { width: 100%; height: 100%; object-fit: cover; }
+    .galeria-legenda { font-size: 0.75rem; color: var(--text-muted); text-align: center; margin-top: 1rem; font-style: italic; font-family: 'Cormorant Garamond', serif; }
+    .oracao-section {
+      padding: 7rem 0; background: var(--blue-deep); margin: 0 -2rem;
+      padding-left: 2rem; padding-right: 2rem; text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .oracao-section::before {
+      content: '"'; position: absolute; top: -2rem; left: 50%; transform: translateX(-50%);
+      font-family: 'Cormorant Garamond', serif; font-size: 20rem;
+      color: rgba(201,168,76,0.05); line-height: 1; pointer-events: none;
+    }
+    .oracao-inner { max-width: 680px; margin: 0 auto; position: relative; z-index: 2; }
+    .oracao-section .section-tag { color: var(--gold); }
+    .oracao-titulo { font-family: 'Cinzel', serif; font-size: 1.4rem; color: var(--ivory); letter-spacing: 0.08em; margin-bottom: 2.5rem; }
+    .oracao-texto { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 300; line-height: 2; color: rgba(240,232,216,0.8); text-align: left; }
+    .oracao-texto p { margin-bottom: 1rem; }
+    .oracao-fecho { font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); opacity: 0.7; margin-top: 2rem; }
+    .fontes-section { padding: 7rem 0; }
+    .fontes-lista { margin-top: 2.5rem; display: flex; flex-direction: column; }
+    .fonte-item { display: grid; grid-template-columns: auto 1fr auto; gap: 1.5rem; align-items: center; padding: 1.25rem 0; border-bottom: 1px solid var(--gold-light); }
+    .fonte-tipo { font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold-dark); border: 1px solid var(--gold-light); padding: 0.2rem 0.6rem; white-space: nowrap; }
+    .fonte-titulo { font-size: 0.92rem; color: var(--text); }
+    .fonte-autor { font-size: 0.8rem; color: var(--text-muted); margin-top: 0.2rem; font-family: 'Cormorant Garamond', serif; font-style: italic; }
+    .fonte-link { font-size: 0.7rem; color: var(--gold-dark); text-decoration: none; letter-spacing: 0.1em; white-space: nowrap; transition: color 0.2s; }
+    .fonte-link:hover { color: var(--gold); }
+    .nav-santos-div { padding: 3rem 0; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--gold-light); margin-top: 2rem; }
+    .nav-santo-link { text-decoration: none; display: flex; flex-direction: column; gap: 0.3rem; }
+    .nav-santo-dir { text-align: right; }
+    .nav-santo-label { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted); }
+    .nav-santo-nome { font-family: 'Cinzel', serif; font-size: 0.95rem; color: var(--gold-dark); transition: color 0.2s; }
+    .nav-santo-link:hover .nav-santo-nome { color: var(--gold); }
+     @media (max-width: 768px) {
+      .perfil-hero { grid-template-columns: 1fr; }
+      .perfil-hero-right { display: flex; }
+      .perfil-hero-left { padding: 3rem 1.5rem; }
+      .bio-section { grid-template-columns: 1fr; gap: 2rem; }
+      .bio-sidebar { position: static; }
+      .timeline-grid { grid-template-columns: 1fr; }
+      .timeline-grid::before { display: none; }
+      .tl-item { text-align: left !important; padding: 1rem 0 1rem 2rem !important; }
+      .tl-item::after { left: 0 !important; right: auto !important; }
+      .milagres-grid { grid-template-columns: 1fr; }
+      .galeria-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+      .galeria-item:first-child { grid-row: auto; }
+      .fonte-item { grid-template-columns: 1fr; gap: 0.5rem; }
+      .section-header-left { padding: 0 24px; }
+      .section-tag { padding-left: 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="../index.html" class="nav-logo">Santos da Modernidade</a>
+    <ul class="nav-links">
+      <li><a href="../index.html#santos">Os Santos</a></li>
+      <li><a href="../categoria.html">Categorias</a></li>
+      <li><a href="../index.html#cronologia">Cronologia</a></li>
+      <li><a href="../mapa.html">Mapa</a></li>
+      <li><a href="../sobre.html">Sobre</a></li>
+    </ul>
+    <button id="nav-hamburguer" onclick="toggleMenu()"
+            style="background:transparent;border:none;color:#C9A84C;font-size:1.5rem;cursor:pointer;padding:0.25rem 0.5rem;-webkit-appearance:none;appearance:none;">☰</button>
+  </nav>
+
+  <!-- HERO -->
+  <section class="perfil-hero">
+    <div class="perfil-hero-bg"></div>
+    <div class="perfil-hero-left">
+      <p class="perfil-breadcrumb">
+        <a href="../index.html">Início</a> &nbsp;·&nbsp;
+        <a href="../index.html#santos">Os Santos</a> &nbsp;·&nbsp;
+        Takashi Nagai
+      </p>
+      <span class="perfil-badge">Servo de Deus · Processo de Beatificação em curso</span>
+      <h1 class="perfil-nome">Takashi<br>Nagai</h1>
+      <p class="perfil-titulo">"O Anjo de Nagasaki" — O médico que transformou a bomba atômica em oferta a Deus</p>
+      <div class="perfil-meta">
+        <div class="perfil-meta-item">
+          <span class="perfil-meta-label">Nascimento</span>
+          <span class="perfil-meta-value">3 de fevereiro de 1908 · Matsue, Japão</span>
+        </div>
+        <div class="perfil-meta-item">
+          <span class="perfil-meta-label">Falecimento</span>
+          <span class="perfil-meta-value">1 de maio de 1951 · Nagasaki, Japão</span>
+        </div>
+        <div class="perfil-meta-item">
+          <span class="perfil-meta-label">Conversão</span>
+          <span class="perfil-meta-value">1934 · Recebeu o batismo católico em Nagasaki</span>
+        </div>
+        <div class="perfil-meta-item">
+          <span class="perfil-meta-label">Status</span>
+          <span class="perfil-meta-value">Servo de Deus · Causa aberta pela Diocese de Nagasaki</span>
+        </div>
+        <div class="perfil-meta-item">
+          <span class="perfil-meta-label">Obra principal</span>
+          <span class="perfil-meta-value">As Sinos de Nagasaki · Deixei Cair as Minhas Flores</span>
+        </div>
+        <div class="perfil-meta-item">
+          <span class="perfil-meta-label">Homenagens</span>
+          <span class="perfil-meta-value">Cidadão honorário de Nagasaki · Amigo do Papa Pio XII</span>
+        </div>
+      </div>
+      <p class="perfil-frase">"Nagasaki deve ser o último campo de batalha. Devemos construir a paz — não com ódio, mas com amor."</p>
+    </div>
+    <div class="perfil-hero-right" style="position:relative;overflow:hidden;">
+      <img src="../imagens/takashi2.jpg" alt="Takashi Nagai"
+           style="width:100%;height:100%;object-fit:cover;object-position:top;" />
+      <span class="perfil-hero-ano">1951</span>
+    </div>
+  </section>
+
+  <!-- CONTEÚDO -->
+  <div class="perfil-content">
+
+    <!-- BIOGRAFIA -->
+    <section class="bio-section" id="biografia">
+    <div class="bio-sidebar">
+      <span class="section-tag">Seção 01</span>
+      <h2 class="sidebar-title">Biografia<br>Detalhada</h2>
+      <div class="sidebar-ornament"></div>
+      <p class="sidebar-resumo">Médico radiologista japonês, agnóstico convertido ao catolicismo, sobrevivente da bomba atômica de Nagasaki e autor de obras que tocaram o mundo inteiro — Takashi Nagai é um dos testemunhos mais extraordinários de fé, perdão e esperança do século XX.</p>
+    </div>
+    <div class="bio-texto">
+
+      <h3>Infância e Formação — O Jovem Agnóstico</h3>
+      <p>Takashi Nagai nasceu em <strong>3 de fevereiro de 1908</strong> em Matsue, uma cidade da região de Shimane no Japão, numa família de tradição xintoísta e forte herança samurai. Seu pai era médico — e desde cedo Takashi demonstrou uma inteligência excepcional e uma curiosidade científica que o distinguia dos colegas.</p>
+      <p>Estudou medicina na Universidade Imperial de Nagasaki, especializando-se em radiologia — uma área ainda pioneira e de imenso risco, pois a proteção contra a radiação era mínima na época. Como a maioria dos intelectuais japoneses de sua geração, era <strong>agnóstico</strong> — respeitava as tradições religiosas do Japão, mas não praticava nenhuma fé. A ciência e o método empírico eram seu universo de certezas.</p>
+      <p>Durante seus estudos em Nagasaki, hospedou-se na casa de uma família católica de tradição milenar — os Moriyama, descendentes dos <strong>Kakure Kirishitan</strong> ("cristãos escondidos"), católicos que haviam mantido a fé em segredo por mais de 250 anos de perseguição durante o isolamento feudal japonês. O contato com o testemunho silencioso dessa família e com a profundidade de sua fé diária plantou uma semente que levaria anos para germinar.</p>
+
+      <h3>A Conversão — Uma Fé Encontrada na Dor</h3>
+      <p>Iniciando o seu período de internato médico, Takashi recebeu uma notícia devastadora: sua mãe havia sofrido um derrame e estava morrendo. Ele correu para o seu leito de morte. No último olhar de sua mãe, Takashi percebeu uma presença espiritual que a ciência materialista não conseguia explicar. A morte da mãe abalou profundamente o jovem médico que acreditava que a ciência tinha respostas para tudo — e percebeu que diante do mistério da alma, o ateísmo emudecia.</p>
+      <p>Nos anos seguintes, aprofundou suas conversas com a família Moriyama. Leu avidamente os evangelhos, os registros históricos dos mártires cristãos japoneses do século XVII, e os textos filosóficos de <strong>Blaise Pascal</strong> — sendo impactado pela famosa "aposta pascaliana" sobre a existência de Deus. Em <strong>1934</strong>, pediu o batismo na Catedral de Urakami, adotando o nome cristão de Paulo, em honra a São Paulo Miki. Logo depois, casou-se com <strong>Midori Moriyama</strong>, a filha da família que o havia acolhido — uma mulher de fé sólida e amor extraordinário que seria a grande companheira e sustentáculo de sua vida.</p>
+
+      <h3>O Médico e a Guerra — Radiologia no Front</h3>
+      <p>Com a eclosão da Segunda Guerra Sino-Japonesa, Takashi foi convocado como médico militar do exército imperial. Serviu na China em condições brutais, tratando feridos de guerra em hospitais de campanha sob constante bombardeio. Diante da crueldade e do absurdo dos combates, ele se dedicou a salvar vidas de soldados e civis chineses indistintamente. Voltou ao Japão transformado — mais maduro, profundamente sensível ao sofrimento humano e amadurecido na oração.</p>
+      <p>De volta a Nagasaki, retomou seu trabalho como professor titular e pesquisador chefe de radiologia na Universidade. Devido à escassez de filmes radiográficos causada pela guerra, Takashi realizava os exames diretamente por fluoroscopia visual, expondo-se diretamente aos raios-X. Em **junho de 1945**, foi diagnosticado com **leucemia mieloide crônica** devido ao seu trabalho. Os médicos lhe deram menos de três anos de vida.</p>
+      <p>Takashi aceitou o diagnóstico com comovente serenidade sobrenatural. Assim como o jovem Carlo Acutis faria décadas mais tarde, ele decidiu oferecer o tempo que lhe restava a Deus. Disse a Midori: <em>"Vou trabalhar enquanto puder. E quando não puder mais trabalhar, vou rezar."</em></p>
+
+      <h3>9 de Agosto de 1945 — A Bomba</h3>
+      <p>Em <strong>9 de agosto de 1945</strong>, às 11h02 da manhã, a segunda bomba atômica da história — batizada de "Fat Man" — explodiu diretamente sobre o bairro de Urakami, em Nagasaki. O epicentro da explosão ficou a escassos **700 metros** do hospital universitário onde Takashi estava trabalhando.</p>
+      <p>O impacto destruiu o prédio e matou centenas de colegas e pacientes instantaneamente. Takashi sobreviveu por milagre, mas ficou gravemente ferido, com a artéria temporal cortada por estilhaços de vidro. Mesmo sangrando intensamente, ele estancou o próprio ferimento e trabalhou **sem parar por três dias**, liderando a equipe médica sobrevivente no socorro às vítimas carbonizadas nos escombros, até desmaiar de exaustão.</p>
+      <p>Quando a situação se estabilizou minimamente, ele caminhou até as ruínas de sua casa. Encontrou apenas cinzas. <strong>Midori, sua esposa</strong>, havia sido completamente pulverizada pelo calor atômico. Entre os restos mortais carbonizados, Takashi encontrou o terço de metal que ela sempre carregava — o crucifixo e as contas estavam derretidos, mas a corrente permanecia intacta. Ele recolheu as cinzas de sua companheira em um balde de zinco, chorou e rezou por perdão.</p>
+      <p>A bomba matou instantaneamente cerca de <strong>74.000 pessoas</strong>, desintegrando quase toda a comunidade católica de Urakami, a linhagem histórica dos cristãos escondidos que resistiram a séculos de perseguição estatal.</p>
+
+      <h3>A Resposta ao Horror — Nyokodo e os Livros</h3>
+      <p>A leucemia, severamente agravada pela radiação secundária da bomba, progrediu a ponto de paralisá-lo. Em <strong>1948</strong>, Takashi já não conseguia mais se levantar da cama. Auxiliado por amigos, ele construiu uma cabana minúscula de madeira com apenas dois tatames de área, erguida sobre o solo radioativo. Deu-lhe o nome de <strong>Nyokodo</strong> ("Cabana do Como a Ti Mesmo"), baseando-se no mandamento de Cristo: *“Amarás o teu próximo como a ti mesmo”*.</p>
+      <p>Imobilizado naquela pequena cabana, Takashi iniciou o período mais fecundo de sua vida. Segurando o pincel com extrema dificuldade devido às dores, ele escreveu mais de uma dezena de livros. Sua obra-prima, <strong>"Os Sinos de Nagasaki"</strong> (1949), foi um estrondoso best-seller que narrava com realismo científico e mística cristã a tragédia atômica, tornando-se o hino de reconstrução espiritual de todo o Japão pós-guerra.</p>
+      <p>No funeral das vítimas, em meio ao luto coletivo e ao desejo de revolta, Takashi surpreendeu o país com um discurso histórico. Ele exortou os sobreviventes a não caírem no ressentimento ou no ódio político. Ele propôs que Urakami e seus fiéis haviam sido escolhidos como um sacrifício puro de paz — uma oferenda inocente para colocar um fim definitivo à guerra mundial. Sua mensagem de **reconciliação total e não-violência** evitou que a dor se transformasse em vingança.</p>
+
+      <h3>A Amizade com o Papa e o Legado</h3>
+      <p>A fama do "santo acamado" cruzou fronteiras. O **Papa Pio XII**, profundamente comovido por seu testemunho, enviou um representante oficial a Nyokodo, o Cardeal Gilroy, para entregar a Takashi um rosário de prata abençoado e uma mensagem apostólica. Os sinos da Catedral de Urakami, que haviam sido soterrados pela explosão, foram desenterrados e tocados novamente na véspera de Natal de 1945, um momento de extrema emoção que Takashi imortalizou em suas páginas.</p>
+      <p>O General <strong>Douglas MacArthur</strong>, comandante supremo das forças de ocupação aliadas, fez questão de visitar pessoalmente o médico moribundo em sua cabana de dois tatames. O Imperador Hirohito e Helen Keller também lhe renderam homenagens. Nagasaki declarou-o seu primeiro **Cidadão Honorário**, e Nyokodo tornou-se o epicentro espiritual do pacifismo japonês.</p>
+      <p>Takashi Nagai faleceu no hospital de Nagasaki em <strong>1 de maio de 1951</strong>, aos 43 anos. Suas últimas palavras audíveis foram uma jaculatória mariana: *“Jesus, Maria, José, nas vossas mãos encomendo o meu espírito”*. Seu funeral parou a cidade, com mais de vinte mil pessoas acompanhando o cortejo.</p>
+      <p>A Arquidiocese de Nagasaki abriu oficialmente sua causa de beatificação, conferindo-lhe o título de <strong>Servo de Deus</strong>. Sua antiga cabana permanece intacta ao lado de um museu biográfico visitado por peregrinos do mundo inteiro, mantendo viva a sua memória.</p>
+
+      <h3>Sua Importância para a Modernidade</h3>
+      <p>O testemunho do Dr. Takashi Nagai é de vital importância para a nossa **sociedade contemporânea**. Em uma era hipertecnológica marcada pelo perigo da desumanização, pela polarização ideológica e pelo retorno das tensões nucleares, ele surge como o modelo perfeito de síntese entre a **ciência rigorosa e a fé mística**. Nagai não rejeitou a medicina ou o progresso técnico, mas demonstrou que a ciência sem uma alma espiritualizada pode se transformar em destruição em massa. Sua resposta ao trauma atômico — escolhendo o perdão imediato no lugar do rancor geopolítico, e o amor ativo no lugar do vitimismo — oferece ao homem moderno a única resposta eficaz contra os ciclos de violência e desespero que ameaçam o século XXI.</p>
+    </div>
+  </section>
+
+    <!-- LINHA DO TEMPO -->
+    <section class="timeline-section" id="cronologia">
+      <div class="timeline-header">
+        <span class="section-tag">Seção 02</span>
+        <div class="section-header-left">
+          <h2>Linha do Tempo</h2>
+          <p>43 anos de vida — da medicina agnóstica ao testemunho de fé mais extraordinário do Japão moderno</p>
+        </div>
+      </div>
+      <div class="timeline-grid">
+        <div class="tl-item">
+          <p class="tl-ano">3 Fev 1908</p>
+          <h3 class="tl-evento">Nascimento em Matsue</h3>
+          <p class="tl-desc">Nasce numa família xintoísta de tradição samurai na região de Shimane, Japão. Desde criança demonstra aptidão excepcional para as ciências.</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-ano">1928 – 1932</p>
+          <h3 class="tl-evento">Medicina em Nagasaki</h3>
+          <p class="tl-desc">Estuda medicina na Universidade Imperial de Nagasaki. Hospeda-se com a família Moriyama — descendentes dos cristãos escondidos — e tem o primeiro contato com a fé católica.</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-ano">1930</p>
+          <h3 class="tl-evento">Morte da mãe — A primeira crise</h3>
+          <p class="tl-desc">A morte inesperada da mãe abala profundamente o jovem médico agnóstico, que percebe que a ciência não tem respostas para as questões mais fundamentais da existência.</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-ano">1934</p>
+          <h3 class="tl-evento">Batismo e casamento</h3>
+          <p class="tl-desc">Recebe o batismo católico com o nome de Paulo. Casa-se com Midori Moriyama — mulher de fé profunda que será a grande companheira de sua vida.</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-ano">1939 – 1945</p>
+          <h3 class="tl-evento">Médico na Segunda Guerra</h3>
+          <p class="tl-desc">Serve como médico militar na China. Anos de exposição à radiação sem proteção adequada resultam no diagnóstico de leucemia em 1945.</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-ano">9 Ago 1945</p>
+          <h3 class="tl-evento">A Bomba de Nagasaki</h3>
+          <p class="tl-desc">Sobrevive à bomba atômica a 800 metros do epicentro. Trabalha ferido por horas tratando sobreviventes. Descobre que Midori morreu na explosão — encontrada pelo rosário de metal derretido.</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-ano">1945 – 1948</p>
+          <h3 class="tl-evento">Reconstrução e pregação</h3>
+          <p class="tl-desc">Apesar da leucemia avançada, trabalha na reconstrução de Urakami e escreve artigos, discursos e livros sobre a experiência da bomba e o chamado à paz.</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-ano">1948</p>
+          <h3 class="tl-evento">Nyokodo — A cabana do amor</h3>
+          <p class="tl-desc">Já incapaz de se levantar, instala-se na cabana Nyokodo de dois tatames. Escreve "Os Sinos de Nagasaki" e outras obras que serão lidas no mundo inteiro.</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-ano">1949 – 1951</p>
+          <h3 class="tl-evento">Visitas e reconhecimento mundial</h3>
+          <p class="tl-desc">Recebe o Papa Pio XII por correspondência, o General MacArthur pessoalmente e delegações do mundo inteiro. Nagasaki o declara cidadão honorário.</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-ano">1 Mai 1951</p>
+          <h3 class="tl-evento">Morte em Nagasaki</h3>
+          <p class="tl-desc">Morre aos 43 anos rodeado pelos filhos e pela comunidade de Urakami. E a Diocese de Nagasaki abre sua causa de beatificação.</p>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- TESTEMUNHO NO LUGAR DOS MILAGRES -->
+  <section class="milagres-section" id="testemunho">
+    <div class="milagres-inner">
+      <span class="section-tag">Seção 03</span>
+      <div class="section-header-left">
+        <h2>Processo de Beatificação</h2>
+        <p>O caminho de Takashi Nagai rumo ao reconhecimento oficial da Igreja</p>
+      </div>
+      <div class="milagres-grid">
+        <div class="milagre-card">
+          <p class="milagre-numero">✦</p>
+          <p class="milagre-local">Japão · Diocese de Nagasaki</p>
+          <h3 class="milagre-titulo">Causa aberta — Servo de Deus</h3>
+          <p class="milagre-desc">A Diocese de Nagasaki abriu formalmente a causa de beatificação de Takashi Nagai. Ele recebeu o título de "Servo de Deus" — o primeiro grau oficial do processo que pode levá-lo à beatificação e canonização. A causa está em curso no Vaticano, com investigação de sua vida, virtudes e possíveis milagres atribuídos à sua intercessão.</p>
+          <span class="milagre-ano-badge">Causa em andamento · Diocese de Nagasaki</span>
+        </div>
+        <div class="milagre-card">
+          <p class="milagre-numero">✦</p>
+          <p class="milagre-local">Mundo · Legado espiritual</p>
+          <h3 class="milagre-titulo">Uma vida inteira como sinal</h3>
+          <p class="milagre-desc">A vida de Takashi Nagai é ela própria um sinal extraordinário. Médico agnóstico convertido, sobrevivente da maior catástrofe nuclear da história, que escolheu o perdão quando tinha todo o direito ao ódio — e que da cabana de dois tatames onde morria escreveu obras lidas em todo o mundo. Relatos de graças obtidas por sua intercessão chegam continuamente à Diocese de Nagasaki.</p>
+          <span class="milagre-ano-badge">Processo em curso</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="perfil-content">
+
+    <!-- GALERIA -->
+    <section class="galeria-section" id="galeria">
+      <span class="section-tag">Seção 04</span>
+      <div class="section-header-left">
+        <h2>Galeria</h2>
+        <p>Imagens da vida, do trabalho e do testemunho de Takashi Nagai em Nagasaki</p>
+      </div>
+      <div class="galeria-grid">
+        <div class="galeria-item">
+          <img src="../imagens/takashi5.jpg" alt="Takashi Nagai" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.innerHTML='Foto 5'" />
+        </div>
+        <div class="galeria-item">
+          <img src="../imagens/takashi1.gif" alt="Takashi Nagai" style="width:100%;height:100%;object-fit:cover;" />
+        </div>
+        <div class="galeria-item">
+          <img src="../imagens/takashi2.jpg" alt="Takashi Nagai" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.innerHTML='Foto 2'" />
+        </div>
+        <div class="galeria-item">
+          <img src="../imagens/takashi3.jpg" alt="Takashi Nagai" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.innerHTML='Foto 3'" />
+        </div>
+        <div class="galeria-item">
+          <img src="../imagens/takashi4.jpg" alt="Takashi Nagai" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.innerHTML='Foto 4'" />
+        </div>
+        
+      </div>
+      <p class="galeria-legenda">
+        Imagens utilizadas sob licença de seus respectivos autores.
+        <a href="../creditos.html" style="color:var(--gold-dark);text-decoration:none;">Créditos completos disponíveis aqui.</a>
+      </p>
+    </section>
+
+    <!-- FONTES -->
+    <section class="fontes-section" id="fontes">
+      <span class="section-tag">Seção 06</span>
+      <div class="section-header-left">
+        <h2>Fontes e Referências</h2>
+        <p>Documentação utilizada para a elaboração deste perfil</p>
+      </div>
+      <div class="fontes-lista">
+        <div class="fonte-item">
+          <span class="fonte-tipo">Livro</span>
+          <div><p class="fonte-titulo">Os Sinos de Nagasaki</p><p class="fonte-autor">Takashi Nagai · Editora Loyola, 1984</p></div>
+          <span class="fonte-link">Impresso</span>
+        </div>
+        <div class="fonte-item">
+          <span class="fonte-tipo">Livro</span>
+          <div><p class="fonte-titulo">Deixei Cair as Minhas Flores</p><p class="fonte-autor">Takashi Nagai · Editora Loyola, 1987</p></div>
+          <span class="fonte-link">Impresso</span>
+        </div>
+        <div class="fonte-item">
+          <span class="fonte-tipo">Livro</span>
+          <div><p class="fonte-titulo">A Song for Nagasaki — The Story of Takashi Nagai</p><p class="fonte-autor">Paul Glynn · Ignatius Press, 1988</p></div>
+          <span class="fonte-link">Impresso</span>
+        </div>
+        <div class="fonte-item">
+          <span class="fonte-tipo">Livro</span>
+          <div><p class="fonte-titulo">Nagai Takashi — O Homem de Nagasaki</p><p class="fonte-autor">Sherwood Sugden · Editora Paulus, 1991</p></div>
+          <span class="fonte-link">Impresso</span>
+        </div>
+        <div class="fonte-item">
+          <span class="fonte-tipo">Site Oficial</span>
+          <div><p class="fonte-titulo">Museu Nyokodo · Nagasaki, Japão</p><p class="fonte-autor">Preservação da cabana e arquivo histórico de Takashi Nagai</p></div>
+          <a href="https://nagaitakashi.nagasakipeace.jp/english/overview.html" target="_blank" class="fonte-link">Acessar →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- NAVEGAÇÃO -->
+    <div class="nav-santos-div">
+      <a href="foucauld.html" class="nav-santo-link">
+        <span class="nav-santo-label">← Santo Anterior</span>
+        <span class="nav-santo-nome">São Charles de Foucauld</span>
+      </a>
+      <a href="edith.htmls" class="nav-santo-link nav-santo-dir">
+        <span class="nav-santo-label">Próximo Santo →</span>
+        <span class="nav-santo-nome">Santa Edith Stein</span>
+      </a>
+    </div>
+
+  </div>
+
+  <!-- ORAÇÃO -->
+  <section class="oracao-section" id="oracao">
+    <div class="oracao-inner">
+      <span class="section-tag">Seção 05</span>
+      <h2 class="oracao-titulo">Oração por Intercessão de Takashi Nagai</h2>
+      <div class="oracao-texto">
+        <p>Senhor Jesus, Tu que carregaste a Cruz e transformaste o instrumento de morte no símbolo da maior vitória da história, concede-nos, pela intercessão do Servo de Deus Takashi Nagai, a graça de encontrar sentido no sofrimento — não como resignação passiva, mas como oferta consciente e amorosa unida à Tua Paixão.</p>
+        <p>Ele perdeu a esposa, a saúde e o futuro num único segundo — e escolheu o amor. Numa cabana de dois tatames, moribundo e sem recursos, escreveu palavras que tocaram o mundo inteiro. Que seu exemplo nos ensine que a grandeza não depende das circunstâncias — depende da direção que damos ao nosso coração.</p>
+        <p>Servo de Deus Takashi Nagai, homem de ciência e de fé, intercessor dos que sofrem com doenças graves e dos que buscam sentido no meio do desastre, intercede por nós. Que Nagasaki seja realmente o último campo de batalha nuclear — e que a paz que o mundo não consegue construir seja concedida por Deus àqueles que a buscam com coração sincero. Amém.</p>
+      </div>
+      <p class="oracao-fecho">· Para uso privado · Aprovação eclesiástica recomendada ·</p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <span class="footer-logo">Santos da Modernidade</span>
+      <span class="footer-copy">© Santos da Modernidade · Ad Maiorem Dei Gloriam</span>
+    </div>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      const menu = document.querySelector('.nav-links');
+      const btn = document.getElementById('nav-hamburguer');
+      menu.classList.toggle('aberto');
+      btn.textContent = menu.classList.contains('aberto') ? '✕' : '☰';
+    }
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        document.querySelector('.nav-links').classList.remove('aberto');
+        document.getElementById('nav-hamburguer').textContent = '☰';
+      });
+    });
+  </script>
+
+</body>
+</html>
