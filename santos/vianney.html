@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>São João Maria Vianney · Santos da Modernidade</title>
+  <meta name="description" content="Conheça a vida de São João Maria Vianney — o Cura d'Ars, humilde padre francês que se tornou o maior confessor da história moderna, canonizado em 1925 e padroeiro de todos os sacerdotes." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600&family=Raleway:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../style.css" />
+  <style>
+    .perfil-hero { min-height:100vh; background:var(--dark); display:grid; grid-template-columns:1fr 1fr; position:relative; overflow:hidden; padding-top:80px; }
+    .perfil-hero-bg { position:absolute; inset:0; background: radial-gradient(ellipse 80% 60% at 50% 40%, rgba(201,168,76,0.07) 0%, transparent 70%), radial-gradient(ellipse 40% 40% at 20% 80%, rgba(123,28,46,0.1) 0%, transparent 60%), radial-gradient(ellipse 40% 40% at 80% 20%, rgba(27,45,79,0.12) 0%, transparent 60%); }
+    .perfil-hero-left { display:flex; flex-direction:column; justify-content:center; padding:5rem 4rem 5rem 5rem; position:relative; z-index:2; }
+    .perfil-breadcrumb { font-size:0.68rem; letter-spacing:0.25em; text-transform:uppercase; color:rgba(201,168,76,0.5); margin-bottom:2rem; }
+    .perfil-breadcrumb a { color:inherit; text-decoration:none; transition:color 0.2s; }
+    .perfil-breadcrumb a:hover { color:var(--gold); }
+    .perfil-badge { display:inline-block; border:1px solid rgba(201,168,76,0.4); color:var(--gold); font-size:0.65rem; letter-spacing:0.25em; text-transform:uppercase; padding:0.35rem 0.9rem; margin-bottom:1.5rem; }
+    .perfil-nome { font-family:'Cinzel',serif; font-size:clamp(2rem,4vw,3.2rem); font-weight:600; color:var(--ivory); line-height:1.15; margin-bottom:0.5rem; letter-spacing:0.03em; }
+    .perfil-titulo { font-family:'Cormorant Garamond',serif; font-size:1.2rem; font-style:italic; font-weight:300; color:var(--gold-light); margin-bottom:2rem; opacity:0.8; }
+    .perfil-meta { display:flex; flex-direction:column; gap:0.6rem; margin-bottom:2.5rem; }
+    .perfil-meta-item { display:flex; gap:1rem; align-items:baseline; }
+    .perfil-meta-label { color:rgba(201,168,76,0.6); font-weight:500; letter-spacing:0.1em; min-width:110px; font-size:0.72rem; text-transform:uppercase; flex-shrink:0; }
+    .perfil-meta-value { color:rgba(240,232,216,0.75); font-size:0.85rem; line-height:1.4; }
+    .perfil-frase { font-family:'Cormorant Garamond',serif; font-size:1.1rem; font-style:italic; color:var(--gold-light); border-left:2px solid var(--gold); padding-left:1.25rem; line-height:1.65; opacity:0.9; }
+    .perfil-hero-right { position:relative; background:var(--dark-mid); display:flex; align-items:center; justify-content:center; overflow:hidden; }
+    .perfil-hero-right::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse at center, rgba(201,168,76,0.06) 0%, transparent 70%); }
+    .perfil-hero-ano { position:absolute; bottom:2rem; right:2rem; font-family:'Cinzel',serif; font-size:4rem; font-weight:600; color:rgba(201,168,76,0.08); line-height:1; }
+    .perfil-content { max-width:1100px; margin:0 auto; padding:0 2rem; }
+    .section-tag { font-size:0.65rem; font-weight:500; letter-spacing:0.3em; text-transform:uppercase; color:var(--gold-dark); display:block; margin-bottom:1rem; }
+    .section-header-left h2 { font-family:'Cinzel',serif; font-size:1.5rem; font-weight:400; color:var(--dark); letter-spacing:0.08em; margin-bottom:0.5rem; }
+    .section-header-left p { font-family:'Cormorant Garamond',serif; font-size:1rem; font-style:italic; color:var(--text-muted); }
+    .bio-section { padding:7rem 0; display:grid; grid-template-columns:1fr 2fr; gap:5rem; border-bottom:1px solid var(--gold-light); }
+    .bio-sidebar { position:sticky; top:100px; align-self:start; }
+    .sidebar-title { font-family:'Cinzel',serif; font-size:1.3rem; font-weight:400; color:var(--dark); letter-spacing:0.06em; line-height:1.4; }
+    .sidebar-ornament { width:30px; height:1px; background:var(--gold); margin:1.5rem 0; }
+    .sidebar-resumo { font-family:'Cormorant Garamond',serif; font-size:1rem; font-style:italic; color:var(--text-muted); line-height:1.7; }
+    .bio-texto h3 { font-family:'Cinzel',serif; font-size:1rem; font-weight:400; letter-spacing:0.1em; color:var(--dark); margin:2rem 0 0.75rem; }
+    .bio-texto h3:first-child { margin-top:0; }
+    .bio-texto p { font-size:0.97rem; line-height:1.9; color:var(--text-muted); margin-bottom:1rem; }
+    .bio-texto p strong { color:var(--text); font-weight:500; }
+    .timeline-section { padding:7rem 0; border-bottom:1px solid var(--gold-light); }
+    .timeline-header { margin-bottom:3.5rem; }
+    .timeline-grid { display:grid; grid-template-columns:1fr 1fr; position:relative; }
+    .timeline-grid::before { content:''; position:absolute; left:50%; top:0; bottom:0; width:1px; background:linear-gradient(to bottom, transparent, var(--gold-light), transparent); transform:translateX(-50%); }
+    .tl-item { padding:2rem; position:relative; }
+    .tl-item:nth-child(odd) { text-align:right; padding-right:3rem; }
+    .tl-item:nth-child(even) { padding-left:3rem; }
+    .tl-item::after { content:''; position:absolute; top:2.5rem; width:8px; height:8px; background:var(--gold); transform:rotate(45deg); }
+    .tl-item:nth-child(odd)::after { right:-4px; }
+    .tl-item:nth-child(even)::after { left:-4px; }
+    .tl-ano { font-family:'Cinzel',serif; font-size:0.72rem; letter-spacing:0.2em; color:var(--gold-dark); margin-bottom:0.4rem; }
+    .tl-evento { font-family:'Cormorant Garamond',serif; font-size:1.15rem; color:var(--dark); margin-bottom:0.3rem; }
+    .tl-desc { font-size:0.85rem; color:var(--text-muted); line-height:1.6; }
+    .milagres-section { padding:7rem 0; background:var(--parchment); margin:0 -2rem; padding-left:2rem; padding-right:2rem; border-top:1px solid var(--gold-light); border-bottom:1px solid var(--gold-light); }
+    .milagres-inner { max-width:1100px; margin:0 auto; }
+    .milagres-grid { display:grid; grid-template-columns:1fr 1fr; gap:2rem; margin-top:3rem; }
+    .milagre-card { background:var(--ivory); border:1px solid var(--gold-light); padding:2rem; }
+    .milagre-numero { font-family:'Cinzel',serif; font-size:2.5rem; font-weight:600; color:var(--gold-light); line-height:1; margin-bottom:1rem; }
+    .milagre-local { font-size:0.68rem; letter-spacing:0.22em; text-transform:uppercase; color:var(--gold-dark); margin-bottom:0.5rem; }
+    .milagre-titulo { font-family:'Cinzel',serif; font-size:0.95rem; color:var(--dark); margin-bottom:0.75rem; }
+    .milagre-desc { font-size:0.88rem; line-height:1.75; color:var(--text-muted); }
+    .milagre-ano-badge { display:inline-block; margin-top:1rem; border:1px solid var(--gold-light); color:var(--gold-dark); font-size:0.65rem; letter-spacing:0.18em; padding:0.2rem 0.6rem; }
+    .galeria-section { padding:7rem 0; border-bottom:1px solid var(--gold-light); }
+    .galeria-grid { display:grid; grid-template-columns:2fr 1fr 1fr; grid-template-rows:200px 200px; gap:1rem; margin-top:3rem; }
+    .galeria-item { background:var(--dark-mid); display:flex; align-items:center; justify-content:center; color:rgba(201,168,76,0.2); font-size:0.65rem; letter-spacing:0.2em; text-transform:uppercase; font-family:'Cinzel',serif; border:1px solid rgba(201,168,76,0.1); overflow:hidden; }
+    .galeria-item:first-child { grid-row:1 / 3; }
+    .galeria-item img { width:100%; height:100%; object-fit:cover; }
+    .galeria-legenda { font-size:0.75rem; color:var(--text-muted); text-align:center; margin-top:1rem; font-style:italic; font-family:'Cormorant Garamond',serif; }
+    .oracao-section { padding:7rem 0; background:var(--blue-deep); margin:0 -2rem; padding-left:2rem; padding-right:2rem; text-align:center; position:relative; overflow:hidden; }
+    .oracao-section::before { content:'"'; position:absolute; top:-2rem; left:50%; transform:translateX(-50%); font-family:'Cormorant Garamond',serif; font-size:20rem; color:rgba(201,168,76,0.05); line-height:1; pointer-events:none; }
+    .oracao-inner { max-width:680px; margin:0 auto; position:relative; z-index:2; }
+    .oracao-section .section-tag { color:var(--gold); }
+    .oracao-titulo { font-family:'Cinzel',serif; font-size:1.4rem; color:var(--ivory); letter-spacing:0.08em; margin-bottom:2.5rem; }
+    .oracao-texto { font-family:'Cormorant Garamond',serif; font-size:1.2rem; font-weight:300; line-height:2; color:rgba(240,232,216,0.8); text-align:left; }
+    .oracao-texto p { margin-bottom:1rem; }
+    .oracao-fecho { font-size:0.72rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold); opacity:0.7; margin-top:2rem; }
+    .fontes-section { padding:7rem 0; }
+    .fontes-lista { margin-top:2.5rem; display:flex; flex-direction:column; }
+    .fonte-item { display:grid; grid-template-columns:auto 1fr auto; gap:1.5rem; align-items:center; padding:1.25rem 0; border-bottom:1px solid var(--gold-light); }
+    .fonte-tipo { font-size:0.62rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold-dark); border:1px solid var(--gold-light); padding:0.2rem 0.6rem; white-space:nowrap; }
+    .fonte-titulo { font-size:0.92rem; color:var(--text); }
+    .fonte-autor { font-size:0.8rem; color:var(--text-muted); margin-top:0.2rem; font-family:'Cormorant Garamond',serif; font-style:italic; }
+    .fonte-link { font-size:0.7rem; color:var(--gold-dark); text-decoration:none; letter-spacing:0.1em; white-space:nowrap; transition:color 0.2s; }
+    .fonte-link:hover { color:var(--gold); }
+    .nav-santos-div { padding:3rem 0; display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--gold-light); margin-top:2rem; }
+    .nav-santo-link { text-decoration:none; display:flex; flex-direction:column; gap:0.3rem; }
+    .nav-santo-dir { text-align:right; }
+    .nav-santo-label { font-size:0.65rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--text-muted); }
+    .nav-santo-nome { font-family:'Cinzel',serif; font-size:0.95rem; color:var(--gold-dark); transition:color 0.2s; }
+    .nav-santo-link:hover .nav-santo-nome { color:var(--gold); }
+    @media (max-width:768px) {
+      .perfil-hero { grid-template-columns:1fr; }
+      .perfil-hero-right { display:none; }
+      .perfil-hero-left { padding:3rem 1.5rem; }
+      .bio-section { grid-template-columns:1fr; gap:2rem; }
+      .bio-sidebar { position:static; }
+      .timeline-grid { grid-template-columns:1fr; }
+      .timeline-grid::before { display:none; }
+      .tl-item { text-align:left !important; padding:1rem 0 1rem 2rem !important; }
+      .tl-item::after { left:0 !important; right:auto !important; }
+      .milagres-grid { grid-template-columns:1fr; }
+      .galeria-grid { grid-template-columns:1fr 1fr; grid-template-rows:auto; }
+      .galeria-item:first-child { grid-row:auto; }
+      .fonte-item { grid-template-columns:1fr; gap:0.5rem; }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="../index.html" class="nav-logo">Santos da Modernidade</a>
+    <ul class="nav-links">
+      <li><a href="../index.html#santos">Os Santos</a></li>
+      <li><a href="../categoria.html">Categorias</a></li>
+      <li><a href="../index.html#cronologia">Cronologia</a></li>
+      <li><a href="../mapa.html">Mapa</a></li>
+      <li><a href="../sobre.html">Sobre</a></li>
+    </ul>
+    <button id="nav-hamburguer" onclick="toggleMenu()" style="background:transparent;border:none;color:#C9A84C;font-size:1.5rem;cursor:pointer;padding:0.25rem 0.5rem;-webkit-appearance:none;appearance:none;">☰</button>
+  </nav>
+
+  <section class="perfil-hero">
+    <div class="perfil-hero-bg"></div>
+    <div class="perfil-hero-left">
+      <p class="perfil-breadcrumb">
+        <a href="../index.html">Início</a> &nbsp;·&nbsp;
+        <a href="../index.html#santos">Os Santos</a> &nbsp;·&nbsp;
+        João Maria Vianney
+      </p>
+      <span class="perfil-badge">Santo · Canonizado em 1925</span>
+      <h1 class="perfil-nome">São João Maria<br>Vianney</h1>
+      <p class="perfil-titulo">"O Cura d'Ars" — O confessor que converteu uma aldeia e depois o mundo</p>
+      <div class="perfil-meta">
+        <div class="perfil-meta-item">
+          <span class="perfil-meta-label">Nascimento</span>
+          <span class="perfil-meta-value">8 de maio de 1786 · Dardilly, França</span>
+        </div>
+        <div class="perfil-meta-item">
+          <span class="perfil-meta-label">Falecimento</span>
+          <span class="perfil-meta-value">4 de agosto de 1859 · Ars-sur-Formans, França</span>
+        </div>
+        <div class="perfil-meta-item">
+          <span class="perfil-meta-label">Beatificação</span>
+          <span class="perfil-meta-value">8 de janeiro de 1905 · Roma · Pio X</span>
+        </div>
+        <div class="perfil-meta-item">
+          <span class="perfil-meta-label">Canonização</span>
+          <span class="perfil-meta-value">31 de maio de 1925 · Roma · Pio XI</span>
+        </div>
+        <div class="perfil-meta-item">
+          <span class="perfil-meta-label">Festa litúrgica</span>
+          <span class="perfil-meta-value">4 de agosto</span>
+        </div>
+        <div class="perfil-meta-item">
+          <span class="perfil-meta-label">Padroeiro</span>
+          <span class="perfil-meta-value">Todos os sacerdotes do mundo</span>
+        </div>
+      </div>
+      <p class="perfil-frase">"O sacerdote continua a obra da Redenção na terra. Se compreendêssemos bem isso, morreríamos não de medo, mas de amor."</p>
+    </div>
+    <div class="perfil-hero-right" style="position:relative;overflow:hidden;">
+      <img src="../imagens/vianney1.jpg" alt="São João Maria Vianney" style="width:100%;height:100%;object-fit:cover;object-position:top;" />
+      <span class="perfil-hero-ano">1859</span>
+    </div>
+  </section>
+
+  <div class="perfil-content">
+    <section class="bio-section" id="biografia">
+      <div class="bio-sidebar">
+        <span class="section-tag">Seção 01</span>
+        <h2 class="sidebar-title">Biografia<br>Detalhada</h2>
+        <div class="sidebar-ornament"></div>
+        <p class="sidebar-resumo">Filho de camponeses franceses, aluno medíocre que quase não foi ordenado padre — e que se tornou o maior confessor da história moderna, passando até 16 horas por dia no confessionário durante décadas, atraindo penitentes de toda a Europa para a pequena aldeia de Ars.</p>
+      </div>
+      <div class="bio-texto">
+        <h3>Infância na Revolução Francesa</h3>
+        <p>João Maria Batista Vianney nasceu em <strong>8 de maio de 1786</strong> em Dardilly, vilarejo próximo a Lyon, no interior da França — apenas três anos antes da Revolução Francesa que sacudiria o país e a Igreja. Cresceu num período de profunda crise religiosa: o clero havia sido perseguido, disperso ou guilhotinado, e a prática da fé dependia de sacerdotes que celebravam clandestinamente em celeiros e florestas, arriscando a vida.</p>
+        <p>Essa infância de fé clandestina e resistente moldou profundamente o jovem João. Aos 17 anos sentiu o chamado ao sacerdócio — mas o caminho seria tortuoso. Os estudos de latim e filosofia eram uma barreira quase intransponível para o filho de camponeses sem formação escolar sólida. Reprovado várias vezes, foi quase rejeitado pela diocese de Lyon por incapacidade intelectual.</p>
+
+        <h3>A Ordenação Quase Impossível</h3>
+        <p>O que salvou João Maria foi seu confessor e mentor, o Padre Balley, que insistiu junto ao bispo que o jovem, apesar das dificuldades intelectuais, possuía uma santidade de vida e uma profundidade espiritual excepcionais. Em <strong>13 de agosto de 1815</strong>, aos 29 anos — idade avançada para a época — João Maria Vianney foi finalmente ordenado sacerdote.</p>
+        <p>Em <strong>1818</strong>, foi nomeado pároco de <strong>Ars-sur-Formans</strong>, uma aldeia minúscula de pouco mais de 200 habitantes no interior da França, conhecida pela indiferença religiosa de sua população. Os superiores consideravam Ars um posto adequado para um padre de capacidades limitadas. Não podiam estar mais enganados.</p>
+
+        <h3>A Transformação de Ars</h3>
+        <p>Ao chegar em Ars, Vianney encontrou uma comunidade marcada pelo abandono religioso, pelo trabalho dominical e pelos bailes e tavernas que ocupavam o tempo livre. Com paciência, pregação simples e directa — e sobretudo com uma presença de oração constante e visível — começou lentamente a transformar a aldeia.</p>
+        <p>Suprimiu os bailes nas tabernas, não por decreto autoritário, mas por conversação pessoal com cada habitante. Visitava os doentes, ensinava catecismo às crianças, pregava sermões curtos mas penetrantes. Em poucos anos, Ars tornara-se uma aldeia diferente — e a reputação do seu pároco começou a se espalhar pela região.</p>
+
+        <h3>O Confessionário — Dezasseis Horas por Dia</h3>
+        <p>O fenômeno que tornaria Vianney mundialmente famoso foi o confessionário. Pessoas começaram a chegar de aldeiras vizinhas para se confessar com ele — e depois de cidades, e depois de toda a França, e depois de toda a Europa. Em poucos anos, <strong>mais de 300 pessoas por dia</strong> chegavam a Ars especificamente para se confessar com o pequeno pároco.</p>
+        <p>Vianney passava até <strong>16 horas por dia</strong> no confessionário — de madrugada até tarde da noite, com breves intervalos para comer e rezar o ofício. Os penitentes chegavam de trem especial — a ferrovia havia criado um serviço direto de Lyon para Ars devido ao volume de visitantes. Estima-se que, ao longo de sua vida, Vianney ouviu mais de <strong>100.000 confissões</strong>.</p>
+        <p>O que os penitentes descreviam era sempre a mesma coisa: a sensação de que ele conhecia sua alma antes de eles falarem; que suas palavras tocavam exatamente o ponto de maior dor e resistência; que saíam do confessionário diferentes de como haviam entrado. Vianney possuía, segundo o testemunho unânime de milhares de pessoas, um dom sobrenatural de ler as consciências.</p>
+
+        <h3>As Lutas com o Demônio</h3>
+        <p>Durante anos, Vianney relatou a seus confrades perturbações noturnas em sua casa — barulhos, gritos, sua cama sacudida. Chamava o responsável de <em>"o grappin"</em> (o gancho) com um humor resignado típico seu. Vários padres que o visitaram testemunharam os fenômenos. Vianney interpretava as perturbações como sinal de que seu ministério estava sendo eficaz — <em>"O grappin está com raiva, logo chegará algum grande pecador para se converter"</em>, dizia.</p>
+
+        <h3>As Tentativas de Fuga e o Regresso</h3>
+        <p>O peso esmagador do ministério levou Vianney a tentar escapar de Ars por três vezes ao longo da vida — desejando uma vida contemplativa num mosteiro, longe das multidões. Cada vez, foi interceptado por peregrinos ou convencido a voltar pelos próprios habitantes de Ars. Aceitava o retorno como vontade de Deus — e voltava ao confessionário.</p>
+        <p>Morreu em <strong>4 de agosto de 1859</strong> em Ars, aos 73 anos, literalmente esgotado pelo ministério. Os últimos dias foram de sofrimento intenso, suportado com serenidade completa. Quando o médico lhe disse que estava morrendo, respondeu: <em>"Sim, é o fim. O meu pobre fim."</em> E depois, em silêncio, olhou para o crucifixo na parede.</p>
+        <p>Canonizado em <strong>1925</strong> pelo Papa Pio XI, foi declarado pelo Papa Pio XII em <strong>1929</strong> padroeiro de todos os sacerdotes do mundo — reconhecimento de que sua vida, de extrema humildade e serviço ao confessionário, era o modelo mais perfeito do ministério sacerdotal na época moderna.</p>
+      </div>
+    </section>
+
+    <section class="timeline-section" id="cronologia">
+      <div class="timeline-header">
+        <span class="section-tag">Seção 02</span>
+        <div class="section-header-left">
+          <h2>Linha do Tempo</h2>
+          <p>73 anos de vida — da Revolução Francesa ao confessionário que converteu a Europa</p>
+        </div>
+      </div>
+      <div class="timeline-grid">
+        <div class="tl-item">
+          <p class="tl-ano">8 Mai 1786</p>
+          <h3 class="tl-evento">Nascimento em Dardilly</h3>
+          <p class="tl-desc">Nasce três anos antes da Revolução Francesa. Cresce numa fé clandestina, com sacerdotes perseguidos celebrando em segredo.</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-ano">1813 – 1815</p>
+          <h3 class="tl-evento">Ordenação quase impossível</h3>
+          <p class="tl-desc">Reprovado várias vezes nos estudos de latim. Ordenado finalmente aos 29 anos graças à insistência do seu mentor, Padre Balley.</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-ano">1818</p>
+          <h3 class="tl-evento">Pároco de Ars</h3>
+          <p class="tl-desc">Nomeado pároco de Ars, aldeia de 200 habitantes marcada pela indiferença religiosa. Os superiores consideravam um posto adequado para um padre "limitado".</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-ano">1820s</p>
+          <h3 class="tl-evento">Transformação da aldeia</h3>
+          <p class="tl-desc">Com paciência e oração constante, transforma Ars numa comunidade de fé viva. A fama começa a se espalhar pela região.</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-ano">1830s – 1850s</p>
+          <h3 class="tl-evento">16 horas no confessionário</h3>
+          <p class="tl-desc">Mais de 300 pessoas por dia chegam a Ars para se confessar. A ferrovia cria serviço especial de Lyon para Ars. Estima-se 100.000 confissões ao longo da vida.</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-ano">1840s – 1850s</p>
+          <h3 class="tl-evento">Lutas noturnas e tentativas de fuga</h3>
+          <p class="tl-desc">Relata perturbações demoníacas noturnas. Tenta escapar para um mosteiro três vezes — sempre interceptado e convencido a voltar.</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-ano">4 Ago 1859</p>
+          <h3 class="tl-evento">Morte em Ars</h3>
+          <p class="tl-desc">Morre aos 73 anos, esgotado pelo ministério. Suas últimas horas são de silêncio e contemplação do crucifixo.</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-ano">31 Mai 1925</p>
+          <h3 class="tl-evento">Canonização</h3>
+          <p class="tl-desc">Canonizado pelo Papa Pio XI. Em 1929, declarado pelo Papa Pio XII padroeiro de todos os sacerdotes do mundo.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <section class="milagres-section" id="milagres">
+    <div class="milagres-inner">
+      <span class="section-tag">Seção 03</span>
+      <div class="section-header-left">
+        <h2>Milagres Aprovados</h2>
+        <p>Os prodígios reconhecidos pela Igreja para sua beatificação e canonização</p>
+      </div>
+      <div class="milagres-grid">
+        <div class="milagre-card">
+          <p class="milagre-numero">01</p>
+          <p class="milagre-local">França</p>
+          <h3 class="milagre-titulo">Multiplicação de alimentos em Ars</h3>
+          <p class="milagre-desc">Vianney fundou em Ars uma instituição para crianças pobres chamada "A Providência". Num período de escassez severa, o grão armazenado foi milagrosamente multiplicado para alimentar as crianças — fenômeno testemunhado por múltiplas pessoas e investigado no processo de canonização.</p>
+          <span class="milagre-ano-badge">Testemunhado em vida · séc. XIX</span>
+        </div>
+        <div class="milagre-card">
+          <p class="milagre-numero">02</p>
+          <p class="milagre-local">França</p>
+          <h3 class="milagre-titulo">Curas e conversões no confessionário</h3>
+          <p class="milagre-desc">Dezenas de curas físicas e espirituais foram atribuídas à intercessão de Vianney durante e após sua vida — investigadas no processo de canonização. Seu dom de leitura de consciências, documentado por milhares de testemunhos, foi considerado de origem sobrenatural pela comissão teológica do Vaticano.</p>
+          <span class="milagre-ano-badge">Aprovado · para a Canonização 1925</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="perfil-content">
+    <section class="galeria-section" id="galeria">
+      <span class="section-tag">Seção 04</span>
+      <div class="section-header-left">
+        <h2>Galeria</h2>
+        <p>Retratos e imagens da vida e do santuário de São João Maria Vianney em Ars</p>
+      </div>
+      <div class="galeria-grid">
+        <div class="galeria-item"><img src="../imagens/vianney1.jpg" alt="São João Maria Vianney" style="width:100%;height:100%;object-fit:cover;" /></div>
+        <div class="galeria-item"><img src="../imagens/vianney2.jpg" alt="São João Maria Vianney" style="width:100%;height:100%;object-fit:cover;" /></div>
+        <div class="galeria-item"><img src="../imagens/vianney3.jpg" alt="São João Maria Vianney" style="width:100%;height:100%;object-fit:cover;" /></div>
+        <div class="galeria-item"><img src="../imagens/vianney4.jpg" alt="São João Maria Vianney" style="width:100%;height:100%;object-fit:cover;" /></div>
+        <div class="galeria-item"><img src="../imagens/vianney5.jpg" alt="São João Maria Vianney" style="width:100%;height:100%;object-fit:cover;" /></div>
+      </div>
+      <p class="galeria-legenda">Imagens utilizadas sob licença de seus respectivos autores. <a href="../creditos.html" style="color:var(--gold-dark);text-decoration:none;">Créditos completos disponíveis aqui.</a></p>
+    </section>
+
+    <section class="fontes-section" id="fontes">
+      <span class="section-tag">Seção 06</span>
+      <div class="section-header-left">
+        <h2>Fontes e Referências</h2>
+        <p>Documentação utilizada para a elaboração deste perfil</p>
+      </div>
+      <div class="fontes-lista">
+        <div class="fonte-item">
+          <span class="fonte-tipo">Site Oficial</span>
+          <div><p class="fonte-titulo">Santuário de Ars — ars-paray.fr</p><p class="fonte-autor">Santuário e arquivo histórico de São João Maria Vianney</p></div>
+          <a href="https://www.ars-paray.fr" target="_blank" class="fonte-link">Acessar →</a>
+        </div>
+        <div class="fonte-item">
+          <span class="fonte-tipo">Livro</span>
+          <div><p class="fonte-titulo">O Cura d'Ars — Sua Vida</p><p class="fonte-autor">Francis Trochu · Editora Vozes, 1959</p></div>
+          <span class="fonte-link">Impresso</span>
+        </div>
+        <div class="fonte-item">
+          <span class="fonte-tipo">Documento</span>
+          <div><p class="fonte-titulo">Carta do Papa Pio XI na Canonização de João Maria Vianney</p><p class="fonte-autor">Santa Sé · 31 de maio de 1925</p></div>
+          <a href="https://www.vatican.va" target="_blank" class="fonte-link">Acessar →</a>
+        </div>
+      </div>
+    </section>
+
+    <div class="nav-santos-div">
+      <a href="chavara.html" class="nav-santo-link">
+        <span class="nav-santo-label">← Santo Anterior</span>
+        <span class="nav-santo-nome">Santo Kuriakose Elias Chavara</span>
+      </a>
+      <a href="bosco.html" class="nav-santo-link nav-santo-dir">
+        <span class="nav-santo-label">Próximo Santo →</span>
+        <span class="nav-santo-nome">São João Bosco</span>
+      </a>
+    </div>
+  </div>
+
+  <section class="oracao-section" id="oracao">
+    <div class="oracao-inner">
+      <span class="section-tag">Seção 05</span>
+      <h2 class="oracao-titulo">Oração por Intercessão de São João Maria Vianney</h2>
+      <div class="oracao-texto">
+        <p>Senhor Jesus, Tu que instituíste o sacramento da reconciliação como abraço do Pai ao filho pródigo que retorna, concede-nos, pela intercessão de São João Maria Vianney, a graça de nos aproximarmos do confessionário sem medo — sabendo que o que nos espera ali não é julgamento, mas misericórdia.</p>
+        <p>Ele passou 16 horas por dia durante décadas num pequeno confessionário, recebendo pecadores de toda a Europa com a mesma paciência e ternura — e morreu esgotado pelo serviço, sem jamais reclamar. Sua vida inteira foi uma longa e silenciosa declaração de fé: que nenhuma alma está perdida enquanto houver um sacerdote esperando.</p>
+        <p>São João Maria Vianney, padroeiro de todos os sacerdotes, intercede pelos padres do mundo inteiro — pelos cansados, pelos tentados, pelos que duvidam. E intercede por todos nós, que precisamos tanto da misericórdia que ele tão pacientemente distribuiu. Amém.</p>
+      </div>
+      <p class="oracao-fecho">· Para uso privado · Aprovação eclesiástica recomendada ·</p>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-inner">
+      <span class="footer-logo">Santos da Modernidade</span>
+      <span class="footer-copy">© Santos da Modernidade · Ad Maiorem Dei Gloriam</span>
+    </div>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      const menu = document.querySelector('.nav-links');
+      const btn = document.getElementById('nav-hamburguer');
+      menu.classList.toggle('aberto');
+      btn.textContent = menu.classList.contains('aberto') ? '✕' : '☰';
+    }
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        document.querySelector('.nav-links').classList.remove('aberto');
+        document.getElementById('nav-hamburguer').textContent = '☰';
+      });
+    });
+  </script>
+</body>
+</html>

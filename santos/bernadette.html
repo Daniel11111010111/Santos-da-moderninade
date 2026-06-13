@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Santa Bernadette Soubirous · Santos da Modernidade</title>
+  <meta name="description" content="Conheça a vida de Santa Bernadette Soubirous — a jovem camponesa de Lourdes que recebeu 18 aparições da Virgem Maria em 1858 e cuja humildade e sofrimento a tornaram modelo de santidade moderna." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600&family=Raleway:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../style.css" />
+  <style>
+    .perfil-hero { min-height:100vh; background:var(--dark); display:grid; grid-template-columns:1fr 1fr; position:relative; overflow:hidden; padding-top:80px; }
+    .perfil-hero-bg { position:absolute; inset:0; background: radial-gradient(ellipse 80% 60% at 50% 40%, rgba(201,168,76,0.07) 0%, transparent 70%), radial-gradient(ellipse 40% 40% at 20% 80%, rgba(123,28,46,0.1) 0%, transparent 60%), radial-gradient(ellipse 40% 40% at 80% 20%, rgba(27,45,79,0.12) 0%, transparent 60%); }
+    .perfil-hero-left { display:flex; flex-direction:column; justify-content:center; padding:5rem 4rem 5rem 5rem; position:relative; z-index:2; }
+    .perfil-breadcrumb { font-size:0.68rem; letter-spacing:0.25em; text-transform:uppercase; color:rgba(201,168,76,0.5); margin-bottom:2rem; }
+    .perfil-breadcrumb a { color:inherit; text-decoration:none; transition:color 0.2s; }
+    .perfil-breadcrumb a:hover { color:var(--gold); }
+    .perfil-badge { display:inline-block; border:1px solid rgba(201,168,76,0.4); color:var(--gold); font-size:0.65rem; letter-spacing:0.25em; text-transform:uppercase; padding:0.35rem 0.9rem; margin-bottom:1.5rem; }
+    .perfil-nome { font-family:'Cinzel',serif; font-size:clamp(2rem,4vw,3.2rem); font-weight:600; color:var(--ivory); line-height:1.15; margin-bottom:0.5rem; letter-spacing:0.03em; }
+    .perfil-titulo { font-family:'Cormorant Garamond',serif; font-size:1.2rem; font-style:italic; font-weight:300; color:var(--gold-light); margin-bottom:2rem; opacity:0.8; }
+    .perfil-meta { display:flex; flex-direction:column; gap:0.6rem; margin-bottom:2.5rem; }
+    .perfil-meta-item { display:flex; gap:1rem; align-items:baseline; }
+    .perfil-meta-label { color:rgba(201,168,76,0.6); font-weight:500; letter-spacing:0.1em; min-width:110px; font-size:0.72rem; text-transform:uppercase; flex-shrink:0; }
+    .perfil-meta-value { color:rgba(240,232,216,0.75); font-size:0.85rem; line-height:1.4; }
+    .perfil-frase { font-family:'Cormorant Garamond',serif; font-size:1.1rem; font-style:italic; color:var(--gold-light); border-left:2px solid var(--gold); padding-left:1.25rem; line-height:1.65; opacity:0.9; }
+    .perfil-hero-right { position:relative; background:var(--dark-mid); display:flex; align-items:center; justify-content:center; overflow:hidden; }
+    .perfil-hero-right::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse at center, rgba(201,168,76,0.06) 0%, transparent 70%); }
+    .perfil-hero-ano { position:absolute; bottom:2rem; right:2rem; font-family:'Cinzel',serif; font-size:4rem; font-weight:600; color:rgba(201,168,76,0.08); line-height:1; }
+    .perfil-content { max-width:1100px; margin:0 auto; padding:0 2rem; }
+    .section-tag { font-size:0.65rem; font-weight:500; letter-spacing:0.3em; text-transform:uppercase; color:var(--gold-dark); display:block; margin-bottom:1rem; }
+    .section-header-left h2 { font-family:'Cinzel',serif; font-size:1.5rem; font-weight:400; color:var(--dark); letter-spacing:0.08em; margin-bottom:0.5rem; }
+    .section-header-left p { font-family:'Cormorant Garamond',serif; font-size:1rem; font-style:italic; color:var(--text-muted); }
+    .bio-section { padding:7rem 0; display:grid; grid-template-columns:1fr 2fr; gap:5rem; border-bottom:1px solid var(--gold-light); }
+    .bio-sidebar { position:sticky; top:100px; align-self:start; }
+    .sidebar-title { font-family:'Cinzel',serif; font-size:1.3rem; font-weight:400; color:var(--dark); letter-spacing:0.06em; line-height:1.4; }
+    .sidebar-ornament { width:30px; height:1px; background:var(--gold); margin:1.5rem 0; }
+    .sidebar-resumo { font-family:'Cormorant Garamond',serif; font-size:1rem; font-style:italic; color:var(--text-muted); line-height:1.7; }
+    .bio-texto h3 { font-family:'Cinzel',serif; font-size:1rem; font-weight:400; letter-spacing:0.1em; color:var(--dark); margin:2rem 0 0.75rem; }
+    .bio-texto h3:first-child { margin-top:0; }
+    .bio-texto p { font-size:0.97rem; line-height:1.9; color:var(--text-muted); margin-bottom:1rem; }
+    .bio-texto p strong { color:var(--text); font-weight:500; }
+    .timeline-section { padding:7rem 0; border-bottom:1px solid var(--gold-light); }
+    .timeline-header { margin-bottom:3.5rem; }
+    .timeline-grid { display:grid; grid-template-columns:1fr 1fr; position:relative; }
+    .timeline-grid::before { content:''; position:absolute; left:50%; top:0; bottom:0; width:1px; background:linear-gradient(to bottom, transparent, var(--gold-light), transparent); transform:translateX(-50%); }
+    .tl-item { padding:2rem; position:relative; }
+    .tl-item:nth-child(odd) { text-align:right; padding-right:3rem; }
+    .tl-item:nth-child(even) { padding-left:3rem; }
+    .tl-item::after { content:''; position:absolute; top:2.5rem; width:8px; height:8px; background:var(--gold); transform:rotate(45deg); }
+    .tl-item:nth-child(odd)::after { right:-4px; }
+    .tl-item:nth-child(even)::after { left:-4px; }
+    .tl-ano { font-family:'Cinzel',serif; font-size:0.72rem; letter-spacing:0.2em; color:var(--gold-dark); margin-bottom:0.4rem; }
+    .tl-evento { font-family:'Cormorant Garamond',serif; font-size:1.15rem; color:var(--dark); margin-bottom:0.3rem; }
+    .tl-desc { font-size:0.85rem; color:var(--text-muted); line-height:1.6; }
+    .milagres-section { padding:7rem 0; background:var(--parchment); margin:0 -2rem; padding-left:2rem; padding-right:2rem; border-top:1px solid var(--gold-light); border-bottom:1px solid var(--gold-light); }
+    .milagres-inner { max-width:1100px; margin:0 auto; }
+    .milagres-grid { display:grid; grid-template-columns:1fr 1fr; gap:2rem; margin-top:3rem; }
+    .milagre-card { background:var(--ivory); border:1px solid var(--gold-light); padding:2rem; }
+    .milagre-numero { font-family:'Cinzel',serif; font-size:2.5rem; font-weight:600; color:var(--gold-light); line-height:1; margin-bottom:1rem; }
+    .milagre-local { font-size:0.68rem; letter-spacing:0.22em; text-transform:uppercase; color:var(--gold-dark); margin-bottom:0.5rem; }
+    .milagre-titulo { font-family:'Cinzel',serif; font-size:0.95rem; color:var(--dark); margin-bottom:0.75rem; }
+    .milagre-desc { font-size:0.88rem; line-height:1.75; color:var(--text-muted); }
+    .milagre-ano-badge { display:inline-block; margin-top:1rem; border:1px solid var(--gold-light); color:var(--gold-dark); font-size:0.65rem; letter-spacing:0.18em; padding:0.2rem 0.6rem; }
+    .galeria-section { padding:7rem 0; border-bottom:1px solid var(--gold-light); }
+    .galeria-grid { display:grid; grid-template-columns:2fr 1fr 1fr; grid-template-rows:200px 200px; gap:1rem; margin-top:3rem; }
+    .galeria-item { background:var(--dark-mid); display:flex; align-items:center; justify-content:center; color:rgba(201,168,76,0.2); font-size:0.65rem; letter-spacing:0.2em; text-transform:uppercase; font-family:'Cinzel',serif; border:1px solid rgba(201,168,76,0.1); overflow:hidden; }
+    .galeria-item:first-child { grid-row:1 / 3; }
+    .galeria-item img { width:100%; height:100%; object-fit:cover; }
+    .galeria-legenda { font-size:0.75rem; color:var(--text-muted); text-align:center; margin-top:1rem; font-style:italic; font-family:'Cormorant Garamond',serif; }
+    .oracao-section { padding:7rem 0; background:var(--blue-deep); margin:0 -2rem; padding-left:2rem; padding-right:2rem; text-align:center; position:relative; overflow:hidden; }
+    .oracao-section::before { content:'"'; position:absolute; top:-2rem; left:50%; transform:translateX(-50%); font-family:'Cormorant Garamond',serif; font-size:20rem; color:rgba(201,168,76,0.05); line-height:1; pointer-events:none; }
+    .oracao-inner { max-width:680px; margin:0 auto; position:relative; z-index:2; }
+    .oracao-section .section-tag { color:var(--gold); }
+    .oracao-titulo { font-family:'Cinzel',serif; font-size:1.4rem; color:var(--ivory); letter-spacing:0.08em; margin-bottom:2.5rem; }
+    .oracao-texto { font-family:'Cormorant Garamond',serif; font-size:1.2rem; font-weight:300; line-height:2; color:rgba(240,232,216,0.8); text-align:left; }
+    .oracao-texto p { margin-bottom:1rem; }
+    .oracao-fecho { font-size:0.72rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold); opacity:0.7; margin-top:2rem; }
+    .fontes-section { padding:7rem 0; }
+    .fontes-lista { margin-top:2.5rem; display:flex; flex-direction:column; }
+    .fonte-item { display:grid; grid-template-columns:auto 1fr auto; gap:1.5rem; align-items:center; padding:1.25rem 0; border-bottom:1px solid var(--gold-light); }
+    .fonte-tipo { font-size:0.62rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold-dark); border:1px solid var(--gold-light); padding:0.2rem 0.6rem; white-space:nowrap; }
+    .fonte-titulo { font-size:0.92rem; color:var(--text); }
+    .fonte-autor { font-size:0.8rem; color:var(--text-muted); margin-top:0.2rem; font-family:'Cormorant Garamond',serif; font-style:italic; }
+    .fonte-link { font-size:0.7rem; color:var(--gold-dark); text-decoration:none; letter-spacing:0.1em; white-space:nowrap; transition:color 0.2s; }
+    .fonte-link:hover { color:var(--gold); }
+    .nav-santos-div { padding:3rem 0; display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--gold-light); margin-top:2rem; }
+    .nav-santo-link { text-decoration:none; display:flex; flex-direction:column; gap:0.3rem; }
+    .nav-santo-dir { text-align:right; }
+    .nav-santo-label { font-size:0.65rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--text-muted); }
+    .nav-santo-nome { font-family:'Cinzel',serif; font-size:0.95rem; color:var(--gold-dark); transition:color 0.2s; }
+    .nav-santo-link:hover .nav-santo-nome { color:var(--gold); }
+    @media (max-width:768px) {
+      .perfil-hero { grid-template-columns:1fr; }
+      .perfil-hero-right { display:none; }
+      .perfil-hero-left { padding:3rem 1.5rem; }
+      .bio-section { grid-template-columns:1fr; gap:2rem; }
+      .bio-sidebar { position:static; }
+      .timeline-grid { grid-template-columns:1fr; }
+      .timeline-grid::before { display:none; }
+      .tl-item { text-align:left !important; padding:1rem 0 1rem 2rem !important; }
+      .tl-item::after { left:0 !important; right:auto !important; }
+      .milagres-grid { grid-template-columns:1fr; }
+      .galeria-grid { grid-template-columns:1fr 1fr; grid-template-rows:auto; }
+      .galeria-item:first-child { grid-row:auto; }
+      .fonte-item { grid-template-columns:1fr; gap:0.5rem; }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="../index.html" class="nav-logo">Santos da Modernidade</a>
+    <ul class="nav-links">
+      <li><a href="../index.html#santos">Os Santos</a></li>
+      <li><a href="../categoria.html">Categorias</a></li>
+      <li><a href="../index.html#cronologia">Cronologia</a></li>
+      <li><a href="../mapa.html">Mapa</a></li>
+      <li><a href="../sobre.html">Sobre</a></li>
+    </ul>
+    <button id="nav-hamburguer" onclick="toggleMenu()" style="background:transparent;border:none;color:#C9A84C;font-size:1.5rem;cursor:pointer;padding:0.25rem 0.5rem;-webkit-appearance:none;appearance:none;">☰</button>
+  </nav>
+
+  <section class="perfil-hero">
+    <div class="perfil-hero-bg"></div>
+    <div class="perfil-hero-left">
+      <p class="perfil-breadcrumb">
+        <a href="../index.html">Início</a> &nbsp;·&nbsp;
+        <a href="../index.html#santos">Os Santos</a> &nbsp;·&nbsp;
+        Bernadette Soubirous
+      </p>
+      <span class="perfil-badge">Santa · Canonizada em 1933</span>
+      <h1 class="perfil-nome">Santa Bernadette<br>Soubirous</h1>
+      <p class="perfil-titulo">"A Vidente de Lourdes" — A menina pobre que viu a Imaculada Conceição</p>
+      <div class="perfil-meta">
+        <div class="perfil-meta-item">
+          <span class="perfil-meta-label">Nascimento</span>
+          <span class="perfil-meta-value">7 de janeiro de 1844 · Lourdes, França</span>
+        </div>
+        <div class="perfil-meta-item">
+          <span class="perfil-meta-label">Falecimento</span>
+          <span class="perfil-meta-value">16 de abril de 1879 · Nevers, França</span>
+        </div>
+        <div class="perfil-meta-item">
+          <span class="perfil-meta-label">Aparições</span>
+          <span class="perfil-meta-value">11 de fevereiro a 16 de julho de 1858 · 18 aparições</span>
+        </div>
+        <div class="perfil-meta-item">
+          <span class="perfil-meta-label">Beatificação</span>
+          <span class="perfil-meta-value">14 de junho de 1925 · Roma · Pio XI</span>
+        </div>
+        <div class="perfil-meta-item">
+          <span class="perfil-meta-label">Canonização</span>
+          <span class="perfil-meta-value">8 de dezembro de 1933 · Roma · Pio XI</span>
+        </div>
+        <div class="perfil-meta-item">
+          <span class="perfil-meta-label">Festa litúrgica</span>
+          <span class="perfil-meta-value">16 de abril</span>
+        </div>
+      </div>
+      <p class="perfil-frase">"Não prometi tornar-vos felizes nesta vida, mas na outra."</p>
+    </div>
+    <div class="perfil-hero-right" style="position:relative;overflow:hidden;">
+      <img src="../imagens/bernadette1.jpg" alt="Santa Bernadette Soubirous" style="width:100%;height:100%;object-fit:cover;object-position:top;" />
+      <span class="perfil-hero-ano">1879</span>
+    </div>
+  </section>
+
+  <div class="perfil-content">
+    <section class="bio-section" id="biografia">
+      <div class="bio-sidebar">
+        <span class="section-tag">Seção 01</span>
+        <h2 class="sidebar-title">Biografia<br>Detalhada</h2>
+        <div class="sidebar-ornament"></div>
+        <p class="sidebar-resumo">Filha de um moleiro arruinado, a menina mais pobre de Lourdes, asmática e analfabeta — que recebeu 18 aparições da Virgem Maria numa gruta à beira do rio, resistiu com serenidade ao escrutínio brutal das autoridades, e depois passou o resto da vida num convento em sofrimento, longe de tudo e de todos.</p>
+      </div>
+      <div class="bio-texto">
+        <h3>A Menina Mais Pobre de Lourdes</h3>
+        <p>Maria Bernarda Soubirous nasceu em <strong>7 de janeiro de 1844</strong> em Lourdes, pequena cidade ao pé dos Pireneus no sul da França. Era a filha mais velha de François Soubirous, moleiro, e Louise Casterot. A família havia conhecido dias melhores, mas uma série de reveses levou-os à pobreza extrema: o moinho faliu, dívidas se acumularam, e em <strong>1856</strong> a família foi forçada a se mudar para o que antes era uma prisão municipal abandonada — o <strong>Cachot</strong>, um quarto úmido e escuro onde os cinco membros da família dormiam juntos.</p>
+        <p>Bernadette era frágil de saúde — sofria de asma severa desde criança, agravada pelas condições do Cachot. Não sabia ler nem escrever e não havia feito ainda a Primeira Comunhão, aos 14 anos, pois a família havia vivido um período em zona rural sem acesso a catequese regular. Era, por todos os critérios da época, a pessoa menos provável de ser escolhida para qualquer papel especial.</p>
+
+        <h3>11 de Fevereiro de 1858 — A Primeira Aparição</h3>
+        <p>Em <strong>11 de fevereiro de 1858</strong>, uma quinta-feira, Bernadette foi com a irmã e uma amiga buscar lenha às margens do rio Gave, perto de uma gruta natural chamada <strong>Massabielle</strong>. Ao atravessar o riacho que corria em frente à gruta, ouviu um som como de vento — mas as árvores não se moviam. Olhou para a gruta e viu, numa cavidade, uma figura luminosa: uma jovem vestida de branco, com um cinto azul e uma rosa dourada em cada pé, segurando um rosário.</p>
+        <p>Bernadette ficou imóvel, tirou o próprio rosário do bolso e começou a rezar. A figura rezou com ela — e depois desapareceu. A irmã e a amiga não viram nada. Bernadette voltou para casa perturbada, pedindo silêncio — mas a irmã contou à mãe, e a notícia começou a circular.</p>
+
+        <h3>As 18 Aparições — Entre a Multidão e o Interrogatório</h3>
+        <p>Ao longo dos meses seguintes, entre <strong>11 de fevereiro e 16 de julho de 1858</strong>, Bernadette retornou à gruta de Massabielle 18 vezes, recebendo aparições que atraíram multidões crescentes — primeiro dezenas, depois centenas, depois milhares de pessoas que vinham assistir ao êxtase da jovem vidente.</p>
+        <p>Durante as aparições, Bernadette entrava num estado de concentração absoluta, completamente insensível ao ambiente ao redor. Médicos e autoridades realizaram testes: aproximavam velas acesas de suas mãos durante o êxtase — ela não reagia. Nenhum sinal de dissimulação ou histeria foi encontrado.</p>
+        <p>As autoridades civis e eclesiásticas responderam com ceticismo e investigação rigorosa. O comissário de polícia local interrogou Bernadette múltiplas vezes com pressão crescente, tentando fazer com que se retratasse ou revelasse inconsistências. Bernadette respondia sempre com a mesma simplicidade calma e sem contradições — o que impressionava até os mais céticos.</p>
+
+        <h3>"Vá Beber na Fonte e Lavar-se" — A Água de Lourdes</h3>
+        <p>Numa das aparições mais significativas, a figura pediu a Bernadette que cavasse na terra dentro da gruta. Bernadette obedeceu — e uma fonte começou a brotar. As autoridades, desconfiadas, mandaram analisar a água — e não encontraram nenhuma propriedade medicinal especial. Mas as curas de doentes que bebiam e se banhavam na fonte começaram a ser relatadas em número crescente e logo tornaram-se impossíveis de ignorar.</p>
+        <p>Numa outra aparição crucial, a figura revelou sua identidade em resposta à pergunta de Bernadette: <em>"Sou a Imaculada Conceição."</em> A jovem, que mal havia recebido instrução catequética e não conhecia o dogma proclamado pelo Papa Pio IX apenas quatro anos antes (em 1854), não entendeu o significado teológico das palavras — mas as repetiu exatamente ao pároco, que ficou atônito.</p>
+
+        <h3>A Fuga para o Convento — Os Anos de Sofrimento</h3>
+        <p>Após as aparições, Bernadette tornou-se objeto de curiosidade pública insuportável. Peregrinos e curiosos cercavam sua casa dia e noite. Autoridades eclesiásticas a interrogavam continuamente. Ela respondia a tudo com paciência, mas ansiava por paz e anonimato.</p>
+        <p>Em <strong>1866</strong>, aos 22 anos, entrou no convento das <strong>Irmãs de Nossa Senhora de Nevers</strong>, em Nevers — longe de Lourdes, longe das multidões. Ali viveria os treze anos restantes de sua vida, numa existência de obediência simples, sofrimento físico crescente causado pela asma e pela tuberculose óssea, e uma espiritualidade discreta que impressionava as confrades pela ausência de qualquer afetação.</p>
+        <p>A superiora do convento, testando sua humildade, disse-lhe certa vez que ela havia cumprido seu papel em Lourdes e que agora não servia para nada. Bernadette aceitou sem protestar. Quando perguntada sobre a mensagem de Nossa Senhora para ela pessoalmente, respondia sempre: <em>"Não prometi tornar-vos felizes nesta vida, mas na outra."</em></p>
+        <p>Morreu em <strong>16 de abril de 1879</strong>, aos 35 anos, após longa agonia causada pela tuberculose óssea no joelho. Suas últimas palavras foram: <em>"Santa Maria, Mãe de Deus, rogai por mim, pobre pecadora."</em> Seu corpo, exumado décadas depois para o processo de canonização, foi encontrado <strong>incorrupto</strong> — e assim permanece exposto até hoje na capela do convento de Nevers.</p>
+
+        <h3>Lourdes Hoje — O Maior Santuário Mariano do Mundo</h3>
+        <p>A gruta de Massabielle tornou-se o santuário mariano mais visitado do mundo — recebendo mais de <strong>6 milhões de peregrinos por ano</strong>, incluindo milhares de doentes que buscam cura nas águas da fonte. Desde 1858, o Bureau Médico de Lourdes, composto por médicos de diversas religiões e especialidades, investigou os relatos de cura e reconheceu oficialmente <strong>70 curas inexplicáveis pela medicina</strong> — das quais a Igreja declarou oficialmente milagres.</p>
+        <p>Bernadette foi canonizada em <strong>8 de dezembro de 1933</strong> pelo Papa Pio XI — curiosamente, não pela sua visão, mas pela sua vida de humildade, sofrimento e fidelidade no convento de Nevers. A Igreja quis deixar claro: Bernadette é santa não porque viu Nossa Senhora, mas porque viveu o que viu.</p>
+      </div>
+    </section>
+
+    <section class="timeline-section" id="cronologia">
+      <div class="timeline-header">
+        <span class="section-tag">Seção 02</span>
+        <div class="section-header-left">
+          <h2>Linha do Tempo</h2>
+          <p>35 anos de vida — da gruta de Massabielle ao convento de Nevers</p>
+        </div>
+      </div>
+      <div class="timeline-grid">
+        <div class="tl-item">
+          <p class="tl-ano">7 Jan 1844</p>
+          <h3 class="tl-evento">Nascimento em Lourdes</h3>
+          <p class="tl-desc">Nasce a mais velha dos filhos de um moleiro arruinado. A família vive na pobreza extrema no Cachot, antiga prisão municipal.</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-ano">11 Fev 1858</p>
+          <h3 class="tl-evento">A primeira aparição</h3>
+          <p class="tl-desc">Aos 14 anos, enquanto busca lenha com a irmã, vê uma figura luminosa na gruta de Massabielle. Começa a rezar o rosário. A irmã não vê nada.</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-ano">Fev – Jul 1858</p>
+          <h3 class="tl-evento">18 aparições</h3>
+          <p class="tl-desc">Retorna à gruta 18 vezes sob escrutínio crescente. Médicos testam seu estado durante o êxtase. Autoridades a interrogam repetidamente sem encontrar contradições.</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-ano">Mar 1858</p>
+          <h3 class="tl-evento">A fonte e a Imaculada Conceição</h3>
+          <p class="tl-desc">A figura pede que cave na terra — brota uma fonte. Revela sua identidade: "Sou a Imaculada Conceição." Bernadette não entende o significado teológico, mas repete exatamente ao pároco.</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-ano">1858 – 1866</p>
+          <h3 class="tl-evento">A vida pública insuportável</h3>
+          <p class="tl-desc">Torna-se objeto de curiosidade constante. Peregrinos e investigadores cercam sua casa. Responde a tudo com paciência mas anseia por anonimato.</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-ano">1866</p>
+          <h3 class="tl-evento">Ingresso no convento de Nevers</h3>
+          <p class="tl-desc">Aos 22 anos, entra nas Irmãs de Nossa Senhora de Nevers — longe de Lourdes, longe das multidões. Viverá ali os treze anos restantes de sua vida.</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-ano">1866 – 1879</p>
+          <h3 class="tl-evento">Vida oculta em sofrimento</h3>
+          <p class="tl-desc">Sofre de asma severa e tuberculose óssea crescentes. Vive com obediência simples e humildade que impressiona as confrades. "Não prometi tornar-vos felizes nesta vida."</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-ano">16 Abr 1879</p>
+          <h3 class="tl-evento">Morte em Nevers</h3>
+          <p class="tl-desc">Morre aos 35 anos após longa agonia. Últimas palavras: "Santa Maria, Mãe de Deus, rogai por mim, pobre pecadora." O corpo é encontrado incorrupto décadas depois.</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-ano">8 Dez 1933</p>
+          <h3 class="tl-evento">Canonização</h3>
+          <p class="tl-desc">Canonizada pelo Papa Pio XI — não pela visão, mas pela vida de humildade no convento. Lourdes recebe hoje mais de 6 milhões de peregrinos por ano.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <section class="milagres-section" id="milagres">
+    <div class="milagres-inner">
+      <span class="section-tag">Seção 03</span>
+      <div class="section-header-left">
+        <h2>Milagres e Curas em Lourdes</h2>
+        <p>Os prodígios reconhecidos pela Igreja ligados às aparições e à intercessão de Santa Bernadette</p>
+      </div>
+      <div class="milagres-grid">
+        <div class="milagre-card">
+          <p class="milagre-numero">70</p>
+          <p class="milagre-local">Lourdes, França</p>
+          <h3 class="milagre-titulo">Curas oficialmente reconhecidas desde 1858</h3>
+          <p class="milagre-desc">Desde as aparições de 1858, o Bureau Médico de Lourdes — composto por médicos de diversas religiões e especialidades — investigou cientificamente os relatos de cura. De milhares de casos estudados, 70 foram declarados inexplicáveis pela medicina e oficialmente reconhecidos pela Igreja como milagres. As investigações continuam até hoje.</p>
+          <span class="milagre-ano-badge">Bureau Médico de Lourdes · 1858–hoje</span>
+        </div>
+        <div class="milagre-card">
+          <p class="milagre-numero">✦</p>
+          <p class="milagre-local">Nevers, França</p>
+          <h3 class="milagre-titulo">O corpo incorrupto</h3>
+          <p class="milagre-desc">O corpo de Bernadette, exumado pela primeira vez em 1909 — trinta anos após sua morte — foi encontrado incorrupto, sem sinais de decomposição. Examinado novamente em 1919 e 1925, permanecia no mesmo estado. Está exposto até hoje numa urna de vidro na capela do convento de Saint-Gildard em Nevers, França, onde pode ser venerado pelos visitantes.</p>
+          <span class="milagre-ano-badge">Exumado em 1909 · Nevers, França</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="perfil-content">
+    <section class="galeria-section" id="galeria">
+      <span class="section-tag">Seção 04</span>
+      <div class="section-header-left">
+        <h2>Galeria</h2>
+        <p>Fotografias de Santa Bernadette e imagens do Santuário de Lourdes</p>
+      </div>
+      <div class="galeria-grid">
+        <div class="galeria-item"><img src="../imagens/bernadette1.jpg" alt="Santa Bernadette Soubirous" style="width:100%;height:100%;object-fit:cover;" /></div>
+        <div class="galeria-item"><img src="../imagens/bernadette2.jpg" alt="Santa Bernadette" style="width:100%;height:100%;object-fit:cover;" /></div>
+        <div class="galeria-item"><img src="../imagens/bernadette3.jpg" alt="Santa Bernadette" style="width:100%;height:100%;object-fit:cover;" /></div>
+        <div class="galeria-item"><img src="../imagens/bernadette4.jpg" alt="Santa Bernadette" style="width:100%;height:100%;object-fit:cover;" /></div>
+        <div class="galeria-item"><img src="../imagens/bernadette5.jpg" alt="Santa Bernadette" style="width:100%;height:100%;object-fit:cover;" /></div>
+      </div>
+      <p class="galeria-legenda">Imagens utilizadas sob licença de seus respectivos autores. <a href="../creditos.html" style="color:var(--gold-dark);text-decoration:none;">Créditos completos disponíveis aqui.</a></p>
+    </section>
+
+    <section class="fontes-section" id="fontes">
+      <span class="section-tag">Seção 06</span>
+      <div class="section-header-left">
+        <h2>Fontes e Referências</h2>
+        <p>Documentação utilizada para a elaboração deste perfil</p>
+      </div>
+      <div class="fontes-lista">
+        <div class="fonte-item">
+          <span class="fonte-tipo">Site Oficial</span>
+          <div><p class="fonte-titulo">Santuário de Lourdes — lourdes.com</p><p class="fonte-autor">Arquivo histórico, Bureau Médico e documentação das aparições</p></div>
+          <a href="https://www.lourdes.com" target="_blank" class="fonte-link">Acessar →</a>
+        </div>
+        <div class="fonte-item">
+          <span class="fonte-tipo">Livro</span>
+          <div><p class="fonte-titulo">Bernadette de Lourdes</p><p class="fonte-autor">René Laurentin · Editora Vozes, 1980</p></div>
+          <span class="fonte-link">Impresso</span>
+        </div>
+        <div class="fonte-item">
+          <span class="fonte-tipo">Livro</span>
+          <div><p class="fonte-titulo">Santa Bernadette Soubirous — Uma Biografia</p><p class="fonte-autor">Francis Trochu · Editora Paulinas, 1957</p></div>
+          <span class="fonte-link">Impresso</span>
+        </div>
+        <div class="fonte-item">
+          <span class="fonte-tipo">Site Oficial</span>
+          <div><p class="fonte-titulo">Bureau Médico de Lourdes — bmllourdes.com</p><p class="fonte-autor">Arquivo das investigações médicas de curas inexplicáveis</p></div>
+          <a href="https://www.bmllourdes.com" target="_blank" class="fonte-link">Acessar →</a>
+        </div>
+      </div>
+    </section>
+
+    <div class="nav-santos-div">
+      <a href="bosco.html" class="nav-santo-link">
+        <span class="nav-santo-label">← Santo Anterior</span>
+        <span class="nav-santo-nome">São João Bosco</span>
+      </a>
+      <a href="carlo-acutis.html" class="nav-santo-link nav-santo-dir">
+        <span class="nav-santo-label">Próximo Santo →</span>
+        <span class="nav-santo-nome">Beato Carlo Acutis</span>
+      </a>
+    </div>
+  </div>
+
+  <section class="oracao-section" id="oracao">
+    <div class="oracao-inner">
+      <span class="section-tag">Seção 05</span>
+      <h2 class="oracao-titulo">Oração por Intercessão de Santa Bernadette Soubirous</h2>
+      <div class="oracao-texto">
+        <p>Senhor Jesus, Tu que revelastes à menina mais pobre de Lourdes o que escondeste aos sábios e entendidos, concede-nos, pela intercessão de Santa Bernadette, a simplicidade de coração que acolhe o mistério sem precisar controlá-lo — e a coragem de dizer o que vimos, mesmo quando ninguém acredita.</p>
+        <p>Ela foi interrogada, pressionada, ridicularizada — e respondeu sempre com a mesma serenidade de quem sabe o que viveu. E depois, quando poderia ter aproveitado a fama das aparições, escolheu o convento e o anonimato, o sofrimento e o silêncio, dizendo a si mesma as palavras que Nossa Senhora lhe havia dito: não prometi a felicidade nesta vida, mas na outra.</p>
+        <p>Santa Bernadette Soubirous, vidente de Lourdes, intercede por todos os doentes que buscam cura, por todos os que vivem na pobreza e no esquecimento, e por todos os que, sem méritos aparentes, são escolhidos por Deus para tarefas que não compreendem. Que saibamos, como ela, obedecer sem entender e confiar sem ver. Amém.</p>
+      </div>
+      <p class="oracao-fecho">· Para uso privado · Aprovação eclesiástica recomendada ·</p>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-inner">
+      <span class="footer-logo">Santos da Modernidade</span>
+      <span class="footer-copy">© Santos da Modernidade · Ad Maiorem Dei Gloriam</span>
+    </div>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      const menu = document.querySelector('.nav-links');
+      const btn = document.getElementById('nav-hamburguer');
+      menu.classList.toggle('aberto');
+      btn.textContent = menu.classList.contains('aberto') ? '✕' : '☰';
+    }
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        document.querySelector('.nav-links').classList.remove('aberto');
+        document.getElementById('nav-hamburguer').textContent = '☰';
+      });
+    });
+  </script>
+</body>
+</html>
