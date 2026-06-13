@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>São John Henry Newman · Santos da Modernidade</title>
+  <meta name="description" content="Conheça a vida de São John Henry Newman — cardeal inglês, intelectual e convertido do anglicanismo ao catolicismo, canonizado pelo Papa Francisco em 2019." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600&family=Raleway:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../style.css" />
+  <style>
+    .perfil-hero {
+      min-height: 100vh;
+      background: var(--dark);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      position: relative;
+      overflow: hidden;
+      padding-top: 80px;
+    }
+    .perfil-hero-bg {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 40%, rgba(201,168,76,0.07) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 40% at 20% 80%, rgba(123,28,46,0.1) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 40% at 80% 20%, rgba(27,45,79,0.12) 0%, transparent 60%);
+    }
+    .perfil-hero-left {
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 5rem 4rem 5rem 5rem; position: relative; z-index: 2;
+    }
+    .perfil-breadcrumb {
+      font-size: 0.68rem; letter-spacing: 0.25em; text-transform: uppercase;
+      color: rgba(201,168,76,0.5); margin-bottom: 2rem;
+    }
+    .perfil-breadcrumb a { color: inherit; text-decoration: none; transition: color 0.2s; }
+    .perfil-breadcrumb a:hover { color: var(--gold); }
+    .perfil-badge {
+      display: inline-block; border: 1px solid rgba(201,168,76,0.4);
+      color: var(--gold); font-size: 0.65rem; letter-spacing: 0.25em;
+      text-transform: uppercase; padding: 0.35rem 0.9rem; margin-bottom: 1.5rem;
+    }
+    .perfil-nome {
+      font-family: 'Cinzel', serif; font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 600; color: var(--ivory); line-height: 1.15;
+      margin-bottom: 0.5rem; letter-spacing: 0.03em;
+    }
+    .perfil-titulo {
+      font-family: 'Cormorant Garamond', serif; font-size: 1.2rem;
+      font-style: italic; font-weight: 300; color: var(--gold-light);
+      margin-bottom: 2rem; opacity: 0.8;
+    }
+    .perfil-meta { display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 2.5rem; }
+    .perfil-meta-item { display: flex; gap: 1rem; align-items: baseline; }
+    .perfil-meta-label {
+      color: rgba(201,168,76,0.6); font-weight: 500; letter-spacing: 0.1em;
+      min-width: 110px; font-size: 0.72rem; text-transform: uppercase; flex-shrink: 0;
+    }
+    .perfil-meta-value { color: rgba(240,232,216,0.75); font-size: 0.85rem; line-height: 1.4; }
+    .perfil-frase {
+      font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-style: italic;
+      color: var(--gold-light); border-left: 2px solid var(--gold);
+      padding-left: 1.25rem; line-height: 1.65; opacity: 0.9;
+    }
+    .perfil-hero-right {
+      position: relative; background: var(--dark-mid);
+      display: flex; align-items: center; justify-content: center; overflow: hidden;
+    }
+    .perfil-hero-right::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse at center, rgba(201,168,76,0.06) 0%, transparent 70%);
+    }
+    .perfil-img-placeholder {
+      display: flex; flex-direction: column; align-items: center; gap: 1rem;
+      color: rgba(201,168,76,0.2); font-family: 'Cinzel', serif; font-size: 0.7rem;
+      letter-spacing: 0.2em; text-transform: uppercase; text-align: center;
+    }
+    .perfil-img-placeholder-cross { font-size: 5rem; line-height: 1; opacity: 0.15; }
+    .perfil-hero-ano {
+      position: absolute; bottom: 2rem; right: 2rem;
+      font-family: 'Cinzel', serif; font-size: 4rem; font-weight: 600;
+      color: rgba(201,168,76,0.08); line-height: 1;
+    }
+    .perfil-content { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+    .section-tag {
+      font-size: 0.65rem; font-weight: 500; letter-spacing: 0.3em;
+      text-transform: uppercase; color: var(--gold-dark); display: block; margin-bottom: 1rem;
+    }
+    .section-header-left h2 {
+      font-family: 'Cinzel', serif; font-size: 1.5rem; font-weight: 400;
+      color: var(--dark); letter-spacing: 0.08em; margin-bottom: 0.5rem;
+    }
+    .section-header-left p {
+      font-family: 'Cormorant Garamond', serif; font-size: 1rem;
+      font-style: italic; color: var(--text-muted);
+    }
+    .bio-section {
+      padding: 7rem 0; display: grid; grid-template-columns: 1fr 2fr;
+      gap: 5rem; border-bottom: 1px solid var(--gold-light);
+    }
+    .bio-sidebar { position: sticky; top: 100px; align-self: start; }
+    .sidebar-title {
+      font-family: 'Cinzel', serif; font-size: 1.3rem; font-weight: 400;
+      color: var(--dark); letter-spacing: 0.06em; line-height: 1.4;
+    }
+    .sidebar-ornament { width: 30px; height: 1px; background: var(--gold); margin: 1.5rem 0; }
+    .sidebar-resumo {
+      font-family: 'Cormorant Garamond', serif; font-size: 1rem;
+      font-style: italic; color: var(--text-muted); line-height: 1.7;
+    }
+    .bio-texto h3 {
+      font-family: 'Cinzel', serif; font-size: 1rem; font-weight: 400;
+      letter-spacing: 0.1em; color: var(--dark); margin: 2rem 0 0.75rem;
+    }
+    .bio-texto h3:first-child { margin-top: 0; }
+    .bio-texto p { font-size: 0.97rem; line-height: 1.9; color: var(--text-muted); margin-bottom: 1rem; }
+    .bio-texto p strong { color: var(--text); font-weight: 500; }
+    .timeline-section { padding: 7rem 0; border-bottom: 1px solid var(--gold-light); }
+    .timeline-header { margin-bottom: 3.5rem; }
+    .timeline-grid { display: grid; grid-template-columns: 1fr 1fr; position: relative; }
+    .timeline-grid::before {
+      content: ''; position: absolute; left: 50%; top: 0; bottom: 0; width: 1px;
+      background: linear-gradient(to bottom, transparent, var(--gold-light), transparent);
+      transform: translateX(-50%);
+    }
+    .tl-item { padding: 2rem; position: relative; }
+    .tl-item:nth-child(odd) { text-align: right; padding-right: 3rem; }
+    .tl-item:nth-child(even) { padding-left: 3rem; }
+    .tl-item::after {
+      content: ''; position: absolute; top: 2.5rem; width: 8px; height: 8px;
+      background: var(--gold); transform: rotate(45deg);
+    }
+    .tl-item:nth-child(odd)::after { right: -4px; }
+    .tl-item:nth-child(even)::after { left: -4px; }
+    .tl-ano { font-family: 'Cinzel', serif; font-size: 0.72rem; letter-spacing: 0.2em; color: var(--gold-dark); margin-bottom: 0.4rem; }
+    .tl-evento { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; color: var(--dark); margin-bottom: 0.3rem; }
+    .tl-desc { font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; }
+    .milagres-section {
+      padding: 7rem 0; background: var(--parchment); margin: 0 -2rem;
+      padding-left: 2rem; padding-right: 2rem;
+      border-top: 1px solid var(--gold-light); border-bottom: 1px solid var(--gold-light);
+    }
+    .milagres-inner { max-width: 1100px; margin: 0 auto; }
+    .milagres-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 3rem; }
+    .milagre-card { background: var(--ivory); border: 1px solid var(--gold-light); padding: 2rem; }
+    .milagre-numero { font-family: 'Cinzel', serif; font-size: 2.5rem; font-weight: 600; color: var(--gold-light); line-height: 1; margin-bottom: 1rem; }
+    .milagre-local { font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold-dark); margin-bottom: 0.5rem; }
+    .milagre-titulo { font-family: 'Cinzel', serif; font-size: 0.95rem; color: var(--dark); margin-bottom: 0.75rem; }
+    .milagre-desc { font-size: 0.88rem; line-height: 1.75; color: var(--text-muted); }
+    .milagre-ano-badge { display: inline-block; margin-top: 1rem; border: 1px solid var(--gold-light); color: var(--gold-dark); font-size: 0.65rem; letter-spacing: 0.18em; padding: 0.2rem 0.6rem; }
+    .galeria-section { padding: 7rem 0; border-bottom: 1px solid var(--gold-light); }
+    .galeria-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; grid-template-rows: 200px 200px; gap: 1rem; margin-top: 3rem; }
+    .galeria-item {
+      background: var(--dark-mid); display: flex; align-items: center; justify-content: center;
+      color: rgba(201,168,76,0.2); font-size: 0.65rem; letter-spacing: 0.2em;
+      text-transform: uppercase; font-family: 'Cinzel', serif;
+      border: 1px solid rgba(201,168,76,0.1); overflow: hidden;
+    }
+    .galeria-item:first-child { grid-row: 1 / 3; }
+    .galeria-item img { width: 100%; height: 100%; object-fit: cover; }
+    .galeria-legenda { font-size: 0.75rem; color: var(--text-muted); text-align: center; margin-top: 1rem; font-style: italic; font-family: 'Cormorant Garamond', serif; }
+    .oracao-section {
+      padding: 7rem 0; background: var(--blue-deep); margin: 0 -2rem;
+      padding-left: 2rem; padding-right: 2rem; text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .oracao-section::before {
+      content: '"'; position: absolute; top: -2rem; left: 50%; transform: translateX(-50%);
+      font-family: 'Cormorant Garamond', serif; font-size: 20rem;
+      color: rgba(201,168,76,0.05); line-height: 1; pointer-events: none;
+    }
+    .oracao-inner { max-width: 680px; margin: 0 auto; position: relative; z-index: 2; }
+    .oracao-section .section-tag { color: var(--gold); }
+    .oracao-titulo { font-family: 'Cinzel', serif; font-size: 1.4rem; color: var(--ivory); letter-spacing: 0.08em; margin-bottom: 2.5rem; }
+    .oracao-texto { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 300; line-height: 2; color: rgba(240,232,216,0.8); text-align: left; }
+    .oracao-texto p { margin-bottom: 1rem; }
+    .oracao-fecho { font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); opacity: 0.7; margin-top: 2rem; }
+    .fontes-section { padding: 7rem 0; }
+    .fontes-lista { margin-top: 2.5rem; display: flex; flex-direction: column; }
+    .fonte-item { display: grid; grid-template-columns: auto 1fr auto; gap: 1.5rem; align-items: center; padding: 1.25rem 0; border-bottom: 1px solid var(--gold-light); }
+    .fonte-tipo { font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold-dark); border: 1px solid var(--gold-light); padding: 0.2rem 0.6rem; white-space: nowrap; }
+    .fonte-titulo { font-size: 0.92rem; color: var(--text); }
+    .fonte-autor { font-size: 0.8rem; color: var(--text-muted); margin-top: 0.2rem; font-family: 'Cormorant Garamond', serif; font-style: italic; }
+    .fonte-link { font-size: 0.7rem; color: var(--gold-dark); text-decoration: none; letter-spacing: 0.1em; white-space: nowrap; transition: color 0.2s; }
+    .fonte-link:hover { color: var(--gold); }
+    .nav-santos-div { padding: 3rem 0; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--gold-light); margin-top: 2rem; }
+    .nav-santo-link { text-decoration: none; display: flex; flex-direction: column; gap: 0.3rem; }
+    .nav-santo-dir { text-align: right; }
+    .nav-santo-label { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted); }
+    .nav-santo-nome { font-family: 'Cinzel', serif; font-size: 0.95rem; color: var(--gold-dark); transition: color 0.2s; }
+    .nav-santo-link:hover .nav-santo-nome { color: var(--gold); }
+    @media (max-width: 768px) {
+      .perfil-hero { grid-template-columns: 1fr; }
+      .perfil-hero-right { display: none; }
+      .perfil-hero-left { padding: 3rem 1.5rem; }
+      .bio-section { grid-template-columns: 1fr; gap: 2rem; }
+      .bio-sidebar { position: static; }
+      .timeline-grid { grid-template-columns: 1fr; }
+      .timeline-grid::before { display: none; }
+      .tl-item { text-align: left !important; padding: 1rem 0 1rem 2rem !important; }
+      .tl-item::after { left: 0 !important; right: auto !important; }
+      .milagres-grid { grid-template-columns: 1fr; }
+      .galeria-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+      .galeria-item:first-child { grid-row: auto; }
+      .fonte-item { grid-template-columns: 1fr; gap: 0.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="../index.html" class="nav-logo">Santos da Modernidade</a>
+    <ul class="nav-links">
+      <li><a href="../index.html#santos">Os Santos</a></li>
+      <li><a href="../categoria.html">Categorias</a></li>
+      <li><a href="../index.html#cronologia">Cronologia</a></li>
+      <li><a href="../mapa.html">Mapa</a></li>
+      <li><a href="../sobre.html">Sobre</a></li>
+    </ul>
+    <button id="nav-hamburguer" onclick="toggleMenu()"
+            style="background:transparent;border:none;color:#C9A84C;font-size:1.5rem;cursor:pointer;padding:0.25rem 0.5rem;-webkit-appearance:none;appearance:none;">☰</button>
+  </nav>
+
+  <!-- HERO -->
+  <section class="perfil-hero">
+    <div class="perfil-hero-bg"></div>
+    <div class="perfil-hero-left">
+      <p class="perfil-breadcrumb">
+        <a href="../index.html">Início</a> &nbsp;·&nbsp;
+        <a href="../index.html#santos">Os Santos</a> &nbsp;·&nbsp;
+        John Henry Newman
+      </p>
+      <span class="perfil-badge">Santo · Canonizado em 2019</span>
+      <h1 class="perfil-nome">São John Henry<br>Newman</h1>
+      <p class="perfil-titulo">"Cor ad cor loquitur" — O coração fala ao coração</p>
+      <div class="perfil-meta">
+        <div class="perfil-meta-item">
+          <span class="perfil-meta-label">Nascimento</span>
+          <span class="perfil-meta-value">21 de fevereiro de 1801 · Londres, Inglaterra</span>
+        </div>
+        <div class="perfil-meta-item">
+          <span class="perfil-meta-label">Falecimento</span>
+          <span class="perfil-meta-value">11 de agosto de 1890 · Edgbaston, Birmingham, Inglaterra</span>
+        </div>
+        <div class="perfil-meta-item">
+          <span class="perfil-meta-label">Beatificação</span>
+          <span class="perfil-meta-value">19 de setembro de 2010 · Birmingham · Bento XVI</span>
+        </div>
+        <div class="perfil-meta-item">
+          <span class="perfil-meta-label">Canonização</span>
+          <span class="perfil-meta-value">13 de outubro de 2019 · Roma · Francisco</span>
+        </div>
+        <div class="perfil-meta-item">
+          <span class="perfil-meta-label">Festa litúrgica</span>
+          <span class="perfil-meta-value">11 de outubro</span>
+        </div>
+      </div>
+      <p class="perfil-frase">"Mil dificuldades não constituem uma dúvida."</p>
+    </div>
+    <div class="perfil-hero-right" style="position:relative;overflow:hidden;">
+      <img src="../imagens/henry2.jpg" alt="São John Henry Newman"
+           style="width:100%;height:100%;object-fit:cover;object-position:top;" />
+      <span class="perfil-hero-ano">1890</span>
+    </div>
+  </section>
+
+  <!-- CONTEÚDO -->
+  <div class="perfil-content">
+
+    <!-- BIOGRAFIA -->
+    <section class="bio-section" id="biografia">
+      <div class="bio-sidebar">
+        <span class="section-tag">Seção 01</span>
+        <h2 class="sidebar-title">Biografia<br>Detalhada</h2>
+        <div class="sidebar-ornament"></div>
+        <p class="sidebar-resumo">Clérigo anglicano, intelectual de Oxford, líder de um dos movimentos religiosos mais influentes do século XIX — e, ao final, convertido ao catolicismo num gesto que custou amizades, reputação e segurança. John Henry Newman é o santo da consciência e da honestidade intelectual.</p>
+      </div>
+      <div class="bio-texto">
+  <h3>Infância Londrina — Entre o Comércio e a Fé</h3>
+  <p>John Henry Newman nasceu em <strong>21 de fevereiro de 1801</strong> em Londres. Filho de um banqueiro, foi educado na tradição anglicana. Aos 15 anos, sob a influência de um mentor calvinista, viveu uma conversão profunda. Este evento, que ele descreveu como "mais real para mim do que as minhas mãos e pés", instalou nele a convicção de que Deus era o centro da realidade. Em <strong>1817</strong>, ingressou no <strong>Trinity College</strong>, em Oxford — centro intelectual do Império. Ordenado clérigo em 1824, assumiu a vigararia de Santa Maria em 1828, onde suas pregações começaram a transformar a vida espiritual dos estudantes.</p>
+
+  <h3>O Movimento de Oxford — A Recuperação da Tradição</h3>
+  <p>Na década de 1830, o anglicanismo parecia vacilar frente ao secularismo. Newman, com Keble e Pusey, liderou o <strong>Movimento de Oxford</strong>. Eles argumentavam que a Igreja da Inglaterra não era uma criação do Parlamento (como um braço do Estado), mas um ramo da Igreja Católica universal. Publicaram os <strong>Tracts for the Times</strong>, defendendo que a autoridade da Igreja residia na Tradição apostólica e nos Sacramentos.</p>
+  <p>O ponto de ruptura foi o <strong>Tract 90 (1841)</strong>. Newman tentou demonstrar que os <em>Trinta e Nove Artigos</em> anglicanos podiam ser lidos em harmonia com os dogmas católicos. A interpretação causou um furor nacional. Bispos ingleses exigiram a suspensão dos panfletos; Newman percebeu, com dor, que a Igreja da Inglaterra rejeitava a sua própria identidade católica histórica.</p>
+
+  <h3>Littlemore — O Laboratório da Consciência</h3>
+  <p>Retirado em Littlemore, Newman viveu anos de ascese e leitura dos Padres da Igreja. Foi lá que ele resolveu sua grande angústia intelectual: ele percebeu que a Igreja primitiva — a de Santo Atanásio e Santo Ambrósio — era, em essência, a Igreja Católica Romana. Sua obra, <strong>"Ensaio sobre o Desenvolvimento da Doutrina Cristã"</strong>, foi o fruto final deste período. Ele provou que a doutrina não "muda", mas "cresce" e se explicita com o tempo, assim como a vida humana.</p>
+
+  <h3>A Conversão — O Custo da Verdade</h3>
+  <p>Em <strong>9 de outubro de 1845</strong>, Newman converteu-se ao catolicismo. A transição foi radical: perdeu a carreira acadêmica, o apoio da família (sua irmã Harriett nunca o perdoou) e o conforto de um ambiente que amava. O impacto social foi tamanho que sua conversão foi descrita como um "terremoto" na Inglaterra vitoriana. Ele provou, com sua vida, que a consciência individual, quando educada na verdade, deve ser seguida mesmo ao preço do ostracismo social.</p>
+
+  <h3>A Educação como Missão — "A Ideia de uma Universidade"</h3>
+  <p>Um ponto frequentemente esquecido é sua atuação em Dublin. Em <strong>1852</strong>, Newman escreveu <strong>"A Ideia de uma Universidade"</strong>, obra que ainda hoje molda o ensino superior ocidental. Ele defendia que a universidade não deveria ser apenas um centro de treinamento técnico, mas um lugar onde todas as áreas do conhecimento (incluindo a Teologia) convivem para formar o homem completo. Para Newman, a educação liberal é a chave para a liberdade da mente.</p>
+
+  <h3>Cardeal — O Reconhecimento da Fé na Razão</h3>
+  <p>Em <strong>1879</strong>, o Papa Leão XIII nomeou-o Cardeal, dando-lhe o título de "meu cardeal". A sua escolha do lema <strong>"Cor ad cor loquitur"</strong> ("O coração fala ao coração") definiu sua teologia: Deus não se revela em fórmulas áridas, mas através do encontro pessoal. Newman desafiou o racionalismo puro do seu tempo, mostrando que o homem chega à fé não apenas por silogismos, mas por uma percepção profunda da realidade, o que ele chamava de <em>"illative sense"</em> (o sentido ilativo).</p>
+
+  <h3>O Legado — O "Pai" do Vaticano II</h3>
+  <p>Newman morreu em <strong>1890</strong>. Sua visão sobre a <strong>consciência</strong> — frequentemente mal interpretada como "fazer o que se quer" — era, para ele, "a voz do Legislador" na alma humana. O Concílio Vaticano II não teria a mesma profundidade sem a sua teologia sobre o desenvolvimento doutrinal e o papel dos leigos. Canonizado em <strong>2019</strong>, ele é hoje o patrono daqueles que, em um mundo de incertezas, não têm medo de usar a razão e a fé para buscar a verdade, não importando para onde ela
+    </section>
+
+    <!-- LINHA DO TEMPO -->
+    <section class="timeline-section" id="cronologia">
+      <div class="timeline-header">
+        <span class="section-tag">Seção 02</span>
+        <div class="section-header-left">
+          <h2>Linha do Tempo</h2>
+          <p>89 anos de vida — de Oxford anglicana ao cardinalato católico</p>
+        </div>
+      </div>
+      <div class="timeline-grid">
+        <div class="tl-item">
+          <p class="tl-ano">21 Fev 1801</p>
+          <h3 class="tl-evento">Nascimento em Londres</h3>
+          <p class="tl-desc">Nasce em família anglicana de classe média. Aos 15 anos, durante uma doença, vive uma intensa experiência de conversão evangélica.</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-ano">1822 – 1828</p>
+          <h3 class="tl-evento">Oxford e ordenação</h3>
+          <p class="tl-desc">Eleito fellow do Oriel College. Ordenado clérigo anglicano e nomeado vigário de Santa Maria, em Oxford — púlpito que o torna famoso.</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-ano">1833 – 1841</p>
+          <h3 class="tl-evento">Movimento de Oxford</h3>
+          <p class="tl-desc">Lidera o Movimento Tractariano, buscando restaurar as raízes católicas do anglicanismo. Escreve a maioria dos Tracts for the Times.</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-ano">1841</p>
+          <h3 class="tl-evento">Tract 90 e escândalo</h3>
+          <p class="tl-desc">Publica o controverso Tract 90, gerando condenação pública de bispos anglicanos. Marca o início de sua crise espiritual mais profunda.</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-ano">1842 – 1845</p>
+          <h3 class="tl-evento">Littlemore — a "longa doença"</h3>
+          <p class="tl-desc">Retira-se para Littlemore em retiro e estudo. Escreve o "Ensaio sobre o Desenvolvimento da Doutrina Cristã", que o conduz logicamente a Roma.</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-ano">9 Out 1845</p>
+          <h3 class="tl-evento">Conversão ao catolicismo</h3>
+          <p class="tl-desc">É recebido na Igreja Católica em Littlemore aos 44 anos. Perde posição, amigos e reputação — mas nunca hesita na decisão.</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-ano">1847 – 1890</p>
+          <h3 class="tl-evento">Oratório de Birmingham</h3>
+          <p class="tl-desc">Ordenado padre católico em Roma. Funda o Oratório de São Filipe Néri em Birmingham, onde vive os quarenta e três anos restantes de sua vida.</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-ano">1864</p>
+          <h3 class="tl-evento">Apologia Pro Vita Sua</h3>
+          <p class="tl-desc">Escreve sua autobiografia espiritual em resposta a um ataque público. A obra restaura definitivamente sua reputação intelectual.</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-ano">1879</p>
+          <h3 class="tl-evento">Cardeal — "Cor ad cor loquitur"</h3>
+          <p class="tl-desc">Elevado ao cardinalato pelo Papa Leão XIII aos 78 anos. Escolhe o lema "o coração fala ao coração" — síntese de toda sua espiritualidade.</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-ano">13 Out 2019</p>
+          <h3 class="tl-evento">Canonização</h3>
+          <p class="tl-desc">Canonizado pelo Papa Francisco em Roma — o primeiro grande intelectual inglês moderno declarado santo, precursor de temas do Vaticano II.</p>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- MILAGRES -->
+  <section class="milagres-section" id="milagres">
+    <div class="milagres-inner">
+      <span class="section-tag">Seção 03</span>
+      <div class="section-header-left">
+        <h2>Milagres Aprovados</h2>
+        <p>Os prodígios reconhecidos pela Igreja para sua beatificação e canonização</p>
+      </div>
+      <div class="milagres-grid">
+        <div class="milagre-card">
+          <p class="milagre-numero">01</p>
+          <p class="milagre-local">Estados Unidos</p>
+          <h3 class="milagre-titulo">Cura de Jack Sullivan</h3>
+          <p class="milagre-desc">Jack Sullivan, diácono americano, sofria de uma condição grave na coluna que o deixava paralisado e sem perspectiva de recuperação segundo os médicos. Após orações fervorosas pela intercessão de John Henry Newman, recuperou-se de forma súbita e completa, voltando a andar normalmente. O caso foi investigado e reconhecido pelo Vaticano, habilitando a beatificação em 2010.</p>
+          <span class="milagre-ano-badge">Aprovado em 2009 · para a Beatificação</span>
+        </div>
+        <div class="milagre-card">
+          <p class="milagre-numero">02</p>
+          <p class="milagre-local">Chicago, Estados Unidos</p>
+          <h3 class="milagre-titulo">Cura de Melissa Villalobos</h3>
+          <p class="milagre-desc">Melissa Villalobos, mãe de família em Chicago, sofreu uma hemorragia interna grave durante a gravidez que ameaçava sua vida e a do bebê. Após rezar pedindo a intercessão de John Henry Newman, a hemorragia parou instantaneamente e de forma inexplicável pela medicina. O caso foi aprovado pelo Dicastério para as Causas dos Santos, habilitando a canonização pelo Papa Francisco em 2019.</p>
+          <span class="milagre-ano-badge">Aprovado em 2019 · para a Canonização</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="perfil-content">
+
+    <!-- GALERIA -->
+    <section class="galeria-section" id="galeria">
+      <span class="section-tag">Seção 04</span>
+      <div class="section-header-left">
+        <h2>Galeria</h2>
+        <p>Retratos e imagens da vida e do legado de São John Henry Newman</p>
+      </div>
+      <div class="galeria-grid">
+        <div class="galeria-item">
+          <img src="../imagens/henry1.jpg" alt="John Henry Newman" style="width:100%;height:100%;object-fit:cover;" />
+        </div>
+        <div class="galeria-item">
+          <img src="../imagens/henry2.jpg" alt="John Henry Newman" style="width:100%;height:100%;object-fit:cover;" />
+        </div>
+        <div class="galeria-item">
+          <img src="../imagens/henry3.jpg" alt="John Henry Newman" style="width:100%;height:100%;object-fit:cover;" />
+        </div>
+        <div class="galeria-item">
+          <img src="../imagens/henry4.png" alt="John Henry Newman" style="width:100%;height:100%;object-fit:cover;" />
+        </div>
+        <div class="galeria-item">
+          <img src="../imagens/henry5.jpg" alt="John Henry Newman" style="width:100%;height:100%;object-fit:cover;" />
+        </div>
+      </div>
+      <p class="galeria-legenda">
+        Imagens utilizadas sob licença de seus respectivos autores.
+        <a href="../creditos.html" style="color:var(--gold-dark);text-decoration:none;">Créditos completos disponíveis aqui.</a>
+      </p>
+    </section>
+
+    <!-- FONTES -->
+    <section class="fontes-section" id="fontes">
+      <span class="section-tag">Seção 06</span>
+      <div class="section-header-left">
+        <h2>Fontes e Referências</h2>
+        <p>Documentação utilizada para a elaboração deste perfil</p>
+      </div>
+      <div class="fontes-lista">
+        <div class="fonte-item">
+          <span class="fonte-tipo">Livro</span>
+          <div><p class="fonte-titulo">Apologia Pro Vita Sua</p><p class="fonte-autor">John Henry Newman · Edições Loyola, 2015</p></div>
+          <span class="fonte-link">Impresso</span>
+        </div>
+        <div class="fonte-item">
+          <span class="fonte-tipo">Livro</span>
+          <div><p class="fonte-titulo">Ensaio sobre o Desenvolvimento da Doutrina Cristã</p><p class="fonte-autor">John Henry Newman · Editora Vide, 2019</p></div>
+          <span class="fonte-link">Impresso</span>
+        </div>
+        <div class="fonte-item">
+          <span class="fonte-tipo">Livro</span>
+          <div><p class="fonte-titulo">John Henry Newman — Uma Biografia</p><p class="fonte-autor">Ian Ker · Oxford University Press, 2009</p></div>
+          <span class="fonte-link">Impresso</span>
+        </div>
+        <div class="fonte-item">
+          <span class="fonte-tipo">Site Oficial</span>
+          <div><p class="fonte-titulo">The National Institute for Newman Studies</p><p class="fonte-autor">Arquivo digital de cartas, sermões e escritos de Newman</p></div>
+          <a href="https://newmanstudies.org" target="_blank" class="fonte-link">Acessar →</a>
+        </div>
+        <div class="fonte-item">
+          <span class="fonte-tipo">Vatican News</span>
+          <div><p class="fonte-titulo">Canonização de John Henry Newman — Homilia do Papa Francisco</p><p class="fonte-autor">Santa Sé · 13 de outubro de 2019</p></div>
+          <a href="https://www.vatican.va/content/francesco/pt/homilies/2019/documents/papa-francesco_20191013_omelia-canonizzazione.html" target="_blank" class="fonte-link">Acessar →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- NAVEGAÇÃO -->
+    <div class="nav-santos-div">
+      <a href="paulovi.html" class="nav-santo-link">
+        <span class="nav-santo-label">← Santo Anterior</span>
+        <span class="nav-santo-nome">São Paulo VI</span>
+      </a>
+      <a href="joaoxxiii.html" class="nav-santo-link nav-santo-dir">
+        <span class="nav-santo-label">Próximo Santo →</span>
+        <span class="nav-santo-nome">São João XXIII</span>
+      </a>
+    </div>
+
+  </div>
+
+  <!-- ORAÇÃO -->
+  <section class="oracao-section" id="oracao">
+  <div class="oracao-inner">
+    <span class="section-tag">Seção 05</span>
+    <h2 class="oracao-titulo">Oração por Intercessão de São John Henry Newman</h2>
+    <div class="oracao-texto">
+      <p>
+        "Luz serena, guia-me, através da noite que me envolve; guia-me tu, Senhor! Escura é a noite e longe estou de casa; guia-me tu, Senhor! Dirige os meus passos; não peço ver o horizonte distante; um passo só me basta agora."
+      </p>
+      <p>
+        Ó Deus, que escolhestes São John Henry Newman para nos ensinar a buscar a verdade com honestidade e a seguir a consciência com retidão, concedei-nos, pela sua intercessão, a graça de escutar a Tua voz em meio ao ruído do mundo e a coragem de caminhar confiantes sob a Tua luz, até que cheguemos à plenitude da Vossa presença.
+      </p>
+      <p>Por Cristo, nosso Senhor. Amém.</p>
+    </div>
+    <p class="oracao-fecho">· Oração baseada na composição "Lead, Kindly Light" de J.H. Newman ·</p>
+  </div>
+</section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <span class="footer-logo">Santos da Modernidade</span>
+      <span class="footer-copy">© Santos da Modernidade · Ad Maiorem Dei Gloriam</span>
+    </div>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      const menu = document.querySelector('.nav-links');
+      const btn = document.getElementById('nav-hamburguer');
+      menu.classList.toggle('aberto');
+      btn.textContent = menu.classList.contains('aberto') ? '✕' : '☰';
+    }
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        document.querySelector('.nav-links').classList.remove('aberto');
+        document.getElementById('nav-hamburguer').textContent = '☰';
+      });
+    });
+  </script>
+
+</body>
+</html>

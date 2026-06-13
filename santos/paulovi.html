@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>São Paulo VI · Santos da Modernidade</title>
+  <meta name="description" content="Conheça a vida de São Paulo VI — o Papa que guiou a Igreja através das turbulentas águas do Concílio Vaticano II e da modernidade." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600&family=Raleway:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../style.css" />
+ <style>
+ .perfil-hero {
+      min-height: 100vh;
+      background: var(--dark);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      position: relative;
+      overflow: hidden;
+      padding-top: 80px;
+    }
+
+    .perfil-hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 40%, rgba(201,168,76,0.07) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 40% at 20% 80%, rgba(123,28,46,0.1) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 40% at 80% 20%, rgba(27,45,79,0.12) 0%, transparent 60%);
+    }
+
+    .perfil-hero-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 5rem 4rem 5rem 5rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .perfil-breadcrumb {
+      font-size: 0.68rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: rgba(201,168,76,0.5);
+      margin-bottom: 2rem;
+    }
+    .perfil-breadcrumb a { color: inherit; text-decoration: none; transition: color 0.2s; }
+    .perfil-breadcrumb a:hover { color: var(--gold); }
+
+    .perfil-badge {
+      display: inline-block;
+      border: 1px solid rgba(201,168,76,0.4);
+      color: var(--gold);
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      padding: 0.35rem 0.9rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .perfil-nome {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 600;
+      color: var(--ivory);
+      line-height: 1.15;
+      margin-bottom: 0.5rem;
+      letter-spacing: 0.03em;
+    }
+
+    .perfil-titulo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      font-style: italic;
+      font-weight: 300;
+      color: var(--gold-light);
+      margin-bottom: 2rem;
+      opacity: 0.8;
+    }
+
+    .perfil-meta { display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 2.5rem; }
+    .perfil-meta-item { display: flex; gap: 1rem; align-items: baseline; }
+    .perfil-meta-label {
+      color: rgba(201,168,76,0.6);
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      min-width: 110px;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      flex-shrink: 0;
+    }
+    .perfil-meta-value { color: rgba(240,232,216,0.75); font-size: 0.85rem; line-height: 1.4; }
+
+    .perfil-frase {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-style: italic;
+      color: var(--gold-light);
+      border-left: 2px solid var(--gold);
+      padding-left: 1.25rem;
+      line-height: 1.65;
+      opacity: 0.9;
+    }
+
+    .perfil-hero-right {
+      position: relative;
+      background: var(--dark-mid);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .perfil-hero-right::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at center, rgba(201,168,76,0.06) 0%, transparent 70%);
+    }
+
+    .perfil-img-placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      color: rgba(201,168,76,0.2);
+      font-family: 'Cinzel', serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      text-align: center;
+    }
+
+    .perfil-img-placeholder-cross { font-size: 5rem; line-height: 1; opacity: 0.15; }
+
+    .perfil-hero-ano {
+      position: absolute;
+      bottom: 2rem; right: 2rem;
+      font-family: 'Cinzel', serif;
+      font-size: 4rem;
+      font-weight: 600;
+      color: rgba(201,168,76,0.08);
+      line-height: 1;
+    }
+
+    .perfil-content { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+
+    .section-tag { font-size: 0.65rem; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold-dark); display: block; margin-bottom: 1rem; }
+
+    .section-header-left h2 { font-family: 'Cinzel', serif; font-size: 1.5rem; font-weight: 400; color: var(--dark); letter-spacing: 0.08em; margin-bottom: 0.5rem; }
+    .section-header-left p { font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-style: italic; color: var(--text-muted); }
+
+    .bio-section { padding: 7rem 0; display: grid; grid-template-columns: 1fr 2fr; gap: 5rem; border-bottom: 1px solid var(--gold-light); }
+    .bio-sidebar { position: sticky; top: 100px; align-self: start; }
+    .sidebar-title { font-family: 'Cinzel', serif; font-size: 1.3rem; font-weight: 400; color: var(--dark); letter-spacing: 0.06em; line-height: 1.4; }
+    .sidebar-ornament { width: 30px; height: 1px; background: var(--gold); margin: 1.5rem 0; }
+    .sidebar-resumo { font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-style: italic; color: var(--text-muted); line-height: 1.7; }
+
+    .bio-texto h3 { font-family: 'Cinzel', serif; font-size: 1rem; font-weight: 400; letter-spacing: 0.1em; color: var(--dark); margin: 2rem 0 0.75rem; }
+    .bio-texto h3:first-child { margin-top: 0; }
+    .bio-texto p { font-size: 0.97rem; line-height: 1.9; color: var(--text-muted); margin-bottom: 1rem; }
+    .bio-texto p strong { color: var(--text); font-weight: 500; }
+
+    .timeline-section { padding: 7rem 0; border-bottom: 1px solid var(--gold-light); }
+    .timeline-header { margin-bottom: 3.5rem; }
+    .timeline-grid { display: grid; grid-template-columns: 1fr 1fr; position: relative; }
+    .timeline-grid::before { content: ''; position: absolute; left: 50%; top: 0; bottom: 0; width: 1px; background: linear-gradient(to bottom, transparent, var(--gold-light), transparent); transform: translateX(-50%); }
+    .tl-item { padding: 2rem; position: relative; }
+    .tl-item:nth-child(odd) { text-align: right; padding-right: 3rem; }
+    .tl-item:nth-child(even) { padding-left: 3rem; }
+    .tl-item::after { content: ''; position: absolute; top: 2.5rem; width: 8px; height: 8px; background: var(--gold); transform: rotate(45deg); }
+    .tl-item:nth-child(odd)::after { right: -4px; }
+    .tl-item:nth-child(even)::after { left: -4px; }
+    .tl-ano { font-family: 'Cinzel', serif; font-size: 0.72rem; letter-spacing: 0.2em; color: var(--gold-dark); margin-bottom: 0.4rem; }
+    .tl-evento { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; color: var(--dark); margin-bottom: 0.3rem; }
+    .tl-desc { font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; }
+
+    .milagres-section { padding: 7rem 0; background: var(--parchment); margin: 0 -2rem; padding-left: 2rem; padding-right: 2rem; border-top: 1px solid var(--gold-light); border-bottom: 1px solid var(--gold-light); }
+    .milagres-inner { max-width: 1100px; margin: 0 auto; }
+    .milagres-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 3rem; }
+    .milagre-card { background: var(--ivory); border: 1px solid var(--gold-light); padding: 2rem; }
+    .milagre-numero { font-family: 'Cinzel', serif; font-size: 2.5rem; font-weight: 600; color: var(--gold-light); line-height: 1; margin-bottom: 1rem; }
+    .milagre-local { font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold-dark); margin-bottom: 0.5rem; }
+    .milagre-titulo { font-family: 'Cinzel', serif; font-size: 0.95rem; color: var(--dark); margin-bottom: 0.75rem; }
+    .milagre-desc { font-size: 0.88rem; line-height: 1.75; color: var(--text-muted); }
+    .milagre-ano-badge { display: inline-block; margin-top: 1rem; border: 1px solid var(--gold-light); color: var(--gold-dark); font-size: 0.65rem; letter-spacing: 0.18em; padding: 0.2rem 0.6rem; }
+
+    .galeria-section { padding: 7rem 0; border-bottom: 1px solid var(--gold-light); }
+    .galeria-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; grid-template-rows: 200px 200px; gap: 1rem; margin-top: 3rem; }
+    .galeria-item { background: var(--dark-mid); display: flex; align-items: center; justify-content: center; color: rgba(201,168,76,0.2); font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; font-family: 'Cinzel', serif; border: 1px solid rgba(201,168,76,0.1); overflow: hidden; }
+    .galeria-item:first-child { grid-row: 1 / 3; }
+    .galeria-item img { width: 100%; height: 100%; object-fit: cover; }
+    .galeria-legenda { font-size: 0.75rem; color: var(--text-muted); text-align: center; margin-top: 1rem; font-style: italic; font-family: 'Cormorant Garamond', serif; }
+
+    .oracao-section { padding: 7rem 0; background: var(--blue-deep); margin: 0 -2rem; padding-left: 2rem; padding-right: 2rem; text-align: center; position: relative; overflow: hidden; }
+    .oracao-section::before { content: '"'; position: absolute; top: -2rem; left: 50%; transform: translateX(-50%); font-family: 'Cormorant Garamond', serif; font-size: 20rem; color: rgba(201,168,76,0.05); line-height: 1; pointer-events: none; }
+    .oracao-inner { max-width: 680px; margin: 0 auto; position: relative; z-index: 2; }
+    .oracao-section .section-tag { color: var(--gold); }
+    .oracao-titulo { font-family: 'Cinzel', serif; font-size: 1.4rem; color: var(--ivory); letter-spacing: 0.08em; margin-bottom: 2.5rem; }
+    .oracao-texto { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 300; line-height: 2; color: rgba(240,232,216,0.8); text-align: left; }
+    .oracao-texto p { margin-bottom: 1rem; }
+    .oracao-fecho { font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); opacity: 0.7; margin-top: 2rem; }
+
+    .fontes-section { padding: 7rem 0; }
+    .fontes-lista { margin-top: 2.5rem; display: flex; flex-direction: column; }
+    .fonte-item { display: grid; grid-template-columns: auto 1fr auto; gap: 1.5rem; align-items: center; padding: 1.25rem 0; border-bottom: 1px solid var(--gold-light); }
+    .fonte-tipo { font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold-dark); border: 1px solid var(--gold-light); padding: 0.2rem 0.6rem; white-space: nowrap; }
+    .fonte-titulo { font-size: 0.92rem; color: var(--text); }
+    .fonte-autor { font-size: 0.8rem; color: var(--text-muted); margin-top: 0.2rem; font-family: 'Cormorant Garamond', serif; font-style: italic; }
+    .fonte-link { font-size: 0.7rem; color: var(--gold-dark); text-decoration: none; letter-spacing: 0.1em; white-space: nowrap; transition: color 0.2s; }
+    .fonte-link:hover { color: var(--gold); }
+
+   .nav-santos {
+      position: static;
+      background: none;
+      backdrop-filter: none;
+      padding: 3rem 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid var(--gold-light);
+      margin-top: 2rem;
+    }
+    .nav-santo-link {
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+
+    .nav-santo-dir { text-align: right; }
+
+    .nav-santo-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .nav-santo-nome {
+      font-family: 'Cinzel', serif;
+      font-size: 0.95rem;
+      color: var(--gold-dark);
+      transition: color 0.2s;
+    }
+
+    .nav-santo-link:hover .nav-santo-nome { color: var(--gold); }
+
+    @media (max-width: 768px) {
+      .perfil-hero { grid-template-columns: 1fr; }
+      .perfil-hero-right { display: flex; min-height: 350px; }
+      .perfil-hero-left { padding: 3rem 1.5rem; }
+      .bio-section { grid-template-columns: 1fr; gap: 2rem; }
+      .bio-sidebar { position: static; }
+      .timeline-grid { grid-template-columns: 1fr; }
+      .timeline-grid::before { display: none; }
+      .tl-item { text-align: left !important; padding: 1rem 0 1rem 2rem !important; }
+      .tl-item::after { left: 0 !important; right: auto !important; }
+      .milagres-grid { grid-template-columns: 1fr; }
+      .galeria-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+      .galeria-item:first-child { grid-row: auto; }
+      .fonte-item { grid-template-columns: 1fr; gap: 0.5rem; }
+      .section-header-left { padding: 0 24px; }
+      .section-tag { padding-left: 24px; }
+    }
+
+  </style>
+</head>
+<body>
+
+   <nav>
+     <a href="../index.html" class="nav-logo">Santos da Modernidade</a>
+     <ul class="nav-links">
+      <li><a href="../index.html#santos">Os Santos</a></li>
+      <li><a href="../categoria.html">Categorias</a></li>
+      <li><a href="../index.html#cronologia">Cronologia</a></li>
+      <li><a href="../mapa.html">Mapa</a></li>
+      <li><a href="../sobre.html">Sobre</a></li>
+     </ul>
+     <button id="nav-hamburguer"
+             onclick="toggleMenu()"
+             style="background:transparent; border:none; color:#C9A84C; font-size:1.5rem; cursor:pointer; padding:0.25rem 0.5rem; -webkit-appearance:none; appearance:none;">
+       ☰
+     </button>
+  </nav>
+
+  <!-- HERO -->
+
+  <section class="perfil-hero">
+    <div class="perfil-hero-bg"></div>
+    <div class="perfil-hero-left">
+      <p class="perfil-breadcrumb">
+        <a href="../index.html">Início</a> &nbsp;·&nbsp;
+        <a href="../index.html#santos">Os Santos</a> &nbsp;·&nbsp;
+        Paulo VI
+      </p>
+      <span class="perfil-badge">Santo · Canonizado em 2018</span>
+      <h1 class="perfil-nome">São Paulo VI</h1>
+      <p class="perfil-titulo">"O Papa do diálogo" — A luz da Igreja no Concílio</p>
+      <div class="perfil-meta">
+        <div class="perfil-meta-item">
+          <span class="perfil-meta-label">Nascimento</span>
+          <span class="perfil-meta-value">26 de setembro de 1897 · Concesio, Itália</span>
+        </div>
+        <div class="perfil-meta-item">
+          <span class="perfil-meta-label">Falecimento</span>
+          <span class="perfil-meta-value">6 de agosto de 1978 · Castel Gandolfo, Itália</span>
+        </div>
+        <div class="perfil-meta-item">
+          <span class="perfil-meta-label">Beatificação</span>
+          <span class="perfil-meta-value">19 de outubro de 2014 · Francisco</span>
+        </div>
+        <div class="perfil-meta-item">
+          <span class="perfil-meta-label">Canonização</span>
+          <span class="perfil-meta-value">14 de outubro de 2018 · Francisco</span>
+        </div>
+      </div>
+      <p class="perfil-frase">"A Igreja tem necessidade da arte, mas a arte tem necessidade da Igreja."</p>
+    </div>
+    <div class="perfil-hero-right">
+      <img src="../imagens/pvi2.jpg" alt="São Paulo VI" style="width:100%; height:auto;" />
+      <span class="perfil-hero-ano">Add data</span>
+    </div>
+  </section>
+   
+  <!-- CONTEÚDO -->
+    <div class="perfil-content">
+  
+        <section class="bio-section" id="biografia">
+           <div class="bio-sidebar">
+              <span class="sidebar-tag">Seção 01</span>
+              <h2 class="sidebar-title">Uma Vida<br>a Serviço da Verdade</h2>
+              <div class="sidebar-ornament"></div>
+              <p class="sidebar-resumo">
+                De uma infância reservada em Concesio à responsabilidade de guiar a Igreja no século XX, São Paulo VI foi o timoneiro que transformou as intuições do Concílio em uma realidade pastoral, definindo o rosto da Igreja Católica no mundo contemporâneo.
+              </p>
+           </div>
+           <div class="bio-texto">
+             <h3>Infância e Juventude: O Despertar de uma Vocação</h3>
+             <p>
+               Giovanni Battista Montini nasceu em <strong>26 de setembro de 1897</strong>, em Concesio. Criado em uma família da alta burguesia lombarda, foi educado sob os valores do catolicismo social. A fragilidade física de sua infância, que o obrigou a um isolamento estudioso, moldou um temperamento introspectivo e um intelecto refinado, voltado para a literatura e a filosofia.
+             </p>
+             <p> 
+               Ordenado em <strong>1920</strong>, sua trajetória foi marcada por uma intensa atividade intelectual e diplomática. Ele dedicou seus primeiros anos ao apostolado universitário (FUCI), onde formou gerações de jovens católicos para a vida pública. Posteriormente, serviu por mais de três décadas na Secretaria de Estado do Vaticano, sob Pio XI e Pio XII, tornando-se um dos mais experientes e discretos diplomatas da Santa Sé, o que lhe conferiu uma visão global e realista das tensões do século XX.
+             </p>
+
+             <h3>O Arcebispo e a Transição para o Papado</h3>
+             <p>
+               Em 1954, foi nomeado Arcebispo de Milão. Lá, consolidou sua fama de "Arcebispo dos Trabalhadores", entrando em contato direto com os desafios da industrialização e o distanciamento da classe operária em relação à Igreja. Quando eleito Papa em <strong>1963</strong>, herdou um mundo em plena ebulição cultural e uma Igreja em meio a um processo de reforma inédito. Montini não apenas assumiu a cadeira de Pedro; ele assumiu a responsabilidade de ser a ponte entre uma tradição bimilenar e a incerteza da modernidade.
+             </p>
+
+             <h3>O Concílio Vaticano II: Otimismo e Realismo</h3>
+             <p>
+               O <strong>Concílio Vaticano II (1962–1965)</strong> foi, sem dúvida, o centro de seu pontificado. Enquanto João XXIII abriu as janelas, coube a Paulo VI realizar o trabalho complexo de organizar a casa. O Concílio não foi uma ruptura com o passado, mas um <em>aggiornamento</em>: a Igreja reafirmou suas raízes bíblicas enquanto se abria ao diálogo ecumênico e inter-religioso.
+             </p>
+             <p>
+               <strong>O papel do timoneiro:</strong> A liderança de Paulo VI foi marcada pelo equilíbrio. Ele resistiu tanto às tentativas de paralisar as reformas quanto às pressões de grupos que desejavam transformações que ele julgava doutrinariamente arriscadas. O resultado foi um corpo de documentos que definiram a identidade católica moderna, centrada na dignidade da pessoa humana e na missão evangelizadora da Igreja no mundo.
+             </p>
+
+             <h3>Legado: O Papa Peregrino e a Defesa da Vida</h3>
+             <p>
+               Paulo VI revolucionou a imagem do Papado ao tornar-se o primeiro "Papa peregrino", visitando os cinco continentes e levando a mensagem do Evangelho aos centros de poder mundial (como a ONU). Sua encíclica <em>Populorum Progressio</em> (1967) tornou-se a "Magna Carta" do desenvolvimento integral, denunciando as desigualdades entre nações ricas e pobres.
+             </p>
+             <p>
+               Ao publicar a <em>Humanae Vitae</em> (1968), ele compreendeu que a Igreja deveria ser um sinal de contradição. A incompreensão interna que sofreu por essa encíclica foi seu "martírio silencioso". Ele preferiu a solidão e a impopularidade a abandonar o que considerava ser a verdade sobre o amor humano e a vida, demonstrando que a caridade, sem a verdade, seria apenas um sentimento.
+             </p>
+
+             <h3>O Santo da Esperança</h3>
+             <p>
+              São Paulo VI faleceu em <strong>6 de agosto de 1978</strong>, na festa da Transfiguração. Sua vida, iniciada na tranquilidade de Concesio, culminou em um serviço exaustivo, quase solitário, à Igreja universal. Ele não foi um Papa de consensos fáceis, mas um homem de oração e cultura que, nas tormentas da história, manteve o olhar fixo em Cristo. Canonizado em 2018, é hoje lembrado como o Papa que, ao guiar a Igreja pela ponte da modernidade, nunca perdeu de vista o horizonte da Eternidade.
+             </p>
+           </div>  
+        </section>
+  
+    <section class="timeline-section" id="cronologia">
+     <div class="timeline-header">
+       <span class="section-tag">Seção 02</span>
+       <div class="section-header-left">
+         <h2>Linha do Tempo</h2>
+         <p>Uma trajetória de serviço, desde as raízes na Lombardia até o pastoreio da Igreja Universal</p>
+       </div>
+     </div>
+     <div class="timeline-grid">
+       <div class="tl-item">
+         <p class="tl-ano">26 Set 1897</p>
+         <h3 class="tl-evento">Nascimento em Concesio</h3>
+         <p class="tl-desc">Nasce Giovanni Battista Montini, filho de Giorgio Montini e Giuditta Alghisi.</p>
+       </div>
+       <div class="tl-item">
+         <p class="tl-ano">29 Mai 1920</p>
+         <h3 class="tl-evento">Ordenação Sacerdotal</h3>
+         <p class="tl-desc">Recebe o sacramento da Ordem em Brescia, iniciando seu dedicado serviço à Igreja.</p>
+       </div>
+       <div class="tl-item">
+         <p class="tl-ano">1954</p>
+         <h3 class="tl-evento">Arcebispo de Milão</h3>
+         <p class="tl-desc">Assume a maior arquidiocese da Itália, ganhando o apelido de "Arcebispo dos Trabalhadores".</p>
+       </div>
+       <div class="tl-item">
+         <p class="tl-ano">21 Jun 1963</p>
+         <h3 class="tl-evento">Eleição Papal</h3>
+         <p class="tl-desc">É eleito sucessor de Pedro e adota o nome de Paulo VI, focando seu pontificado no Concílio.</p>
+       </div>
+       <div class="tl-item">
+         <p class="tl-ano">1964</p>
+         <h3 class="tl-evento">Peregrino da Paz</h3>
+         <p class="tl-desc">Torna-se o primeiro Papa da era moderna a viajar, visitando Jerusalém e encontrando-se com o Patriarca Atenágoras.</p>
+       </div>
+       <div class="tl-item">
+         <p class="tl-ano">8 Dez 1965</p>
+         <h3 class="tl-evento">Encerramento do Concílio</h3>
+         <p class="tl-desc">Conclui com sucesso as sessões do Concílio Vaticano II, entregando à Igreja suas constituições pastorais.</p>
+       </div>
+       <div class="tl-item">
+         <p class="tl-ano">1967</p>
+         <h3 class="tl-evento">Populorum Progressio</h3>
+         <p class="tl-desc">Publica a encíclica sobre o desenvolvimento dos povos, marco fundamental da Doutrina Social da Igreja.</p>
+       </div>
+       <div class="tl-item">
+         <p class="tl-ano">1968</p>
+         <h3 class="tl-evento">Humanae Vitae</h3>
+         <p class="tl-desc">Reafirma a doutrina da Igreja sobre a vida e o amor conjugal, enfrentando críticas com coragem e solidão.</p>
+       </div>
+       <div class="tl-item">
+         <p class="tl-ano">6 Ago 1978</p>
+         <h3 class="tl-evento">Falecimento</h3>
+         <p class="tl-desc">Falece em Castel Gandolfo, na festa da Transfiguração, após um pontificado de transformações históricas.</p>
+       </div>
+       <div class="tl-item">
+         <p class="tl-ano">14 Out 2018</p>
+         <h3 class="tl-evento">Canonização</h3>
+         <p class="tl-desc">É canonizado pelo Papa Francisco, sendo reconhecido como um dos grandes guias da Igreja moderna.</p>
+       </div>
+    </section>
+    </div>
+<section class="milagres-section" id="milagres">
+  <div class="milagres-inner">
+    <span class="section-tag">Seção 03</span>
+    <div class="section-header-left">
+      <h2>Milagres Reconhecidos</h2>
+      <p>Os sinais extraordinários que confirmaram a santidade de Paulo VI</p>
+    </div>
+    
+    <div class="milagres-grid">
+      <div class="milagre-card">
+        <p class="milagre-numero">01</p>
+        <p class="milagre-local">Califórnia, Estados Unidos</p>
+        <h3 class="milagre-titulo">Cura de um feto com diagnóstico grave</h3>
+        <p class="milagre-desc">
+          Em 2001, uma mãe grávida foi diagnosticada com uma complicação grave (ruptura da bexiga fetal), com prognóstico médico de morte certa para o bebê ou danos gravíssimos. Após a intercessão pedida a Paulo VI, o feto apresentou uma recuperação inexplicável para a medicina.
+        </p>
+        <span class="milagre-ano-badge">Aprovado em 2014 · para a Beatificação</span>
+      </div>
+
+      <div class="milagre-card">
+        <p class="milagre-numero">02</p>
+        <p class="milagre-local">Verona, Itália</p>
+        <h3 class="milagre-titulo">Segunda cura milagrosa de um feto</h3>
+        <p class="milagre-desc">
+          O milagre que abriu caminho para a canonização de Paulo VI também envolveu a cura de um nascituro. Com graves problemas de saúde durante a gestação e risco de morte, a criança foi curada após as orações dirigidas a Paulo VI.
+        </p>
+        <span class="milagre-ano-badge">Aprovado em 2018 · para a Canonização</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+  <div class="perfil-content">
+  
+    <section class="galeria-section" id="galeria">
+         <span class="section-tag">Seção 04</span>
+        <div class="section-header-left">
+            <h2>Galeria</h2>
+           <p>Registros históricos da vida e do pontificado de São Paulo VI</p>
+        </div>
+     <div class="galeria-grid">
+      <div class="galeria-item">
+      <img src="../imagens/pvi1.jpg" 
+           alt="São Paulo VI" 
+           style="width:100%; height:100%; object-fit:cover;" />
+    </div>
+    <div class="galeria-item">
+      <img src="../imagens/pvi2.jpg" 
+           alt="São Paulo VI" 
+           style="width:100%; height:100%; object-fit:cover;" />
+    </div>
+    <div class="galeria-item">
+      <img src="../imagens/pvi3.jpg" 
+           alt="São Paulo VI" 
+           style="width:100%; height:100%; object-fit:cover;" />
+    </div>
+    <div class="galeria-item">
+      <img src="../imagens/pvi4.jpg" 
+           alt="São Paulo VI" 
+           style="width:100%; height:100%; object-fit:cover;" />
+    </div>
+    <div class="galeria-item">
+      <img src="../imagens/pvi5.jpg" 
+           alt="São Paulo VI" 
+           style="width:100%; height:100%; object-fit:cover;" />
+    </div>
+   <p class="galeria-legenda">
+    Imagens utilizadas sob licença de seus respectivos autores.
+    <a href="../creditos.html" style="color:var(--gold-dark); text-decoration:none;">Créditos completos disponíveis aqui.</a>
+   </p>
+  </div>
+</section>
+<section class="fontes-section" id="fontes">
+  <span class="section-tag">Seção 06</span>
+  <div class="section-header-left">
+    <h2>Fontes e Referências</h2>
+    <p>Documentação e obras de referência para a elaboração deste perfil</p>
+  </div>
+  <div class="fontes-lista">
+    <div class="fonte-item">
+      <span class="fonte-tipo">Site Oficial</span>
+      <div>
+        <p class="fonte-titulo">Site oficial da Santa Sé · Biografia e Magistério de Paulo VI</p>
+        <p class="fonte-autor">vatican.va</p>
+      </div>
+      <a href="https://www.vatican.va/content/paul-vi/pt/biografia/documents/hf_p-vi_spe_20190722_biografia.html" target="_blank" class="fonte-link">Acessar →</a>
+    </div>
+    <div class="fonte-item">
+      <span class="fonte-tipo">Livro</span>
+      <div>
+        <p class="fonte-titulo">Paulo VI: O Papa da modernidade</p>
+        <p class="fonte-autor">Jean Guitton · Editora Vozes</p>
+      </div>
+      <span class="fonte-link">Impresso</span>
+    </div>
+    <div class="fonte-item">
+      <span class="fonte-tipo">Encíclica</span>
+      <div>
+        <p class="fonte-titulo">Populorum Progressio (1967)</p>
+        <p class="fonte-autor">Magistério de Paulo VI · Sobre o desenvolvimento dos povos</p>
+      </div>
+      <a href="https://www.vatican.va/content/paul-vi/pt/encyclicals/documents/hf_p-vi_enc_26031967_populorum.html" target="_blank" class="fonte-link">Ler Encíclica →</a>
+    </div>
+    <div class="fonte-item">
+      <span class="fonte-tipo">Documentário</span>
+      <div>
+        <p class="fonte-titulo">Paulo VI: A travessia de um século</p>
+        <p class="fonte-autor">Centro Televisivo Vaticano · Arquivos históricos</p>
+      </div>
+      <span class="fonte-link">Audiovisual</span>
+    </div>
+  </div>
+</section>
+<!-- NAVEGAÇÃO -->
+    <div class="nav-santos">
+      <a href="teresa-andes.html" class="nav-santo-link">
+        <span class="nav-santo-label">← Santo Anterior</span>
+        <span class="nav-santo-nome">Santa Teresa dos Andes</span>
+      </a>
+      <a href="carlo-acutis.html" class="nav-santo-link nav-santo-dir">
+        <span class="nav-santo-label">Próximo Santo →</span>
+        <span class="nav-santo-nome">São Carlo Acutis </span>
+      </a>
+    </div>
+  </div>
+   <section class="oracao-section" id="oracao">
+       <div class="oracao-inner">
+         <span class="section-tag">Seção 05</span>
+         <h2 class="oracao-titulo">Oração por Intercessão de São Paulo VI</h2>
+           <div class="oracao-texto">
+             <p>
+               Ó Deus, Pai de misericórdia, que em São Paulo VI destes à Vossa Igreja um Pastor sábio e corajoso, atento aos sinais dos tempos e incansável promotor da unidade e da paz, concedei-nos, pela sua intercessão, a graça de caminhar sempre na fidelidade ao Evangelho.
+              </p>
+              <p>
+               Que a sua dedicação ao anúncio de Cristo e o seu amor pelos pobres nos impulsionem a ser testemunhas da Vossa verdade e do Vosso amor no mundo de hoje. Concedei-nos, por seu exemplo, a coragem de servir à Igreja com humildade e esperança, até que alcancemos, convosco, a plenitude da vida eterna.
+               </p>
+               <p>Por Cristo, nosso Senhor. Amém.</p>
+           </div>
+        </div>
+    </section>
+     <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <span class="footer-logo">Santos da Modernidade</span>
+      <span class="footer-copy">© Santos da Modernidade · Ad Maiorem Dei Gloriam</span>
+    </div>
+  </footer>
+  <script>
+  function toggleMenu() {
+    const menu = document.querySelector('.nav-links');
+    const btn = document.getElementById('nav-hamburguer');
+    menu.classList.toggle('aberto');
+    btn.textContent = menu.classList.contains('aberto') ? '✕' : '☰';
+  }
+
+  // Fecha o menu ao clicar em qualquer link
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+      const menu = document.querySelector('.nav-links');
+      const btn = document.getElementById('nav-hamburguer');
+      menu.classList.remove('aberto');
+      btn.textContent = '☰';
+    });
+  });
+</script>
+</body>
+</html>
