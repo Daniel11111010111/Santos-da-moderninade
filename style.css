@@ -872,7 +872,24 @@
   .cat-grid { grid-template-columns: 1fr 1fr; }
   .hero-subtitle { width: 100% !important; max-width: 100% !important; box-sizing: border-box !important; padding-left: 1.5rem !important; padding-right: 1.5rem !important;}
 }  
-  
+.santos-filtro-link {
+  display: inline-block;
+  margin-top: 1rem;
+  font-family: 'Cinzel', serif;
+  font-size: 0.68rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold-dark) !important;
+  text-decoration: none !important;
+  border-bottom: 1px solid rgba(201,168,76,0.3);
+  padding-bottom: 0.2rem;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.santos-filtro-link:hover {
+  color: var(--gold) !important;
+  border-color: var(--gold);
+}
 
 
  
