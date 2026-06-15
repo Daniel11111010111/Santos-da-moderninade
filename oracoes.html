@@ -1,0 +1,2049 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Orações · Santos da Modernidade</title>
+  <meta name="description" content="Orações católicas organizadas por categoria — orações comuns, jaculatórias, marianas, aos santos, terços e rosário." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600&family=Raleway:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+
+    /* ══════════════════════════════════════════
+       LAYOUT GERAL
+    ══════════════════════════════════════════ */
+    .oracoes-page {
+      display: flex;
+      width: 100%;
+      min-height: calc(100vh - 70px);
+      margin-top: 70px;
+      background: var(--dark);
+      align-items: flex-start;
+      
+    }
+
+    /* ══════════════════════════════════════════
+       SIDEBAR
+    ══════════════════════════════════════════ */
+    .oracoes-sidebar {
+      display: flex;
+      flex-direction: column;
+      width: 300px;
+      min-width: 300px;
+      min-height: calc(100vh - 70px);
+      align-self: stretch;
+      position: sticky;
+      top: 70px;
+      overflow-y: auto;
+      background: var(--dark-mid);
+      border-right: 1px solid rgba(201,168,76,0.12);
+    }
+    .oracoes-sidebar::-webkit-scrollbar { width: 3px; }
+    .oracoes-sidebar::-webkit-scrollbar-thumb { background: rgba(201,168,76,0.15); border-radius: 2px; }
+
+    .oracoes-sidebar-header {
+      padding: 2.5rem 1.75rem 2rem;
+      border-bottom: 1px solid rgba(201,168,76,0.1);
+    }
+    .oracoes-sidebar-titulo {
+      font-family: 'Cinzel', serif;
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: var(--ivory);
+      letter-spacing: 0.04em;
+      margin-bottom: 0.6rem;
+    }
+    .oracoes-sidebar-desc {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.95rem;
+      font-style: italic;
+      color: rgba(240,232,216,0.38);
+      line-height: 1.65;
+    }
+
+    .oracoes-sidebar-nav {
+      padding: 0.75rem 0 1.5rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .oracoes-sidebar-nav a,
+    .oracoes-sidebar-nav a:visited,
+    .oracoes-sidebar-nav a:hover,
+    .oracoes-sidebar-nav a:focus {
+      all: unset;
+    }
+    .oracoes-sidebar-item {
+      display: flex !important;
+      align-items: center;
+      gap: 0.9rem;
+      padding: 0.85rem 2.2rem;
+      cursor: pointer;
+      transition: background 0.18s, color 0.18s;
+      text-decoration: none;
+      border-radius: 0;
+      position: relative;
+      box-sizing: border-box;
+      width: 100%;
+        padding-left: 2rem !important;
+    }
+    .oracoes-sidebar-item::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 3px;
+      background: var(--gold-dark);
+      opacity: 0;
+      transition: opacity 0.18s;
+    }
+    .oracoes-sidebar-item:hover { background: rgba(201,168,76,0.06); }
+    .oracoes-sidebar-item:hover .oracoes-sidebar-nome { color: rgba(240,232,216,0.75); }
+    .oracoes-sidebar-item.ativo { background: rgba(201,168,76,0.1); }
+    .oracoes-sidebar-item.ativo::before { opacity: 1; }
+    .oracoes-sidebar-item.ativo .oracoes-sidebar-nome { color: var(--gold); }
+    .oracoes-sidebar-item.ativo .oracoes-sidebar-icone { color: var(--gold-dark); }
+
+    .oracoes-sidebar-icone {
+      font-size: 0.85rem;
+      width: 20px;
+      text-align: center;
+      color: rgba(201,168,76,0.35);
+      flex-shrink: 0;
+      transition: color 0.18s;
+    }
+    .oracoes-sidebar-nome {
+      font-family: 'Raleway', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      color: rgba(240,232,216,0.5);
+      transition: color 0.18s;
+    }
+
+    /* ══════════════════════════════════════════
+       CONTEÚDO PRINCIPAL
+    ══════════════════════════════════════════ */
+    .oracoes-main {
+      flex: 1;
+      min-width: 0;
+      padding: 2.5rem 3rem 5rem;
+      max-width: 860px;
+    }
+
+    .oracoes-cat-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid rgba(201,168,76,0.12);
+    }
+    .oracoes-cat-titulo {
+      font-family: 'Cinzel', serif;
+      font-size: 1.75rem;
+      font-weight: 600;
+      color: var(--ivory);
+      letter-spacing: 0.04em;
+      margin-bottom: 0.4rem;
+    }
+    .oracoes-cat-tag {
+      font-family: 'Raleway', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 400;
+      letter-spacing: 0.05em;
+      color: rgba(240,232,216,0.4);
+      display: block;
+    }
+    .oracoes-cat-desc {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      font-style: italic;
+      color: rgba(240,232,216,0.4);
+      line-height: 1.7;
+      margin-bottom: 2rem;
+    }
+
+    .oracoes-categoria { display: none; }
+    .oracoes-categoria.visivel { display: block; }
+
+    /* ══════════════════════════════════════════
+       LISTA DE ORAÇÕES
+    ══════════════════════════════════════════ */
+    .oracoes-lista {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .oracao-item {
+      border: 1px solid rgba(201,168,76,0.13);
+      border-bottom: none;
+      background: rgba(255,255,255,0.018);
+      transition: background 0.18s;
+    }
+    .oracao-item:first-child { border-radius: 6px 6px 0 0; }
+    .oracao-item:last-child  { border-bottom: 1px solid rgba(201,168,76,0.13); border-radius: 0 0 6px 6px; }
+    .oracao-item:only-child  { border-radius: 6px; }
+    .oracao-item.aberta { background: rgba(201,168,76,0.04); }
+
+    .oracao-item-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 1.25rem;
+      cursor: pointer;
+      gap: 1rem;
+    }
+    .oracao-item-header:hover .oracao-item-nome { color: var(--ivory); }
+
+    .oracao-item-nome {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      color: rgba(240,232,216,0.75);
+      font-weight: 400;
+      line-height: 1.3;
+      transition: color 0.18s;
+    }
+    .oracao-item.aberta .oracao-item-nome { color: var(--gold-light, #e8c96a); }
+
+    .oracao-item-arrow {
+      color: rgba(201,168,76,0.4);
+      font-size: 1rem;
+      flex-shrink: 0;
+      transition: transform 0.22s, color 0.18s;
+      line-height: 1;
+    }
+    .oracao-item.aberta .oracao-item-arrow {
+      transform: rotate(90deg);
+      color: var(--gold-dark);
+    }
+
+    .oracao-item-body {
+      display: none;
+      padding: 0 1.25rem 1.25rem;
+      border-top: 1px solid rgba(201,168,76,0.1);
+    }
+    .oracao-item.aberta .oracao-item-body { display: block; }
+
+    .oracao-item-texto {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem;
+      font-weight: 300;
+      line-height: 2;
+      color: rgba(240,232,216,0.5);
+      padding-top: 1rem;
+      border-left: 2px solid rgba(201,168,76,0.18);
+      padding-left: 1.25rem;
+    }
+    .oracao-item-texto p { margin-bottom: 0.75rem; }
+    .oracao-item-texto p:last-child { margin-bottom: 0; }
+    .oracao-item-texto strong {
+      color: rgba(240,232,216,0.7);
+      font-weight: 500;
+    }
+
+    /* ══════════════════════════════════════════
+       MODO PASSO A PASSO (TERÇOS E ORAÇÕES LONGAS)
+    ══════════════════════════════════════════ */
+    .terco-guia {
+      background: rgba(201,168,76,0.03);
+      border: 1px solid rgba(201,168,76,0.15);
+      border-radius: 8px;
+      overflow: hidden;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Cabeçalho clicável do terço */
+    .terco-guia-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.1rem 1.4rem;
+      cursor: pointer;
+      gap: 1rem;
+      transition: background 0.18s;
+    }
+    .terco-guia-header:hover { background: rgba(201,168,76,0.06); }
+    .terco-guia-header-left { display: flex; align-items: center; gap: 0.85rem; }
+    .terco-guia-icone {
+      font-size: 1.1rem;
+      color: rgba(201,168,76,0.5);
+      flex-shrink: 0;
+    }
+    .terco-guia-titulo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      color: rgba(240,232,216,0.8);
+      font-weight: 400;
+    }
+    .terco-guia.aberto .terco-guia-titulo { color: var(--gold-light, #e8c96a); }
+    .terco-guia-seta {
+      color: rgba(201,168,76,0.4);
+      font-size: 1rem;
+      flex-shrink: 0;
+      transition: transform 0.22s;
+    }
+    .terco-guia.aberto .terco-guia-seta { transform: rotate(90deg); color: var(--gold-dark); }
+
+    /* Corpo do guia passo a passo */
+    .terco-guia-corpo {
+      display: none;
+      border-top: 1px solid rgba(201,168,76,0.12);
+    }
+    .terco-guia.aberto .terco-guia-corpo { display: block; }
+
+    /* Barra de progresso */
+    .terco-progresso-barra-wrap {
+      padding: 1rem 1.4rem 0.75rem;
+      border-bottom: 1px solid rgba(201,168,76,0.08);
+    }
+    .terco-progresso-label {
+      font-family: 'Raleway', sans-serif;
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      color: rgba(201,168,76,0.5);
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+    .terco-progresso-barra {
+      height: 2px;
+      background: rgba(201,168,76,0.1);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .terco-progresso-fill {
+      height: 100%;
+      background: linear-gradient(90deg, rgba(201,168,76,0.4), rgba(201,168,76,0.7));
+      border-radius: 2px;
+      transition: width 0.35s ease;
+    }
+
+    /* Área do passo atual */
+    .terco-passo-area {
+      padding: 1.5rem 1.4rem 1rem;
+      min-height: 160px;
+    }
+    .terco-passo-numero {
+      font-family: 'Cinzel', serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      color: rgba(201,168,76,0.45);
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+    .terco-passo-titulo {
+      font-family: 'Cinzel', serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--gold-light, #e8c96a);
+      letter-spacing: 0.04em;
+      margin-bottom: 0.85rem;
+    }
+    .terco-passo-texto {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.12rem;
+      font-weight: 300;
+      line-height: 1.9;
+      color: rgba(240,232,216,0.65);
+    }
+    .terco-passo-texto p { margin-bottom: 0.65rem; }
+    .terco-passo-texto p:last-child { margin-bottom: 0; }
+    .terco-passo-texto strong { color: rgba(240,232,216,0.85); font-weight: 500; }
+    .terco-passo-texto em {
+      font-style: italic;
+      color: rgba(201,168,76,0.75);
+    }
+    /* Indicação de repetição */
+    .terco-repeticao {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: rgba(201,168,76,0.08);
+      border: 1px solid rgba(201,168,76,0.15);
+      border-radius: 4px;
+      padding: 0.3rem 0.7rem;
+      margin-top: 0.6rem;
+      font-family: 'Raleway', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.07em;
+      color: rgba(201,168,76,0.7);
+    }
+
+    /* Navegação entre passos */
+    .terco-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.9rem 1.4rem 1.25rem;
+      border-top: 1px solid rgba(201,168,76,0.08);
+      gap: 0.75rem;
+    }
+    .terco-nav-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.6rem 1.1rem;
+      border: 1px solid rgba(201,168,76,0.2);
+      border-radius: 4px;
+      background: transparent;
+      color: rgba(201,168,76,0.6);
+      font-family: 'Raleway', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      cursor: pointer;
+      transition: all 0.18s;
+    }
+    .terco-nav-btn:hover:not(:disabled) {
+      background: rgba(201,168,76,0.08);
+      color: var(--gold);
+      border-color: rgba(201,168,76,0.4);
+    }
+    .terco-nav-btn:disabled {
+      opacity: 0.25;
+      cursor: not-allowed;
+    }
+    .terco-nav-btn.avancar {
+      background: rgba(201,168,76,0.08);
+      border-color: rgba(201,168,76,0.25);
+      color: var(--gold, #C9A84C);
+    }
+    .terco-nav-btn.avancar:hover:not(:disabled) {
+      background: rgba(201,168,76,0.15);
+    }
+    .terco-nav-contador {
+      font-family: 'Cinzel', serif;
+      font-size: 0.75rem;
+      color: rgba(240,232,216,0.35);
+      letter-spacing: 0.08em;
+      white-space: nowrap;
+    }
+
+    /* Badge "Concluído" */
+    .terco-concluido {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1.4rem 1.5rem;
+      text-align: center;
+    }
+    .terco-concluido.visivel { display: flex; }
+    .terco-concluido-icone {
+      font-size: 2rem;
+      margin-bottom: 0.75rem;
+      opacity: 0.7;
+    }
+    .terco-concluido-titulo {
+      font-family: 'Cinzel', serif;
+      font-size: 1rem;
+      color: var(--gold, #C9A84C);
+      letter-spacing: 0.08em;
+      margin-bottom: 0.4rem;
+    }
+    .terco-concluido-subtitulo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.95rem;
+      font-style: italic;
+      color: rgba(240,232,216,0.35);
+    }
+    .terco-reiniciar {
+      margin-top: 1rem;
+      padding: 0.5rem 1.2rem;
+      border: 1px solid rgba(201,168,76,0.2);
+      border-radius: 4px;
+      background: transparent;
+      color: rgba(201,168,76,0.55);
+      font-family: 'Raleway', sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      cursor: pointer;
+      transition: all 0.18s;
+    }
+    .terco-reiniciar:hover {
+      background: rgba(201,168,76,0.07);
+      color: var(--gold);
+    }
+
+    /* ══════════════════════════════════════════
+       MOBILE NAV
+    ══════════════════════════════════════════ */
+    .oracoes-mobile-nav {
+      display: none;
+      background: var(--dark-mid);
+      border-bottom: 1px solid rgba(201,168,76,0.12);
+      overflow-x: auto;
+      scrollbar-width: none;
+      position: sticky;
+      top: 70px;
+      z-index: 50;
+    }
+    .oracoes-mobile-nav::-webkit-scrollbar { display: none; }
+    .oracoes-mobile-nav-inner {
+      display: flex;
+      padding: 0 1rem;
+      min-width: max-content;
+    }
+    .oracoes-mobile-nav-btn {
+      font-family: 'Raleway', sans-serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(240,232,216,0.45);
+      padding: 0.9rem 1rem;
+      border-bottom: 2px solid transparent;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s;
+      background: none;
+      border-top: none;
+      border-left: none;
+      border-right: none;
+    }
+    .oracoes-mobile-nav-btn.ativo {
+      color: var(--gold);
+      border-bottom-color: var(--gold-dark);
+    }
+
+    @media (max-width: 768px) {
+      .oracoes-page { flex-direction: column; padding-top: 112px; }
+      .oracoes-sidebar { display: none !important; }
+      .oracoes-mobile-nav { display: block; }
+      .oracoes-main { padding: 1.5rem 1.25rem 4rem; max-width: 100%; }
+      .oracoes-cat-titulo { font-size: 1.35rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-logo">Santos da Modernidade</a>
+    <ul class="nav-links">
+      <li><a href="index.html#santos">Os Santos</a></li>
+      <li><a href="categoria.html">Categorias</a></li>
+      <li><a href="mapa.html">Mapa</a></li>
+      <li><a href="oracoes.html" style="color:var(--gold);">Orações</a></li>
+      <li><a href="sobre.html">Sobre</a></li>
+      <li><a href="creditos.html">Créditos das fotografias</a></li>
+    </ul>
+    <button id="nav-hamburguer" onclick="toggleMenu()"
+            style="background:transparent;border:none;color:#C9A84C;font-size:1.5rem;cursor:pointer;padding:0.25rem 0.5rem;-webkit-appearance:none;appearance:none;">☰</button>
+  </nav>
+
+  <!-- MOBILE NAV -->
+  <div class="oracoes-mobile-nav">
+    <div class="oracoes-mobile-nav-inner">
+      <button class="oracoes-mobile-nav-btn ativo" onclick="mostrarCategoria('comuns', this)">Orações Comuns</button>
+      <button class="oracoes-mobile-nav-btn" onclick="mostrarCategoria('jaculatorias', this)">Jaculatórias</button>
+      <button class="oracoes-mobile-nav-btn" onclick="mostrarCategoria('marianas', this)">Marianas</button>
+      <button class="oracoes-mobile-nav-btn" onclick="mostrarCategoria('santos-cat', this)">Santos</button>
+      <button class="oracoes-mobile-nav-btn" onclick="mostrarCategoria('tercos', this)">Terços</button>
+      <button class="oracoes-mobile-nav-btn" onclick="mostrarCategoria('rosario', this)">Rosário</button>
+      <button class="oracoes-mobile-nav-btn" onclick="mostrarCategoria('via-sacra', this)">Via Sacra</button>
+    </div>
+  </div>
+
+  <div class="oracoes-page">
+
+    <!-- SIDEBAR -->
+    <aside class="oracoes-sidebar">
+      <div class="oracoes-sidebar-header">
+        <h1 class="oracoes-sidebar-titulo">Orações</h1>
+        <p class="oracoes-sidebar-desc">Orações da tradição católica, organizadas para rezar com calma e devoção.</p>
+      </div>
+      <div class="oracoes-sidebar-nav">
+        <a class="oracoes-sidebar-item ativo" href="#" onclick="mostrarCategoria('comuns', this)">
+         
+          <span class="oracoes-sidebar-nome">Orações Comuns</span>
+        </a>
+        <a class="oracoes-sidebar-item" href="#" onclick="mostrarCategoria('jaculatorias', this)">
+         
+          <span class="oracoes-sidebar-nome">Jaculatórias</span>
+        </a>
+        <a class="oracoes-sidebar-item" href="#" onclick="mostrarCategoria('marianas', this)">
+         
+          <span class="oracoes-sidebar-nome">Orações Marianas</span>
+        </a>
+        <a class="oracoes-sidebar-item" href="#" onclick="mostrarCategoria('santos-cat', this)">
+         
+          <span class="oracoes-sidebar-nome">Orações dos Santos</span>
+        </a>
+        <a class="oracoes-sidebar-item" href="#" onclick="mostrarCategoria('tercos', this)">
+         
+          <span class="oracoes-sidebar-nome">Terços Diversos</span>
+        </a>
+        <a class="oracoes-sidebar-item" href="#" onclick="mostrarCategoria('rosario', this)">
+          
+          <span class="oracoes-sidebar-nome">Santo Rosário</span>
+        </a>
+        <a class="oracoes-sidebar-item" href="#" onclick="mostrarCategoria('via-sacra', this)">
+          
+          <span class="oracoes-sidebar-nome">Via Sacra</span>
+        </a>
+      </div>
+    </aside>
+
+    <!-- CONTEÚDO -->
+    <main class="oracoes-main">
+
+      <!-- ══════════════════════════════════════
+           01 · ORAÇÕES COMUNS
+      ══════════════════════════════════════ -->
+      <section class="oracoes-categoria visivel" id="cat-comuns">
+        <div class="oracoes-cat-header">
+          <div>
+            <h2 class="oracoes-cat-titulo">Orações Comuns</h2>
+            <span class="oracoes-cat-tag">01 · Base da vida cristã</span>
+          </div>
+        </div>
+        <p class="oracoes-cat-desc">As orações fundamentais que todo cristão leva consigo — do amanhecer ao anoitecer, da cruz ao Credo.</p>
+        <div class="oracoes-lista">
+
+          <div class="oracao-item">
+            <div class="oracao-item-header" onclick="toggleItem(this)">
+              <span class="oracao-item-nome">Sinal da Cruz</span>
+              <span class="oracao-item-arrow">▸</span>
+            </div>
+            <div class="oracao-item-body">
+              <div class="oracao-item-texto">
+                <p>Pelo sinal da Santa Cruz, livrai-nos Deus nosso Senhor, dos nossos inimigos.</p>
+                <p>Em nome do Pai, do Filho e do Espírito Santo.</p>
+                <p>Amém</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="oracao-item">
+            <div class="oracao-item-header" onclick="toggleItem(this)">
+              <span class="oracao-item-nome">Pai Nosso</span>
+              <span class="oracao-item-arrow">▸</span>
+            </div>
+            <div class="oracao-item-body">
+              <div class="oracao-item-texto">
+                <p>Pai nosso que estais no céu, santificado seja o vosso nome, venha a nós o vosso reino, seja feita a vossa vontade assim na terra como no céu.</p>
+                <p>O pão nosso de cada dia nos dai hoje, perdoai-nos as nossas ofensas assim como nós perdoamos a quem nos tem ofendido, e não nos deixeis cair em tentação, mas livrai-nos do mal. Amém.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="oracao-item">
+            <div class="oracao-item-header" onclick="toggleItem(this)">
+              <span class="oracao-item-nome">Ave Maria</span>
+              <span class="oracao-item-arrow">▸</span>
+            </div>
+            <div class="oracao-item-body">
+              <div class="oracao-item-texto">
+                <p>Ave Maria, cheia de graça, o Senhor é convosco; bendita sois vós entre as mulheres, e bendito é o fruto do vosso ventre, Jesus.</p>
+                <p>Santa Maria, Mãe de Deus, rogai por nós pecadores, agora e na hora da nossa morte. Amém.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="oracao-item">
+            <div class="oracao-item-header" onclick="toggleItem(this)">
+              <span class="oracao-item-nome">Glória ao Pai</span>
+              <span class="oracao-item-arrow">▸</span>
+            </div>
+            <div class="oracao-item-body">
+              <div class="oracao-item-texto">
+                <p>Glória ao Pai, ao Filho e ao Espírito Santo. Como era no princípio, agora e sempre, pelos séculos dos séculos. Amém.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="oracao-item">
+            <div class="oracao-item-header" onclick="toggleItem(this)">
+              <span class="oracao-item-nome">Glória a Deus nas Alturas</span>
+              <span class="oracao-item-arrow">▸</span>
+            </div>
+            <div class="oracao-item-body">
+              <div class="oracao-item-texto">
+                <p>Glória a Deus nas alturas, e paz na terra aos homens que ele ama. Senhor Deus, rei dos céus, Deus Pai todo-poderoso, nós vos louvamos, nós vos bendizemos, nós vos adoramos, nós vos glorificamos, nós vos damos graças por vossa imensa glória.</p>
+                <p>Senhor Jesus Cristo, Filho Unigênito, Senhor Deus, Cordeiro de Deus, Filho do Pai, vós que tirais o pecado do mundo, tende piedade de nós; vós que tirais o pecado do mundo, atendei a nossa súplica; vós que estais à direita do Pai, tende piedade de nós.</p>
+                <p>Porque só vós sois o Santo, só vós o Senhor, só vós o Altíssimo, Jesus Cristo, com o Espírito Santo, na glória de Deus Pai. Amém.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="oracao-item">
+            <div class="oracao-item-header" onclick="toggleItem(this)">
+              <span class="oracao-item-nome">Cordeiro de Deus</span>
+              <span class="oracao-item-arrow">▸</span>
+            </div>
+            <div class="oracao-item-body">
+              <div class="oracao-item-texto">
+                <p>Cordeiro de Deus que tirais o pecado do mundo, tende piedade de nós.</p>
+                <p>Cordeiro de Deus que tirais o pecado do mundo, tende piedade de nós.</p>
+                <p>Cordeiro de Deus que tirais o pecado do mundo, dai-nos a paz.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="oracao-item">
+            <div class="oracao-item-header" onclick="toggleItem(this)">
+              <span class="oracao-item-nome">Creio em Deus Pai (Credo)</span>
+              <span class="oracao-item-arrow">▸</span>
+            </div>
+            <div class="oracao-item-body">
+              <div class="oracao-item-texto">
+                <p>Creio em Deus Pai todo-poderoso, criador do céu e da terra; e em Jesus Cristo, seu único Filho, nosso Senhor, que foi concebido pelo poder do Espírito Santo; nasceu da Virgem Maria, padeceu sob Pôncio Pilatos, foi crucificado, morto e sepultado; desceu à mansão dos mortos; ressuscitou ao terceiro dia; subiu aos céus, está sentado à direita de Deus Pai todo-poderoso, donde há de vir a julgar os vivos e os mortos.</p>
+                <p>Creio no Espírito Santo, na santa Igreja Católica, na comunhão dos santos, na remissão dos pecados, na ressurreição da carne, na vida eterna. Amém.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="oracao-item">
+            <div class="oracao-item-header" onclick="toggleItem(this)">
+              <span class="oracao-item-nome">Vinde, Espírito Santo</span>
+              <span class="oracao-item-arrow">▸</span>
+            </div>
+            <div class="oracao-item-body">
+              <div class="oracao-item-texto">
+                <p>Vinde, Espírito Santo, enchei os corações dos vossos fiéis e acendei neles o fogo do vosso amor. Enviai o vosso Espírito e tudo será criado e renovareis a face da terra.</p>
+                <p>Ó Deus, que instruístes os corações dos vossos fiéis com a luz do Espírito Santo, fazei que pelo mesmo Espírito apreciemos o que é reto e gozemos sempre da sua consolação. Por Cristo Senhor nosso. Amém.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="oracao-item">
+            <div class="oracao-item-header" onclick="toggleItem(this)">
+              <span class="oracao-item-nome">Angelus</span>
+              <span class="oracao-item-arrow">▸</span>
+            </div>
+            <div class="oracao-item-body">
+              <div class="oracao-item-texto">
+                <p>O Anjo do Senhor anunciou a Maria. E ela concebeu do Espírito Santo. <em>Ave Maria...</em></p>
+                <p>Eis aqui a serva do Senhor. Faça-se em mim segundo a vossa palavra. <em>Ave Maria...</em></p>
+                <p>E o Verbo se fez carne. E habitou entre nós. <em>Ave Maria...</em></p>
+                <p>Rogai por nós, santa Mãe de Deus. Para que sejamos dignos das promessas de Cristo.</p>
+                <p>Oremos: Infundi, Senhor, a vossa graça em nossas almas, para que nós, que pela anunciação do Anjo conhecemos a encarnação de Cristo vosso Filho, cheguemos pela sua paixão e cruz à glória da ressurreição. Por Cristo nosso Senhor. Amém.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="oracao-item">
+            <div class="oracao-item-header" onclick="toggleItem(this)">
+              <span class="oracao-item-nome">Salve Rainha</span>
+              <span class="oracao-item-arrow">▸</span>
+            </div>
+            <div class="oracao-item-body">
+              <div class="oracao-item-texto">
+                <p>Salve Rainha, Mãe de misericórdia, vida, doçura e esperança nossa, salve! A vós bradamos, os degredados filhos de Eva. A vós suspiramos, gemendo e chorando neste vale de lágrimas.</p>
+                <p>Eia pois, advogada nossa, esses vossos olhos misericordiosos a nós volvei. E depois deste desterro, mostrai-nos Jesus, bendito fruto do vosso ventre. Ó clemente, ó piedosa, ó doce sempre Virgem Maria. Amém.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="oracao-item">
+            <div class="oracao-item-header" onclick="toggleItem(this)">
+              <span class="oracao-item-nome">Santo Anjo do Senhor</span>
+              <span class="oracao-item-arrow">▸</span>
+            </div>
+            <div class="oracao-item-body">
+              <div class="oracao-item-texto">
+                <p>Anjo de Deus, meu zeloso guardador, a quem a bondade divina me confiou, iluminai-me, guardai-me, regei-me e governai-me. Amém.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="oracao-item">
+            <div class="oracao-item-header" onclick="toggleItem(this)">
+              <span class="oracao-item-nome">Oração da Manhã</span>
+              <span class="oracao-item-arrow">▸</span>
+            </div>
+            <div class="oracao-item-body">
+              <div class="oracao-item-texto">
+                <p>Meu Deus, eu vos ofereço este dia. Oferecei-me a graça de vos amar cada vez mais. Que todos os meus pensamentos, palavras e ações de hoje sejam para vossa maior glória e para o bem das almas. Maria, minha Mãe, ajudai-me a ser fiel a Deus durante todo este dia. Amém.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="oracao-item">
+            <div class="oracao-item-header" onclick="toggleItem(this)">
+              <span class="oracao-item-nome">Oração da Noite</span>
+              <span class="oracao-item-arrow">▸</span>
+            </div>
+            <div class="oracao-item-body">
+              <div class="oracao-item-texto">
+                <p>Senhor, o dia chegou ao fim. Agradeço-vos por tudo o que recebi de bom, e peço perdão por tudo o que fiz de mal. Guardai-me durante esta noite e que eu me levante amanhã mais próximo de vós. Maria, minha Mãe, colocai-me sob o vosso manto. Amém.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="oracao-item">
+            <div class="oracao-item-header" onclick="toggleItem(this)">
+              <span class="oracao-item-nome">Ato de Contrição</span>
+              <span class="oracao-item-arrow">▸</span>
+            </div>
+            <div class="oracao-item-body">
+              <div class="oracao-item-texto">
+                <p>Meu Deus, porque sois infinitamente bom, eu me arrependo com todo o meu coração de vos ter ofendido, e proponho firmemente, com o auxílio da vossa graça, não mais pecar e evitar as ocasiões de pecado. Amém.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ══════════════════════════════════════
+           02 · JACULATÓRIAS
+      ══════════════════════════════════════ -->
+      <section class="oracoes-categoria" id="cat-jaculatorias">
+        <div class="oracoes-cat-header">
+          <div>
+            <h2 class="oracoes-cat-titulo">Jaculatórias</h2>
+            <span class="oracoes-cat-tag">02 · Breves e fervorosas</span>
+          </div>
+        </div>
+        <p class="oracoes-cat-desc">Pequenas flechas de oração lançadas ao céu a qualquer hora do dia — breves, intensas e cheias de fé.</p>
+        <div class="oracoes-lista">
+
+          <div class="oracao-item">
+            <div class="oracao-item-header" onclick="toggleItem(this)">
+              <span class="oracao-item-nome">Ó meu Jesus, perdoai-nos</span>
+              <span class="oracao-item-arrow">▸</span>
+            </div>
+            <div class="oracao-item-body">
+              <div class="oracao-item-texto">
+                <p>Ó meu Jesus, perdoai-nos, livrai-nos do fogo do inferno, levai as almas todas para o Céu, especialmente as que mais precisarem da vossa misericórdia. Amém.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="oracao-item">
+            <div class="oracao-item-header" onclick="toggleItem(this)">
+              <span class="oracao-item-nome">Sagrado Coração de Jesus, eu confio em vós!</span>
+              <span class="oracao-item-arrow">▸</span>
+            </div>
+            <div class="oracao-item-body">
+              <div class="oracao-item-texto">
+                <p>Sagrado Coração de Jesus, eu confio em vós!</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="oracao-item">
+            <div class="oracao-item-header" onclick="toggleItem(this)">
+              <span class="oracao-item-nome">Ó Sangue e Água</span>
+              <span class="oracao-item-arrow">▸</span>
+            </div>
+            <div class="oracao-item-body">
+              <div class="oracao-item-texto">
+                <p>Ó Sangue e Água que jorrastes do Coração de Jesus como fonte de misericórdia para nós, confio em vós!</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="oracao-item">
+            <div class="oracao-item-header" onclick="toggleItem(this)">
+              <span class="oracao-item-nome">Jesus, misericordioso, confio em vós!</span>
+              <span class="oracao-item-arrow">▸</span>
+            </div>
+            <div class="oracao-item-body">
+              <div class="oracao-item-texto">
+                <p>Jesus, misericordioso, confio em vós!</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="oracao-item">
+            <div class="oracao-item-header" onclick="toggleItem(this)">
+              <span class="oracao-item-nome">Seja feita a Santíssima Vontade de Deus!</span>
+              <span class="oracao-item-arrow">▸</span>
+            </div>
+            <div class="oracao-item-body">
+              <div class="oracao-item-texto">
+                <p>Seja feita, louvada e eternamente exaltada a Santíssima Vontade de Deus!</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="oracao-item">
+            <div class="oracao-item-header" onclick="toggleItem(this)">
+              <span class="oracao-item-nome">Ó Maria concebida sem pecado...</span>
+              <span class="oracao-item-arrow">▸</span>
+            </div>
+            <div class="oracao-item-body">
+              <div class="oracao-item-texto">
+                <p>Ó Maria concebida sem pecado, rogai por nós que recorremos a vós!</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="oracao-item">
+            <div class="oracao-item-header" onclick="toggleItem(this)">
+              <span class="oracao-item-nome">Doce Coração de Maria, sede a minha salvação!</span>
+              <span class="oracao-item-arrow">▸</span>
+            </div>
+            <div class="oracao-item-body">
+              <div class="oracao-item-texto">
+                <p>Doce Coração de Maria, sede a minha salvação!</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="oracao-item">
+            <div class="oracao-item-header" onclick="toggleItem(this)">
+              <span class="oracao-item-nome">Viva Cristo Rei!</span>
+              <span class="oracao-item-arrow">▸</span>
+            </div>
+            <div class="oracao-item-body">
+              <div class="oracao-item-texto">
+                <p>Viva Cristo Rei!</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="oracao-item">
+            <div class="oracao-item-header" onclick="toggleItem(this)">
+              <span class="oracao-item-nome">Tudo por vós, ó Jesus adorável!</span>
+              <span class="oracao-item-arrow">▸</span>
+            </div>
+            <div class="oracao-item-body">
+              <div class="oracao-item-texto">
+                <p>Tudo por vós, ó Jesus adorável, para vos agradar!</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="oracao-item">
+            <div class="oracao-item-header" onclick="toggleItem(this)">
+              <span class="oracao-item-nome">Meu Jesus, misericórdia!</span>
+              <span class="oracao-item-arrow">▸</span>
+            </div>
+            <div class="oracao-item-body">
+              <div class="oracao-item-texto">
+                <p>Meu Jesus, misericórdia!</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="oracao-item">
+            <div class="oracao-item-header" onclick="toggleItem(this)">
+              <span class="oracao-item-nome">Louvado e agradecido seja a cada momento...</span>
+              <span class="oracao-item-arrow">▸</span>
+            </div>
+            <div class="oracao-item-body">
+              <div class="oracao-item-texto">
+                <p>Louvado e agradecido seja a cada momento o Santíssimo e Diviníssimo Sacramento!</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ══════════════════════════════════════
+           03 · ORAÇÕES MARIANAS
+      ══════════════════════════════════════ -->
+      <section class="oracoes-categoria" id="cat-marianas">
+        <div class="oracoes-cat-header">
+          <div>
+            <h2 class="oracoes-cat-titulo">Orações Marianas</h2>
+            <span class="oracoes-cat-tag">03 · Nossa Senhora</span>
+          </div>
+        </div>
+        <p class="oracoes-cat-desc">Orações à Virgem Maria — Mãe, Rainha e Medianeira — que a Igreja reza há séculos com ternura filial.</p>
+        <div class="oracoes-lista">
+
+          <div class="oracao-item">
+            <div class="oracao-item-header" onclick="toggleItem(this)">
+              <span class="oracao-item-nome">Ave Maria</span>
+              <span class="oracao-item-arrow">▸</span>
+            </div>
+            <div class="oracao-item-body">
+              <div class="oracao-item-texto">
+                <p>Ave Maria, cheia de graça, o Senhor é convosco; bendita sois vós entre as mulheres, e bendito é o fruto do vosso ventre, Jesus.</p>
+                <p>Santa Maria, Mãe de Deus, rogai por nós pecadores, agora e na hora da nossa morte. Amém.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="oracao-item">
+            <div class="oracao-item-header" onclick="toggleItem(this)">
+              <span class="oracao-item-nome">Salve Rainha</span>
+              <span class="oracao-item-arrow">▸</span>
+            </div>
+            <div class="oracao-item-body">
+              <div class="oracao-item-texto">
+                <p>Salve Rainha, Mãe de misericórdia, vida, doçura e esperança nossa, salve! A vós bradamos, os degredados filhos de Eva. A vós suspiramos, gemendo e chorando neste vale de lágrimas.</p>
+                <p>Eia pois, advogada nossa, esses vossos olhos misericordiosos a nós volvei. E depois deste desterro, mostrai-nos Jesus, bendito fruto do vosso ventre. Ó clemente, ó piedosa, ó doce sempre Virgem Maria. Amém.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="oracao-item">
+            <div class="oracao-item-header" onclick="toggleItem(this)">
+              <span class="oracao-item-nome">Memorare</span>
+              <span class="oracao-item-arrow">▸</span>
+            </div>
+            <div class="oracao-item-body">
+              <div class="oracao-item-texto">
+                <p>Lembrai-vos, ó santíssima Virgem Maria, que jamais se ouviu dizer que algum daqueles que recorreram à vossa proteção, imploraram o vosso auxílio ou pediram o vosso socorro, tivesse sido abandonado.</p>
+                <p>Animado por esta confiança, a vós recorro, ó Mãe, Virgem das virgens, e gemendo sob o peso dos meus pecados, me prostro a vossos pés. Não querais, ó Mãe do Verbo, desprezar as minhas súplicas, mas ouvi-as e atendei-as propícia. Amém.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="oracao-item">
+            <div class="oracao-item-header" onclick="toggleItem(this)">
+              <span class="oracao-item-nome">Angelus</span>
+              <span class="oracao-item-arrow">▸</span>
+            </div>
+            <div class="oracao-item-body">
+              <div class="oracao-item-texto">
+                <p>O Anjo do Senhor anunciou a Maria. E ela concebeu do Espírito Santo. <em>Ave Maria...</em></p>
+                <p>Eis aqui a serva do Senhor. Faça-se em mim segundo a vossa palavra. <em>Ave Maria...</em></p>
+                <p>E o Verbo se fez carne. E habitou entre nós. <em>Ave Maria...</em></p>
+                <p>Rogai por nós, santa Mãe de Deus. Para que sejamos dignos das promessas de Cristo.</p>
+                <p>Oremos: Infundi, Senhor, a vossa graça em nossas almas, para que nós, que pela anunciação do Anjo conhecemos a encarnação de Cristo vosso Filho, cheguemos pela sua paixão e cruz à glória da ressurreição. Por Cristo nosso Senhor. Amém.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="oracao-item">
+            <div class="oracao-item-header" onclick="toggleItem(this)">
+              <span class="oracao-item-nome">Sub Tuum Praesidium</span>
+              <span class="oracao-item-arrow">▸</span>
+            </div>
+            <div class="oracao-item-body">
+              <div class="oracao-item-texto">
+                <p>Sob a vossa proteção nos acolhemos, santa Mãe de Deus. Não desprezeis as nossas súplicas em nossas necessidades, mas livrai-nos sempre de todos os perigos, ó Virgem gloriosa e bendita. Amém.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="oracao-item">
+            <div class="oracao-item-header" onclick="toggleItem(this)">
+              <span class="oracao-item-nome">Consagração a Nossa Senhora</span>
+              <span class="oracao-item-arrow">▸</span>
+            </div>
+            <div class="oracao-item-body">
+              <div class="oracao-item-texto">
+                <p>Ó Maria, Mãe de Jesus e minha Mãe, a vós me consagro totalmente: o meu corpo e a minha alma, o meu presente e o meu futuro, o que tenho e o que sou. Tomai conta de mim como vossa propriedade. Conduzi-me a Jesus, e a Jesus por vós, agora e sempre. Amém.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="oracao-item">
+            <div class="oracao-item-header" onclick="toggleItem(this)">
+              <span class="oracao-item-nome">Oração de Fátima</span>
+              <span class="oracao-item-arrow">▸</span>
+            </div>
+            <div class="oracao-item-body">
+              <div class="oracao-item-texto">
+                <p>Ó meu Jesus, perdoai-nos, livrai-nos do fogo do inferno, levai as almas todas para o Céu, especialmente as que mais precisarem da vossa misericórdia. Amém.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="oracao-item">
+            <div class="oracao-item-header" onclick="toggleItem(this)">
+              <span class="oracao-item-nome">Oração de Consagração ao Imaculado Coração</span>
+              <span class="oracao-item-arrow">▸</span>
+            </div>
+            <div class="oracao-item-body">
+              <div class="oracao-item-texto">
+                <p>Ó Imaculado Coração de Maria, cheio de bondade, mostrai vosso amor para conosco. Que a chama do vosso coração, ó Maria, desça sobre todos os homens. Nós vos amamos imensamente. Imprimai em nossos corações o verdadeiro amor, de modo que tenhamos um anseio contínuo para convosco. Amém.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="oracao-item">
+            <div class="oracao-item-header" onclick="toggleItem(this)">
+              <span class="oracao-item-nome">Apelo do Anjo da Paz (Fátima)</span>
+              <span class="oracao-item-arrow">▸</span>
+            </div>
+            <div class="oracao-item-body">
+              <div class="oracao-item-texto">
+                <p>Meu Deus, eu creio, adoro, espero e amo-Vos. Peço-Vos perdão pelos que não creem, não adoram, não esperam e não Vos amam.</p>
+                <p>Santíssima Trindade, Pai, Filho e Espírito Santo, adoro-Vos profundamente e ofereço-Vos o preciosíssimo Corpo, Sangue, Alma e Divindade de Jesus Cristo, presente em todos os sacrários da terra, em reparação dos ultrajes, sacrilégios e indiferenças com que Ele mesmo é ofendido. E pelos méritos infinitos do seu Sagrado Coração e do Coração Imaculado de Maria, peço-Vos a conversão dos pobres pecadores. Amém.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ══════════════════════════════════════
+           04 · ORAÇÕES DOS SANTOS
+      ══════════════════════════════════════ -->
+      <section class="oracoes-categoria" id="cat-santos-cat">
+        <div class="oracoes-cat-header">
+          <div>
+            <h2 class="oracoes-cat-titulo">Orações dos Santos</h2>
+            <span class="oracoes-cat-tag">04 · Intercessão e devoção</span>
+          </div>
+        </div>
+        <p class="oracoes-cat-desc">Orações dirigidas aos santos catalogados.</p>
+        <div class="oracoes-lista">
+
+          
+
+          <div class="oracao-item">
+            <div class="oracao-item-header" onclick="toggleItem(this)">
+              <span class="oracao-item-nome">Oração a São Carlo Acutis</span>
+              <span class="oracao-item-arrow">▸</span>
+            </div>
+            <div class="oracao-item-body">
+              <div class="oracao-item-texto">
+                <p>São Carlo Acutis, jovem que soube usar os talentos do nosso tempo para anunciar o amor de Deus, intercede por todos os jovens que buscam sentido numa era digital, por aqueles que enfrentam doenças graves com coragem, e por todos os que desejam colocar a internet a serviço do Evangelho. Amém.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="oracao-item">
+            <div class="oracao-item-header" onclick="toggleItem(this)">
+              <span class="oracao-item-nome">Oração a Santa Teresa de Calcutá</span>
+              <span class="oracao-item-arrow">▸</span>
+            </div>
+            <div class="oracao-item-body">
+              <div class="oracao-item-texto">
+                <p>Santa Teresa de Calcutá, que viste o rosto de Cristo nos mais abandonados, intercede por todos os que trabalham ao serviço dos pobres, pelos que sofrem na solidão e no esquecimento, e por todos os que buscam encontrar Deus no próximo mais necessitado. Amém.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="oracao-item">
+            <div class="oracao-item-header" onclick="toggleItem(this)">
+              <span class="oracao-item-nome">Oração a São João Paulo II</span>
+              <span class="oracao-item-arrow">▸</span>
+            </div>
+            <div class="oracao-item-body">
+              <div class="oracao-item-texto">
+                <p>São João Paulo II, que não tiveste medo de percorrer o mundo anunciando Cristo, intercede pela unidade dos cristãos, pela paz entre os povos, e por todos os jovens que buscam uma fé que não se envergonhe de ser proclamada. Não tenhais medo! Amém.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="oracao-item">
+            <div class="oracao-item-header" onclick="toggleItem(this)">
+              <span class="oracao-item-nome">Oração a São Padre Pio</span>
+              <span class="oracao-item-arrow">▸</span>
+            </div>
+            <div class="oracao-item-body">
+              <div class="oracao-item-texto">
+                <p>São Pio de Pietrelcina, que carregaste as chagas de Cristo por cinquenta anos com amor e sem queixa, intercede por todos os que sofrem doenças longas, pelos sacerdotes que administram o sacramento da reconciliação, e por todos os que buscam a paz de consciência. Amém.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="oracao-item">
+            <div class="oracao-item-header" onclick="toggleItem(this)">
+              <span class="oracao-item-nome">Oração a Santa Faustina Kowalska</span>
+              <span class="oracao-item-arrow">▸</span>
+            </div>
+            <div class="oracao-item-body">
+              <div class="oracao-item-texto">
+                <p>Santa Faustina, apóstola da Divina Misericórdia, intercede por todos os que duvidam do perdão de Deus, pelos que se afastaram da fé por sentirem-se indignos, e por todos os que precisam ouvir uma vez mais: Jesus, misericordioso, confio em vós! Amém.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="oracao-item">
+            <div class="oracao-item-header" onclick="toggleItem(this)">
+              <span class="oracao-item-nome">Oração a São Maximiliano Kolbe</span>
+              <span class="oracao-item-arrow">▸</span>
+            </div>
+            <div class="oracao-item-body">
+              <div class="oracao-item-texto">
+                <p>São Maximiliano Kolbe, que ofereceste a tua vida por um pai de família em Auschwitz, intercede por todos os que sofrem perseguição por causa da fé, pelos que trabalham pela paz no meio do ódio, e por todos os consagrados à Imaculada. Amém.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="oracao-item">
+            <div class="oracao-item-header" onclick="toggleItem(this)">
+              <span class="oracao-item-nome">Oração a Santa Edith Stein</span>
+              <span class="oracao-item-arrow">▸</span>
+            </div>
+            <div class="oracao-item-body">
+              <div class="oracao-item-texto">
+                <p>Santa Edith Stein, que buscaste a verdade com toda a tua inteligência e ela te conduziu até Cristo, intercede por todos os que buscam a fé pelo caminho da razão, pelos que sofrem perseguição por causa de sua identidade, e por todos os que precisam de coragem para seguir a consciência. Amém.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="oracao-item">
+            <div class="oracao-item-header" onclick="toggleItem(this)">
+              <span class="oracao-item-nome">Oração a São Giuseppe Moscati</span>
+              <span class="oracao-item-arrow">▸</span>
+            </div>
+            <div class="oracao-item-body">
+              <div class="oracao-item-texto">
+                <p>São Giuseppe Moscati, médico que nunca separaste a competência do amor, intercede por todos os profissionais de saúde, pelos doentes que buscam cura, e por todos os que precisam encontrar no trabalho ordinário um caminho de santidade. Amém.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="oracao-item">
+            <div class="oracao-item-header" onclick="toggleItem(this)">
+              <span class="oracao-item-nome">Oração a São João Maria Vianney</span>
+              <span class="oracao-item-arrow">▸</span>
+            </div>
+            <div class="oracao-item-body">
+              <div class="oracao-item-texto">
+                <p>São João Maria Vianney, padroeiro de todos os sacerdotes, intercede pelos padres do mundo inteiro — pelos cansados, pelos tentados, pelos que duvidam. E intercede por todos nós, que precisamos tanto da misericórdia que ele tão pacientemente distribuiu. Amém.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="oracao-item">
+            <div class="oracao-item-header" onclick="toggleItem(this)">
+              <span class="oracao-item-nome">Oração a São João Bosco</span>
+              <span class="oracao-item-arrow">▸</span>
+            </div>
+            <div class="oracao-item-body">
+              <div class="oracao-item-texto">
+                <p>São João Bosco, pai dos jovens de todo o mundo, intercede pelos adolescentes que hoje vivem nas ruas, pelos educadores que trabalham em ambientes difíceis, e por todas as famílias que buscam criar seus filhos com alegria e fé. Amém.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="oracao-item">
+            <div class="oracao-item-header" onclick="toggleItem(this)">
+              <span class="oracao-item-nome">Oração a Santa Bernadette Soubirous</span>
+              <span class="oracao-item-arrow">▸</span>
+            </div>
+            <div class="oracao-item-body">
+              <div class="oracao-item-texto">
+                <p>Santa Bernadette Soubirous, vidente de Lourdes, intercede por todos os doentes que buscam cura, por todos os que vivem na pobreza e no esquecimento, e por todos os que, sem méritos aparentes, são escolhidos por Deus para tarefas que não compreendem. Amém.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="oracao-item">
+            <div class="oracao-item-header" onclick="toggleItem(this)">
+              <span class="oracao-item-nome">Oração a São Charbel Makhlouf</span>
+              <span class="oracao-item-arrow">▸</span>
+            </div>
+            <div class="oracao-item-body">
+              <div class="oracao-item-texto">
+                <p>São Charbel Makhlouf, patrono do Líbano e de todos os eremitas, intercede por todos os que sofrem com doenças graves, pela paz numa terra marcada por séculos de conflito, e por todos os que buscam, no silêncio, encontrar a voz de Deus. Amém.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ══════════════════════════════════════
+           05 · TERÇOS DIVERSOS — PASSO A PASSO
+      ══════════════════════════════════════ -->
+      <section class="oracoes-categoria" id="cat-tercos">
+        <div class="oracoes-cat-header">
+          <div>
+            <h2 class="oracoes-cat-titulo">Terços Diversos</h2>
+            <span class="oracoes-cat-tag">05 · Contemplação passo a passo</span>
+          </div>
+        </div>
+        <p class="oracoes-cat-desc">Rezar com o coração exige calma e foco. Cada terço aqui se abre em passos — avance na sua hora, como quem passa as contas do rosário.</p>
+
+        <!-- TERÇO DA DIVINA MISERICÓRDIA -->
+        <div class="terco-guia" id="terco-misericordia">
+          <div class="terco-guia-header" onclick="abrirTerco('misericordia')">
+            <div class="terco-guia-header-left">
+              <span class="terco-guia-icone">○</span>
+              <span class="terco-guia-titulo">Terço da Divina Misericórdia</span>
+            </div>
+            <span class="terco-guia-seta">▸</span>
+          </div>
+          <div class="terco-guia-corpo">
+            <div class="terco-progresso-barra-wrap">
+              <div class="terco-progresso-label" id="prog-label-misericordia">Passo 1 de 7</div>
+              <div class="terco-progresso-barra"><div class="terco-progresso-fill" id="prog-fill-misericordia" style="width:14%"></div></div>
+            </div>
+            <div class="terco-passo-area" id="passo-area-misericordia"></div>
+            <div class="terco-concluido" id="concluido-misericordia">
+              <div class="terco-concluido-icone">✦</div>
+              <div class="terco-concluido-titulo">Terço concluído</div>
+              <div class="terco-concluido-subtitulo">Que a misericórdia de Deus vos acompanhe.</div>
+              <button class="terco-reiniciar" onclick="reiniciarTerco('misericordia')">↺ Rezar novamente</button>
+            </div>
+            <div class="terco-nav" id="nav-misericordia">
+              <button class="terco-nav-btn" id="btn-ant-misericordia" onclick="passoTerco('misericordia', -1)" disabled>← Anterior</button>
+              <span class="terco-nav-contador" id="cnt-misericordia">1 / 7</span>
+              <button class="terco-nav-btn avancar" id="btn-prox-misericordia" onclick="passoTerco('misericordia', 1)">Próximo →</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- TERÇO DAS SETE DORES DE MARIA -->
+        <div class="terco-guia" id="terco-sete-dores">
+          <div class="terco-guia-header" onclick="abrirTerco('sete-dores')">
+            <div class="terco-guia-header-left">
+              <span class="terco-guia-icone">○</span>
+              <span class="terco-guia-titulo">Terço das Sete Dores de Maria</span>
+            </div>
+            <span class="terco-guia-seta">▸</span>
+          </div>
+          <div class="terco-guia-corpo">
+            <div class="terco-progresso-barra-wrap">
+              <div class="terco-progresso-label" id="prog-label-sete-dores">Passo 1 de 10</div>
+              <div class="terco-progresso-barra"><div class="terco-progresso-fill" id="prog-fill-sete-dores" style="width:10%"></div></div>
+            </div>
+            <div class="terco-passo-area" id="passo-area-sete-dores"></div>
+            <div class="terco-concluido" id="concluido-sete-dores">
+              <div class="terco-concluido-icone">✦</div>
+              <div class="terco-concluido-titulo">Terço concluído</div>
+              <div class="terco-concluido-subtitulo">Que as dores de Maria vos purifiquem e consolem.</div>
+              <button class="terco-reiniciar" onclick="reiniciarTerco('sete-dores')">↺ Rezar novamente</button>
+            </div>
+            <div class="terco-nav" id="nav-sete-dores">
+              <button class="terco-nav-btn" id="btn-ant-sete-dores" onclick="passoTerco('sete-dores', -1)" disabled>← Anterior</button>
+              <span class="terco-nav-contador" id="cnt-sete-dores">1 / 10</span>
+              <button class="terco-nav-btn avancar" id="btn-prox-sete-dores" onclick="passoTerco('sete-dores', 1)">Próximo →</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- TERÇO DE SÃO JOSÉ -->
+        <div class="terco-guia" id="terco-sao-jose">
+          <div class="terco-guia-header" onclick="abrirTerco('sao-jose')">
+            <div class="terco-guia-header-left">
+              <span class="terco-guia-icone">○</span>
+              <span class="terco-guia-titulo">Terço de São José</span>
+            </div>
+            <span class="terco-guia-seta">▸</span>
+          </div>
+          <div class="terco-guia-corpo">
+            <div class="terco-progresso-barra-wrap">
+              <div class="terco-progresso-label" id="prog-label-sao-jose">Passo 1 de 12</div>
+              <div class="terco-progresso-barra"><div class="terco-progresso-fill" id="prog-fill-sao-jose" style="width:8%"></div></div>
+            </div>
+            <div class="terco-passo-area" id="passo-area-sao-jose"></div>
+            <div class="terco-concluido" id="concluido-sao-jose">
+              <div class="terco-concluido-icone">✦</div>
+              <div class="terco-concluido-titulo">Terço concluído</div>
+              <div class="terco-concluido-subtitulo">Que São José interceda por vós e por vossa família.</div>
+              <button class="terco-reiniciar" onclick="reiniciarTerco('sao-jose')">↺ Rezar novamente</button>
+            </div>
+            <div class="terco-nav" id="nav-sao-jose">
+              <button class="terco-nav-btn" id="btn-ant-sao-jose" onclick="passoTerco('sao-jose', -1)" disabled>← Anterior</button>
+              <span class="terco-nav-contador" id="cnt-sao-jose">1 / 12</span>
+              <button class="terco-nav-btn avancar" id="btn-prox-sao-jose" onclick="passoTerco('sao-jose', 1)">Próximo →</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- TERÇO DO SAGRADO CORAÇÃO -->
+        <div class="terco-guia" id="terco-sagrado-coracao">
+          <div class="terco-guia-header" onclick="abrirTerco('sagrado-coracao')">
+            <div class="terco-guia-header-left">
+              <span class="terco-guia-icone">○</span>
+              <span class="terco-guia-titulo">Terço do Sagrado Coração de Jesus</span>
+            </div>
+            <span class="terco-guia-seta">▸</span>
+          </div>
+          <div class="terco-guia-corpo">
+            <div class="terco-progresso-barra-wrap">
+              <div class="terco-progresso-label" id="prog-label-sagrado-coracao">Passo 1 de 9</div>
+              <div class="terco-progresso-barra"><div class="terco-progresso-fill" id="prog-fill-sagrado-coracao" style="width:11%"></div></div>
+            </div>
+            <div class="terco-passo-area" id="passo-area-sagrado-coracao"></div>
+            <div class="terco-concluido" id="concluido-sagrado-coracao">
+              <div class="terco-concluido-icone">✦</div>
+              <div class="terco-concluido-titulo">Terço concluído</div>
+              <div class="terco-concluido-subtitulo">Que o amor do Sagrado Coração vos encha de paz.</div>
+              <button class="terco-reiniciar" onclick="reiniciarTerco('sagrado-coracao')">↺ Rezar novamente</button>
+            </div>
+            <div class="terco-nav" id="nav-sagrado-coracao">
+              <button class="terco-nav-btn" id="btn-ant-sagrado-coracao" onclick="passoTerco('sagrado-coracao', -1)" disabled>← Anterior</button>
+              <span class="terco-nav-contador" id="cnt-sagrado-coracao">1 / 9</span>
+              <button class="terco-nav-btn avancar" id="btn-prox-sagrado-coracao" onclick="passoTerco('sagrado-coracao', 1)">Próximo →</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- TERÇO DAS SANTAS CHAGAS -->
+        <div class="terco-guia" id="terco-santas-chagas">
+          <div class="terco-guia-header" onclick="abrirTerco('santas-chagas')">
+            <div class="terco-guia-header-left">
+              <span class="terco-guia-icone">○</span>
+              <span class="terco-guia-titulo">Terço das Santas Chagas de Cristo</span>
+            </div>
+            <span class="terco-guia-seta">▸</span>
+          </div>
+          <div class="terco-guia-corpo">
+            <div class="terco-progresso-barra-wrap">
+              <div class="terco-progresso-label" id="prog-label-santas-chagas">Passo 1 de 8</div>
+              <div class="terco-progresso-barra"><div class="terco-progresso-fill" id="prog-fill-santas-chagas" style="width:12%"></div></div>
+            </div>
+            <div class="terco-passo-area" id="passo-area-santas-chagas"></div>
+            <div class="terco-concluido" id="concluido-santas-chagas">
+              <div class="terco-concluido-icone">✦</div>
+              <div class="terco-concluido-titulo">Terço concluído</div>
+              <div class="terco-concluido-subtitulo">Que as Chagas de Cristo vos curem e salvem.</div>
+              <button class="terco-reiniciar" onclick="reiniciarTerco('santas-chagas')">↺ Rezar novamente</button>
+            </div>
+            <div class="terco-nav" id="nav-santas-chagas">
+              <button class="terco-nav-btn" id="btn-ant-santas-chagas" onclick="passoTerco('santas-chagas', -1)" disabled>← Anterior</button>
+              <span class="terco-nav-contador" id="cnt-santas-chagas">1 / 8</span>
+              <button class="terco-nav-btn avancar" id="btn-prox-santas-chagas" onclick="passoTerco('santas-chagas', 1)">Próximo →</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- TERÇO DE SÃO BENTO -->
+        <div class="terco-guia" id="terco-sao-bento">
+          <div class="terco-guia-header" onclick="abrirTerco('sao-bento')">
+            <div class="terco-guia-header-left">
+              <span class="terco-guia-icone">○</span>
+              <span class="terco-guia-titulo">Terço de São Bento</span>
+            </div>
+            <span class="terco-guia-seta">▸</span>
+          </div>
+          <div class="terco-guia-corpo">
+            <div class="terco-progresso-barra-wrap">
+              <div class="terco-progresso-label" id="prog-label-sao-bento">Passo 1 de 8</div>
+              <div class="terco-progresso-barra"><div class="terco-progresso-fill" id="prog-fill-sao-bento" style="width:12%"></div></div>
+            </div>
+            <div class="terco-passo-area" id="passo-area-sao-bento"></div>
+            <div class="terco-concluido" id="concluido-sao-bento">
+              <div class="terco-concluido-icone">✦</div>
+              <div class="terco-concluido-titulo">Terço concluído</div>
+              <div class="terco-concluido-subtitulo">Que São Bento vos proteja pelo poder da Santa Cruz.</div>
+              <button class="terco-reiniciar" onclick="reiniciarTerco('sao-bento')">↺ Rezar novamente</button>
+            </div>
+            <div class="terco-nav" id="nav-sao-bento">
+              <button class="terco-nav-btn" id="btn-ant-sao-bento" onclick="passoTerco('sao-bento', -1)" disabled>← Anterior</button>
+              <span class="terco-nav-contador" id="cnt-sao-bento">1 / 8</span>
+              <button class="terco-nav-btn avancar" id="btn-prox-sao-bento" onclick="passoTerco('sao-bento', 1)">Próximo →</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- TERÇO DE SÃO MIGUEL -->
+        <div class="terco-guia" id="terco-sao-miguel">
+          <div class="terco-guia-header" onclick="abrirTerco('sao-miguel')">
+            <div class="terco-guia-header-left">
+              <span class="terco-guia-icone">○</span>
+              <span class="terco-guia-titulo">Terço de São Miguel Arcanjo</span>
+            </div>
+            <span class="terco-guia-seta">▸</span>
+          </div>
+          <div class="terco-guia-corpo">
+            <div class="terco-progresso-barra-wrap">
+              <div class="terco-progresso-label" id="prog-label-sao-miguel">Passo 1 de 12</div>
+              <div class="terco-progresso-barra"><div class="terco-progresso-fill" id="prog-fill-sao-miguel" style="width:8%"></div></div>
+            </div>
+            <div class="terco-passo-area" id="passo-area-sao-miguel"></div>
+            <div class="terco-concluido" id="concluido-sao-miguel">
+              <div class="terco-concluido-icone">✦</div>
+              <div class="terco-concluido-titulo">Terço concluído</div>
+              <div class="terco-concluido-subtitulo">Que São Miguel vos defenda em todos os combates.</div>
+              <button class="terco-reiniciar" onclick="reiniciarTerco('sao-miguel')">↺ Rezar novamente</button>
+            </div>
+            <div class="terco-nav" id="nav-sao-miguel">
+              <button class="terco-nav-btn" id="btn-ant-sao-miguel" onclick="passoTerco('sao-miguel', -1)" disabled>← Anterior</button>
+              <span class="terco-nav-contador" id="cnt-sao-miguel">1 / 12</span>
+              <button class="terco-nav-btn avancar" id="btn-prox-sao-miguel" onclick="passoTerco('sao-miguel', 1)">Próximo →</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- COROA DE NOSSA SENHORA DAS LÁGRIMAS -->
+        <div class="terco-guia" id="terco-ns-lagrimas">
+          <div class="terco-guia-header" onclick="abrirTerco('ns-lagrimas')">
+            <div class="terco-guia-header-left">
+              <span class="terco-guia-icone">○</span>
+              <span class="terco-guia-titulo">Coroa de Nossa Senhora das Lágrimas</span>
+            </div>
+            <span class="terco-guia-seta">▸</span>
+          </div>
+          <div class="terco-guia-corpo">
+            <div class="terco-progresso-barra-wrap">
+              <div class="terco-progresso-label" id="prog-label-ns-lagrimas">Passo 1 de 10</div>
+              <div class="terco-progresso-barra"><div class="terco-progresso-fill" id="prog-fill-ns-lagrimas" style="width:10%"></div></div>
+            </div>
+            <div class="terco-passo-area" id="passo-area-ns-lagrimas"></div>
+            <div class="terco-concluido" id="concluido-ns-lagrimas">
+              <div class="terco-concluido-icone">✦</div>
+              <div class="terco-concluido-titulo">Coroa concluída</div>
+              <div class="terco-concluido-subtitulo">Que as lágrimas de Maria vos obtenham graça e consolação.</div>
+              <button class="terco-reiniciar" onclick="reiniciarTerco('ns-lagrimas')">↺ Rezar novamente</button>
+            </div>
+            <div class="terco-nav" id="nav-ns-lagrimas">
+              <button class="terco-nav-btn" id="btn-ant-ns-lagrimas" onclick="passoTerco('ns-lagrimas', -1)" disabled>← Anterior</button>
+              <span class="terco-nav-contador" id="cnt-ns-lagrimas">1 / 10</span>
+              <button class="terco-nav-btn avancar" id="btn-prox-ns-lagrimas" onclick="passoTerco('ns-lagrimas', 1)">Próximo →</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- TERÇO DE OUTROS SANTOS -->
+        <div class="terco-guia" id="terco-outros-santos">
+          <div class="terco-guia-header" onclick="abrirTerco('outros-santos')">
+            <div class="terco-guia-header-left">
+              <span class="terco-guia-icone">○</span>
+              <span class="terco-guia-titulo">Terço de Outros Santos</span>
+            </div>
+            <span class="terco-guia-seta">▸</span>
+          </div>
+          <div class="terco-guia-corpo">
+            <div class="terco-progresso-barra-wrap">
+              <div class="terco-progresso-label" id="prog-label-outros-santos">Passo 1 de 7</div>
+              <div class="terco-progresso-barra"><div class="terco-progresso-fill" id="prog-fill-outros-santos" style="width:14%"></div></div>
+            </div>
+            <div class="terco-passo-area" id="passo-area-outros-santos"></div>
+            <div class="terco-concluido" id="concluido-outros-santos">
+              <div class="terco-concluido-icone">✦</div>
+              <div class="terco-concluido-titulo">Terço concluído</div>
+              <div class="terco-concluido-subtitulo">Que os santos intercedão por vós junto ao Pai.</div>
+              <button class="terco-reiniciar" onclick="reiniciarTerco('outros-santos')">↺ Rezar novamente</button>
+            </div>
+            <div class="terco-nav" id="nav-outros-santos">
+              <button class="terco-nav-btn" id="btn-ant-outros-santos" onclick="passoTerco('outros-santos', -1)" disabled>← Anterior</button>
+              <span class="terco-nav-contador" id="cnt-outros-santos">1 / 7</span>
+              <button class="terco-nav-btn avancar" id="btn-prox-outros-santos" onclick="passoTerco('outros-santos', 1)">Próximo →</button>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- ══════════════════════════════════════
+           06 · SANTO ROSÁRIO — PASSO A PASSO
+      ══════════════════════════════════════ -->
+      <section class="oracoes-categoria" id="cat-rosario">
+        <div class="oracoes-cat-header">
+          <div>
+            <h2 class="oracoes-cat-titulo">Santo Rosário</h2>
+            <span class="oracoes-cat-tag">06 · Rosário passo a passo</span>
+          </div>
+        </div>
+        <p class="oracoes-cat-desc">O Rosário completo, guiado mistério a mistério. Escolha o conjunto de mistérios do dia e reze com calma.</p>
+
+        <!-- MISTÉRIOS GOZOSOS -->
+        <div class="terco-guia" id="terco-gozosos">
+          <div class="terco-guia-header" onclick="abrirTerco('gozosos')">
+            <div class="terco-guia-header-left">
+              <span class="terco-guia-icone">◎</span>
+              <span class="terco-guia-titulo">Mistérios Gozosos — Segunda e Sábado</span>
+            </div>
+            <span class="terco-guia-seta">▸</span>
+          </div>
+          <div class="terco-guia-corpo">
+            <div class="terco-progresso-barra-wrap">
+              <div class="terco-progresso-label" id="prog-label-gozosos">Passo 1 de 10</div>
+              <div class="terco-progresso-barra"><div class="terco-progresso-fill" id="prog-fill-gozosos" style="width:10%"></div></div>
+            </div>
+            <div class="terco-passo-area" id="passo-area-gozosos"></div>
+            <div class="terco-concluido" id="concluido-gozosos">
+              <div class="terco-concluido-icone">✦</div>
+              <div class="terco-concluido-titulo">Rosário concluído</div>
+              <div class="terco-concluido-subtitulo">Que Nossa Senhora vos cubra com seu manto de graça.</div>
+              <button class="terco-reiniciar" onclick="reiniciarTerco('gozosos')">↺ Rezar novamente</button>
+            </div>
+            <div class="terco-nav" id="nav-gozosos">
+              <button class="terco-nav-btn" id="btn-ant-gozosos" onclick="passoTerco('gozosos', -1)" disabled>← Anterior</button>
+              <span class="terco-nav-contador" id="cnt-gozosos">1 / 10</span>
+              <button class="terco-nav-btn avancar" id="btn-prox-gozosos" onclick="passoTerco('gozosos', 1)">Próximo →</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- MISTÉRIOS LUMINOSOS -->
+        <div class="terco-guia" id="terco-luminosos">
+          <div class="terco-guia-header" onclick="abrirTerco('luminosos')">
+            <div class="terco-guia-header-left">
+              <span class="terco-guia-icone">◎</span>
+              <span class="terco-guia-titulo">Mistérios Luminosos — Quinta-feira</span>
+            </div>
+            <span class="terco-guia-seta">▸</span>
+          </div>
+          <div class="terco-guia-corpo">
+            <div class="terco-progresso-barra-wrap">
+              <div class="terco-progresso-label" id="prog-label-luminosos">Passo 1 de 10</div>
+              <div class="terco-progresso-barra"><div class="terco-progresso-fill" id="prog-fill-luminosos" style="width:10%"></div></div>
+            </div>
+            <div class="terco-passo-area" id="passo-area-luminosos"></div>
+            <div class="terco-concluido" id="concluido-luminosos">
+              <div class="terco-concluido-icone">✦</div>
+              <div class="terco-concluido-titulo">Rosário concluído</div>
+              <div class="terco-concluido-subtitulo">Que a luz de Cristo ilumine sempre o vosso caminho.</div>
+              <button class="terco-reiniciar" onclick="reiniciarTerco('luminosos')">↺ Rezar novamente</button>
+            </div>
+            <div class="terco-nav" id="nav-luminosos">
+              <button class="terco-nav-btn" id="btn-ant-luminosos" onclick="passoTerco('luminosos', -1)" disabled>← Anterior</button>
+              <span class="terco-nav-contador" id="cnt-luminosos">1 / 10</span>
+              <button class="terco-nav-btn avancar" id="btn-prox-luminosos" onclick="passoTerco('luminosos', 1)">Próximo →</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- MISTÉRIOS DOLOROSOS -->
+        <div class="terco-guia" id="terco-dolorosos">
+          <div class="terco-guia-header" onclick="abrirTerco('dolorosos')">
+            <div class="terco-guia-header-left">
+              <span class="terco-guia-icone">◎</span>
+              <span class="terco-guia-titulo">Mistérios Dolorosos — Terça e Sexta</span>
+            </div>
+            <span class="terco-guia-seta">▸</span>
+          </div>
+          <div class="terco-guia-corpo">
+            <div class="terco-progresso-barra-wrap">
+              <div class="terco-progresso-label" id="prog-label-dolorosos">Passo 1 de 10</div>
+              <div class="terco-progresso-barra"><div class="terco-progresso-fill" id="prog-fill-dolorosos" style="width:10%"></div></div>
+            </div>
+            <div class="terco-passo-area" id="passo-area-dolorosos"></div>
+            <div class="terco-concluido" id="concluido-dolorosos">
+              <div class="terco-concluido-icone">✦</div>
+              <div class="terco-concluido-titulo">Rosário concluído</div>
+              <div class="terco-concluido-subtitulo">Que a Paixão de Cristo vos fortaleça e console.</div>
+              <button class="terco-reiniciar" onclick="reiniciarTerco('dolorosos')">↺ Rezar novamente</button>
+            </div>
+            <div class="terco-nav" id="nav-dolorosos">
+              <button class="terco-nav-btn" id="btn-ant-dolorosos" onclick="passoTerco('dolorosos', -1)" disabled>← Anterior</button>
+              <span class="terco-nav-contador" id="cnt-dolorosos">1 / 10</span>
+              <button class="terco-nav-btn avancar" id="btn-prox-dolorosos" onclick="passoTerco('dolorosos', 1)">Próximo →</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- MISTÉRIOS GLORIOSOS -->
+        <div class="terco-guia" id="terco-gloriosos">
+          <div class="terco-guia-header" onclick="abrirTerco('gloriosos')">
+            <div class="terco-guia-header-left">
+              <span class="terco-guia-icone">◎</span>
+              <span class="terco-guia-titulo">Mistérios Gloriosos — Quarta e Domingo</span>
+            </div>
+            <span class="terco-guia-seta">▸</span>
+          </div>
+          <div class="terco-guia-corpo">
+            <div class="terco-progresso-barra-wrap">
+              <div class="terco-progresso-label" id="prog-label-gloriosos">Passo 1 de 10</div>
+              <div class="terco-progresso-barra"><div class="terco-progresso-fill" id="prog-fill-gloriosos" style="width:10%"></div></div>
+            </div>
+            <div class="terco-passo-area" id="passo-area-gloriosos"></div>
+            <div class="terco-concluido" id="concluido-gloriosos">
+              <div class="terco-concluido-icone">✦</div>
+              <div class="terco-concluido-titulo">Rosário concluído</div>
+              <div class="terco-concluido-subtitulo">Glória a Deus nas alturas, e paz na terra!</div>
+              <button class="terco-reiniciar" onclick="reiniciarTerco('gloriosos')">↺ Rezar novamente</button>
+            </div>
+            <div class="terco-nav" id="nav-gloriosos">
+              <button class="terco-nav-btn" id="btn-ant-gloriosos" onclick="passoTerco('gloriosos', -1)" disabled>← Anterior</button>
+              <span class="terco-nav-contador" id="cnt-gloriosos">1 / 10</span>
+              <button class="terco-nav-btn avancar" id="btn-prox-gloriosos" onclick="passoTerco('gloriosos', 1)">Próximo →</button>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- ══════════════════════════════════════
+           07 · VIA SACRA — PASSO A PASSO
+      ══════════════════════════════════════ -->
+      <section class="oracoes-categoria" id="cat-via-sacra">
+        <div class="oracoes-cat-header">
+          <div>
+            <h2 class="oracoes-cat-titulo">Via Sacra</h2>
+            <span class="oracoes-cat-tag">07 · Paixão de Cristo</span>
+          </div>
+        </div>
+        <p class="oracoes-cat-desc">O caminho que Jesus percorreu até o Calvário — meditado estação por estação, com oração e silêncio.</p>
+
+        <div class="terco-guia" id="terco-via-sacra">
+          <div class="terco-guia-header" onclick="abrirTerco('via-sacra')">
+            <div class="terco-guia-header-left">
+              <span class="terco-guia-icone">†</span>
+              <span class="terco-guia-titulo">Via Sacra Completa — 14 Estações</span>
+            </div>
+            <span class="terco-guia-seta">▸</span>
+          </div>
+          <div class="terco-guia-corpo">
+            <div class="terco-progresso-barra-wrap">
+              <div class="terco-progresso-label" id="prog-label-via-sacra">Passo 1 de 16</div>
+              <div class="terco-progresso-barra"><div class="terco-progresso-fill" id="prog-fill-via-sacra" style="width:6%"></div></div>
+            </div>
+            <div class="terco-passo-area" id="passo-area-via-sacra"></div>
+            <div class="terco-concluido" id="concluido-via-sacra">
+              <div class="terco-concluido-icone">✝</div>
+              <div class="terco-concluido-titulo">Via Sacra concluída</div>
+              <div class="terco-concluido-subtitulo">Que a Paixão de Cristo vos redima e salve.</div>
+              <button class="terco-reiniciar" onclick="reiniciarTerco('via-sacra')">↺ Percorrer novamente</button>
+            </div>
+            <div class="terco-nav" id="nav-via-sacra">
+              <button class="terco-nav-btn" id="btn-ant-via-sacra" onclick="passoTerco('via-sacra', -1)" disabled>← Anterior</button>
+              <span class="terco-nav-contador" id="cnt-via-sacra">1 / 16</span>
+              <button class="terco-nav-btn avancar" id="btn-prox-via-sacra" onclick="passoTerco('via-sacra', 1)">Próximo →</button>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+    </main>
+  </div>
+
+  <footer>
+    <div class="footer-inner">
+      <span class="footer-logo">Santos da Modernidade</span>
+      <span class="footer-copy">© Santos da Modernidade · Ad Maiorem Dei Gloriam</span>
+    </div>
+  </footer>
+
+  <script>
+    /* ══════════════════════════════════════════════
+       NAVEGAÇÃO DE CATEGORIAS
+    ══════════════════════════════════════════════ */
+    function toggleMenu() {
+      const menu = document.querySelector('.nav-links');
+      const btn = document.getElementById('nav-hamburguer');
+      menu.classList.toggle('aberto');
+      btn.textContent = menu.classList.contains('aberto') ? '✕' : '☰';
+    }
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        document.querySelector('.nav-links').classList.remove('aberto');
+        document.getElementById('nav-hamburguer').textContent = '☰';
+      });
+    });
+
+    function toggleItem(header) {
+      const item = header.closest('.oracao-item');
+      item.classList.toggle('aberta');
+    }
+
+    function mostrarCategoria(id, el) {
+      if (el && el.tagName === 'A') { event && event.preventDefault && event.preventDefault(); }
+      document.querySelectorAll('.oracoes-categoria').forEach(c => c.classList.remove('visivel'));
+      const alvo = document.getElementById('cat-' + id);
+      if (alvo) alvo.classList.add('visivel');
+      document.querySelectorAll('.oracoes-sidebar-item').forEach(i => i.classList.remove('ativo'));
+      document.querySelectorAll('.oracoes-mobile-nav-btn').forEach(b => b.classList.remove('ativo'));
+      if (el) {
+        el.classList.add('ativo');
+        const isSidebar = el.classList.contains('oracoes-sidebar-item');
+        const isMobile = el.classList.contains('oracoes-mobile-nav-btn');
+        if (isSidebar) {
+          document.querySelectorAll('.oracoes-mobile-nav-btn').forEach(b => {
+            if (b.getAttribute('onclick') && b.getAttribute('onclick').includes(id)) b.classList.add('ativo');
+          });
+        }
+        if (isMobile) {
+          document.querySelectorAll('.oracoes-sidebar-item').forEach(s => {
+            if (s.getAttribute('onclick') && s.getAttribute('onclick').includes(id)) s.classList.add('ativo');
+          });
+        }
+      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    window.onload = function() {
+      mostrarCategoria('comuns', document.querySelector('.oracoes-sidebar-item'));
+      iniciarTodosTercos();
+    };
+
+    /* ══════════════════════════════════════════════
+       SISTEMA PASSO A PASSO — DADOS DOS TERÇOS
+    ══════════════════════════════════════════════ */
+    const TERCOS = {
+
+      'misericordia': {
+        passos: [
+          { titulo: 'Início', texto: '<p>Faça o <strong>Sinal da Cruz</strong>.</p><p><em>Em nome do Pai, do Filho e do Espírito Santo. Amém.</em></p>' },
+          { titulo: 'Oração Inicial', texto: '<p>Rezar o <strong>Pai Nosso</strong>, uma <strong>Ave Maria</strong> e o <strong>Creio em Deus Pai</strong>.</p><p><em>Pai nosso que estais no céu...</em></p>' },
+          { titulo: 'Nas contas grandes (5x)', texto: '<p>Em cada conta grande, rezar:</p><p><em>"Eterno Pai, eu vos ofereço o Corpo e o Sangue, a Alma e a Divindade de Vosso Amabilíssimo Filho, Nosso Senhor Jesus Cristo, em expiação dos nossos pecados e dos do mundo inteiro."</em></p><div class="terco-repeticao">○ Repetir em cada uma das 5 contas grandes</div>' },
+          { titulo: 'Nas contas pequenas (10x cada dezena)', texto: '<p>Em cada conta pequena, rezar:</p><p><em>"Pela Sua dolorosa Paixão, tende misericórdia de nós e do mundo inteiro."</em></p><div class="terco-repeticao">○ 10 vezes por dezena · 5 dezenas no total</div>' },
+          { titulo: 'Ao final de cada dezena', texto: '<p>Ao terminar cada grupo de 10 contas pequenas, rezar a oração do <strong>Glória ao Pai</strong>:</p><p><em>Glória ao Pai, ao Filho e ao Espírito Santo, como era no princípio, agora e sempre, pelos séculos dos séculos. Amém.</em></p>' },
+          { titulo: 'Conclusão (3 vezes)', texto: '<p>Ao final das cinco dezenas, rezar três vezes:</p><p><em>"Santo Deus, Santo Forte, Santo Imortal, tende piedade de nós e do mundo inteiro."</em></p><div class="terco-repeticao">○ Repetir 3 vezes</div>' },
+          { titulo: 'Encerramento', texto: '<p>Terminar com o <strong>Sinal da Cruz</strong>.</p><p><em>"Que a Divina Misericórdia de Deus Todo-Poderoso nos seja concedida. Amém."</em></p>' }
+        ]
+      },
+
+      'sete-dores': {
+        passos: [
+          { titulo: 'Início', texto: '<p>Faça o <strong>Sinal da Cruz</strong> e peça a intercessão de Nossa Senhora das Dores.</p><p><em>Em nome do Pai, do Filho e do Espírito Santo. Amém.</em></p>' },
+          { titulo: 'Ato de Contrição', texto: '<p>Rezar um <strong>Ato de Contrição</strong>:</p><p><em>Meu Deus, porque sois infinitamente bom, eu me arrependo com todo o meu coração de vos ter ofendido, e proponho firmemente, com o auxílio da vossa graça, não mais pecar e evitar as ocasiões de pecado. Amém.</em></p>' },
+          { titulo: '1ª Dor — A Profecia de Simeão', texto: '<p><strong>Meditação:</strong> Maria leva o Menino Jesus ao Templo, e Simeão profetiza que uma espada atravessará sua alma (Lc 2,34-35).</p><p>Rezar: 1 <strong>Pai Nosso</strong> + 7 <strong>Ave Marias</strong></p><p><em>Glória ao Pai...</em></p>' },
+          { titulo: '2ª Dor — A Fuga para o Egito', texto: '<p><strong>Meditação:</strong> Maria e José fogem para o Egito com o Menino Jesus, perseguidos por Herodes (Mt 2,13-15).</p><p>Rezar: 1 <strong>Pai Nosso</strong> + 7 <strong>Ave Marias</strong></p><p><em>Glória ao Pai...</em></p>' },
+          { titulo: '3ª Dor — Jesus Perdido no Templo', texto: '<p><strong>Meditação:</strong> Maria e José perdem Jesus e o buscam por três dias (Lc 2,41-50).</p><p>Rezar: 1 <strong>Pai Nosso</strong> + 7 <strong>Ave Marias</strong></p><p><em>Glória ao Pai...</em></p>' },
+          { titulo: '4ª Dor — Maria Encontra Jesus no Caminho do Calvário', texto: '<p><strong>Meditação:</strong> Maria encontra Jesus carregando a Cruz pelas ruas de Jerusalém (Lc 23,27-28).</p><p>Rezar: 1 <strong>Pai Nosso</strong> + 7 <strong>Ave Marias</strong></p><p><em>Glória ao Pai...</em></p>' },
+          { titulo: '5ª Dor — Maria ao Pé da Cruz', texto: '<p><strong>Meditação:</strong> Maria permanece ao pé da Cruz enquanto Jesus morre (Jo 19,25-27).</p><p>Rezar: 1 <strong>Pai Nosso</strong> + 7 <strong>Ave Marias</strong></p><p><em>Glória ao Pai...</em></p>' },
+          { titulo: '6ª Dor — Jesus Descido da Cruz', texto: '<p><strong>Meditação:</strong> Maria recebe nos braços o corpo morto de Jesus (Pietà).</p><p>Rezar: 1 <strong>Pai Nosso</strong> + 7 <strong>Ave Marias</strong></p><p><em>Glória ao Pai...</em></p>' },
+          { titulo: '7ª Dor — Jesus é Sepultado', texto: '<p><strong>Meditação:</strong> Maria assiste ao sepultamento de Jesus e fica sozinha (Lc 23,53-56).</p><p>Rezar: 1 <strong>Pai Nosso</strong> + 7 <strong>Ave Marias</strong></p><p><em>Glória ao Pai...</em></p>' },
+          { titulo: 'Encerramento', texto: '<p>Rezar 3 <strong>Ave Marias</strong> em honra às lágrimas derramadas por Nossa Senhora.</p><p><em>Ó Maria, cujas dores foram a espada que trespassou vossa alma, rogai por nós, pecadores, agora e na hora da nossa morte. Amém.</em></p>' }
+        ]
+      },
+
+      'sao-jose': {
+        passos: [
+          { titulo: 'Início', texto: '<p>Faça o <strong>Sinal da Cruz</strong> e invoque São José.</p><p><em>Em nome do Pai, do Filho e do Espírito Santo. Amém.</em></p>' },
+          { titulo: 'Oração de Abertura', texto: '<p><em>São José, pai adotivo de Jesus e castíssimo esposo de Maria, sede o guia, protetor e pai desta família. Intercedei por nós junto a Jesus Cristo, a quem tanto amaste e servistes. Amém.</em></p>' },
+          { titulo: '1º Mistério — A Dúvida de José', texto: '<p><strong>Meditação:</strong> José, descobrindo a gravidez de Maria, decide repudiá-la em segredo para não a expor (Mt 1,18-19).</p><p>1 <strong>Pai Nosso</strong> · Nas contas pequenas: <em>"São José, pai adotivo de Jesus, rogai por nós."</em> (10x)</p><p><em>Glória ao Pai...</em></p>' },
+          { titulo: '2º Mistério — O Anúncio do Anjo a José', texto: '<p><strong>Meditação:</strong> O Anjo aparece em sonho a José e lhe revela o mistério da Encarnação (Mt 1,20-21).</p><p>1 <strong>Pai Nosso</strong> · Nas contas pequenas: <em>"São José, obediente à voz de Deus, rogai por nós."</em> (10x)</p><p><em>Glória ao Pai...</em></p>' },
+          { titulo: '3º Mistério — O Nascimento de Jesus', texto: '<p><strong>Meditação:</strong> José cuida de Maria no parto em Belém e acolhe o Filho de Deus como seu próprio filho (Lc 2,1-7).</p><p>1 <strong>Pai Nosso</strong> · Nas contas pequenas: <em>"São José, protetor da Sagrada Família, rogai por nós."</em> (10x)</p><p><em>Glória ao Pai...</em></p>' },
+          { titulo: '4º Mistério — A Fuga para o Egito', texto: '<p><strong>Meditação:</strong> José levanta-se de noite e parte com Maria e Jesus para o Egito, obedecendo ao Anjo (Mt 2,13-14).</p><p>1 <strong>Pai Nosso</strong> · Nas contas pequenas: <em>"São José, guardião dos fugitivos e migrantes, rogai por nós."</em> (10x)</p><p><em>Glória ao Pai...</em></p>' },
+          { titulo: '5º Mistério — A Vida em Nazaré', texto: '<p><strong>Meditação:</strong> José trabalha como carpinteiro e sustenta a Sagrada Família com o fruto do seu trabalho (Lc 2,39-40).</p><p>1 <strong>Pai Nosso</strong> · Nas contas pequenas: <em>"São José, modelo dos trabalhadores, rogai por nós."</em> (10x)</p><p><em>Glória ao Pai...</em></p>' },
+          { titulo: '6º Mistério — Jesus Perdido no Templo', texto: '<p><strong>Meditação:</strong> José e Maria buscam Jesus por três dias e o encontram no Templo (Lc 2,41-48).</p><p>1 <strong>Pai Nosso</strong> · Nas contas pequenas: <em>"São José, que buscaste Jesus com ansiedade, rogai por nós."</em> (10x)</p><p><em>Glória ao Pai...</em></p>' },
+          { titulo: '7º Mistério — A Morte Feliz de José', texto: '<p><strong>Meditação:</strong> José morre nos braços de Jesus e Maria, tornando-se o padroeiro da boa morte.</p><p>1 <strong>Pai Nosso</strong> · Nas contas pequenas: <em>"São José, padroeiro da boa morte, rogai por nós."</em> (10x)</p><p><em>Glória ao Pai...</em></p>' },
+          { titulo: 'Oração Final', texto: '<p><em>São José, pelo amor que tendes a Jesus e a Maria, sede nossa proteção em vida e na hora da morte. Rogai por nós a Jesus Cristo, para que sejamos dignos das suas promessas. Amém.</em></p>' },
+          { titulo: 'Ladainha Breve', texto: '<p>Rezar como encerramento:</p><p><em>São José, esposo de Maria — rogai por nós.</em><br><em>São José, pai de Jesus — rogai por nós.</em><br><em>São José, padroeiro da Igreja — rogai por nós.</em><br><em>São José, esperança dos moribundos — rogai por nós.</em></p>' },
+          { titulo: 'Encerramento', texto: '<p>Terminar com o <strong>Sinal da Cruz</strong>.</p><p><em>Em nome do Pai, do Filho e do Espírito Santo. Amém.</em></p>' }
+        ]
+      },
+
+      'sagrado-coracao': {
+        passos: [
+          { titulo: 'Início', texto: '<p>Faça o <strong>Sinal da Cruz</strong> e consagre seu coração ao Sagrado Coração de Jesus.</p><p><em>Em nome do Pai, do Filho e do Espírito Santo. Amém.</em></p>' },
+          { titulo: 'Oração de Consagração', texto: '<p><em>Sagrado Coração de Jesus, eu me consagro e me refugio em vós. Sede o lar do meu coração, a força da minha vida e a minha salvação. Amém.</em></p>' },
+          { titulo: 'Nas contas grandes — Invocação (5x)', texto: '<p>Em cada conta grande, rezar:</p><p><em>"Sagrado Coração de Jesus, que ardeis de amor por nós, inflamai nossos corações com amor a vós."</em></p><div class="terco-repeticao">○ Repetir em cada uma das 5 contas grandes</div>' },
+          { titulo: 'Nas contas pequenas — 1ª Dezena (10x)', texto: '<p><strong>Mistério 1 — O Amor do Sagrado Coração:</strong> Jesus instituiu a Eucaristia por amor infinito aos homens.</p><p>Em cada conta pequena:<br><em>"Sagrado Coração de Jesus, eu confio em vós!"</em></p><p>Ao final: <em>Glória ao Pai...</em></p>' },
+          { titulo: 'Nas contas pequenas — 2ª Dezena (10x)', texto: '<p><strong>Mistério 2 — A Humildade do Sagrado Coração:</strong> Jesus disse: "Aprendei de mim, que sou manso e humilde de coração" (Mt 11,29).</p><p>Em cada conta pequena:<br><em>"Manso e humilde de coração, tornai meu coração semelhante ao vosso."</em></p><p>Ao final: <em>Glória ao Pai...</em></p>' },
+          { titulo: 'Nas contas pequenas — 3ª Dezena (10x)', texto: '<p><strong>Mistério 3 — A Misericórdia do Sagrado Coração:</strong> Do Coração de Jesus trespassado na Cruz jorrou sangue e água, fontes dos sacramentos.</p><p>Em cada conta pequena:<br><em>"Ó Sangue e Água que jorrastes do Coração de Jesus, confio em vós!"</em></p><p>Ao final: <em>Glória ao Pai...</em></p>' },
+          { titulo: 'Nas contas pequenas — 4ª Dezena (10x)', texto: '<p><strong>Mistério 4 — O Sagrado Coração e os Pecadores:</strong> Jesus chamou os pecadores e disse: "Não vim chamar os justos, mas os pecadores" (Mt 9,13).</p><p>Em cada conta pequena:<br><em>"Jesus, misericordioso, confio em vós!"</em></p><p>Ao final: <em>Glória ao Pai...</em></p>' },
+          { titulo: 'Nas contas pequenas — 5ª Dezena (10x)', texto: '<p><strong>Mistério 5 — O Reino do Sagrado Coração:</strong> Jesus prometeu: "Venha a nós o vosso reino" — o reino do amor.</p><p>Em cada conta pequena:<br><em>"Sagrado Coração de Jesus, que o vosso reino venha!"</em></p><p>Ao final: <em>Glória ao Pai...</em></p>' },
+          { titulo: 'Oração de Encerramento', texto: '<p><em>Sagrado Coração de Jesus, fazei que vos amemos cada vez mais. Que o vosso amor nos transforme, nos cure e nos salve. Consagro-vos tudo o que sou e tudo o que tenho. Amém.</em></p><p>Terminar com o <strong>Sinal da Cruz</strong>.</p>' }
+        ]
+      },
+
+      'santas-chagas': {
+        passos: [
+          { titulo: 'Início', texto: '<p>Faça o <strong>Sinal da Cruz</strong>.</p><p><em>Em nome do Pai, do Filho e do Espírito Santo. Amém.</em></p><p>Esta devoção contempla as cinco Santas Chagas de Cristo: os dois pés, as duas mãos e o lado.</p>' },
+          { titulo: 'Oração Inicial', texto: '<p>Rezar um <strong>Pai Nosso</strong>, uma <strong>Ave Maria</strong> e um <strong>Glória ao Pai</strong> pela intenção do Sumo Pontífice.</p>' },
+          { titulo: '1ª Chaga — O Pé Direito (dezena)', texto: '<p><strong>Meditação:</strong> O pé de Cristo pregado na Cruz sustentou o peso de toda a humanidade pecadora.</p><p>Rezar: 1 <strong>Pai Nosso</strong> + 10 vezes:<br><em>"Eterno Pai, ofereço-vos as Chagas de nosso Senhor Jesus Cristo para curar as chagas das nossas almas."</em></p><p><em>Glória ao Pai...</em></p>' },
+          { titulo: '2ª Chaga — O Pé Esquerdo (dezena)', texto: '<p><strong>Meditação:</strong> Com os pés pregados, Jesus permaneceu imóvel diante do sofrimento para que pudéssemos nos aproximar d\'Ele livremente.</p><p>Rezar: 1 <strong>Pai Nosso</strong> + 10 vezes:<br><em>"Eterno Pai, ofereço-vos as Chagas de nosso Senhor Jesus Cristo para curar as chagas das nossas almas."</em></p><p><em>Glória ao Pai...</em></p>' },
+          { titulo: '3ª Chaga — A Mão Direita (dezena)', texto: '<p><strong>Meditação:</strong> A mão de Cristo que curou os doentes e abençoou as crianças foi pregada na Cruz por amor a nós.</p><p>Rezar: 1 <strong>Pai Nosso</strong> + 10 vezes:<br><em>"Eterno Pai, ofereço-vos as Chagas de nosso Senhor Jesus Cristo para curar as chagas das nossas almas."</em></p><p><em>Glória ao Pai...</em></p>' },
+          { titulo: '4ª Chaga — A Mão Esquerda (dezena)', texto: '<p><strong>Meditação:</strong> A mão de Cristo que tocou os leprosos e lavou os pés dos discípulos foi o sinal máximo do amor que serve.</p><p>Rezar: 1 <strong>Pai Nosso</strong> + 10 vezes:<br><em>"Eterno Pai, ofereço-vos as Chagas de nosso Senhor Jesus Cristo para curar as chagas das nossas almas."</em></p><p><em>Glória ao Pai...</em></p>' },
+          { titulo: '5ª Chaga — O Santo Lado (dezena)', texto: '<p><strong>Meditação:</strong> Do lado trespassado pela lança jorrou sangue e água — o Sagrado Coração aberto para sempre à humanidade (Jo 19,34).</p><p>Rezar: 1 <strong>Pai Nosso</strong> + 10 vezes:<br><em>"Eterno Pai, ofereço-vos as Chagas de nosso Senhor Jesus Cristo para curar as chagas das nossas almas."</em></p><p><em>Glória ao Pai...</em></p>' },
+          { titulo: 'Oração de Encerramento', texto: '<p><em>Senhor Jesus Cristo, que para a redenção do mundo quisestes ser pregado na Cruz e sofrer as cinco Chagas sagradas: por elas e por vossos sofrimentos e vossa preciosa morte, livrai-nos das penas do purgatório e concedei-nos a vida eterna. Amém.</em></p><p>Terminar com o <strong>Sinal da Cruz</strong>.</p>' }
+        ]
+      },
+
+      'sao-bento': {
+        passos: [
+          { titulo: 'Início e História', texto: '<p>Faça o <strong>Sinal da Cruz</strong>.</p><p>O Terço de São Bento é rezado com a Medalha de São Bento — um dos sacramentais mais poderosos da Igreja Católica, repleto de poder de exorcismo pela inscrição <em>CSSML — NDSMD — VRSNSMV — SMQLIVB</em>.</p>' },
+          { titulo: 'Oração Inicial', texto: '<p>Rezar o <strong>Sinal da Cruz com a Medalha de São Bento</strong>:</p><p><em>Pela intercessão de São Bento, que eu seja protegido do mal, do pecado e do inimigo. Que a Cruz de Cristo seja minha luz e o dragão jamais seja meu guia. Amém.</em></p><p>Seguido de um <strong>Pai Nosso</strong> e uma <strong>Ave Maria</strong>.</p>' },
+          { titulo: 'Invocação — 1ª Dezena (10x)', texto: '<p><strong>Meditação 1 — Luz e Regra:</strong> São Bento escreveu a Regra que iluminou o monaquismo ocidental. <em>"Ora et Labora" — Reza e trabalha.</em></p><p>Nas contas pequenas:<br><em>"São Bento, pai do monaquismo ocidental, rogai por nós."</em></p><p>Ao final: <em>Glória ao Pai...</em></p>' },
+          { titulo: 'Invocação — 2ª Dezena (10x)', texto: '<p><strong>Meditação 2 — Proteção contra o Mal:</strong> São Bento recebeu de Deus o dom de expulsar demônios e proteger os que invocam seu nome.</p><p>Nas contas pequenas:<br><em>"São Bento, protetor contra o poder do mal, rogai por nós."</em></p><p>Ao final: <em>Glória ao Pai...</em></p>' },
+          { titulo: 'Invocação — 3ª Dezena (10x)', texto: '<p><strong>Meditação 3 — A Cruz como Escudo:</strong> A Medalha de São Bento traz gravada a Cruz de Cristo como proteção. <em>Crux sacra sit mihi lux!</em> (Que a Santa Cruz seja a minha luz!)</p><p>Nas contas pequenas:<br><em>"São Bento, por vossa santa Cruz, livrai-nos do mal."</em></p><p>Ao final: <em>Glória ao Pai...</em></p>' },
+          { titulo: 'Hino à Cruz (Exorcismo)', texto: '<p>Rezar a inscrição sagrada da Medalha de São Bento:</p><p><em>Crux sacra sit mihi lux!<br>Non draco sit mihi dux!<br>Vade retro, Satana!<br>Nunquam suade mihi vana!<br>Sunt mala quae libas — ipse venena bibas!</em></p><p><strong>Tradução:</strong> Que a Santa Cruz seja minha luz! O dragão não seja meu guia! Retira-te, Satanás! Não me aconselhes coisas vãs! O que ofereces é mal — bebe tu mesmo o veneno!</p>' },
+          { titulo: 'Oração Final', texto: '<p><em>São Bento, guardai nossa família sob o poder da Santa Cruz, afastai de nós todo mal, toda doença e todo poder do inimigo. Que possamos viver sob a Regra do amor e chegar à vida eterna. Amém.</em></p><p>Terminar com o <strong>Sinal da Cruz</strong>.</p>' },
+          { titulo: 'Encerramento', texto: '<p>Para concluir, rezar a antífona de São Bento:</p><p><em>Intercede por nós, São Bento, Pai e Mestre, para que possamos chegar às promessas de Cristo.</em></p><p>E responder: <em>Amém.</em></p>' }
+        ]
+      },
+
+      'sao-miguel': {
+        passos: [
+          { titulo: 'Início', texto: '<p>Faça o <strong>Sinal da Cruz</strong>.</p><p>O Terço de São Miguel honra as nove Cortes dos Anjos e pede a proteção do Príncipe da Milícia Celeste.</p>' },
+          { titulo: 'Oração de Abertura', texto: '<p><em>São Miguel Arcanjo, defender dos filhos de Deus, protetor da Igreja e vencedor do dragão — sede nossa defesa no combate espiritual. Que, pela vossa intercessão e a de todos os Anjos, possamos chegar à presença de Deus.</em></p>' },
+          { titulo: '1ª Saudação — Serafins (10x)', texto: '<p>Por intercessão de São Miguel e dos <strong>Serafins</strong>, que ardem em amor perpétuo a Deus:</p><p><em>"São Miguel Arcanjo, sede nossa proteção contra os inimigos visíveis e invisíveis. Amém."</em></p><p>Seguido de: 1 <strong>Pai Nosso</strong></p>' },
+          { titulo: '2ª Saudação — Querubins (10x)', texto: '<p>Por intercessão de São Miguel e dos <strong>Querubins</strong>, guardiões do Paraíso e do Trono de Deus:</p><p><em>"São Miguel Arcanjo, guardai nossa alma na graça de Deus. Amém."</em></p><p>Seguido de: 1 <strong>Pai Nosso</strong></p>' },
+          { titulo: '3ª Saudação — Tronos (10x)', texto: '<p>Por intercessão de São Miguel e dos <strong>Tronos</strong>, que sustentam o trono divino:</p><p><em>"São Miguel Arcanjo, sede nosso guia no caminho da salvação. Amém."</em></p><p>Seguido de: 1 <strong>Pai Nosso</strong></p>' },
+          { titulo: '4ª Saudação — Dominações, Virtudes e Potestades (10x)', texto: '<p>Por intercessão de São Miguel e das <strong>Dominações, Virtudes e Potestades</strong>:</p><p><em>"São Miguel Arcanjo, defendei-nos no combate. Amém."</em></p><p>Seguido de: 1 <strong>Pai Nosso</strong></p>' },
+          { titulo: '5ª Saudação — Principados, Arcanjos e Anjos (10x)', texto: '<p>Por intercessão de São Miguel e dos <strong>Principados, Arcanjos e Anjos Custódios</strong>:</p><p><em>"São Miguel Arcanjo, que protegeis os povos e as nações, sede o guardião da nossa família. Amém."</em></p><p>Seguido de: 1 <strong>Pai Nosso</strong></p>' },
+          { titulo: 'Oração de Exorcismo de Leão XIII', texto: '<p><em>São Miguel Arcanjo, defendei-nos no combate; sede o nosso protetor contra a perversidade e as ciladas do diabo. Que Deus lhe imponha o seu domínio, é a nossa humilde súplica.</em></p><p><em>E vós, príncipe da milícia celeste, precipitai no inferno, pelo divino poder, Satanás e os outros espíritos malignos que vagueiam pelo mundo para perder as almas. Amém.</em></p>' },
+          { titulo: 'Ladainha dos Anjos', texto: '<p><em>São Miguel, vencedor do dragão — rogai por nós.</em><br><em>São Gabriel, mensageiro de Deus — rogai por nós.</em><br><em>São Rafael, guia dos viajantes — rogai por nós.</em><br><em>Anjo da nossa guarda — rogai por nós.</em><br><em>Todos os Santos Anjos e Arcanjos — rogai por nós.</em></p>' },
+          { titulo: 'Hino Final', texto: '<p><em>Quem é como Deus? Ninguém é como Deus!</em><br><em>Quis ut Deus? — São Miguel, que respondestes com fé!</em></p>' },
+          { titulo: 'Encerramento', texto: '<p>Terminar com a <strong>Oração ao Anjo da Guarda</strong>:</p><p><em>Anjo de Deus, meu zeloso guardador, a quem a bondade divina me confiou, iluminai-me, guardai-me, regei-me e governai-me. Amém.</em></p><p>Sinal da Cruz.</p>' }
+        ]
+      },
+
+      'ns-lagrimas': {
+        passos: [
+          { titulo: 'Início', texto: '<p>Faça o <strong>Sinal da Cruz</strong>.</p><p>A Coroa de Nossa Senhora das Lágrimas honra as lágrimas que Maria derramou durante a vida de Jesus — do nascimento ao Calvário.</p>' },
+          { titulo: 'Oração Inicial', texto: '<p>Rezar um <strong>Ato de Contrição</strong> e oferecer a coroa pelas intenções de Maria:</p><p><em>Ó Maria, aceitai esta coroa de lágrimas e convertei-a em bênçãos para as almas que precisam da vossa intercessão. Amém.</em></p>' },
+          { titulo: '1ª Lágrima — Na Profecia de Simeão', texto: '<p>Meditando nas lágrimas de Maria ao ouvir a profecia da espada (Lc 2,34-35):</p><p><em>"Ó Maria, cujas lágrimas brotaram ao ouvir que uma espada atravessaria vossa alma, consolai todos os que sofrem em silêncio."</em></p><p>Rezar: 3 <strong>Ave Marias</strong></p>' },
+          { titulo: '2ª Lágrima — Na Fuga para o Egito', texto: '<p>Meditando nas lágrimas de Maria ao fugir para terra estranha na noite (Mt 2,13-15):</p><p><em>"Ó Maria, cujas lágrimas molharam o rosto do Menino Jesus no exílio, acompanhai todos os refugiados e migrantes do mundo."</em></p><p>Rezar: 3 <strong>Ave Marias</strong></p>' },
+          { titulo: '3ª Lágrima — Jesus Perdido no Templo', texto: '<p>Meditando nas lágrimas de Maria ao buscar Jesus por três dias (Lc 2,44-48):</p><p><em>"Ó Maria, que choraste ao perder Jesus, intercedei por todas as mães que buscam seus filhos perdidos no pecado."</em></p><p>Rezar: 3 <strong>Ave Marias</strong></p>' },
+          { titulo: '4ª Lágrima — No Encontro com Jesus no Calvário', texto: '<p>Meditando nas lágrimas de Maria ao ver Jesus cair sob o peso da Cruz (Lc 23,27-28):</p><p><em>"Ó Maria, cujos olhos encontraram os de Jesus no caminho do Calvário, fortalecei os que carregam suas cruzes sem esperança."</em></p><p>Rezar: 3 <strong>Ave Marias</strong></p>' },
+          { titulo: '5ª Lágrima — Ao Pé da Cruz', texto: '<p>Meditando nas lágrimas de Maria diante da Crucificação (Jo 19,25-27):</p><p><em>"Ó Maria, que permanecestes ao pé da Cruz quando todos fugiram, ficai ao lado de todos os que morrem abandonados."</em></p><p>Rezar: 3 <strong>Ave Marias</strong></p>' },
+          { titulo: '6ª Lágrima — Com o Corpo de Jesus nos Braços', texto: '<p>Meditando nas lágrimas de Maria ao receber o corpo morto de Jesus (a Pietà):</p><p><em>"Ó Maria, cujas lágrimas caíram sobre o rosto sem vida de Jesus, consolai todos os que perderam alguém amado."</em></p><p>Rezar: 3 <strong>Ave Marias</strong></p>' },
+          { titulo: '7ª Lágrima — No Sepultamento', texto: '<p>Meditando nas lágrimas de Maria ao ver Jesus ser sepultado na pedra fria (Lc 23,53-56):</p><p><em>"Ó Maria, que choraste diante do sepulcro fechado, mas crestes na ressurreição, fortalecei nossa fé nas horas de escuridão."</em></p><p>Rezar: 3 <strong>Ave Marias</strong></p>' },
+          { titulo: 'Oração de Encerramento', texto: '<p>Rezar 7 <strong>Pai Nossos</strong> em honra das Sete Dores de Maria, seguidos de:</p><p><em>Ó Maria das Lágrimas, convertei as nossas lágrimas em alegrias eternas. Que possamos, como vós, cruzar o sofrimento com fé e chegar à glória da Ressurreição. Amém.</em></p><p>Terminar com o <strong>Sinal da Cruz</strong>.</p>' }
+        ]
+      },
+
+      'outros-santos': {
+        passos: [
+          { titulo: 'Como Rezar', texto: '<p>Este terço pode ser rezado em honra de qualquer Santo. Escolha o seu Santo de devoção, medite em sua vida e use as orações abaixo adaptando o nome.</p><p>A estrutura é simples: <strong>Início · 5 Mistérios · Encerramento.</strong></p>' },
+          { titulo: 'Início', texto: '<p>Faça o <strong>Sinal da Cruz</strong> e invoque o Santo escolhido:</p><p><em>"N. (nome do Santo), servo/a fiel de Deus, intercedei por nós junto ao Pai."</em></p><p>Rezar: 1 <strong>Pai Nosso</strong> + 1 <strong>Ave Maria</strong> + <strong>Creio em Deus Pai</strong></p>' },
+          { titulo: 'Para cada Mistério (Meditação)', texto: '<p>Para cada um dos 5 mistérios, meditai num momento da vida do Santo:</p><ul style="margin:0.5rem 0 0.5rem 1rem; color:rgba(240,232,216,0.55); font-family:\'Cormorant Garamond\', serif; font-size:1.05rem; line-height:2;"><li>Sua vocação e conversão</li><li>Sua vida de oração e sacrifício</li><li>Suas obras e milagres</li><li>Seus sofrimentos e provações</li><li>Sua morte e glorificação</li></ul>' },
+          { titulo: 'Oração de cada dezena (10x)', texto: '<p>Para cada dezena, rezar:</p><p><em>"N. (nome do Santo), rogai por nós!"</em></p><p>Ao final de cada dezena: <em>Glória ao Pai...</em></p><div class="terco-repeticao">○ Adaptar o nome do santo escolhido · 5 dezenas</div>' },
+          { titulo: 'Oração ao Santo (modelo)', texto: '<p>Ao final das dezenas, rezar:</p><p><em>"Ó N. (nome do Santo), que vivestes em união com Deus e nos deixastes o exemplo de uma vida santa, intercedei por nós em nossas necessidades — especialmente [aqui faça seu pedido pessoal]. Amém."</em></p>' },
+          { titulo: 'Ladainha do Santo (opcional)', texto: '<p>Se desejar, encerrar com invocações ao Santo:</p><p><em>"N. (santo), exemplo de fé — rogai por nós."<br>"N. (santo), amigo de Deus — rogai por nós."<br>"N. (santo), intercessor poderoso — rogai por nós."<br>"N. (santo), modelo para os cristãos — rogai por nós."</em></p>' },
+          { titulo: 'Encerramento', texto: '<p>Terminar com um <strong>Pai Nosso</strong>, uma <strong>Ave Maria</strong>, um <strong>Glória ao Pai</strong> e o <strong>Sinal da Cruz</strong>.</p><p><em>Que pela intercessão de N. (nome do Santo) e de todos os Santos, cheguemos à glória eterna. Amém.</em></p>' }
+        ]
+      },
+
+      'gozosos': {
+        passos: [
+          { titulo: 'Início do Rosário', texto: '<p>Faça o <strong>Sinal da Cruz</strong> e segurando o crucifixo, reze o <strong>Creio em Deus Pai</strong>.</p><p><em>Creio em Deus Pai todo-poderoso, criador do céu e da terra...</em></p>' },
+          { titulo: 'Oração Inicial', texto: '<p>Segure a primeira conta grande e reze o <strong>Pai Nosso</strong>.</p><p>Nas três contas pequenas seguintes, reze 3 <strong>Ave Marias</strong> pelas virtudes da Fé, Esperança e Caridade.</p><p>Ao final, reze o <strong>Glória ao Pai</strong>.</p>' },
+          { titulo: '1º Mistério Gozoso — A Anunciação', texto: '<p><em>"O Anjo Gabriel anuncia a Maria que ela será a Mãe de Deus." (Lc 1,26-38)</em></p><p><strong>Fruto:</strong> Humildade</p><p>Rezar: 1 <strong>Pai Nosso</strong> · 10 <strong>Ave Marias</strong> · <strong>Glória ao Pai</strong></p><p><em>Ó meu Jesus, perdoai-nos, livrai-nos do fogo do inferno, levai as almas todas para o Céu...</em></p>' },
+          { titulo: '2º Mistério Gozoso — A Visitação', texto: '<p><em>"Maria visita sua prima Isabel, que carrega João Batista." (Lc 1,39-56)</em></p><p><strong>Fruto:</strong> Caridade fraterna</p><p>Rezar: 1 <strong>Pai Nosso</strong> · 10 <strong>Ave Marias</strong> · <strong>Glória ao Pai</strong></p><p><em>Ó meu Jesus, perdoai-nos...</em></p>' },
+          { titulo: '3º Mistério Gozoso — O Nascimento de Jesus', texto: '<p><em>"Jesus nasce em Belém numa manjedoura, entre a pobreza e o amor." (Lc 2,1-20)</em></p><p><strong>Fruto:</strong> Pobreza de espírito · Desapego</p><p>Rezar: 1 <strong>Pai Nosso</strong> · 10 <strong>Ave Marias</strong> · <strong>Glória ao Pai</strong></p><p><em>Ó meu Jesus, perdoai-nos...</em></p>' },
+          { titulo: '4º Mistério Gozoso — A Apresentação no Templo', texto: '<p><em>"Maria e José apresentam Jesus no Templo e Simeão profetiza." (Lc 2,22-38)</em></p><p><strong>Fruto:</strong> Pureza de alma e de corpo</p><p>Rezar: 1 <strong>Pai Nosso</strong> · 10 <strong>Ave Marias</strong> · <strong>Glória ao Pai</strong></p><p><em>Ó meu Jesus, perdoai-nos...</em></p>' },
+          { titulo: '5º Mistério Gozoso — Jesus no Templo', texto: '<p><em>"Jesus, aos doze anos, é encontrado no Templo entre os doutores." (Lc 2,41-52)</em></p><p><strong>Fruto:</strong> Piedade filial · Amor ao Pai</p><p>Rezar: 1 <strong>Pai Nosso</strong> · 10 <strong>Ave Marias</strong> · <strong>Glória ao Pai</strong></p><p><em>Ó meu Jesus, perdoai-nos...</em></p>' },
+          { titulo: 'Salve Rainha', texto: '<p>Rezar a <strong>Salve Rainha</strong> para encerrar:</p><p><em>Salve Rainha, Mãe de misericórdia, vida, doçura e esperança nossa, salve! A vós bradamos, os degredados filhos de Eva. A vós suspiramos, gemendo e chorando neste vale de lágrimas.</em></p><p><em>Eia pois, advogada nossa, esses vossos olhos misericordiosos a nós volvei. E depois deste desterro, mostrai-nos Jesus, bendito fruto do vosso ventre. Ó clemente, ó piedosa, ó doce sempre Virgem Maria. Amém.</em></p>' },
+          { titulo: 'Oração Final', texto: '<p><em>Ó Deus, cujo Filho Unigênito nos adquiriu, com a sua vida, morte e ressurreição, os bens da salvação eterna: concedei-nos, a nós que meditamos estes mistérios do Santíssimo Rosário da Bem-Aventurada Virgem Maria, imitarmos o que encerram e alcançarmos o que prometem. Por Cristo Nosso Senhor. Amém.</em></p>' },
+          { titulo: 'Encerramento', texto: '<p>Terminar com o <strong>Sinal da Cruz</strong>.</p><p><em>Em nome do Pai, do Filho e do Espírito Santo. Amém.</em></p><p style="margin-top:1rem; font-style:italic; color:rgba(201,168,76,0.6);">Que Nossa Senhora vos cubra com seu manto de graça.</p>' }
+        ]
+      },
+
+      'luminosos': {
+        passos: [
+          { titulo: 'Início do Rosário', texto: '<p>Faça o <strong>Sinal da Cruz</strong> e segurando o crucifixo, reze o <strong>Creio em Deus Pai</strong>.</p><p>Os Mistérios Luminosos foram acrescentados por João Paulo II em 2002 para meditar o ministério público de Jesus.</p>' },
+          { titulo: 'Oração Inicial', texto: '<p>Segure a primeira conta grande e reze o <strong>Pai Nosso</strong>.</p><p>Nas três contas pequenas seguintes, reze 3 <strong>Ave Marias</strong> pelas virtudes da Fé, Esperança e Caridade.</p><p>Ao final, reze o <strong>Glória ao Pai</strong>.</p>' },
+          { titulo: '1º Mistério Luminoso — O Batismo no Jordão', texto: '<p><em>"Jesus é batizado por João e o Espírito Santo desce sobre Ele em forma de pomba." (Mt 3,13-17)</em></p><p><strong>Fruto:</strong> Abertura ao Espírito Santo</p><p>Rezar: 1 <strong>Pai Nosso</strong> · 10 <strong>Ave Marias</strong> · <strong>Glória ao Pai</strong></p><p><em>Ó meu Jesus, perdoai-nos...</em></p>' },
+          { titulo: '2º Mistério Luminoso — As Bodas de Caná', texto: '<p><em>"A pedido de Maria, Jesus realiza o primeiro milagre e transforma água em vinho." (Jo 2,1-12)</em></p><p><strong>Fruto:</strong> Docilidade a Maria</p><p>Rezar: 1 <strong>Pai Nosso</strong> · 10 <strong>Ave Marias</strong> · <strong>Glória ao Pai</strong></p><p><em>Ó meu Jesus, perdoai-nos...</em></p>' },
+          { titulo: '3º Mistério Luminoso — O Anúncio do Reino', texto: '<p><em>"Jesus anuncia o Reino de Deus, chama os pecadores à conversão e à penitência." (Mc 1,14-15)</em></p><p><strong>Fruto:</strong> Arrependimento e conversão</p><p>Rezar: 1 <strong>Pai Nosso</strong> · 10 <strong>Ave Marias</strong> · <strong>Glória ao Pai</strong></p><p><em>Ó meu Jesus, perdoai-nos...</em></p>' },
+          { titulo: '4º Mistério Luminoso — A Transfiguração', texto: '<p><em>"Jesus revela sua glória divina a Pedro, Tiago e João no Monte Tabor." (Mt 17,1-8)</em></p><p><strong>Fruto:</strong> Desejo do Céu</p><p>Rezar: 1 <strong>Pai Nosso</strong> · 10 <strong>Ave Marias</strong> · <strong>Glória ao Pai</strong></p><p><em>Ó meu Jesus, perdoai-nos...</em></p>' },
+          { titulo: '5º Mistério Luminoso — A Instituição da Eucaristia', texto: '<p><em>"Na Última Ceia, Jesus institui a Eucaristia, seu Corpo e Sangue entregues por nós." (Mt 26,26-29)</em></p><p><strong>Fruto:</strong> Adoração eucarística</p><p>Rezar: 1 <strong>Pai Nosso</strong> · 10 <strong>Ave Marias</strong> · <strong>Glória ao Pai</strong></p><p><em>Ó meu Jesus, perdoai-nos...</em></p>' },
+          { titulo: 'Salve Rainha', texto: '<p>Rezar a <strong>Salve Rainha</strong>:</p><p><em>Salve Rainha, Mãe de misericórdia, vida, doçura e esperança nossa, salve! A vós bradamos, os degredados filhos de Eva. A vós suspiramos, gemendo e chorando neste vale de lágrimas. Eia pois, advogada nossa, esses vossos olhos misericordiosos a nós volvei. E depois deste desterro, mostrai-nos Jesus, bendito fruto do vosso ventre. Ó clemente, ó piedosa, ó doce sempre Virgem Maria. Amém.</em></p>' },
+          { titulo: 'Oração Final', texto: '<p><em>Ó Deus, cujo Filho Unigênito nos adquiriu, com a sua vida, morte e ressurreição, os bens da salvação eterna: concedei-nos, a nós que meditamos estes mistérios do Santíssimo Rosário da Bem-Aventurada Virgem Maria, imitarmos o que encerram e alcançarmos o que prometem. Por Cristo Nosso Senhor. Amém.</em></p>' },
+          { titulo: 'Encerramento', texto: '<p>Terminar com o <strong>Sinal da Cruz</strong>.</p><p><em>Em nome do Pai, do Filho e do Espírito Santo. Amém.</em></p><p style="margin-top:1rem; font-style:italic; color:rgba(201,168,76,0.6);">Que a luz de Cristo ilumine sempre o vosso caminho.</p>' }
+        ]
+      },
+
+      'dolorosos': {
+        passos: [
+          { titulo: 'Início do Rosário', texto: '<p>Faça o <strong>Sinal da Cruz</strong> e segurando o crucifixo, reze o <strong>Creio em Deus Pai</strong>.</p><p>Os Mistérios Dolorosos nos convidam a meditar a Paixão de Cristo e a unir nossos sofrimentos aos de Jesus.</p>' },
+          { titulo: 'Oração Inicial', texto: '<p>Segure a primeira conta grande e reze o <strong>Pai Nosso</strong>.</p><p>Nas três contas pequenas seguintes, reze 3 <strong>Ave Marias</strong> pelas virtudes da Fé, Esperança e Caridade.</p><p>Ao final, reze o <strong>Glória ao Pai</strong>.</p>' },
+          { titulo: '1º Mistério Doloroso — A Agonia no Horto', texto: '<p><em>"Jesus ora no Getsêmani com suor de sangue e aceita o cálice da Paixão." (Lc 22,39-46)</em></p><p><strong>Fruto:</strong> Contrição dos pecados</p><p>Rezar: 1 <strong>Pai Nosso</strong> · 10 <strong>Ave Marias</strong> · <strong>Glória ao Pai</strong></p><p><em>Ó meu Jesus, perdoai-nos...</em></p>' },
+          { titulo: '2º Mistério Doloroso — A Flagelação', texto: '<p><em>"Jesus é amarrado à coluna e açoitado cruelmente pelos soldados." (Jo 19,1)</em></p><p><strong>Fruto:</strong> Mortificação dos sentidos</p><p>Rezar: 1 <strong>Pai Nosso</strong> · 10 <strong>Ave Marias</strong> · <strong>Glória ao Pai</strong></p><p><em>Ó meu Jesus, perdoai-nos...</em></p>' },
+          { titulo: '3º Mistério Doloroso — A Coroação de Espinhos', texto: '<p><em>"Jesus é coroado de espinhos e ridicularizado como Rei dos Judeus." (Mt 27,27-31)</em></p><p><strong>Fruto:</strong> Fortaleza espiritual</p><p>Rezar: 1 <strong>Pai Nosso</strong> · 10 <strong>Ave Marias</strong> · <strong>Glória ao Pai</strong></p><p><em>Ó meu Jesus, perdoai-nos...</em></p>' },
+          { titulo: '4º Mistério Doloroso — Jesus Carrega a Cruz', texto: '<p><em>"Jesus carrega a Cruz até o Calvário, caindo três vezes pelo caminho." (Lc 23,26-32)</em></p><p><strong>Fruto:</strong> Paciência nas tribulações</p><p>Rezar: 1 <strong>Pai Nosso</strong> · 10 <strong>Ave Marias</strong> · <strong>Glória ao Pai</strong></p><p><em>Ó meu Jesus, perdoai-nos...</em></p>' },
+          { titulo: '5º Mistério Doloroso — A Crucificação e Morte de Jesus', texto: '<p><em>"Jesus é pregado na Cruz e morre entregando o Espírito ao Pai." (Jo 19,17-30)</em></p><p><strong>Fruto:</strong> Salvação das almas · Amor ao Pai</p><p>Rezar: 1 <strong>Pai Nosso</strong> · 10 <strong>Ave Marias</strong> · <strong>Glória ao Pai</strong></p><p><em>Ó meu Jesus, perdoai-nos...</em></p>' },
+          { titulo: 'Salve Rainha', texto: '<p>Rezar a <strong>Salve Rainha</strong>:</p><p><em>Salve Rainha, Mãe de misericórdia, vida, doçura e esperança nossa, salve! A vós bradamos, os degredados filhos de Eva. A vós suspiramos, gemendo e chorando neste vale de lágrimas. Eia pois, advogada nossa, esses vossos olhos misericordiosos a nós volvei. E depois deste desterro, mostrai-nos Jesus, bendito fruto do vosso ventre. Ó clemente, ó piedosa, ó doce sempre Virgem Maria. Amém.</em></p>' },
+          { titulo: 'Oração Final', texto: '<p><em>Ó Deus, cujo Filho Unigênito nos adquiriu, com a sua vida, morte e ressurreição, os bens da salvação eterna: concedei-nos, a nós que meditamos estes mistérios do Santíssimo Rosário da Bem-Aventurada Virgem Maria, imitarmos o que encerram e alcançarmos o que prometem. Por Cristo Nosso Senhor. Amém.</em></p>' },
+          { titulo: 'Encerramento', texto: '<p>Terminar com o <strong>Sinal da Cruz</strong>.</p><p><em>Em nome do Pai, do Filho e do Espírito Santo. Amém.</em></p><p style="margin-top:1rem; font-style:italic; color:rgba(201,168,76,0.6);">Que a Paixão de Cristo vos fortaleça e console.</p>' }
+        ]
+      },
+
+      'gloriosos': {
+        passos: [
+          { titulo: 'Início do Rosário', texto: '<p>Faça o <strong>Sinal da Cruz</strong> e segurando o crucifixo, reze o <strong>Creio em Deus Pai</strong>.</p><p>Os Mistérios Gloriosos nos levam a contemplar a vitória de Cristo sobre a morte e a glorificação de Maria.</p>' },
+          { titulo: 'Oração Inicial', texto: '<p>Segure a primeira conta grande e reze o <strong>Pai Nosso</strong>.</p><p>Nas três contas pequenas seguintes, reze 3 <strong>Ave Marias</strong> pelas virtudes da Fé, Esperança e Caridade.</p><p>Ao final, reze o <strong>Glória ao Pai</strong>.</p>' },
+          { titulo: '1º Mistério Glorioso — A Ressurreição', texto: '<p><em>"Jesus ressuscita dos mortos ao terceiro dia, como prometera." (Jo 20,1-18)</em></p><p><strong>Fruto:</strong> Fé viva na ressurreição</p><p>Rezar: 1 <strong>Pai Nosso</strong> · 10 <strong>Ave Marias</strong> · <strong>Glória ao Pai</strong></p><p><em>Ó meu Jesus, perdoai-nos...</em></p>' },
+          { titulo: '2º Mistério Glorioso — A Ascensão', texto: '<p><em>"Jesus sobe aos céus na presença dos discípulos e se senta à direita do Pai." (At 1,6-11)</em></p><p><strong>Fruto:</strong> Desejo do Céu e da vida eterna</p><p>Rezar: 1 <strong>Pai Nosso</strong> · 10 <strong>Ave Marias</strong> · <strong>Glória ao Pai</strong></p><p><em>Ó meu Jesus, perdoai-nos...</em></p>' },
+          { titulo: '3º Mistério Glorioso — Pentecostes', texto: '<p><em>"O Espírito Santo desce sobre Maria e os Apóstolos em línguas de fogo." (At 2,1-13)</em></p><p><strong>Fruto:</strong> Dons do Espírito Santo</p><p>Rezar: 1 <strong>Pai Nosso</strong> · 10 <strong>Ave Marias</strong> · <strong>Glória ao Pai</strong></p><p><em>Ó meu Jesus, perdoai-nos...</em></p>' },
+          { titulo: '4º Mistério Glorioso — A Assunção de Maria', texto: '<p><em>"Maria é elevada ao Céu em corpo e alma por Deus Pai."</em></p><p><strong>Fruto:</strong> Devoção a Maria · Graça da boa morte</p><p>Rezar: 1 <strong>Pai Nosso</strong> · 10 <strong>Ave Marias</strong> · <strong>Glória ao Pai</strong></p><p><em>Ó meu Jesus, perdoai-nos...</em></p>' },
+          { titulo: '5º Mistério Glorioso — A Coroação de Maria', texto: '<p><em>"Maria é coroada Rainha do Céu e da Terra pela Santíssima Trindade."</em></p><p><strong>Fruto:</strong> Perseverança final · Confiança em Maria</p><p>Rezar: 1 <strong>Pai Nosso</strong> · 10 <strong>Ave Marias</strong> · <strong>Glória ao Pai</strong></p><p><em>Ó meu Jesus, perdoai-nos...</em></p>' },
+          { titulo: 'Salve Rainha', texto: '<p>Rezar a <strong>Salve Rainha</strong>:</p><p><em>Salve Rainha, Mãe de misericórdia, vida, doçura e esperança nossa, salve! A vós bradamos, os degredados filhos de Eva. A vós suspiramos, gemendo e chorando neste vale de lágrimas. Eia pois, advogada nossa, esses vossos olhos misericordiosos a nós volvei. E depois deste desterro, mostrai-nos Jesus, bendito fruto do vosso ventre. Ó clemente, ó piedosa, ó doce sempre Virgem Maria. Amém.</em></p>' },
+          { titulo: 'Oração Final', texto: '<p><em>Ó Deus, cujo Filho Unigênito nos adquiriu, com a sua vida, morte e ressurreição, os bens da salvação eterna: concedei-nos, a nós que meditamos estes mistérios do Santíssimo Rosário da Bem-Aventurada Virgem Maria, imitarmos o que encerram e alcançarmos o que prometem. Por Cristo Nosso Senhor. Amém.</em></p>' },
+          { titulo: 'Encerramento', texto: '<p>Terminar com o <strong>Sinal da Cruz</strong>.</p><p><em>Em nome do Pai, do Filho e do Espírito Santo. Amém.</em></p><p style="margin-top:1rem; font-style:italic; color:rgba(201,168,76,0.6);">Glória a Deus nas alturas, e paz na terra!</p>' }
+        ]
+      },
+
+      'via-sacra': {
+        passos: [
+          { titulo: 'Oração de Abertura', texto: '<p><em>Meu Senhor Jesus Cristo, que pelo amor que me tendes e para expiar meus pecados, percorrestes o caminho doloroso da Cruz, suportando as mais cruéis torturas: fazei que eu, movido pela vossa infinita bondade, chore sinceramente meus pecados e medite com coração compungido os vossos sofrimentos. Amém.</em></p>' },
+          { titulo: 'Como rezar cada estação', texto: '<p>Para cada estação, rezar:</p><p><em>"Adoramos-vos, ó Cristo, e vos bendizemos."</em><br><strong>Resposta:</strong> <em>"Porque pela vossa Santa Cruz redenstes o mundo."</em></p><p>Seguido de meditação sobre o mistério da estação, e ao final: <strong>Pai Nosso · Ave Maria · Glória ao Pai</strong>.</p>' },
+          { titulo: '1ª Estação — Jesus é condenado à morte', texto: '<p><em>Adoramos-vos, ó Cristo, e vos bendizemos. Porque pela vossa Santa Cruz redenstes o mundo.</em></p><p>Consideremos como Jesus Cristo, depois de ter sido açoitado e coroado de espinhos, foi injustamente condenado por Pilatos a morrer na cruz.</p><p><em>Pai Nosso · Ave Maria · Glória ao Pai</em></p>' },
+          { titulo: '2ª Estação — Jesus carrega a Cruz', texto: '<p><em>Adoramos-vos, ó Cristo, e vos bendizemos. Porque pela vossa Santa Cruz redenstes o mundo.</em></p><p>Consideremos como Jesus Cristo tomou sobre seus ombros a Cruz, aceitando-a com paciência para satisfazer pelos nossos pecados.</p><p><em>Pai Nosso · Ave Maria · Glória ao Pai</em></p>' },
+          { titulo: '3ª Estação — Jesus cai pela primeira vez', texto: '<p><em>Adoramos-vos, ó Cristo, e vos bendizemos.</em></p><p>Consideremos como Jesus, enfraquecido pelo sofrimento e pela perda de sangue, cai pela primeira vez sob o peso da Cruz — o peso dos nossos pecados.</p><p><em>Pai Nosso · Ave Maria · Glória ao Pai</em></p>' },
+          { titulo: '4ª Estação — Jesus encontra sua Mãe', texto: '<p><em>Adoramos-vos, ó Cristo, e vos bendizemos.</em></p><p>Consideremos como Jesus se encontrou com sua Mãe, e como o coração de Maria ficou trespassado de dor ao ver o Filho carregando a Cruz.</p><p><em>Pai Nosso · Ave Maria · Glória ao Pai</em></p>' },
+          { titulo: '5ª Estação — Simão de Cirene ajuda Jesus', texto: '<p><em>Adoramos-vos, ó Cristo, e vos bendizemos.</em></p><p>Consideremos como os soldados obrigaram Simão de Cirene a ajudar Jesus a carregar a Cruz — imagem de todo cristão que é chamado a carregar a cruz do próximo.</p><p><em>Pai Nosso · Ave Maria · Glória ao Pai</em></p>' },
+          { titulo: '6ª Estação — Verônica enxuga o rosto de Jesus', texto: '<p><em>Adoramos-vos, ó Cristo, e vos bendizemos.</em></p><p>Consideremos como a piedosa Verônica, movida de compaixão, se aproximou de Jesus e enxugou o seu rosto, ficando impressa nela a sagrada imagem de Jesus.</p><p><em>Pai Nosso · Ave Maria · Glória ao Pai</em></p>' },
+          { titulo: '7ª Estação — Jesus cai pela segunda vez', texto: '<p><em>Adoramos-vos, ó Cristo, e vos bendizemos.</em></p><p>Consideremos como Jesus, extenuado pelo caminho e pelos maus-tratos, cai pela segunda vez sob o peso da Cruz.</p><p><em>Pai Nosso · Ave Maria · Glória ao Pai</em></p>' },
+          { titulo: '8ª Estação — Jesus consola as mulheres de Jerusalém', texto: '<p><em>Adoramos-vos, ó Cristo, e vos bendizemos.</em></p><p>Consideremos como Jesus, ao encontrar as mulheres de Jerusalém que O choravam, as consolou dizendo: "Não choreis por mim, mas por vós mesmas e por vossos filhos."</p><p><em>Pai Nosso · Ave Maria · Glória ao Pai</em></p>' },
+          { titulo: '9ª Estação — Jesus cai pela terceira vez', texto: '<p><em>Adoramos-vos, ó Cristo, e vos bendizemos.</em></p><p>Consideremos como Jesus, chegando quase ao Calvário, cai pela terceira vez, abatido pela dor — mas levanta-se para completar o sacrifício da nossa redenção.</p><p><em>Pai Nosso · Ave Maria · Glória ao Pai</em></p>' },
+          { titulo: '10ª Estação — Jesus é despojado das vestes', texto: '<p><em>Adoramos-vos, ó Cristo, e vos bendizemos.</em></p><p>Consideremos como os soldados tiraram a Jesus as vestes, expondo-o à humilhação pública — ele que vestiu de dignidade a humanidade pecadora.</p><p><em>Pai Nosso · Ave Maria · Glória ao Pai</em></p>' },
+          { titulo: '11ª Estação — Jesus é pregado na Cruz', texto: '<p><em>Adoramos-vos, ó Cristo, e vos bendizemos.</em></p><p>Consideremos como Jesus Cristo foi pregado na Cruz — e de lá perdonou os seus algozes: "Pai, perdoai-lhes, porque não sabem o que fazem." (Lc 23,34)</p><p><em>Pai Nosso · Ave Maria · Glória ao Pai</em></p>' },
+          { titulo: '12ª Estação — Jesus morre na Cruz', texto: '<p><em>Adoramos-vos, ó Cristo, e vos bendizemos.</em></p><p>Consideremos como Jesus, depois de três horas de agonia, entregou o espírito ao Pai com as palavras: <em>"Está consumado."</em> (Jo 19,30)</p><p><em>Pai Nosso · Ave Maria · Glória ao Pai</em></p>' },
+          { titulo: '13ª Estação — Jesus é retirado da Cruz', texto: '<p><em>Adoramos-vos, ó Cristo, e vos bendizemos.</em></p><p>Consideremos como o corpo de Jesus foi descido da Cruz e posto nos braços de sua Mãe — a Pietà, a imagem mais dolorosa do amor de uma mãe.</p><p><em>Pai Nosso · Ave Maria · Glória ao Pai</em></p>' },
+          { titulo: '14ª Estação — Jesus é sepultado', texto: '<p><em>Adoramos-vos, ó Cristo, e vos bendizemos.</em></p><p>Consideremos como o corpo de Jesus foi depositado no sepulcro de José de Arimateia — mas a pedra fechada não seria o fim, pois ao terceiro dia ressuscitaria.</p><p><em>Pai Nosso · Ave Maria · Glória ao Pai</em></p>' },
+          { titulo: 'Oração de Encerramento', texto: '<p><em>Senhor Jesus, percorrestes este caminho de dor e morte por amor a mim. Que eu nunca esqueça o preço da minha redenção. Que a memória da vossa Paixão me dê forças para carregar as cruzes da minha própria vida com serenidade e amor, unindo-as às vossas. Amém.</em></p><p>Terminar com o <strong>Sinal da Cruz</strong>.</p>' }
+        ]
+      }
+    };
+
+    /* ══════════════════════════════════════════════
+       ESTADO DOS TERÇOS
+    ══════════════════════════════════════════════ */
+    const estado = {};
+
+    function iniciarTodosTercos() {
+      Object.keys(TERCOS).forEach(id => {
+        estado[id] = 0;
+        renderizarPasso(id);
+      });
+    }
+
+    function abrirTerco(id) {
+      const el = document.getElementById('terco-' + id);
+      el.classList.toggle('aberto');
+    }
+
+    function renderizarPasso(id) {
+      const passos = TERCOS[id].passos;
+      const atual = estado[id];
+      const total = passos.length;
+      const passo = passos[atual];
+
+      // Área de texto
+      const area = document.getElementById('passo-area-' + id);
+      if (area) {
+        area.innerHTML = `
+          <div class="terco-passo-numero">Passo ${atual + 1} de ${total}</div>
+          <div class="terco-passo-titulo">${passo.titulo}</div>
+          <div class="terco-passo-texto">${passo.texto}</div>
+        `;
+      }
+
+      // Barra de progresso
+      const fill = document.getElementById('prog-fill-' + id);
+      const label = document.getElementById('prog-label-' + id);
+      if (fill) fill.style.width = ((atual + 1) / total * 100) + '%';
+      if (label) label.textContent = `Passo ${atual + 1} de ${total}`;
+
+      // Contador
+      const cnt = document.getElementById('cnt-' + id);
+      if (cnt) cnt.textContent = `${atual + 1} / ${total}`;
+
+      // Botões
+      const btnAnt = document.getElementById('btn-ant-' + id);
+      const btnProx = document.getElementById('btn-prox-' + id);
+      if (btnAnt) btnAnt.disabled = atual === 0;
+      if (btnProx) {
+        btnProx.disabled = atual === total - 1;
+        btnProx.textContent = atual === total - 2 ? 'Último →' : 'Próximo →';
+      }
+    }
+
+    function passoTerco(id, dir) {
+      const passos = TERCOS[id].passos;
+      const novoEstado = estado[id] + dir;
+
+      if (novoEstado < 0 || novoEstado >= passos.length) return;
+
+      estado[id] = novoEstado;
+
+      // Se chegou ao último passo e avançou mais, mostrar conclusão
+      if (novoEstado === passos.length - 1 && dir === 1) {
+        // Renderiza o último passo normalmente
+        renderizarPasso(id);
+        return;
+      }
+
+      renderizarPasso(id);
+    }
+
+    function reiniciarTerco(id) {
+      estado[id] = 0;
+      const concluido = document.getElementById('concluido-' + id);
+      const area = document.getElementById('passo-area-' + id);
+      const nav = document.getElementById('nav-' + id);
+      const prog = document.getElementById('prog-label-' + id).closest('.terco-progresso-barra-wrap');
+
+      if (concluido) concluido.classList.remove('visivel');
+      if (area) area.style.display = '';
+      if (nav) nav.style.display = '';
+      if (prog) prog.style.display = '';
+
+      renderizarPasso(id);
+    }
+
+    window.onload = function() {
+      mostrarCategoria('comuns', document.querySelector('.oracoes-sidebar-item'));
+      iniciarTodosTercos();
+    };
+  </script>
+
+</body>
+</html>

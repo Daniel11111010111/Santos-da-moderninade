@@ -3,12 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mapa · Santos da Modernidade</title>
+  <title>Mapa Interativo da Santidade — Santos da Modernidade</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600&family=Raleway:wght@300;400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
   <link rel="stylesheet" href="style.css" />
-  <title>Mapa Interativo da Santidade — Santos da Modernidade</title>
   <meta name="description" content="Explore o mapa-múndi interativo e descubra as regiões onde os santos modernos viveram, testemunharam e espalharam sua fé." />
   <meta name="keywords" content="mapa catolico, mapa dos santos, onde viveram os santos, santos da atualidade" />
   <meta property="og:title" content="Mapa Interativo da Santidade" />
@@ -430,15 +429,16 @@
       <li><a href="index.html#santos">Os Santos</a></li>
       <li><a href="categoria.html">Categorias</a></li>
       <li><a href="mapa.html">Mapa</a></li>
+      <li><a href="oracoes.html" >Orações</a></li>
       <li><a href="sobre.html">Sobre</a></li>
-       <li><a href="creditos.html">Créditos das fotografias</a></li>
-    </ul>
-    <button id="nav-hamburguer" 
+      <li><a href="creditos.html">Créditos das fotografias</a></li>
+   </ul>
+   <button id="nav-hamburguer" 
         onclick="toggleMenu()" 
         style="background:transparent; border:none; color:#C9A84C; font-size:1.5rem; cursor:pointer; padding:0.25rem 0.5rem; -webkit-appearance:none; appearance:none;">
-      ☰
-    </button>
-  </nav>
+     ☰
+   </button>
+</nav> 
 
   <section class="mapa-hero">
     <div class="mapa-hero-bg"></div>
@@ -656,7 +656,7 @@
       { lat: 9.6800, lng: 76.5300, tipo: "morte", nome: "São Kuriakose Elias Chavara", local: "Koonammavu, Índia", desc: "Faleceu em 3 de janeiro de 1871. Um pilar da Igreja Siro-Malabar.", foto: "imagens2/chavara1.jpg", link: "santos/chavara.html" },
       { lat: 41.9029, lng: 12.4534, tipo: "canonizacao", nome: "São Kuriakose Elias Chavara", local: "Cidade do Vaticano", desc: "Canonizado pelo Papa Francisco em 23 de novembro de 2014.", foto: "imagens2/chavara1.jpg", link: "santos/chavara.html" },
 
-      { lat: 45.4545, lng: -73.3421, tipo: "nascimento", nome: "São André Bessette", local: "Mont-Saint-Grégoire, Canadá", desc: "Nasceu em 9 de agosto de 1845. Conhecido como o 'Milagreiro de Montreal'.", foto: "imagens2/bessette1.jpg", link: "santos/\bessette.html" },
+      { lat: 45.4545, lng: -73.3421, tipo: "nascimento", nome: "São André Bessette", local: "Mont-Saint-Grégoire, Canadá", desc: "Nasceu em 9 de agosto de 1845.", foto: "imagens2/bessette1.jpg", link: "santos/bessette.html" },
       { lat: 45.4947, lng: -73.6177, tipo: "vida", nome: "São André Bessette", local: "Montreal, Canadá", desc: "Religioso da Congregação de Santa Cruz, dedicou sua vida a cuidar dos doentes no Oratório de São José.", foto: "imagens2/bessette1.jpg", link: "santos/\bessette.html" },
       { lat: 45.4947, lng: -73.6177, tipo: "morte", nome: "São André Bessette", local: "Montreal, Canadá", desc: "Faleceu em 6 de janeiro de 1937, aos 91 anos.", foto: "imagens2/bessette1.jpg", link: "santos/bessette.html" },
       { lat: 41.9029, lng: 12.4534, tipo: "canonizacao", nome: "São André Bessette", local: "Cidade do Vaticano", desc: "Canonizado pelo Papa Bento XVI em 17 de outubro de 2010.", foto: "imagens2/bessette1.jpg", link: "santos/bessette.html" },
@@ -842,6 +842,12 @@ L.tileLayer(
 
       atualizarContador(visiveis);
     }
-  </script>
+    function toggleMenu() {
+    const menu = document.querySelector('.nav-links');
+    const btn = document.getElementById('nav-hamburguer');
+    menu.classList.toggle('aberto');
+    btn.textContent = menu.classList.contains('aberto') ? '✕' : '☰';
+  }
+ </script>
 </body>
 </html>
