@@ -3362,7 +3362,7 @@
                   `<span class="nome-pais">${nomePais}</span>${RITOS_CORES[ritoId].nome}`,
                   { className: 'ritos-mapa-tooltip', sticky: true }
                 );
-                layer.on('click', () => irParaRito(ritoId));
+                layer.on('click', () => destacarRito(ritoId));
                 layer.on('mouseover', e => e.target.setStyle({ weight: 1.5, fillOpacity: 0.85 }));
                 layer.on('mouseout', () => ritosMapaLayer.resetStyle(layer));
               } else {
@@ -3381,7 +3381,7 @@
               `<span class="nome-pais">${m.nome}</span>${m.desc}`,
               { className: 'ritos-mapa-tooltip', sticky: true }
             );
-            marcador.on('click', () => irParaRito(m.ritoId));
+           marcador.on('click', () => destacarRito(ritoId));
             marcadoresLeaflet.push({ ritoId: m.ritoId, marcador });
           });
         })
