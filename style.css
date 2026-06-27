@@ -859,6 +859,104 @@
   .mapa-section-stats { gap: 1.5rem; }
   .mapa-preview-frame { display: none; }
 }
+
+/* ══════════════════════════════════════════
+   ORAÇÕES — faixa de destaque (complementar)
+══════════════════════════════════════════ */
+.oracoes-promo {
+  background: var(--dark-mid, #1a1410);
+  padding: 4rem 2rem;
+  position: relative;
+  border-top: 1px solid rgba(201,168,76,0.1);
+  border-bottom: 1px solid rgba(201,168,76,0.1);
+}
+
+.oracoes-promo-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 3rem;
+  flex-wrap: wrap;
+}
+
+.oracoes-promo-texto { flex: 1; min-width: 260px; }
+
+.oracoes-promo-titulo {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(1.2rem, 2.2vw, 1.6rem);
+  font-weight: 400;
+  color: var(--ivory);
+  letter-spacing: 0.05em;
+  margin-bottom: 0.6rem;
+}
+
+.oracoes-promo-desc {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1rem;
+  font-style: italic;
+  color: rgba(240,232,216,0.55);
+  line-height: 1.7;
+  max-width: 480px;
+}
+
+.oracoes-promo-stats {
+  display: flex;
+  gap: 1.75rem;
+  flex-wrap: wrap;
+  flex-shrink: 0;
+}
+
+.oracoes-promo-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  text-align: center;
+}
+
+.oracoes-promo-stat-num {
+  font-family: 'Cinzel', serif;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--gold);
+  line-height: 1;
+}
+
+.oracoes-promo-stat-label {
+  font-size: 0.6rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(240,232,216,0.35);
+}
+
+.oracoes-promo-btn {
+  display: inline-block;
+  font-family: 'Cinzel', serif;
+  font-size: 0.7rem;
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  border: 1px solid rgba(201,168,76,0.4);
+  padding: 0.7rem 1.75rem;
+  text-decoration: none;
+  transition: all 0.3s;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.oracoes-promo-btn:hover {
+  background: var(--gold);
+  color: var(--dark);
+  border-color: var(--gold);
+}
+
+@media (max-width: 768px) {
+  .oracoes-promo-inner { flex-direction: column; align-items: flex-start; gap: 2rem; }
+  .oracoes-promo-stats { gap: 1.25rem; }
+  .oracoes-promo-btn { align-self: flex-start; }
+}
 /* Só no celular */
 @media (max-width: 768px) {
   nav { padding: 1rem 1.5rem; }
