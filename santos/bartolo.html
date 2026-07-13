@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>São Bartolo Longo · Santos da Modernidade</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600&family=Raleway:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../style.css" />
+  <style>
+    .perfil-hero {
+      min-height: 100vh;
+      background: var(--dark);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      position: relative;
+      overflow: hidden;
+      padding-top: 80px;
+    }
+    .perfil-hero-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 5rem 4rem 5rem 5rem;
+      position: relative;
+      z-index: 2;
+    }
+    .perfil-breadcrumb {
+      font-size: 0.68rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: rgba(201,168,76,0.5);
+      margin-bottom: 2rem;
+    }
+    .perfil-breadcrumb a { color: inherit; text-decoration: none; transition: color 0.2s; }
+    .perfil-breadcrumb a:hover { color: var(--gold); }
+    .perfil-badge {
+      display: inline-block;
+      border: 1px solid rgba(201,168,76,0.4);
+      color: var(--gold);
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      padding: 0.35rem 0.9rem;
+      margin-bottom: 1.5rem;
+    }
+    .perfil-nome {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 600;
+      color: var(--ivory);
+      line-height: 1.15;
+      margin-bottom: 0.5rem;
+      letter-spacing: 0.03em;
+    }
+    .perfil-titulo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      font-style: italic;
+      font-weight: 300;
+      color: var(--gold-light);
+      margin-bottom: 2rem;
+      opacity: 0.8;
+    }
+    .perfil-meta { display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 2.5rem; }
+    .perfil-meta-item { display: flex; gap: 1rem; align-items: baseline; }
+    .perfil-meta-label {
+      color: rgba(201,168,76,0.6);
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      min-width: 110px;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      flex-shrink: 0;
+    }
+    .perfil-meta-value { color: rgba(240,232,216,0.75); font-size: 0.85rem; line-height: 1.4; }
+    .perfil-frase {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-style: italic;
+      color: var(--gold-light);
+      border-left: 2px solid var(--gold);
+      padding-left: 1.25rem;
+      line-height: 1.65;
+      opacity: 0.9;
+    }
+    .perfil-hero-right {
+      position: relative;
+      background: var(--dark-mid);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .perfil-hero-right::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at center, rgba(201,168,76,0.06) 0%, transparent 70%);
+    }
+    .perfil-hero-datas { position: absolute; bottom: 2rem; right: 2rem; text-align: right; }
+    .perfil-hero-ano {
+      font-family: 'Cinzel', serif;
+      font-size: 4rem;
+      font-weight: 600;
+      color: rgba(201,168,76,0.08);
+      line-height: 1;
+      display: block;
+    }
+    .perfil-content { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+    .bio-section {
+      padding: 7rem 0;
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 5rem;
+      border-bottom: 1px solid var(--gold-light);
+    }
+    .bio-sidebar { position: sticky; top: 100px; align-self: start; }
+    .sidebar-tag {
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold-dark);
+      display: block;
+      margin-bottom: 1rem;
+    }
+    .sidebar-title {
+      font-family: 'Cinzel', serif;
+      font-size: 1.3rem;
+      font-weight: 400;
+      color: var(--dark);
+      letter-spacing: 0.06em;
+      line-height: 1.4;
+    }
+    .sidebar-ornament { width: 30px; height: 1px; background: var(--gold); margin: 1.5rem 0; }
+    .sidebar-resumo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      font-style: italic;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+    .bio-texto h3 {
+      font-family: 'Cinzel', serif;
+      font-size: 1rem;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      color: var(--dark);
+      margin: 2rem 0 0.75rem;
+    }
+    .bio-texto h3:first-child { margin-top: 0; }
+    .bio-texto p { font-size: 0.97rem; line-height: 1.9; color: var(--text-muted); margin-bottom: 1rem; }
+    .bio-texto p strong { color: var(--text); font-weight: 500; }
+    .timeline-section { padding: 7rem 0; border-bottom: 1px solid var(--gold-light); }
+    .timeline-header { margin-bottom: 3.5rem; }
+    .timeline-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      position: relative;
+    }
+    .timeline-grid::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: linear-gradient(to bottom, transparent, var(--gold-light), transparent);
+      transform: translateX(-50%);
+    }
+    .tl-item { padding: 2rem; position: relative; }
+    .tl-item:nth-child(odd) { text-align: right; padding-right: 3rem; }
+    .tl-item:nth-child(even) { padding-left: 3rem; }
+    .tl-item::after {
+      content: '';
+      position: absolute;
+      top: 2.5rem;
+      width: 8px;
+      height: 8px;
+      background: var(--gold);
+      transform: rotate(45deg);
+    }
+    .tl-item:nth-child(odd)::after { right: -4px; }
+    .tl-item:nth-child(even)::after { left: -4px; }
+    .tl-ano { font-family: 'Cinzel', serif; font-size: 0.72rem; letter-spacing: 0.2em; color: var(--gold-dark); margin-bottom: 0.4rem; }
+    .tl-evento { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; font-weight: 400; color: var(--dark); margin-bottom: 0.3rem; }
+    .tl-desc { font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; }
+    .milagres-section {
+      padding: 7rem 0;
+      background: var(--parchment);
+      margin: 0 -2rem;
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+    .milagres-inner { max-width: 1100px; margin: 0 auto; }
+    .milagres-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 3rem; }
+    .milagre-card { background: var(--ivory); border: 1px solid var(--gold-light); padding: 2rem; }
+    .milagre-numero { font-family: 'Cinzel', serif; font-size: 2.5rem; font-weight: 600; color: var(--gold-light); line-height: 1; margin-bottom: 1rem; }
+    .milagre-local { font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold-dark); margin-bottom: 0.5rem; }
+    .milagre-titulo { font-family: 'Cinzel', serif; font-size: 0.95rem; font-weight: 400; color: var(--dark); letter-spacing: 0.05em; margin-bottom: 0.75rem; }
+    .milagre-desc { font-size: 0.88rem; line-height: 1.75; color: var(--text-muted); }
+    .milagre-ano-badge { display: inline-block; margin-top: 1rem; border: 1px solid var(--gold-light); color: var(--gold-dark); font-size: 0.65rem; letter-spacing: 0.18em; padding: 0.2rem 0.6rem; }
+    .galeria-section { padding: 7rem 0; border-bottom: 1px solid var(--gold-light); }
+    .galeria-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      grid-template-rows: 200px 200px;
+      gap: 1rem;
+      margin-top: 3rem;
+    }
+    .galeria-item {
+      background: var(--dark-mid);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      border: 1px solid rgba(201,168,76,0.1);
+    }
+    .galeria-item:first-child { grid-row: 1 / 3; }
+    .galeria-legenda { font-size: 0.75rem; color: var(--text-muted); text-align: center; margin-top: 1rem; font-style: italic; font-family: 'Cormorant Garamond', serif; }
+    .oracao-section {
+      padding: 7rem 0;
+      background: var(--blue-deep);
+      margin: 0 -2rem;
+      padding-left: 2rem;
+      padding-right: 2rem;
+      text-align: center;
+    }
+    .oracao-inner { max-width: 680px; margin: 0 auto; }
+    .oracao-section .section-tag { color: var(--gold); }
+    .oracao-titulo { font-family: 'Cinzel', serif; font-size: 1.4rem; font-weight: 400; color: var(--ivory); letter-spacing: 0.08em; margin-bottom: 2.5rem; }
+    .oracao-texto { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 300; line-height: 2; color: rgba(240,232,216,0.8); text-align: left; }
+    .oracao-texto p { margin-bottom: 1rem; }
+    .oracao-fecho { font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); opacity: 0.7; margin-top: 2rem; }
+    .fontes-section { padding: 7rem 0; }
+    .fontes-lista { margin-top: 2.5rem; display: flex; flex-direction: column; gap: 0; }
+    .fonte-item { display: grid; grid-template-columns: auto 1fr auto; gap: 1.5rem; align-items: center; padding: 1.25rem 0; border-bottom: 1px solid var(--gold-light); }
+    .fonte-tipo { font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold-dark); border: 1px solid var(--gold-light); padding: 0.2rem 0.6rem; white-space: nowrap; }
+    .fonte-titulo { font-size: 0.92rem; color: var(--text); font-weight: 400; }
+    .fonte-autor { font-size: 0.8rem; color: var(--text-muted); margin-top: 0.2rem; font-family: 'Cormorant Garamond', serif; font-style: italic; }
+    .fonte-link { font-size: 0.7rem; color: var(--gold-dark); text-decoration: none; letter-spacing: 0.1em; white-space: nowrap; transition: color 0.2s; }
+    .fonte-link:hover { color: var(--gold); }
+    .nav-santos { position: static; background: none; backdrop-filter: none; padding: 3rem 0; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--gold-light); margin-top: 2rem; }
+    .nav-santo-link { text-decoration: none; display: flex; flex-direction: column; gap: 0.3rem; }
+    .nav-santo-dir { text-align: right; }
+    .nav-santo-label { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted); }
+    .nav-santo-nome { font-family: 'Cinzel', serif; font-size: 0.95rem; color: var(--gold-dark); transition: color 0.2s; }
+    .nav-santo-link:hover .nav-santo-nome { color: var(--gold); }
+    .section-header-left { margin-bottom: 0; }
+    .section-header-left h2 { font-family: 'Cinzel', serif; font-size: 1.5rem; font-weight: 400; color: var(--dark); letter-spacing: 0.08em; margin-bottom: 0.5rem; }
+    .section-header-left p { font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-style: italic; color: var(--text-muted); }
+    @media (max-width: 768px) {
+      .perfil-hero { grid-template-columns: 1fr; }
+      .perfil-hero-right { display: flex; }
+      .perfil-hero-left { padding: 3rem 1.5rem; }
+      .bio-section { grid-template-columns: 1fr; gap: 2rem; }
+      .bio-sidebar { position: static; }
+      .timeline-grid { grid-template-columns: 1fr; }
+      .timeline-grid::before { display: none; }
+      .tl-item { text-align: left !important; padding: 1rem 0 1rem 2rem !important; }
+      .tl-item::after { left: 0 !important; right: auto !important; }
+      .milagres-grid { grid-template-columns: 1fr; }
+      .galeria-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+      .galeria-item:first-child { grid-row: auto; }
+      .fonte-item { grid-template-columns: 1fr; gap: 0.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="../index.html" class="nav-logo">Santos da Modernidade</a>
+    <ul class="nav-links">
+      <li><a href="../index.html#santos">Os Santos</a></li>
+      <li><a href="../categoria.html">Categorias</a></li>
+      <li><a href="../mapa.html">Mapa</a></li>
+      <li><a href="../oracoes.html">Orações</a></li>
+      <li><a href="../sobre.html">Sobre</a></li>
+      <li><a href="../creditos.html">Créditos das fotografias</a></li>
+    </ul>
+    <button id="nav-hamburguer" onclick="toggleMenu()"
+      style="background:transparent;border:none;color:#C9A84C;font-size:1.5rem;cursor:pointer;padding:0.25rem 0.5rem;-webkit-appearance:none;appearance:none;">☰</button>
+  </nav>
+
+  <!-- HERO -->
+  <section class="perfil-hero">
+    <div class="perfil-hero-left">
+      <p class="perfil-breadcrumb">
+        <a href="../index.html">Início</a> &nbsp;·&nbsp;
+        <a href="../index.html#santos">Os Santos</a> &nbsp;·&nbsp;
+        Bartolo Longo
+      </p>
+      <span class="perfil-badge">Santo · Leigo · Apóstolo do Rosário · Canonizado em 2025</span>
+      <h1 class="perfil-nome">São Bartolo Longo</h1>
+      <p class="perfil-titulo">"O Ex-Satanista que Construiu um Santuário"</p>
+      <div class="perfil-meta">
+        <div class="perfil-meta-item">
+          <span class="perfil-meta-label">Nascimento</span>
+          <span class="perfil-meta-value">10 de fevereiro de 1841 · Latiano, Itália</span>
+        </div>
+        <div class="perfil-meta-item">
+          <span class="perfil-meta-label">Falecimento</span>
+          <span class="perfil-meta-value">5 de outubro de 1926 · Pompeia, Itália</span>
+        </div>
+        <div class="perfil-meta-item">
+          <span class="perfil-meta-label">Beatificação</span>
+          <span class="perfil-meta-value">26 de outubro de 1980 · João Paulo II</span>
+        </div>
+        <div class="perfil-meta-item">
+          <span class="perfil-meta-label">Canonização</span>
+          <span class="perfil-meta-value">19 de outubro de 2025 · Papa Leão XIV</span>
+        </div>
+        <div class="perfil-meta-item">
+          <span class="perfil-meta-label">Festa litúrgica</span>
+          <span class="perfil-meta-value">5 de outubro</span>
+        </div>
+        <div class="perfil-meta-item">
+          <span class="perfil-meta-label">Padroeiro</span>
+          <span class="perfil-meta-value">Conversos · Advogados · Promotores do Rosário</span>
+        </div>
+      </div>
+      <p class="perfil-frase">
+        "Se buscas a salvação, propaga o Rosário. Esta é a promessa da própria Virgem Maria."
+      </p>
+    </div>
+    <div class="perfil-hero-right">
+      <img src="../imagens2/bartolo2.jpg" alt="São Bartolo Longo"
+        style="width:100%;height:100%;object-fit:cover;" />
+      <div class="perfil-hero-datas">
+        <span class="perfil-hero-ano">1926</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTEÚDO -->
+  <div class="perfil-content">
+
+    <section class="bio-section" id="biografia">
+      <div class="bio-sidebar">
+        <span class="sidebar-tag">Seção 01</span>
+        <h2 class="sidebar-title">Biografia<br>Detalhada</h2>
+        <div class="sidebar-ornament"></div>
+        <p class="sidebar-resumo">
+          De advogado satanista a construtor de um dos maiores santuários marianos do mundo — a conversão mais radical entre os santos modernos.
+        </p>
+      </div>
+      <div class="bio-texto">
+
+        <h3>Infância e Família</h3>
+        <p>
+          Bartolo Longo nasceu em <strong>10 de fevereiro de 1841</strong> em Latiano, uma pequena cidade próxima a Brindisi, no sul da Itália — então parte do Reino das Duas Sicílias. Seus pais, o Dr. Bartolomeo Longo e Antonina Luparelli, eram católicos devotos que rezavam o rosário juntos todos os dias. A família era abastada e de sólida reputação local.
+        </p>
+        <p>
+          Bartolo era uma criança brilhante e vivaz, mas começou a se afastar da fé aos dez anos, com a morte de sua mãe — o primeiro grande abalo de uma vida que conheceria muitas turbulências interiores. Sua adolescência coincidiu com um dos momentos mais conturbados da história italiana: o Risorgimento, o movimento de unificação nacional liderado por Garibaldi, que tinha no anticlericalismo um de seus pilares. A Igreja era atacada como força reacionária, e os intelectuais do período competiam em fervor anticatólico.
+        </p>
+
+        <h3>A Universidade, o Anticlericalismo e a Queda</h3>
+        <p>
+          Aos dezoito anos, Bartolo ingressou na Faculdade de Direito da Universidade de Nápoles. O ambiente era explosivo: vários professores eram ex-padres ou clérigos que abandonaram a Igreja, e pregavam um nacionalismo militante combinado com ateísmo e espiritismo. Bartolo foi arrastado por essa corrente com rapidez. <em>"Eu também passei a odiar monges, padres e o Papa"</em>, escreveria ele mais tarde, <em>"e em especial os dominicanos, os mais formidáveis e furiosos opositores daqueles grandes professores modernos"</em> — ironia que ele próprio reconheceria depois, tendo se tornado Terciário Dominicano.
+        </p>
+        <p>
+          O passo seguinte foi o espiritismo, muito em voga nos círculos intelectuais italianos do período. Bartolo mergulhou fundo: participou de sessões espíritas, estudou o ocultismo e acabou sendo iniciado como <strong>"sacerdote" de uma seita satânica</strong> em Nápoles — um título que, em sua época, designava alguém que presidia rituais e ensinava a doutrina do grupo, não necessariamente um sacerdote em sentido católico. A experiência, longe de trazer paz, precipitou-o num estado de angústia crescente, depressão profunda e pensamentos suicidas. Seu corpo e sua mente estavam se desfazendo.
+        </p>
+
+        <h3>A Conversão</h3>
+        <p>
+          O instrumento da conversão de Bartolo foi um amigo de sua cidade natal, o professor Vincenzo Pepe, que o abordou diretamente: <em>"Você quer morrer num hospício e ser condenado para sempre?"</em> Bartolo não pôde ignorar nem a pergunta nem o estado em que se encontrava. Pepe o convenceu a se encontrar com um padre dominicano, o Padre Alberto Radente, com quem teve longas conversas ao longo de semanas.
+        </p>
+        <p>
+          Em <strong>1865</strong>, na festa do Sagrado Coração de Jesus, Bartolo se confessou com o Padre Radente na Igreja do Rosário, em Nápoles. Descreveu o momento como <em>"reviver minha Primeira Comunhão — como se eu tivesse recebido um segundo batismo"</em>. A seguir, como penitência voluntária, passou dois anos trabalhando diariamente no Hospital Napolitano para Incuráveis — servindo os mais pobres entre os doentes.
+        </p>
+        <p>
+          Em <strong>25 de março de 1871</strong>, ingressou na Ordem Terceira Dominicana, adotando o nome de <em>Irmão Rosário</em> em honra à devoção que passaria o restante de sua vida a propagar. Mesmo convertido, porém, Bartolo continuou a lutar contra a ansiedade, a depressão e os pensamentos suicidas — uma batalha que durou décadas e que faz dele um intercessor singular para os que enfrentam problemas de saúde mental dentro da fé.
+        </p>
+
+        <h3>Pompeia: a Missão que Transformou uma Cidade</h3>
+        <p>
+          Em <strong>1872</strong>, Bartolo foi enviado ao Vale de Pompeia para administrar as propriedades da Condessa Marianna Farnararo De Fusco, uma viúva piedosa de quem se tornaria amigo próximo e, anos depois, marido — por recomendação do próprio Papa Leão XIII. O que ele encontrou em Pompeia o chocou: a fé estava praticamente extinta, a única igreja da região era uma ruína, a pobreza era extrema e a população havia substituído a prática religiosa por superstição e bruxaria.
+        </p>
+        <p>
+          Caminhando pelos campos de Pompeia, Bartolo foi assaltado pelo desespero e relembrou sua antiga condição de "sacerdote satânico". Nesse momento de crise, ouviu uma voz interior — que atribuiu à Virgem Maria — dizendo claramente: <strong>"Se buscas a salvação, propaga o Rosário. Esta é a promessa da própria Virgem."</strong> Ajoelhou-se no campo, chorou e prometeu que não deixaria Pompeia antes de ter estabelecido a devoção ao Rosário entre seu povo.
+        </p>
+        <p>
+          O trabalho que se seguiu foi monumental. Em <strong>outubro de 1873</strong>, restaurou a pequena igreja local, abandonada e deteriorada. Em <strong>1875</strong>, recebeu de presente — transportada numa carroça de legumes por um frade dominicano — uma antiga e deteriorada imagem de Nossa Senhora do Rosário encontrada num convento de Nápoles. Bartolo a restaurou com os poucos recursos disponíveis e a instalou na igreja. Os relatos de milagres começaram imediatamente e a afluência de peregrinos foi crescendo de forma constante.
+        </p>
+
+        <h3>Obras Sociais e o Santuário</h3>
+        <p>
+          Paralelamente à construção espiritual de Pompeia, Bartolo criou uma vasta rede de obras sociais: casas para órfãos filhos de presos, escolas para crianças pobres, oficinas de ofícios para jovens, habitações para trabalhadores e lares para idosos e enfermos. Empregou os próprios camponeses locais nas obras do santuário, ensinando-lhes ofícios como pedreiros e artesãos — criando assim fonte de renda para quem não tinha nenhuma.
+        </p>
+        <p>
+          Em <strong>1884</strong>, fundou o periódico <em>"O Rosário e a Nova Pompeia"</em>, que servia simultaneamente para propagar a devoção mariana e para arrecadar fundos para as obras sociais. Em <strong>1897</strong>, fundou uma nova congregação dominicana feminina — as Filhas do Santo Rosário de Pompeia — após não conseguir trazer nenhuma congregação existente para trabalhar na região. A igreja original foi crescendo continuamente até ser elevada a basílica em <strong>1939</strong> e receber o título de <em>Basílica Pontifícia de Nossa Senhora do Santíssimo Rosário de Pompeia</em>.
+        </p>
+
+        <h3>O Legado dos Mistérios Luminosos</h3>
+        <p>
+          Talvez a contribuição mais duradoura de Bartolo para a Igreja universal tenha sido sua proposta de um quinto grupo de mistérios para o Rosário — meditando o ministério público de Jesus. Quando João Paulo II propôs os <strong>Mistérios Luminosos</strong> em sua encíclica sobre o Rosário de 2002, citou explicitamente os escritos de Bartolo Longo como fonte tanto da ideia geral quanto de cada um dos cinco mistérios específicos e do nome coletivo "mistérios da luz". Um leigo do século XIX, convertido do satanismo, que influenciou diretamente a oração de centenas de milhões de católicos no século XXI.
+        </p>
+
+        <h3>Morte e Canonização</h3>
+        <p>
+          Bartolo Longo faleceu em <strong>5 de outubro de 1926</strong>, aos 85 anos, em Pompeia — a mesma cidade que encontrara em ruínas espirituais e materiais cinco décadas antes. Suas últimas palavras foram: <em>"Meu único desejo é ver Maria, que me salvou e que me salvará das garras de Satanás."</em> Foi <strong>beatificado em 26 de outubro de 1980</strong> pelo Papa João Paulo II, que o chamou de <em>"Apóstolo do Rosário"</em> e <em>"homem da Virgem"</em>.
+        </p>
+        <p>
+          A canonização, realizada em <strong>19 de outubro de 2025</strong> pelo Papa Leão XIV — no mesmo dia em que Carlo Acutis e Pier Giorgio Frassati também foram elevados à santidade —, seguiu um caminho excepcional: em vez de exigir um segundo milagre pós-beatificação, a Igreja reconheceu que a totalidade da obra de sua vida constitui um testemunho tão extraordinário que justifica a dispensa. Hoje, a Basílica de Pompeia que ele construiu recebe cerca de três milhões de peregrinos por ano — e é a única grande basílica mariana do mundo erguida por um ex-satanista convertido.
+        </p>
+
+        <h3>O que Bartolo Longo Diz ao Mundo de Hoje</h3>
+        <p>
+          A modernidade produz histórias de pessoas que saem de contextos sectários, de manipulação espiritual e de ocultismo, carregando traumas que levam anos para ser trabalhados. A história de Bartolo — que lutou contra depressão, ansiedade e pensamentos suicidas por décadas mesmo após a conversão — é o oposto de uma narrativa de cura imediata e tranquilidade fácil. Ele é um santo para quem sabe que a saúde mental não se resolve com um ato de fé, e que a conversão não elimina automaticamente os efeitos do passado.
+        </p>
+        <p>
+          É também o testemunho mais radical da doutrina da misericórdia: se um homem que presidia rituais satânicos pode tornar-se construtor de um dos maiores santuários marianos do mundo, então a promessa de que <em>"nenhuma alma está tão perdida que não possa ser resgatada"</em> não é apenas retórica. É verificável. É concreta. É Bartolo Longo, ajoelhado num campo de Pompeia, ouvindo uma voz que ele acreditou ser de Maria — e recomeçando.
+        </p>
+
+      </div>
+    </section>
+
+    <!-- LINHA DO TEMPO -->
+    <section class="timeline-section" id="cronologia">
+      <div class="timeline-header">
+        <span class="section-tag">Seção 02</span>
+        <div class="section-header-left">
+          <h2>Linha do Tempo</h2>
+          <p>De satanista a construtor de santuário — oito décadas de transformação</p>
+        </div>
+      </div>
+      <div class="timeline-grid">
+        <div class="tl-item">
+          <p class="tl-ano">10 Fev 1841</p>
+          <h3 class="tl-evento">Nascimento</h3>
+          <p class="tl-desc">Nasce em Latiano, perto de Brindisi, sul da Itália, numa família católica abastada e devota.</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-ano">c. 1860</p>
+          <h3 class="tl-evento">Universidade de Nápoles</h3>
+          <p class="tl-desc">Ingressa na Faculdade de Direito. Influenciado por professores anticlerilcais, afasta-se da fé e mergulha no espiritismo e no ocultismo.</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-ano">c. 1864</p>
+          <h3 class="tl-evento">Iniciação satânica</h3>
+          <p class="tl-desc">Torna-se "sacerdote" de uma seita satânica em Nápoles. Desenvolve depressão profunda e pensamentos suicidas.</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-ano">1865</p>
+          <h3 class="tl-evento">Conversão e confissão</h3>
+          <p class="tl-desc">Na festa do Sagrado Coração, confessa-se com o Padre Dominicano Alberto Radente. Retorna à fé católica após semanas de diálogo e discernimento.</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-ano">25 Mar 1871</p>
+          <h3 class="tl-evento">Ordem Terceira Dominicana</h3>
+          <p class="tl-desc">Ingressa como Terciário Dominicano com o nome de Irmão Rosário — uma ironia consciente para quem outrora odiava os Dominicanos.</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-ano">1872</p>
+          <h3 class="tl-evento">Chegada a Pompeia</h3>
+          <p class="tl-desc">Enviado para administrar as propriedades da Condessa De Fusco, encontra a cidade em miséria espiritual e material. Ouve a voz interior que o envia a propagar o Rosário.</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-ano">1875</p>
+          <h3 class="tl-evento">A imagem de Nossa Senhora</h3>
+          <p class="tl-desc">Recebe uma antiga e deteriorada imagem de Nossa Senhora do Rosário de um convento napolitano. Relatos de milagres começam imediatamente.</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-ano">1884</p>
+          <h3 class="tl-evento">Periódico "O Rosário e a Nova Pompeia"</h3>
+          <p class="tl-desc">Funda um jornal para propagar a devoção mariana e arrecadar fundos para obras sociais — casas para órfãos, escolas e lares para pobres.</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-ano">1897</p>
+          <h3 class="tl-evento">Congregação das Filhas do Rosário</h3>
+          <p class="tl-desc">Funda uma nova congregação dominicana feminina dedicada ao serviço dos pobres e à educação em Pompeia.</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-ano">5 Out 1926</p>
+          <h3 class="tl-evento">Morte em Pompeia</h3>
+          <p class="tl-desc">Falece aos 85 anos na mesma cidade que transformou. Últimas palavras: "Meu único desejo é ver Maria, que me salvou."</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-ano">26 Out 1980</p>
+          <h3 class="tl-evento">Beatificação</h3>
+          <p class="tl-desc">Beatificado por João Paulo II, que o chama de "Apóstolo do Rosário" e reconhece sua obra como testemunho extraordinário da misericórdia divina.</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-ano">19 Out 2025</p>
+          <h3 class="tl-evento">Canonização</h3>
+          <p class="tl-desc">Canonizado pelo Papa Leão XIV, no mesmo dia que Carlo Acutis e Pier Giorgio Frassati, com dispensa do segundo milagre — caso excepcional na história da Igreja.</p>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- MILAGRES -->
+  <section class="milagres-section" id="milagres">
+    <div class="milagres-inner">
+      <span class="section-tag">Seção 03</span>
+      <div class="section-header-left">
+        <h2>Milagres Aprovados</h2>
+        <p>O prodígio reconhecido pela Igreja e o testemunho extraordinário que substituiu o segundo milagre</p>
+      </div>
+      <div class="milagres-grid">
+        <div class="milagre-card">
+          <p class="milagre-numero">01</p>
+          <p class="milagre-local">Itália · 1943</p>
+          <h3 class="milagre-titulo">Cura de Carmen Rocco Câmera</h3>
+          <p class="milagre-desc">
+            Carmen Rocco Câmera sofria de uma doença gastrointestinal terminal, sem possibilidade médica de recuperação. Em 1943, um padre chamado Spreafico escreveu cartas à família incentivando-a a orar pela intercessão de Bartolo Longo. Carmen recuperou-se completamente, de forma considerada inexplicável pela medicina. O milagre foi investigado e aprovado pela Congregação para as Causas dos Santos, abrindo caminho para a beatificação por João Paulo II em 1980.
+          </p>
+          <span class="milagre-ano-badge">Aprovado em 1980 · para a Beatificação</span>
+        </div>
+        <div class="milagre-card">
+          <p class="milagre-numero">02</p>
+          <p class="milagre-local">Vaticano · 2025</p>
+          <h3 class="milagre-titulo">Dispensa do segundo milagre — a obra como testemunho</h3>
+          <p class="milagre-desc">
+            Em caso excepcional e raro na história da Igreja, o Papa Leão XIV dispensou a exigência de um segundo milagre médico pós-beatificação para a canonização de Bartolo Longo. A decisão, fundamentada numa prerrogativa papal prevista no direito canônico, reconheceu que a totalidade de sua vida — a conversão do satanismo, a transformação de Pompeia, o santuário, as obras sociais, os três milhões de peregrinos anuais — constitui, em si mesma, um testemunho tão extraordinário que a confirmação divina é evidente sem necessidade de um segundo prodígio isolado.
+          </p>
+          <span class="milagre-ano-badge">Dispensa concedida em 2025 · para a Canonização</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="perfil-content">
+
+    <!-- GALERIA -->
+    <section class="galeria-section" id="galeria">
+      <span class="section-tag">Seção 04</span>
+      <div class="section-header-left">
+        <h2>Galeria</h2>
+        <p>Imagens da vida, obras e memória de São Bartolo Longo</p>
+      </div>
+      <div class="galeria-grid">
+        <div class="galeria-item">
+          <img src="../imagens2/bartolo1.jpg" alt="São Bartolo Longo"
+            style="width:100%;height:100%;object-fit:cover;" />
+        </div>
+        <div class="galeria-item">
+          <img src="../imagens2/bartolo2.jpg" alt="Basílica de Nossa Senhora do Rosário de Pompeia"
+            style="width:100%;height:100%;object-fit:cover;" />
+        </div>
+        <div class="galeria-item">
+          <img src="../imagens2/bartolo3.jpg" alt="Interior da Basílica de Pompeia"
+            style="width:100%;height:100%;object-fit:cover;" />
+        </div>
+        <div class="galeria-item">
+          <img src="../imagens2/bartolo4.jpg" alt="Imagem de Nossa Senhora do Rosário de Pompeia"
+            style="width:100%;height:100%;object-fit:cover;" />
+        </div>
+        <div class="galeria-item">
+          <img src="../imagens2/bartolo5.jpg" alt="Túmulo de São Bartolo Longo na Basílica de Pompeia"
+            style="width:100%;height:100%;object-fit:cover;" />
+        </div>
+      </div>
+      <p class="galeria-legenda">
+        Imagens utilizadas sob licença de seus respectivos autores.
+        <a href="../creditos.html" style="color:var(--gold-dark);text-decoration:none;">Créditos completos disponíveis aqui.</a>
+      </p>
+    </section>
+
+    <!-- FONTES -->
+    <section class="fontes-section" id="fontes">
+      <span class="section-tag">Seção 06</span>
+      <div class="section-header-left">
+        <h2>Fontes e Referências</h2>
+        <p>Documentação utilizada para a elaboração deste perfil</p>
+      </div>
+      <div class="fontes-lista">
+        <div class="fonte-item">
+          <span class="fonte-tipo">Enciclopédia</span>
+          <div>
+            <p class="fonte-titulo">Bartolo Longo — Wikipédia</p>
+            <p class="fonte-autor">Verbete biográfico com referências históricas e processuais</p>
+          </div>
+          <a href="https://en.wikipedia.org/wiki/Bartolo_Longo" target="_blank" class="fonte-link">Acessar →</a>
+        </div>
+        <div class="fonte-item">
+          <span class="fonte-tipo">Artigo</span>
+          <div>
+            <p class="fonte-titulo">A former Satanist priest who became a Saint</p>
+            <p class="fonte-autor">Dominican Friars Foundation</p>
+          </div>
+          <a href="https://dominicanfriars.org/former-satanist-priest-became-saint/" target="_blank" class="fonte-link">Acessar →</a>
+        </div>
+        <div class="fonte-item">
+          <span class="fonte-tipo">Artigo</span>
+          <div>
+            <p class="fonte-titulo">A vida de Bartolo Longo: de escravo do demônio a filho predileto de Maria</p>
+            <p class="fonte-autor">Blog Lumine</p>
+          </div>
+          <a href="https://blog.lumine.tv/a-vida-de-bartolo-longo/" target="_blank" class="fonte-link">Acessar →</a>
+        </div>
+        <div class="fonte-item">
+          <span class="fonte-tipo">Notícia</span>
+          <div>
+            <p class="fonte-titulo">São Bartolo Longo é exemplo para quem tem problemas de saúde mental</p>
+            <p class="fonte-autor">ACI Digital · EWTN News</p>
+          </div>
+          <a href="https://www.acidigital.com/noticia/65209" target="_blank" class="fonte-link">Acessar →</a>
+        </div>
+        <div class="fonte-item">
+          <span class="fonte-tipo">Documento</span>
+          <div>
+            <p class="fonte-titulo">Canonização de São Bartolo Longo — Homilia do Papa Leão XIV </p>
+          </div>
+          <a href="Holy Mass with Rite of Canonization of Seven Blesseds (19 October 2025)" target="_blank" class="fonte-link">Acessar →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- NAVEGAÇÃO -->
+    <div class="nav-santos">
+      <a href="goretti.html" class="nav-santo-link">
+        <span class="nav-santo-label">← Santo Anterior</span>
+        <span class="nav-santo-nome">Santa Maria Goretti</span>
+      </a>
+      <a href="carlo-acutis.html" class="nav-santo-link nav-santo-dir">
+        <span class="nav-santo-label">Próximo Santo →</span>
+        <span class="nav-santo-nome">São Carlo Acutis</span>
+      </a>
+    </div>
+
+  </div>
+
+  <!-- ORAÇÃO -->
+  <section class="oracao-section" id="oracao">
+    <div class="oracao-inner">
+      <span class="section-tag">Seção 05</span>
+      <h2 class="oracao-titulo">Oração por Intercessão de São Bartolo Longo</h2>
+      <div class="oracao-texto">
+        <p>
+          Senhor Jesus, Tu que és o autor de toda conversão e o único capaz de transformar um coração de pedra em coração de carne, concede-nos, pela intercessão de São Bartolo Longo, a graça de nunca duvidar da Tua misericórdia — por mais longe que tenhamos ido.
+        </p>
+        <p>
+          Ele que foi sacerdote das trevas tornou-se apóstolo do Rosário. Ele que pregava contra a Igreja construiu um de seus maiores santuários. Que sua vida nos lembre que nenhum passado é mais forte do que a Tua graça.
+        </p>
+        <p>
+          Intercede por nós, São Bartolo, e em especial por todos os que hoje lutam contra a depressão, a angústia e o desespero; pelos que saíram de seitas e carregam as marcas do passado; e por todos os que ainda não encontraram o caminho de volta.
+        </p>
+        <p>
+          Que a Virgem Maria, que te salvou das garras de Satanás, interceda também por nós e nos conduza ao coração do seu Filho. Amém.
+        </p>
+      </div>
+      <p class="oracao-fecho">· Para uso privado · Santo canonizado em 2025 ·</p>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-inner">
+      <span class="footer-logo">Santos da Modernidade</span>
+      <span class="footer-copy">© Santos da Modernidade · Ad Maiorem Dei Gloriam</span>
+    </div>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      const menu = document.querySelector('.nav-links');
+      const btn = document.getElementById('nav-hamburguer');
+      menu.classList.toggle('aberto');
+      btn.textContent = menu.classList.contains('aberto') ? '✕' : '☰';
+    }
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        const menu = document.querySelector('.nav-links');
+        const btn = document.getElementById('nav-hamburguer');
+        menu.classList.remove('aberto');
+        btn.textContent = '☰';
+      });
+    });
+  </script>
+</body>
+</html>
