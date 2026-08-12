@@ -623,7 +623,17 @@
         desc: "Pioneiro da medicina moderna na Venezuela que tratava os pobres gratuitamente e ofereceu a própria vida a Deus pela paz do mundo.",
         catLabel: "Leigo · Médico · Venezuela"
      },
-      ];
+     {
+       nome: "Santa Giulia Salzano",
+       categorias: ["religiosos", "fundadores"],
+       arquivo: "santos/gsalzano.html",
+       foto: "imagens2/gsalzano1.jpg",
+       datas: "1846 – 1929 · Santa Maria Capua Vetere, Itália",
+       ano: "2010",
+       desc: "Órfã que se tornou professora e catequista, fundou as Irmãs Catequistas do Sagrado Coração e é parente de São Carlo Acutis pela linha materna dos Salzano.",
+       catLabel: "Religiosa · Fundadora · Catequista"
+     },
+    ];
 
     // ── INFORMAÇÕES DAS CATEGORIAS ──
     const categorias = {
@@ -738,6 +748,13 @@
       btn.textContent = '☰';
     });
   });
+</script>
+<script>
+  const observer = new IntersectionObserver(els => {
+    els.forEach(el => { if (el.isIntersecting) el.target.classList.add('visivel'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.santo-card, .categoria-header, .filtro-btn')
+    .forEach(el => { el.classList.add('fade-in'); observer.observe(el); });
 </script>
 </body>
 </html>

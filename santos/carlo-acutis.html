@@ -907,9 +907,9 @@
 
     <!-- NAVEGAÇÃO ENTRE SANTOS -->
     <div class="nav-santos">
-      <a href="bartolo.html" class="nav-santo-link">
+      <a href="gsalzano.html" class="nav-santo-link">
         <span class="nav-santo-label">← Santo Anterior</span>
-        <span class="nav-santo-nome">São Bartolo Longo</span>
+        <span class="nav-santo-nome">Santa Giulia Salzano</span>
       </a>
       <a href="jose-sanchez.html" class="nav-santo-link nav-santo-dir">
         <span class="nav-santo-label">Próximo Santo →</span>
@@ -966,6 +966,13 @@
       btn.textContent = '☰';
     });
   });
+</script>
+<script>
+  const observer = new IntersectionObserver(els => {
+    els.forEach(el => { if (el.isIntersecting) el.target.classList.add('visivel'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.bio-texto h3, .tl-item, .milagre-card, .galeria-item, .fonte-item')
+    .forEach(el => { el.classList.add('fade-in'); observer.observe(el); });
 </script>
 </body>
 </html>

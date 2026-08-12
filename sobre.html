@@ -425,5 +425,12 @@
     });
   });
 </script>
+<script>
+  const observer = new IntersectionObserver(els => {
+    els.forEach(el => { if (el.isIntersecting) el.target.classList.add('visivel'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('p, h2, h3, .creditos-tabela')
+    .forEach(el => { el.classList.add('fade-in'); observer.observe(el); });
+</script>
 </body>
 </html>

@@ -1599,6 +1599,40 @@
         </tbody>
       </table>
     </div>
+    <!-- GIULIA SALZANO -->
+    <div class="santo-secao">
+      <h2 class="santo-secao-titulo">Santa Giulia Salzano</h2>
+      <table class="creditos-tabela">
+        <thead>
+          <tr>
+            <th>Arquivo</th>
+            <th>Autor</th>
+            <th>Fonte</th>
+            <th>Licença</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>gsalzano1.jpg</td>
+            <td>Giuseppe Antonio Lomuscio (obra derivada: Carlotto)</td>
+            <td><a href="https://commons.wikimedia.org/wiki/File:Beata_Giulia_Salzano_cropped.jpg" target="_blank">Wikimedia Commons</a></td>
+            <td><span class="licenca-badge">FAL</span></td>
+          </tr>
+          <tr>
+            <td>gsalzano2.jpg</td>
+            <td>Fotógrafo desconhecido</td>
+            <td><a href="https://commons.wikimedia.org/wiki/File:Giulia_Salzano_con_le_allieve.jpg" target="_blank">Wikimedia Commons</a></td>
+            <td><span class="licenca-badge licenca-dp">Domínio Público</span></td>
+          </tr>
+          <tr>
+            <td>gsalzano3.jpg</td>
+            <td>Giuseppe Antonio Lomuscio</td>
+            <td><a href="https://commons.wikimedia.org/wiki/File:Beata_Giulia_Salzano.jpg" target="_blank">Wikimedia Commons</a></td>
+            <td><span class="licenca-badge">FAL</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 </div>
   <footer>
     <div class="footer-inner">
@@ -1625,6 +1659,12 @@
     });
   });
 </script>
-
+<script>
+  const observer = new IntersectionObserver(els => {
+    els.forEach(el => { if (el.isIntersecting) el.target.classList.add('visivel'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('p, h2, h3, .creditos-tabela')
+    .forEach(el => { el.classList.add('fade-in'); observer.observe(el); });
+</script>
 </body>
 </html>

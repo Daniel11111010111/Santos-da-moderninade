@@ -529,6 +529,12 @@
       btn.textContent = menu.classList.contains('aberto') ? '✕' : '☰';
     }
   </script>
-
+<script>
+  const observer = new IntersectionObserver(els => {
+    els.forEach(el => { if (el.isIntersecting) el.target.classList.add('visivel'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.bio-texto h3, .tl-item, .milagre-card, .galeria-item, .fonte-item')
+    .forEach(el => { el.classList.add('fade-in'); observer.observe(el); });
+</script>
 </body>
 </html>

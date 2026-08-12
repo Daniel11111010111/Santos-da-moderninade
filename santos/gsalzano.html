@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Santa Giulia Salzano · Santos da Modernidade</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600&family=Raleway:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../style.css" />
+  <style>
+    .perfil-hero { min-height:100vh; background:var(--dark); display:grid; grid-template-columns:1fr 1fr; position:relative; overflow:hidden; padding-top:80px; }
+    .perfil-hero-left { display:flex; flex-direction:column; justify-content:center; padding:5rem 4rem 5rem 5rem; position:relative; z-index:2; }
+    .perfil-breadcrumb { font-size:0.68rem; letter-spacing:0.25em; text-transform:uppercase; color:rgba(201,168,76,0.5); margin-bottom:2rem; }
+    .perfil-breadcrumb a { color:inherit; text-decoration:none; transition:color 0.2s; }
+    .perfil-breadcrumb a:hover { color:var(--gold); }
+    .perfil-badge { display:inline-block; border:1px solid rgba(201,168,76,0.4); color:var(--gold); font-size:0.65rem; letter-spacing:0.25em; text-transform:uppercase; padding:0.35rem 0.9rem; margin-bottom:1.5rem; }
+    .perfil-nome { font-family:'Cinzel',serif; font-size:clamp(2rem,4vw,3.2rem); font-weight:600; color:var(--ivory); line-height:1.15; margin-bottom:0.5rem; letter-spacing:0.03em; }
+    .perfil-titulo { font-family:'Cormorant Garamond',serif; font-size:1.2rem; font-style:italic; font-weight:300; color:var(--gold-light); margin-bottom:2rem; opacity:0.8; }
+    .perfil-meta { display:flex; flex-direction:column; gap:0.6rem; margin-bottom:2.5rem; }
+    .perfil-meta-item { display:flex; gap:1rem; align-items:baseline; }
+    .perfil-meta-label { color:rgba(201,168,76,0.6); font-weight:500; letter-spacing:0.1em; min-width:110px; font-size:0.72rem; text-transform:uppercase; flex-shrink:0; }
+    .perfil-meta-value { color:rgba(240,232,216,0.75); font-size:0.85rem; line-height:1.4; }
+    .perfil-frase { font-family:'Cormorant Garamond',serif; font-size:1.1rem; font-style:italic; color:var(--gold-light); border-left:2px solid var(--gold); padding-left:1.25rem; line-height:1.65; opacity:0.9; }
+    .perfil-hero-right { position:relative; background:var(--dark-mid); display:flex; align-items:center; justify-content:center; overflow:hidden; }
+    .perfil-hero-right::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse at center,rgba(201,168,76,0.06) 0%,transparent 70%); }
+    .perfil-hero-datas { position:absolute; bottom:2rem; right:2rem; text-align:right; }
+    .perfil-hero-ano { font-family:'Cinzel',serif; font-size:4rem; font-weight:600; color:rgba(201,168,76,0.08); line-height:1; display:block; }
+    .perfil-content { max-width:1100px; margin:0 auto; padding:0 2rem; }
+    .bio-section { padding:7rem 0; display:grid; grid-template-columns:1fr 2fr; gap:5rem; border-bottom:1px solid var(--gold-light); }
+    .bio-sidebar { position:sticky; top:100px; align-self:start; }
+    .sidebar-tag { font-size:0.65rem; font-weight:500; letter-spacing:0.3em; text-transform:uppercase; color:var(--gold-dark); display:block; margin-bottom:1rem; }
+    .sidebar-title { font-family:'Cinzel',serif; font-size:1.3rem; font-weight:400; color:var(--dark); letter-spacing:0.06em; line-height:1.4; }
+    .sidebar-ornament { width:30px; height:1px; background:var(--gold); margin:1.5rem 0; }
+    .sidebar-resumo { font-family:'Cormorant Garamond',serif; font-size:1rem; font-style:italic; color:var(--text-muted); line-height:1.7; }
+    .bio-texto h3 { font-family:'Cinzel',serif; font-size:1rem; font-weight:400; letter-spacing:0.1em; color:var(--dark); margin:2rem 0 0.75rem; }
+    .bio-texto h3:first-child { margin-top:0; }
+    .bio-texto p { font-size:0.97rem; line-height:1.9; color:var(--text-muted); margin-bottom:1rem; }
+    .bio-texto p strong { color:var(--text); font-weight:500; }
+    .timeline-section { padding:7rem 0; border-bottom:1px solid var(--gold-light); }
+    .timeline-header { margin-bottom:3.5rem; }
+    .timeline-grid { display:grid; grid-template-columns:1fr 1fr; gap:0; position:relative; }
+    .timeline-grid::before { content:''; position:absolute; left:50%; top:0; bottom:0; width:1px; background:linear-gradient(to bottom,transparent,var(--gold-light),transparent); transform:translateX(-50%); }
+    .tl-item { padding:2rem; position:relative; }
+    .tl-item:nth-child(odd) { text-align:right; padding-right:3rem; }
+    .tl-item:nth-child(even) { padding-left:3rem; }
+    .tl-item::after { content:''; position:absolute; top:2.5rem; width:8px; height:8px; background:var(--gold); transform:rotate(45deg); }
+    .tl-item:nth-child(odd)::after { right:-4px; }
+    .tl-item:nth-child(even)::after { left:-4px; }
+    .tl-ano { font-family:'Cinzel',serif; font-size:0.72rem; letter-spacing:0.2em; color:var(--gold-dark); margin-bottom:0.4rem; }
+    .tl-evento { font-family:'Cormorant Garamond',serif; font-size:1.15rem; font-weight:400; color:var(--dark); margin-bottom:0.3rem; }
+    .tl-desc { font-size:0.85rem; color:var(--text-muted); line-height:1.6; }
+    .milagres-section { padding:7rem 0; background:var(--parchment); margin:0 -2rem; padding-left:2rem; padding-right:2rem; }
+    .milagres-inner { max-width:1100px; margin:0 auto; }
+    .milagres-grid { display:grid; grid-template-columns:1fr 1fr; gap:2rem; margin-top:3rem; }
+    .milagre-card { background:var(--ivory); border:1px solid var(--gold-light); padding:2rem; }
+    .milagre-numero { font-family:'Cinzel',serif; font-size:2.5rem; font-weight:600; color:var(--gold-light); line-height:1; margin-bottom:1rem; }
+    .milagre-local { font-size:0.68rem; letter-spacing:0.22em; text-transform:uppercase; color:var(--gold-dark); margin-bottom:0.5rem; }
+    .milagre-titulo { font-family:'Cinzel',serif; font-size:0.95rem; font-weight:400; color:var(--dark); letter-spacing:0.05em; margin-bottom:0.75rem; }
+    .milagre-desc { font-size:0.88rem; line-height:1.75; color:var(--text-muted); }
+    .milagre-ano-badge { display:inline-block; margin-top:1rem; border:1px solid var(--gold-light); color:var(--gold-dark); font-size:0.65rem; letter-spacing:0.18em; padding:0.2rem 0.6rem; }
+    .galeria-section { padding:7rem 0; border-bottom:1px solid var(--gold-light); }
+    .galeria-grid { display:grid; grid-template-columns:2fr 1fr 1fr; grid-template-rows:200px 200px; gap:1rem; margin-top:3rem; }
+    .galeria-item { background:var(--dark-mid); display:flex; align-items:center; justify-content:center; overflow:hidden; border:1px solid rgba(201,168,76,0.1); }
+    .galeria-item:first-child { grid-row:1/3; }
+    .galeria-legenda { font-size:0.75rem; color:var(--text-muted); text-align:center; margin-top:1rem; font-style:italic; font-family:'Cormorant Garamond',serif; }
+    .oracao-section { padding:7rem 0; background:var(--blue-deep); margin:0 -2rem; padding-left:2rem; padding-right:2rem; text-align:center; }
+    .oracao-inner { max-width:680px; margin:0 auto; }
+    .oracao-section .section-tag { color:var(--gold); }
+    .oracao-titulo { font-family:'Cinzel',serif; font-size:1.4rem; font-weight:400; color:var(--ivory); letter-spacing:0.08em; margin-bottom:2.5rem; }
+    .oracao-texto { font-family:'Cormorant Garamond',serif; font-size:1.2rem; font-weight:300; line-height:2; color:rgba(240,232,216,0.8); text-align:left; }
+    .oracao-texto p { margin-bottom:1rem; }
+    .oracao-fecho { font-size:0.72rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold); opacity:0.7; margin-top:2rem; }
+    .fontes-section { padding:7rem 0; }
+    .fontes-lista { margin-top:2.5rem; display:flex; flex-direction:column; gap:0; }
+    .fonte-item { display:grid; grid-template-columns:auto 1fr auto; gap:1.5rem; align-items:center; padding:1.25rem 0; border-bottom:1px solid var(--gold-light); }
+    .fonte-tipo { font-size:0.62rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold-dark); border:1px solid var(--gold-light); padding:0.2rem 0.6rem; white-space:nowrap; }
+    .fonte-titulo { font-size:0.92rem; color:var(--text); font-weight:400; }
+    .fonte-autor { font-size:0.8rem; color:var(--text-muted); margin-top:0.2rem; font-family:'Cormorant Garamond',serif; font-style:italic; }
+    .fonte-link { font-size:0.7rem; color:var(--gold-dark); text-decoration:none; letter-spacing:0.1em; white-space:nowrap; transition:color 0.2s; }
+    .fonte-link:hover { color:var(--gold); }
+    .nav-santos { position:static; background:none; backdrop-filter:none; padding:3rem 0; display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--gold-light); margin-top:2rem; }
+    .nav-santo-link { text-decoration:none; display:flex; flex-direction:column; gap:0.3rem; }
+    .nav-santo-dir { text-align:right; }
+    .nav-santo-label { font-size:0.65rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--text-muted); }
+    .nav-santo-nome { font-family:'Cinzel',serif; font-size:0.95rem; color:var(--gold-dark); transition:color 0.2s; }
+    .nav-santo-link:hover .nav-santo-nome { color:var(--gold); }
+    .section-header-left { margin-bottom:0; }
+    .section-header-left h2 { font-family:'Cinzel',serif; font-size:1.5rem; font-weight:400; color:var(--dark); letter-spacing:0.08em; margin-bottom:0.5rem; }
+    .section-header-left p { font-family:'Cormorant Garamond',serif; font-size:1rem; font-style:italic; color:var(--text-muted); }
+    @media (max-width:768px) {
+      .perfil-hero { grid-template-columns:1fr; }
+      .perfil-hero-left { padding:3rem 1.5rem; }
+      .bio-section { grid-template-columns:1fr; gap:2rem; }
+      .bio-sidebar { position:static; }
+      .timeline-grid { grid-template-columns:1fr; }
+      .timeline-grid::before { display:none; }
+      .tl-item { text-align:left !important; padding:1rem 0 1rem 2rem !important; }
+      .tl-item::after { left:0 !important; right:auto !important; }
+      .milagres-grid { grid-template-columns:1fr; }
+      .galeria-grid { grid-template-columns:1fr 1fr; grid-template-rows:auto; }
+      .galeria-item:first-child { grid-row:auto; }
+      .fonte-item { grid-template-columns:1fr; gap:0.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="../index.html" class="nav-logo">Santos da Modernidade</a>
+    <ul class="nav-links">
+      <li><a href="../index.html#santos">Os Santos</a></li>
+      <li><a href="../categoria.html">Categorias</a></li>
+      <li><a href="../mapa.html">Mapa</a></li>
+      <li><a href="../oracoes.html">Orações</a></li>
+      <li><a href="../sobre.html">Sobre</a></li>
+      <li><a href="../creditos.html">Créditos das fotografias</a></li>
+    </ul>
+    <button id="nav-hamburguer" onclick="toggleMenu()"
+      style="background:transparent;border:none;color:#C9A84C;font-size:1.5rem;cursor:pointer;padding:0.25rem 0.5rem;-webkit-appearance:none;appearance:none;">☰</button>
+  </nav>
+
+  <!-- HERO -->
+  <section class="perfil-hero">
+    <div class="perfil-hero-left">
+      <p class="perfil-breadcrumb">
+        <a href="../index.html">Início</a> &nbsp;·&nbsp;
+        <a href="../index.html#santos">Os Santos</a> &nbsp;·&nbsp;
+        Giulia Salzano
+      </p>
+      <span class="perfil-badge">Santa · Religiosa · Fundadora · Canonizada em 2010</span>
+      <h1 class="perfil-nome">Santa Giulia Salzano</h1>
+      <p class="perfil-titulo">"Dona Julieta" — Apóstola da Catequese</p>
+      <div class="perfil-meta">
+        <div class="perfil-meta-item">
+          <span class="perfil-meta-label">Nascimento</span>
+          <span class="perfil-meta-value">13 de outubro de 1846 · Santa Maria Capua Vetere, Itália</span>
+        </div>
+        <div class="perfil-meta-item">
+          <span class="perfil-meta-label">Falecimento</span>
+          <span class="perfil-meta-value">17 de maio de 1929 · Casoria, Nápoles, Itália</span>
+        </div>
+        <div class="perfil-meta-item">
+          <span class="perfil-meta-label">Beatificação</span>
+          <span class="perfil-meta-value">27 de abril de 2003 · João Paulo II</span>
+        </div>
+        <div class="perfil-meta-item">
+          <span class="perfil-meta-label">Canonização</span>
+          <span class="perfil-meta-value">17 de outubro de 2010 · Bento XVI</span>
+        </div>
+        <div class="perfil-meta-item">
+          <span class="perfil-meta-label">Festa litúrgica</span>
+          <span class="perfil-meta-value">17 de maio</span>
+        </div>
+        <div class="perfil-meta-item">
+          <span class="perfil-meta-label">Padroeira</span>
+          <span class="perfil-meta-value">Catequistas · Irmãs Catequistas do Sagrado Coração</span>
+        </div>
+        <div class="perfil-meta-item">
+          <span class="perfil-meta-label">Parentesco</span>
+          <span class="perfil-meta-value">Parente de São Carlo Acutis pela linha materna dos Salzano</span>
+        </div>
+      </div>
+      <p class="perfil-frase">
+        "Enquanto tiver vida, continuarei a ensinar o catecismo. E então, estejam certos, morrerei feliz ensinando o catecismo."
+      </p>
+    </div>
+    <div class="perfil-hero-right">
+      <img src="../imagens2/gsalzano2.jpg" alt="Santa Giulia Salzano"
+        style="width:100%;height:100%;object-fit:cover;" />
+      <div class="perfil-hero-datas">
+        <span class="perfil-hero-ano">1929</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTEÚDO -->
+  <div class="perfil-content">
+
+    <section class="bio-section" id="biografia">
+      <div class="bio-sidebar">
+        <span class="sidebar-tag">Seção 01</span>
+        <h2 class="sidebar-title">Biografia<br>Detalhada</h2>
+        <div class="sidebar-ornament"></div>
+        <p class="sidebar-resumo">
+          Órfã criada num orfanato, professora primária que transformou a catequese numa ciência espiritual, fundadora de uma congregação que hoje atua em quatro continentes — e parente de São Carlo Acutis.
+        </p>
+      </div>
+      <div class="bio-texto">
+
+        <h3>Origens e a Perda do Pai</h3>
+        <p>
+          Giulia Salzano nasceu em <strong>13 de outubro de 1846</strong> em Santa Maria Capua Vetere, na província de Caserta, no então Reino das Duas Sicílias — a mesma região de origem da família que, gerações depois, daria ao mundo São Carlo Acutis pela linha materna. Seu pai, Diego Salzano, era capitão dos lanceiros do rei Fernando II de Nápoles — um militar de carreira, respeitado e de família distinta. Sua mãe, Adelaide Valentino, era mulher de fé. A família tinha, pela linha materna de Adelaide, parentesco com Santo Afonso Maria de Ligório, Doutor da Igreja e patrono dos moralistas — o mesmo parentesco que une Giulia à linhagem dos Acutis.
+        </p>
+        <p>
+          Quando Giulia tinha apenas <strong>quatro anos</strong>, Diego Salzano morreu. A perda foi não apenas emocional, mas imediatamente material: a mãe, sem meios de sustentar os filhos sozinha, tomou a decisão dolorosa de confiar Giulia aos cuidados das <strong>Irmãs da Caridade no Orfanato Real de São Nicolau La Strada</strong>, em Caserta. Ali Giulia viveria até os quinze anos — onze anos de infância e adolescência numa instituição religiosa, formada pelas freiras e pela rotina de oração, trabalho e estudo que aquele ambiente impunha.
+        </p>
+        <p>
+          A experiência no orfanato, que poderia ter gerado amargura, moldou o caráter de Giulia de forma decisiva. Ali aprendeu a amar as crianças sem família, a valorizar a educação como instrumento de dignidade e a descobrir na fé não um consolação abstrata, mas uma presença concreta que sustenta a vida. As Irmãs da Caridade — seguindo o espírito de São Vicente de Paulo — tornaram-se seu primeiro modelo de vida consagrada ao serviço. Giulia não as esqueceria jamais.
+        </p>
+
+        <h3>Professora em Casoria: a Descoberta da Catequese</h3>
+        <p>
+          Saindo do orfanato aos quinze anos, Giulia formou-se professora — o caminho mais acessível para uma mulher sem recursos na Itália do século XIX que desejasse ter uma vida profissional independente e ao mesmo tempo útil. Em <strong>1865</strong>, com dezenove anos, recebeu a nomeação para lecionar na <strong>Escola Municipal de Casoria</strong>, cidade da periferia de Nápoles, para onde se transferiu com a mãe e os irmãos.
+        </p>
+        <p>
+          Casoria era uma cidade humilde, com grande número de famílias pobres e crianças com acesso limitado à instrução religiosa. Giulia rapidamente percebeu que seu papel como professora ultrapassava o currículo formal: suas alunas chegavam à escola sem nenhuma formação cristã básica, sem preparação para os sacramentos, sem conhecimento do catecismo. Começou então a dedicar tempo extra — fora do horário escolar — para ensinar o catecismo às crianças, prepará-las para a Primeira Comunhão e visitar as famílias dos bairros mais pobres.
+        </p>
+        <p>
+          Com o tempo, o catecismo foi se tornando o centro da sua vida. <em>"Dona Julieta"</em>, como os moradores de Casoria a chamavam com afeto, não apenas ensinava doutrinas: ela ensinava a rezar, a confessar, a comungar, a perdoar. Percebeu algo que muitos catequistas do seu tempo não haviam sistematizado: a catequese eficaz exige <strong>método pedagógico aliado ao testemunho de vida</strong>. Não basta saber a doutrina; é preciso ensiná-la de forma que toque o coração — com exemplos, com paciência, com afeto, e acima de tudo com a coerência de quem vive o que proclama.
+        </p>
+        <p>
+          Paralelamente, cultivava uma vida espiritual intensa: devoção profunda à Virgem Maria, ao Sagrado Coração de Jesus e à Eucaristia. Tornou-se amiga e colaboradora de outra figura que seria beatificada — <strong>Caterina Volpicelli</strong> —, com quem partilhava o ideal apostólico de transformar a sociedade napolitana pela difusão da fé. A cidade de Casoria começou a mudar, lentamente, pela presença discreta e constante de "Dona Julieta".
+        </p>
+
+        <h3>A Fundação da Congregação</h3>
+        <p>
+          Por décadas, Giulia trabalhou como catequista leiga, sem nenhuma estrutura institucional além da sua própria perseverança. Mas com o passar dos anos, percebeu que a missão era grande demais para uma só pessoa — e que, para durar além de sua vida, precisava de uma forma organizada de continuidade. Em <strong>1905</strong>, aos cinquenta e oito anos, fundou a <strong>Congregação das Irmãs Catequistas do Sagrado Coração de Jesus</strong> — uma família religiosa dedicada exclusivamente à catequese como missão central e primária, não como apostolado secundário ao lado de hospitais ou escolas, mas como razão de ser em si mesma.
+        </p>
+        <p>
+          A fundação foi tardia para os padrões hagiográficos — Giulia tinha quase sessenta anos quando vestiu o hábito e se consagrou definitivamente. Mas essa demora foi também uma escola: as décadas como professora leiga deram-lhe uma experiência pedagógica concreta que poucas fundadoras tiveram ao criar seus institutos. Ela sabia exatamente o que queria formar e como fazê-lo, porque havia testado seus métodos por quarenta anos antes de institucionalizá-los.
+        </p>
+        <p>
+          Um beato, Ludovico de Casoria, havia lhe dito certa vez, quase profeticamente: <em>"Cuida de não cair na tentação de abandonar as crianças da nossa querida Casoria, porque a vontade de Deus é que vivas e morras entre elas."</em> E assim foi — Giulia nunca deixou Casoria. Viveu, trabalhou e morreu ali, na mesma cidade onde chegara aos dezenove anos como professora.
+        </p>
+
+        <h3>Os Últimos Anos e a Morte</h3>
+        <p>
+          Giulia continuou a ensinar o catecismo praticamente até os últimos dias de sua vida. Repetia com frequência a frase que se tornaria sua marca espiritual: <em>"Enquanto tiver vida, continuarei a ensinar o catecismo. E então, estejam certos, morrerei feliz ensinando o catecismo."</em> Não era uma frase retórica — era o programa de uma vida inteira resumido numa única convicção.
+        </p>
+        <p>
+          Faleceu em <strong>17 de maio de 1929</strong>, em Casoria, aos oitenta e dois anos de idade, com fama de santidade entre todos que a conheciam. Sua congregação já se havia expandido por várias cidades da Itália; depois de sua morte, continuaria a crescer pela Europa, pelo Brasil, pelo Canadá, pelas Filipinas, pelo Peru e pela Índia. Sua causa de canonização foi aberta em <strong>4 de abril de 1974</strong>, por Paulo VI. João Paulo II a declarou Venerável em <strong>23 de abril de 2002</strong> e a beatificou em <strong>27 de abril de 2003</strong>. Bento XVI a canonizou em <strong>17 de outubro de 2010</strong>.
+        </p>
+
+        <h3>O Parentesco com São Carlo Acutis</h3>
+        <p>
+          A mãe de Carlo Acutis, <strong>Antonia Salzano Acutis</strong>, confirmou em entrevistas que Giulia Salzano é parente de sua família pela linha materna — o mesmo sobrenome Salzano que liga as duas figuras é o traço visível de uma genealogia espiritual ainda mais profunda. Antonia disse: <em>"Temos raízes santas e raízes matemáticas, e o resultado foi Carlo."</em> A presença de dois santos canonizados na árvore genealógica materna — Giulia Salzano e Santo Afonso de Ligório — não passou despercebida pela Igreja nem pela própria família na época da canonização de Carlo em 2025.
+        </p>
+        <p>
+          Há uma ironia tocante nessa convergência: Giulia passou a vida ensinando crianças sobre a Eucaristia; Carlo passou a curta vida documentando milagres eucarísticos pelo mundo inteiro. Separados por quase um século, os dois encontraram no mesmo mistério eucarístico o centro de suas vidas — e ambos chegaram à mesma conclusão que Giulia expressava com a didática da sala de aula e Carlo com os computadores e as exposições digitais: que a Eucaristia é o coração da fé cristã, e que ensiná-la ao próximo é a missão mais urgente de todo cristão.
+        </p>
+
+      </div>
+    </section>
+
+    <!-- LINHA DO TEMPO -->
+    <section class="timeline-section" id="cronologia">
+      <div class="timeline-header">
+        <span class="section-tag">Seção 02</span>
+        <div class="section-header-left">
+          <h2>Linha do Tempo</h2>
+          <p>De órfã no orfanato a fundadora de uma congregação em quatro continentes</p>
+        </div>
+      </div>
+      <div class="timeline-grid">
+        <div class="tl-item">
+          <p class="tl-ano">13 Out 1846</p>
+          <h3 class="tl-evento">Nascimento</h3>
+          <p class="tl-desc">Nasce em Santa Maria Capua Vetere, Caserta, filha de Diego Salzano, capitão dos lanceiros do rei Fernando II de Nápoles, e de Adelaide Valentino.</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-ano">c. 1850 · 4 anos</p>
+          <h3 class="tl-evento">Morte do pai e o orfanato</h3>
+          <p class="tl-desc">Diego Salzano morre. Giulia é confiada pelas Irmãs da Caridade ao Orfanato Real de São Nicolau La Strada, onde permanecerá até os quinze anos.</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-ano">1865 · 19 anos</p>
+          <h3 class="tl-evento">Chega a Casoria</h3>
+          <p class="tl-desc">Nomeada professora na Escola Municipal de Casoria. Muda-se com a família. Inicia sua missão catequética paralela ao trabalho escolar.</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-ano">Décadas seguintes</p>
+          <h3 class="tl-evento">"Dona Julieta"</h3>
+          <p class="tl-desc">Por quarenta anos, ensina catecismo a crianças, jovens e adultos, visita doentes e pobres, e forma uma geração inteira de católicos em Casoria.</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-ano">1905 · 58 anos</p>
+          <h3 class="tl-evento">Fundação da Congregação</h3>
+          <p class="tl-desc">Funda as Irmãs Catequistas do Sagrado Coração de Jesus, veste o hábito e se consagra definitivamente à vida religiosa.</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-ano">17 Mai 1929</p>
+          <h3 class="tl-evento">Morte em Casoria</h3>
+          <p class="tl-desc">Falece em Casoria, a mesma cidade onde chegara sessenta e quatro anos antes, com fama de santidade entre todos que a conheciam.</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-ano">27 Abr 2003</p>
+          <h3 class="tl-evento">Beatificação</h3>
+          <p class="tl-desc">Beatificada pelo Papa João Paulo II na Praça São Pedro, junto com outras três religiosas fundadoras.</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-ano">17 Out 2010</p>
+          <h3 class="tl-evento">Canonização</h3>
+          <p class="tl-desc">Canonizada pelo Papa Bento XVI na Praça São Pedro. Sua congregação já atuava em quatro continentes.</p>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- MILAGRES -->
+  <section class="milagres-section" id="milagres">
+    <div class="milagres-inner">
+      <span class="section-tag">Seção 03</span>
+      <div class="section-header-left">
+        <h2>Milagres Aprovados</h2>
+        <p>Os prodígios reconhecidos pela Igreja para sua beatificação e canonização</p>
+      </div>
+      <div class="milagres-grid">
+        <div class="milagre-card">
+          <p class="milagre-numero">01</p>
+          <p class="milagre-local">Itália</p>
+          <h3 class="milagre-titulo">Cura inexplicável pela medicina</h3>
+          <p class="milagre-desc">Um caso de cura considerada medicamente inexplicável foi investigado e aprovado pela Congregação para as Causas dos Santos, abrindo caminho para a beatificação por João Paulo II em 2003. Os detalhes do beneficiário permanecem sob sigilo pontifício, conforme prática habitual da Santa Sé para proteção da privacidade.</p>
+          <span class="milagre-ano-badge">Aprovado em 2003 · para a Beatificação</span>
+        </div>
+        <div class="milagre-card">
+          <p class="milagre-numero">02</p>
+          <p class="milagre-local">Itália · 2007–2009</p>
+          <h3 class="milagre-titulo">Segundo milagre reconhecido</h3>
+          <p class="milagre-desc">O processo do segundo milagre foi aberto em 21 de junho de 2007 e concluído em 21 de dezembro de 2007, com os documentos enviados a Roma. O conselho médico votou a favor em 13 de novembro de 2008, os teólogos em 15 de setembro de 2009 e o Consistório em 1 de dezembro de 2009. Bento XVI aprovou o milagre em 19 de dezembro de 2009, abrindo caminho para a canonização em outubro de 2010.</p>
+          <span class="milagre-ano-badge">Aprovado em 2009 · para a Canonização</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="perfil-content">
+
+    <!-- GALERIA -->
+    <section class="galeria-section" id="galeria">
+      <span class="section-tag">Seção 04</span>
+      <div class="section-header-left">
+        <h2>Galeria</h2>
+        <p>Imagens da vida e memória de Santa Giulia Salzano</p>
+      </div>
+      <div class="galeria-grid">
+        <div class="galeria-item">
+          <img src="../imagens2/gsalzano1.jpg" alt="Santa Giulia Salzano"
+            style="width:100%;height:100%;object-fit:cover;" />
+        </div>
+        <div class="galeria-item">
+          <img src="../imagens2/gsalzano2.jpg" alt="Santa Giulia Salzano"
+            style="width:100%;height:100%;object-fit:cover;" />
+        </div>
+        <div class="galeria-item">
+          <img src="../imagens2/gsalzano3.jpg" alt="Santa Giulia Salzano"
+            style="width:100%;height:100%;object-fit:cover;" />
+        </div>
+      </div>
+      <p class="galeria-legenda">
+        Imagens utilizadas sob licença de seus respectivos autores.
+        <a href="../creditos.html" style="color:var(--gold-dark);text-decoration:none;">Créditos completos disponíveis aqui.</a>
+      </p>
+    </section>
+
+    <!-- FONTES -->
+    <section class="fontes-section" id="fontes">
+      <span class="section-tag">Seção 06</span>
+      <div class="section-header-left">
+        <h2>Fontes e Referências</h2>
+        <p>Documentação utilizada para a elaboração deste perfil</p>
+      </div>
+      <div class="fontes-lista">
+        <div class="fonte-item">
+          <span class="fonte-tipo">Enciclopédia</span>
+          <div>
+            <p class="fonte-titulo">Giulia Salzano — Wikipedia</p>
+            <p class="fonte-autor">Verbete biográfico com referências históricas e processuais</p>
+          </div>
+          <a href="https://en.wikipedia.org/wiki/Giulia_Salzano" target="_blank" class="fonte-link">Acessar →</a>
+        </div>
+        <div class="fonte-item">
+          <span class="fonte-tipo">Artigo</span>
+          <div>
+            <p class="fonte-titulo">St. Carlo Acutis has 2 saints in his family's ancestry</p>
+            <p class="fonte-autor">Aleteia · Outubro 2025</p>
+          </div>
+          <a href="https://aleteia.org/2025/10/12/st-carlo-acutis-has-2-saints-in-his-familys-ancestry/" target="_blank" class="fonte-link">Acessar →</a>
+        </div>
+        <div class="fonte-item">
+          <span class="fonte-tipo">Artigo</span>
+          <div>
+            <p class="fonte-titulo">Santa Júlia Salzano — Historia e Devoção</p>
+            <p class="fonte-autor">Cruz Terra Santa</p>
+          </div>
+          <a href="https://cruzterrasanta.com.br/historia-de-santa-julia-salzano/385/102/" target="_blank" class="fonte-link">Acessar →</a>
+        </div>
+        <div class="fonte-item">
+          <span class="fonte-tipo">Documento Oficial</span>
+          <div>
+            <p class="fonte-titulo">Homilia da Missa de Canonização</p>
+            <p class="fonte-autor">Papa Bento XVI · 17 de outubro de 2010 · Praça São Pedro</p>
+          </div>
+          <a href="https://www.vatican.va/content/benedict-xvi/pt/homilies/2010/documents/hf_ben-xvi_hom_20101017_canonizations.html" target="_blank" class="fonte-link">Acessar →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- NAVEGAÇÃO -->
+    <div class="nav-santos">
+      <a href="jgregorio.html" class="nav-santo-link">
+        <span class="nav-santo-label">← Santo Anterior</span>
+        <span class="nav-santo-nome">São José Gregório Hernández </span>
+      </a>
+      <a href="carlo-acutis.html" class="nav-santo-link nav-santo-dir">
+        <span class="nav-santo-label">Próximo Santo →</span>
+        <span class="nav-santo-nome">São Carlo Acutis</span>
+      </a>
+    </div>
+
+  </div>
+
+  <!-- ORAÇÃO -->
+  <section class="oracao-section" id="oracao">
+    <div class="oracao-inner">
+      <span class="section-tag">Seção 05</span>
+      <h2 class="oracao-titulo">Oração por Intercessão de Santa Giulia Salzano</h2>
+      <div class="oracao-texto">
+        <p>
+          Senhor Jesus, Tu que mandaste ir e ensinar todas as nações, concede-nos, pela intercessão de Santa Giulia Salzano, a graça de transmitir a fé com a mesma paciência, o mesmo afeto e a mesma convicção com que ela a viveu e ensinou por mais de seis décadas.
+        </p>
+        <p>
+          Ela que ficou órfã aos quatro anos e encontrou nas Irmãs da Caridade seu primeiro modelo de fé; que se tornou professora não por ambição mas por vocação; que descobriu no catecismo não uma obrigação curricular mas o coração de toda a missão — ensina-nos a nunca subestimar o poder de uma palavra de fé dita com autenticidade.
+        </p>
+        <p>
+          Intercede especialmente por todos os catequistas, professores de religião e pais que ensinam a fé em casa — pelos que se cansam, pelos que duvidam se estão fazendo diferença, pelos que continuam mesmo sem ver os frutos imediatos.
+        </p>
+        <p>
+          E que possamos aprender com ela esta certeza: que nenhuma hora dedicada a ensinar sobre Deus é uma hora perdida. Amém.
+        </p>
+      </div>
+      <p class="oracao-fecho">· Para uso privado · Parente de São Carlo Acutis · Festa: 17 de maio ·</p>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-inner">
+      <span class="footer-logo">Santos da Modernidade</span>
+      <span class="footer-copy">© Santos da Modernidade · Ad Maiorem Dei Gloriam</span>
+    </div>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      const menu = document.querySelector('.nav-links');
+      const btn = document.getElementById('nav-hamburguer');
+      menu.classList.toggle('aberto');
+      btn.textContent = menu.classList.contains('aberto') ? '✕' : '☰';
+    }
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        const menu = document.querySelector('.nav-links');
+        const btn = document.getElementById('nav-hamburguer');
+        menu.classList.remove('aberto');
+        btn.textContent = '☰';
+      });
+    });
+  </script>
+  <script>
+  const observer = new IntersectionObserver(els => {
+    els.forEach(el => { if (el.isIntersecting) el.target.classList.add('visivel'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.bio-texto h3, .tl-item, .milagre-card, .galeria-item, .fonte-item')
+    .forEach(el => { el.classList.add('fade-in'); observer.observe(el); });
+</script>
+</body>
+</html>

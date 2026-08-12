@@ -807,6 +807,12 @@ form.addEventListener('submit', function() {
   }, 500);
 });
 </script>
-
+<script>
+  const observer = new IntersectionObserver(els => {
+    els.forEach(el => { if (el.isIntersecting) el.target.classList.add('visivel'); });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.santo-card, .intro-texto, .cronologia-item, .mapa-section-stat')
+    .forEach(el => { el.classList.add('fade-in'); observer.observe(el); });
+</script>
 </body>
 </html>
