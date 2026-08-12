@@ -988,7 +988,30 @@
   color: var(--gold) !important;
   border-color: var(--gold);
 }
+@media (max-width: 768px) {
+  .recorte {
+    opacity: 0.15 !important;            /* Fica bem suave no fundo */
+    filter: grayscale(100%) contrast(0.9) !important; /* Sem cores para não brigar com o texto */
+    pointer-events: none;                /* Impede que as fotos bloqueiem o clique no botão */
+    transform: scale(0.6) !important;    /* Reduz o tamanho das fotos */
+    z-index: 1 !important;
+  }
 
+  /* Remove a fita adesiva para diminuir ruído visual no celular */
+  .recorte::before {
+    display: none !important;
+  }
+
+  /* Garante que o texto e o botão fiquem 100% à frente */
+  .hero-eyebrow, 
+  .hero-title, 
+  .hero-subtitle, 
+  .hero-cta, 
+  .hero-scroll {
+    position: relative;
+    z-index: 10;
+  }
+}
 
  
 
