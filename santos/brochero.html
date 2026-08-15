@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>São José Gabriel Brochero · Santos da Modernidade</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600&family=Raleway:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../style.css" />
+  <style>
+    .perfil-hero { min-height:100vh; background:var(--dark); display:grid; grid-template-columns:1fr 1fr; position:relative; overflow:hidden; padding-top:80px; }
+    .perfil-hero-left { display:flex; flex-direction:column; justify-content:center; padding:5rem 4rem 5rem 5rem; position:relative; z-index:2; }
+    .perfil-breadcrumb { font-size:0.68rem; letter-spacing:0.25em; text-transform:uppercase; color:rgba(201,168,76,0.5); margin-bottom:2rem; }
+    .perfil-breadcrumb a { color:inherit; text-decoration:none; transition:color 0.2s; }
+    .perfil-breadcrumb a:hover { color:var(--gold); }
+    .perfil-badge { display:inline-block; border:1px solid rgba(201,168,76,0.4); color:var(--gold); font-size:0.65rem; letter-spacing:0.25em; text-transform:uppercase; padding:0.35rem 0.9rem; margin-bottom:1.5rem; }
+    .perfil-nome { font-family:'Cinzel',serif; font-size:clamp(2rem,4vw,3.2rem); font-weight:600; color:var(--ivory); line-height:1.15; margin-bottom:0.5rem; letter-spacing:0.03em; }
+    .perfil-titulo { font-family:'Cormorant Garamond',serif; font-size:1.2rem; font-style:italic; font-weight:300; color:var(--gold-light); margin-bottom:2rem; opacity:0.8; }
+    .perfil-meta { display:flex; flex-direction:column; gap:0.6rem; margin-bottom:2.5rem; }
+    .perfil-meta-item { display:flex; gap:1rem; align-items:baseline; }
+    .perfil-meta-label { color:rgba(201,168,76,0.6); font-weight:500; letter-spacing:0.1em; min-width:110px; font-size:0.72rem; text-transform:uppercase; flex-shrink:0; }
+    .perfil-meta-value { color:rgba(240,232,216,0.75); font-size:0.85rem; line-height:1.4; }
+    .perfil-frase { font-family:'Cormorant Garamond',serif; font-size:1.1rem; font-style:italic; color:var(--gold-light); border-left:2px solid var(--gold); padding-left:1.25rem; line-height:1.65; opacity:0.9; }
+    .perfil-hero-right { position:relative; background:var(--dark-mid); display:flex; align-items:center; justify-content:center; overflow:hidden; }
+    .perfil-hero-right::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse at center,rgba(201,168,76,0.06) 0%,transparent 70%); }
+    .perfil-hero-datas { position:absolute; bottom:2rem; right:2rem; text-align:right; }
+    .perfil-hero-ano { font-family:'Cinzel',serif; font-size:4rem; font-weight:600; color:rgba(201,168,76,0.08); line-height:1; display:block; }
+    .perfil-content { max-width:1100px; margin:0 auto; padding:0 2rem; }
+    .bio-section { padding:7rem 0; display:grid; grid-template-columns:1fr 2fr; gap:5rem; border-bottom:1px solid var(--gold-light); }
+    .bio-sidebar { position:sticky; top:100px; align-self:start; }
+    .sidebar-tag { font-size:0.65rem; font-weight:500; letter-spacing:0.3em; text-transform:uppercase; color:var(--gold-dark); display:block; margin-bottom:1rem; }
+    .sidebar-title { font-family:'Cinzel',serif; font-size:1.3rem; font-weight:400; color:var(--dark); letter-spacing:0.06em; line-height:1.4; }
+    .sidebar-ornament { width:30px; height:1px; background:var(--gold); margin:1.5rem 0; }
+    .sidebar-resumo { font-family:'Cormorant Garamond',serif; font-size:1rem; font-style:italic; color:var(--text-muted); line-height:1.7; }
+    .bio-texto h3 { font-family:'Cinzel',serif; font-size:1rem; font-weight:400; letter-spacing:0.1em; color:var(--dark); margin:2rem 0 0.75rem; }
+    .bio-texto h3:first-child { margin-top:0; }
+    .bio-texto p { font-size:0.97rem; line-height:1.9; color:var(--text-muted); margin-bottom:1rem; }
+    .bio-texto p strong { color:var(--text); font-weight:500; }
+    .timeline-section { padding:7rem 0; border-bottom:1px solid var(--gold-light); }
+    .timeline-header { margin-bottom:3.5rem; }
+    .timeline-grid { display:grid; grid-template-columns:1fr 1fr; gap:0; position:relative; }
+    .timeline-grid::before { content:''; position:absolute; left:50%; top:0; bottom:0; width:1px; background:linear-gradient(to bottom,transparent,var(--gold-light),transparent); transform:translateX(-50%); }
+    .tl-item { padding:2rem; position:relative; }
+    .tl-item:nth-child(odd) { text-align:right; padding-right:3rem; }
+    .tl-item:nth-child(even) { padding-left:3rem; }
+    .tl-item::after { content:''; position:absolute; top:2.5rem; width:8px; height:8px; background:var(--gold); transform:rotate(45deg); }
+    .tl-item:nth-child(odd)::after { right:-4px; }
+    .tl-item:nth-child(even)::after { left:-4px; }
+    .tl-ano { font-family:'Cinzel',serif; font-size:0.72rem; letter-spacing:0.2em; color:var(--gold-dark); margin-bottom:0.4rem; }
+    .tl-evento { font-family:'Cormorant Garamond',serif; font-size:1.15rem; font-weight:400; color:var(--dark); margin-bottom:0.3rem; }
+    .tl-desc { font-size:0.85rem; color:var(--text-muted); line-height:1.6; }
+    .milagres-section { padding:7rem 0; background:var(--parchment); margin:0 -2rem; padding-left:2rem; padding-right:2rem; }
+    .milagres-inner { max-width:1100px; margin:0 auto; }
+    .milagres-grid { display:grid; grid-template-columns:1fr 1fr; gap:2rem; margin-top:3rem; }
+    .milagre-card { background:var(--ivory); border:1px solid var(--gold-light); padding:2rem; }
+    .milagre-numero { font-family:'Cinzel',serif; font-size:2.5rem; font-weight:600; color:var(--gold-light); line-height:1; margin-bottom:1rem; }
+    .milagre-local { font-size:0.68rem; letter-spacing:0.22em; text-transform:uppercase; color:var(--gold-dark); margin-bottom:0.5rem; }
+    .milagre-titulo { font-family:'Cinzel',serif; font-size:0.95rem; font-weight:400; color:var(--dark); letter-spacing:0.05em; margin-bottom:0.75rem; }
+    .milagre-desc { font-size:0.88rem; line-height:1.75; color:var(--text-muted); }
+    .milagre-ano-badge { display:inline-block; margin-top:1rem; border:1px solid var(--gold-light); color:var(--gold-dark); font-size:0.65rem; letter-spacing:0.18em; padding:0.2rem 0.6rem; }
+    .galeria-section { padding:7rem 0; border-bottom:1px solid var(--gold-light); }
+    .galeria-grid { display:grid; grid-template-columns:2fr 1fr 1fr; grid-template-rows:200px 200px; gap:1rem; margin-top:3rem; }
+    .galeria-item { background:var(--dark-mid); display:flex; align-items:center; justify-content:center; overflow:hidden; border:1px solid rgba(201,168,76,0.1); }
+    .galeria-item:first-child { grid-row:1/3; }
+    .galeria-legenda { font-size:0.75rem; color:var(--text-muted); text-align:center; margin-top:1rem; font-style:italic; font-family:'Cormorant Garamond',serif; }
+    .oracao-section { padding:7rem 0; background:var(--blue-deep); margin:0 -2rem; padding-left:2rem; padding-right:2rem; text-align:center; }
+    .oracao-inner { max-width:680px; margin:0 auto; }
+    .oracao-section .section-tag { color:var(--gold); }
+    .oracao-titulo { font-family:'Cinzel',serif; font-size:1.4rem; font-weight:400; color:var(--ivory); letter-spacing:0.08em; margin-bottom:2.5rem; }
+    .oracao-texto { font-family:'Cormorant Garamond',serif; font-size:1.2rem; font-weight:300; line-height:2; color:rgba(240,232,216,0.8); text-align:left; }
+    .oracao-texto p { margin-bottom:1rem; }
+    .oracao-fecho { font-size:0.72rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold); opacity:0.7; margin-top:2rem; }
+    .fontes-section { padding:7rem 0; }
+    .fontes-lista { margin-top:2.5rem; display:flex; flex-direction:column; gap:0; }
+    .fonte-item { display:grid; grid-template-columns:auto 1fr auto; gap:1.5rem; align-items:center; padding:1.25rem 0; border-bottom:1px solid var(--gold-light); }
+    .fonte-tipo { font-size:0.62rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold-dark); border:1px solid var(--gold-light); padding:0.2rem 0.6rem; white-space:nowrap; }
+    .fonte-titulo { font-size:0.92rem; color:var(--text); font-weight:400; }
+    .fonte-autor { font-size:0.8rem; color:var(--text-muted); margin-top:0.2rem; font-family:'Cormorant Garamond',serif; font-style:italic; }
+    .fonte-link { font-size:0.7rem; color:var(--gold-dark); text-decoration:none; letter-spacing:0.1em; white-space:nowrap; transition:color 0.2s; }
+    .fonte-link:hover { color:var(--gold); }
+    .nav-santos { position:static; background:none; backdrop-filter:none; padding:3rem 0; display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--gold-light); margin-top:2rem; }
+    .nav-santo-link { text-decoration:none; display:flex; flex-direction:column; gap:0.3rem; }
+    .nav-santo-dir { text-align:right; }
+    .nav-santo-label { font-size:0.65rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--text-muted); }
+    .nav-santo-nome { font-family:'Cinzel',serif; font-size:0.95rem; color:var(--gold-dark); transition:color 0.2s; }
+    .nav-santo-link:hover .nav-santo-nome { color:var(--gold); }
+    .section-header-left { margin-bottom:0; }
+    .section-header-left h2 { font-family:'Cinzel',serif; font-size:1.5rem; font-weight:400; color:var(--dark); letter-spacing:0.08em; margin-bottom:0.5rem; }
+    .section-header-left p { font-family:'Cormorant Garamond',serif; font-size:1rem; font-style:italic; color:var(--text-muted); }
+    @media (max-width:768px) {
+      .perfil-hero { grid-template-columns:1fr; }
+      .perfil-hero-left { padding:3rem 1.5rem; }
+      .bio-section { grid-template-columns:1fr; gap:2rem; }
+      .bio-sidebar { position:static; }
+      .timeline-grid { grid-template-columns:1fr; }
+      .timeline-grid::before { display:none; }
+      .tl-item { text-align:left !important; padding:1rem 0 1rem 2rem !important; }
+      .tl-item::after { left:0 !important; right:auto !important; }
+      .milagres-grid { grid-template-columns:1fr; }
+      .galeria-grid { grid-template-columns:1fr 1fr; grid-template-rows:auto; }
+      .galeria-item:first-child { grid-row:auto; }
+      .fonte-item { grid-template-columns:1fr; gap:0.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="../index.html" class="nav-logo">Santos da Modernidade</a>
+    <ul class="nav-links">
+      <li><a href="../index.html#santos">Os Santos</a></li>
+      <li><a href="../categoria.html">Categorias</a></li>
+      <li><a href="../mapa.html">Mapa</a></li>
+      <li><a href="../oracoes.html">Orações</a></li>
+      <li><a href="../sobre.html">Sobre</a></li>
+      <li><a href="../creditos.html">Créditos das fotografias</a></li>
+    </ul>
+    <button id="nav-hamburguer" onclick="toggleMenu()"
+      style="background:transparent;border:none;color:#C9A84C;font-size:1.5rem;cursor:pointer;padding:0.25rem 0.5rem;-webkit-appearance:none;appearance:none;">☰</button>
+  </nav>
+
+  <section class="perfil-hero">
+    <div class="perfil-hero-left">
+      <p class="perfil-breadcrumb">
+        <a href="../index.html">Início</a> &nbsp;·&nbsp;
+        <a href="../index.html#santos">Os Santos</a> &nbsp;·&nbsp;
+        José Gabriel Brochero
+      </p>
+      <span class="perfil-badge">Santo · Sacerdote · Canonizado em 2016</span>
+      <h1 class="perfil-nome">São José Gabriel Brochero</h1>
+      <p class="perfil-titulo">"O Padre Gaúcho" — O Cura das Periferias</p>
+      <div class="perfil-meta">
+        <div class="perfil-meta-item">
+          <span class="perfil-meta-label">Nascimento</span>
+          <span class="perfil-meta-value">16 de março de 1840 · Santa Rosa de Río Primero, Córdoba, Argentina</span>
+        </div>
+        <div class="perfil-meta-item">
+          <span class="perfil-meta-label">Falecimento</span>
+          <span class="perfil-meta-value">26 de janeiro de 1914 · Villa del Tránsito, Córdoba, Argentina</span>
+        </div>
+        <div class="perfil-meta-item">
+          <span class="perfil-meta-label">Beatificação</span>
+          <span class="perfil-meta-value">14 de setembro de 2013 · Córdoba, Argentina</span>
+        </div>
+        <div class="perfil-meta-item">
+          <span class="perfil-meta-label">Canonização</span>
+          <span class="perfil-meta-value">16 de outubro de 2016 · Papa Francisco · Praça São Pedro</span>
+        </div>
+        <div class="perfil-meta-item">
+          <span class="perfil-meta-label">Festa litúrgica</span>
+          <span class="perfil-meta-value">16 de março</span>
+        </div>
+        <div class="perfil-meta-item">
+          <span class="perfil-meta-label">Padroeiro</span>
+          <span class="perfil-meta-value">Córdoba · Clero argentino · Seminário de Córdoba</span>
+        </div>
+      </div>
+      <p class="perfil-frase">
+        "Deus é como os piolhos: está em todas as partes, mas prefere os pobres."
+      </p>
+    </div>
+    <div class="perfil-hero-right">
+      <img src="../imagens2/brochero2.jpg" alt="São José Gabriel Brochero"
+        style="width:100%;height:100%;object-fit:cover;" />
+      <div class="perfil-hero-datas">
+        <span class="perfil-hero-ano">1914</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="perfil-content">
+
+    <section class="bio-section" id="biografia">
+      <div class="bio-sidebar">
+        <span class="sidebar-tag">Seção 01</span>
+        <h2 class="sidebar-title">Biografia<br>Detalhada</h2>
+        <div class="sidebar-ornament"></div>
+        <p class="sidebar-resumo">
+          Padre de poncho e mula que percorreu 200 km de paróquia nas Sierras Grandes, contraiu lepra abraçando seus doentes e morreu cego e surdo sem jamais abandonar seu povo.
+        </p>
+      </div>
+      <div class="bio-texto">
+
+        <h3>Infância e Vocação</h3>
+        <p>
+          José Gabriel del Rosario Brochero nasceu em <strong>16 de março de 1840</strong> em Carreta Quemada, uma localidade próxima a Santa Rosa de Río Primero, na Província de Córdoba, Argentina. Era o quarto de dez filhos de Ignacio Brochero e Petrona Dávila — uma família camponesa do interior argentino, de fé simples e sólida, marcada pelo trabalho na terra e pela devoção cotidiana. Foi batizado no dia seguinte ao nascimento, como era costume da época.
+        </p>
+        <p>
+          Desde a infância, José Gabriel demonstrava uma seriedade e uma profundidade espiritual incomuns. Aos <strong>dezesseis anos</strong>, em <strong>5 de março de 1856</strong>, ingressou no Seminário de Nossa Senhora de Loreto, em Córdoba, onde encontraria entre seus colegas o futuro presidente argentino Miguel Ángel Juárez Celman — um detalhe que diz algo sobre a qualidade do ambiente intelectual daquele seminário. Ao longo da formação, tornou-se Terciário da Ordem de São Domingos em 26 de agosto de 1866.
+        </p>
+        <p>
+          Foi <strong>ordenado sacerdote em 4 de novembro de 1866</strong>, pelo Bispo José Vicente Ramírez de Arellano, na Diocese de Córdoba. Celebrou sua primeira Missa no dia 10 de dezembro do mesmo ano. Desde os primeiros meses de ministério, destacou-se não pelo brilho acadêmico ou pela vida contemplativa, mas pela disposição concreta e quase teimosa de ir até onde as pessoas estavam — não esperar que viessem até ele.
+        </p>
+
+        <h3>A Epidemia de Cólera e os Primeiros Anos de Ministério</h3>
+        <p>
+          Em <strong>1867</strong>, apenas alguns meses após sua ordenação, Córdoba foi devastada por uma epidemia de cólera. O jovem padre Brochero não recuou: trabalhou incansavelmente nos bairros mais pobres e nas casas dos mais atingidos, assistindo doentes, administrando sacramentos, consolando famílias e se expondo continuamente ao contágio. A epidemia foi seu primeiro grande teste — e sua primeira manifestação pública daquilo que seria o traço mais característico de toda a sua vida: a recusa total de qualquer forma de distância entre ele e o sofrimento dos outros.
+        </p>
+        <p>
+          Após alguns anos como colaborador na Catedral de Córdoba e como Prefeito de Estudos no Seminário Maior, onde deixou fama de formador rigoroso mas paternal, recebeu em <strong>1869</strong> a nomeação que definiria o restante de sua existência: pároco do Curato de San Alberto, uma paróquia enorme e isolada nas Sierras Grandes de Córdoba, abrangendo um território de <strong>cerca de 200 quilômetros</strong> de extensão — serras áridas, caminhos de terra batida, poblaciones isoladas sem acesso a serviços básicos e uma população dispersa que mal havia visto um padre em anos.
+        </p>
+
+        <h3>O Padre Gaúcho das Sierras</h3>
+        <p>
+          A chegada de Brochero ao Curato de San Alberto foi um choque para todos — inclusive para ele. A região era pobre, distante e espiritualmente abandonada. Não havia estradas, não havia escolas, não havia estrutura de nenhum tipo. O que havia era um padre novo, uma mula de franja branca chamada <em>Malacara</em>, um poncho, um sombrero e uma convicção absoluta de que Deus estava esperando por aquelas pessoas — e que era seu trabalho ir encontrá-las.
+        </p>
+        <p>
+          Brochero passou os anos seguintes percorrendo a paróquia de ponta a ponta, de casa em casa, pelos caminhos das serras que só ele e sua mula conheciam. Visitava famílias, batizava crianças, casava casais que viviam juntos há décadas sem sacramento, confessava, pregava, comia o que havia na mesa de cada família — chimarrão, carne assada, mate amargo — sem distinção de classe ou condição. Os paroquianos começaram a chamá-lo de <em>"el cura gaucho"</em> — o padre gaúcho — com a mistura de afeto e respeito que os argentinos do interior reservam para quem de fato vive o que prega.
+        </p>
+        <p>
+          Um dos instrumentos mais poderosos de seu apostolado foram os <strong>Exercícios Espirituais de Santo Inácio de Loyola</strong>, que ele adaptou para o contexto simples de sua paróquia e promoveu com entusiasmo surpreendente. Organizava caravanas — às vezes com dezenas de pessoas — que percorriam horas a cavalo ou a pé pelas serras até a Casa de Exercícios que ele próprio construiu em Villa del Tránsito. Ali, homens e mulheres que nunca haviam feito uma confissão sistemática nem meditado a sério encontravam, por alguns dias, um espaço de silêncio e oração que transformava suas vidas. Estima-se que, ao longo de sua vida, Brochero conduziu <strong>mais de quarenta mil pessoas</strong> a fazer os Exercícios Espirituais.
+        </p>
+
+        <h3>Construtor de Obras Concretas</h3>
+        <p>
+          Brochero não era apenas um pastor espiritual — era um homem de ação concreta. Compreendeu desde cedo que evangelizar pessoas que vivem em miséria material sem simultaneamente trabalhar pelas condições de vida é uma forma de contradição. Ao longo de seu ministério em San Alberto, construiu ou promoveu a construção de:
+        </p>
+        <p>
+          Uma <strong>Casa de Exercícios Espirituais</strong> em Villa del Tránsito, que se tornou o coração espiritual de toda a paróquia. Um <strong>hospital</strong>, o primeiro da região. Um <strong>colégio para meninas</strong>, trazendo irmãs religiosas para ensinar. Uma <strong>Igreja paroquial</strong> em Villa del Tránsito — construída com o trabalho dos próprios paroquianos, organizados e motivados por ele. E, talvez mais significativo de tudo: <strong>uma estrada</strong> ligando a região à cidade de Córdoba, para a qual conseguiu do governo argentino uma concessão após persistente pressão política — porque sabia que sem acesso, aquela população permaneceria perpetuamente esquecida. A estrada foi construída pelos próprios moradores, sob sua supervisão direta.
+        </p>
+        <p>
+          Francisco citou esse aspecto de sua vida como especialmente atual: <em>"Brochero é um pioneiro em ir às periferias geográficas e existenciais, para levar a todos o amor e a misericórdia de Deus. Ele não ficou no escritório da paróquia."</em>
+        </p>
+
+        <h3>A Lepra e os Últimos Anos</h3>
+        <p>
+          Por décadas, Brochero visitou e abraçou leprosos — os mais temidos e evitados de sua paróquia — com a mesma naturalidade com que visitava qualquer outro doente. Compartilhou chimarrão, comida, o mesmo ambiente fechado das casas. <strong>Em sua velhice, contraiu lepra</strong> — a doença que havia recusado tantas vezes em tantos outros. A enfermidade avançou progressivamente: primeiro perdeu a audição, depois a visão, depois os movimentos finos das mãos. Nos últimos anos de sua vida, estava quase completamente surdo, cego e com o rosto desfigurado pela doença.
+        </p>
+        <p>
+          Em determinado momento, a deterioração física o obrigou a renunciar formalmente ao Curato de San Alberto. Retirou-se por algum tempo para viver com suas irmãs em seu povoado natal. Mas <strong>seus paroquianos o reclamaram de volta</strong>, e ele voltou — cego, surdo e leproso — a Villa del Tránsito, onde passaria seus últimos anos. O diário católico de Córdoba, poucos dias após sua morte, publicou: <em>"É sabido que o Cura Brochero contraiu a enfermidade que o levou à tumba porque visitava frequentemente e até abraçava a um leproso abandonado por aí."</em>
+        </p>
+        <p>
+          Morreu em <strong>26 de janeiro de 1914</strong>, em Villa del Tránsito — a cidade que, dois anos depois, seria rebatizada em sua homenagem como <strong>Villa Cura Brochero</strong>. Era a mesma cidade onde havia chegado décadas antes como padre jovem, numa mula chamada Malacara, percorrendo serras que ninguém mais percorria.
+        </p>
+
+        <h3>Beatificação, Canonização e o que sua Vida Diz Hoje</h3>
+        <p>
+          O processo de canonização teve início em <strong>1967</strong>, cinquenta e três anos após sua morte. João Paulo II o declarou Venerável em <strong>2004</strong>. A beatificação, realizada em <strong>14 de setembro de 2013</strong> em Córdoba pelo Cardeal Angelo Amato em nome do Papa Francisco, foi precedida pelo reconhecimento do milagre da cura de Nicolás Flores — um menino que havia sofrido um acidente automobilístico gravíssimo com perda de massa óssea do crânio e de massa encefálica, dado como irrecuperável pelos médicos, que sobreviveu completamente após orações pela intercessão de Brochero. O segundo milagre foi aprovado em <strong>22 de janeiro de 2016</strong>, e a canonização aconteceu em <strong>16 de outubro de 2016</strong> na Praça São Pedro, pelo Papa Francisco.
+        </p>
+        <p>
+          Brochero é hoje o <strong>primeiro santo canonizado que nasceu, viveu e morreu na Argentina</strong>. Francisco, argentino como ele, escolheu suas palavras com particular afeto: <em>"Gosto de imaginar hoje Brochero pároco em cima da sua mula com a franja branca, enquanto percorria as longas sendas áridas e desoladas dos 200 km da sua paróquia, procurando de casa em casa os vossos bisavós e trisavós, para lhes pedir se necessitavam de algo."</em>
+        </p>
+        <p>
+          Numa Igreja que debate incansavelmente o que significa "ir às periferias", Brochero é a resposta mais concreta possível: não uma metáfora, não um programa pastoral, não um documento. É um padre de poncho que montou numa mula, percorreu 200 quilômetros de serra, abraçou leprosos, construiu uma estrada e morreu cego e surdo — sem jamais ter pedido para estar em outro lugar.
+        </p>
+
+      </div>
+    </section>
+
+    <section class="timeline-section" id="cronologia">
+      <div class="timeline-header">
+        <span class="section-tag">Seção 02</span>
+        <div class="section-header-left">
+          <h2>Linha do Tempo</h2>
+          <p>Sete décadas percorrendo as serras de Córdoba numa mula</p>
+        </div>
+      </div>
+      <div class="timeline-grid">
+        <div class="tl-item">
+          <p class="tl-ano">16 Mar 1840</p>
+          <h3 class="tl-evento">Nascimento</h3>
+          <p class="tl-desc">Nasce em Carreta Quemada, próximo a Santa Rosa de Río Primero, quarto filho de Ignacio Brochero e Petrona Dávila.</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-ano">5 Mar 1856</p>
+          <h3 class="tl-evento">Ingresso no Seminário</h3>
+          <p class="tl-desc">Aos dezesseis anos, entra no Seminário de Nossa Senhora de Loreto, em Córdoba. Conhece o futuro presidente Miguel Ángel Juárez Celman.</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-ano">4 Nov 1866</p>
+          <h3 class="tl-evento">Ordenação sacerdotal</h3>
+          <p class="tl-desc">Ordenado pelo Bispo José Vicente Ramírez de Arellano. Celebra sua primeira Missa em 10 de dezembro do mesmo ano.</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-ano">1867</p>
+          <h3 class="tl-evento">Epidemia de cólera</h3>
+          <p class="tl-desc">Trabalha incansavelmente nos bairros pobres de Córdoba durante a epidemia, expondo-se ao contágio para assistir os doentes e moribundos.</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-ano">1869</p>
+          <h3 class="tl-evento">Pároco de San Alberto</h3>
+          <p class="tl-desc">Nomeado pároco do Curato de San Alberto, nas Sierras Grandes — uma paróquia de 200 km de extensão, isolada e espiritualmente abandonada.</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-ano">Décadas seguintes</p>
+          <h3 class="tl-evento">"El Cura Gaucho"</h3>
+          <p class="tl-desc">Percorre a paróquia de mula, casa em casa. Constrói estrada, hospital, colégio, Igreja e Casa de Exercícios. Conduz mais de 40 mil pessoas aos Exercícios Espirituais.</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-ano">Velhice</p>
+          <h3 class="tl-evento">Contrai lepra</h3>
+          <p class="tl-desc">Anos de visitas e contato com leprosos resultam na doença. Perde progressivamente a audição, a visão e os movimentos. Permanece em Villa del Tránsito.</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-ano">26 Jan 1914</p>
+          <h3 class="tl-evento">Morte</h3>
+          <p class="tl-desc">Falece cego, surdo e leproso em Villa del Tránsito — a cidade que dois anos depois seria rebatizada Villa Cura Brochero em sua homenagem.</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-ano">14 Set 2013</p>
+          <h3 class="tl-evento">Beatificação</h3>
+          <p class="tl-desc">Beatificado em Córdoba pelo Cardeal Amato, em nome do Papa Francisco, após o reconhecimento do milagre de Nicolás Flores.</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-ano">16 Out 2016</p>
+          <h3 class="tl-evento">Canonização</h3>
+          <p class="tl-desc">Canonizado pelo Papa Francisco — primeiro santo canonizado que nasceu, viveu e morreu na Argentina.</p>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <section class="milagres-section" id="milagres">
+    <div class="milagres-inner">
+      <span class="section-tag">Seção 03</span>
+      <div class="section-header-left">
+        <h2>Milagres Aprovados</h2>
+        <p>Os prodígios reconhecidos pela Igreja para sua beatificação e canonização</p>
+      </div>
+      <div class="milagres-grid">
+        <div class="milagre-card">
+          <p class="milagre-numero">01</p>
+          <p class="milagre-local">Córdoba, Argentina · 2008</p>
+          <h3 class="milagre-titulo">Cura de Nicolás Flores — traumatismo craniano gravíssimo</h3>
+          <p class="milagre-desc">
+            Nicolás Flores, menino de Falda del Cañete (Córdoba), sofreu um acidente automobilístico gravíssimo que resultou em perda de massa óssea do crânio e de massa encefálica — lesões consideradas incompatíveis com a sobrevivência ou qualquer recuperação funcional pelos médicos que o atenderam. Sua família, em desespero, recorreu em oração à intercessão do Padre Brochero. Nicolás recuperou-se completamente, sem sequelas neurológicas, de forma que os médicos não conseguiram explicar pelos meios naturais disponíveis. O caso foi rigorosamente investigado pela Santa Sé e aprovado como milagre, abrindo caminho para a beatificação em 2013.
+          </p>
+          <span class="milagre-ano-badge">Aprovado em 2013 · para a Beatificação</span>
+        </div>
+        <div class="milagre-card">
+          <p class="milagre-numero">02</p>
+          <p class="milagre-local">Argentina · 2014–2015</p>
+          <h3 class="milagre-titulo">Segundo milagre reconhecido · para a Canonização</h3>
+          <p class="milagre-desc">
+            O decreto reconhecendo o segundo milagre foi assinado pelo Papa Francisco em <strong>22 de janeiro de 2016</strong>, abrindo caminho para a canonização marcada para outubro do mesmo ano. Os detalhes completos do beneficiário e da natureza da cura permanecem sob sigilo pontifical, conforme prática habitual da Santa Sé para proteção da privacidade dos envolvidos. A canonização foi realizada em 16 de outubro de 2016, na Praça São Pedro, pelo Papa Francisco — que, sendo ele próprio argentino, reconheceu publicamente o vínculo especial com o primeiro santo canonizado nascido em seu país.
+          </p>
+          <span class="milagre-ano-badge">Aprovado em 2016 · para a Canonização</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="perfil-content">
+
+    <section class="galeria-section" id="galeria">
+      <span class="section-tag">Seção 04</span>
+      <div class="section-header-left">
+        <h2>Galeria</h2>
+        <p>Imagens da vida, obra e memória de São José Gabriel Brochero</p>
+      </div>
+      <div class="galeria-grid">
+        <div class="galeria-item">
+          <img src="../imagens2/brochero1.jpg" alt="São José Gabriel Brochero"
+            style="width:100%;height:100%;object-fit:cover;" />
+        </div>
+        <div class="galeria-item">
+          <img src="../imagens2/brochero2.jpg" alt="São José Gabriel Brochero"
+            style="width:100%;height:100%;object-fit:cover;" />
+        </div>
+        <div class="galeria-item">
+          <img src="../imagens2/brochero3.jpg" alt="São José Gabriel Brochero"
+            style="width:100%;height:100%;object-fit:cover;" />
+        </div>
+        <div class="galeria-item">
+          <img src="../imagens2/brochero4.jpg" alt="São José Gabriel Brochero"
+            style="width:100%;height:100%;object-fit:cover;" />
+        </div>
+        <div class="galeria-item">
+          <img src="../imagens2/brochero5.jpg" alt="São José Gabriel Brochero"
+            style="width:100%;height:100%;object-fit:cover;" />
+        </div>
+      </div>
+      <p class="galeria-legenda">
+        Imagens utilizadas sob licença de seus respectivos autores.
+        <a href="../creditos.html" style="color:var(--gold-dark);text-decoration:none;">Créditos completos disponíveis aqui.</a>
+      </p>
+    </section>
+
+    <section class="fontes-section" id="fontes">
+      <span class="section-tag">Seção 06</span>
+      <div class="section-header-left">
+        <h2>Fontes e Referências</h2>
+        <p>Documentação utilizada para a elaboração deste perfil</p>
+      </div>
+      <div class="fontes-lista">
+        <div class="fonte-item">
+          <span class="fonte-tipo">Enciclopédia</span>
+          <div>
+            <p class="fonte-titulo">José Gabriel del Rosario Brochero — Wikipédia</p>
+            <p class="fonte-autor">Verbete biográfico com referências históricas e processuais</p>
+          </div>
+          <a href="https://pt.wikipedia.org/wiki/Jos%C3%A9_Gabriel_del_Rosario_Brochero" target="_blank" class="fonte-link">Acessar →</a>
+        </div>
+        <div class="fonte-item">
+          <span class="fonte-tipo">Artigo</span>
+          <div>
+            <p class="fonte-titulo">São José Gabriel del Rosario Brochero</p>
+            <p class="fonte-autor">Franciscanos OFM · Província Franciscana da Imaculada Conceição do Brasil</p>
+          </div>
+          <a href="https://franciscanos.org.br/vidacrista/calendario/sao-jose-gabriel-del-rosario-brochero/" target="_blank" class="fonte-link">Acessar →</a>
+        </div>
+        <div class="fonte-item">
+          <span class="fonte-tipo">Artigo</span>
+          <div>
+            <p class="fonte-titulo">Feast Day of Saint José Gabriel Brochero</p>
+            <p class="fonte-autor">Consolata Missionary Sisters</p>
+          </div>
+          <a href="https://www.consolata.org.br/4286-2" target="_blank" class="fonte-link">Acessar →</a>
+        </div>
+        <div class="fonte-item">
+          <span class="fonte-tipo">Documento Oficial</span>
+          <div>
+            <p class="fonte-titulo">Homilia da Missa de Canonização</p>
+            <p class="fonte-autor">Papa Francisco · 16 de outubro de 2016 · Praça São Pedro</p>
+          </div>
+          <a href="https://www.vatican.va/content/francesco/pt/homilies/2016/documents/papa-francesco_20161016_omelia-canonizzazione.html" target="_blank" class="fonte-link">Acessar →</a>
+        </div>
+      </div>
+    </section>
+
+    <div class="nav-santos">
+      <a href="gsalzano.html" class="nav-santo-link">
+        <span class="nav-santo-label">← Santo Anterior</span>
+        <span class="nav-santo-nome">Santa Giulia Salzano</span>
+      </a>
+      <a href="carlo-acutis.html" class="nav-santo-link nav-santo-dir">
+        <span class="nav-santo-label">Próximo Santo →</span>
+        <span class="nav-santo-nome">São Carlo Acutis</span>
+      </a>
+    </div>
+
+  </div>
+
+  <section class="oracao-section" id="oracao">
+    <div class="oracao-inner">
+      <span class="section-tag">Seção 05</span>
+      <h2 class="oracao-titulo">Oração por Intercessão de São José Gabriel Brochero</h2>
+      <div class="oracao-texto">
+        <p>
+          Senhor Jesus, Tu que deixaste as noventa e nove ovelhas para ir em busca daquela que estava perdida, concede-nos, pela intercessão de São José Gabriel Brochero, a graça de nunca nos contentarmos com a fé que fica no escritório — e de termos a coragem de montar na mula e percorrer as estradas difíceis até onde as pessoas estão.
+        </p>
+        <p>
+          Ele que construiu estradas para que seu povo não ficasse isolado, que abraçou leprosos quando todos os evitavam, que conduziu dezenas de milhares de pessoas aos Exercícios Espirituais pelas serras de Córdoba, e que morreu cego e surdo sem jamais abandonar sua paróquia — mostra-nos que o Evangelho não tem endereço fixo, e que Deus prefere os pobres.
+        </p>
+        <p>
+          Intercede por todos os sacerdotes que servem em regiões remotas e esquecidas; pelos que enfrentam doenças no cumprimento de sua missão; e por todos os que são chamados a ir às periferias — geográficas e existenciais — levando a misericórdia de Deus a quem ainda não a conhece. Amém.
+        </p>
+      </div>
+      <p class="oracao-fecho">· Para uso privado · Primeiro santo nascido, vivido e morto na Argentina · Festa: 16 de março ·</p>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-inner">
+      <span class="footer-logo">Santos da Modernidade</span>
+      <span class="footer-copy">© Santos da Modernidade · Ad Maiorem Dei Gloriam</span>
+    </div>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      const menu = document.querySelector('.nav-links');
+      const btn = document.getElementById('nav-hamburguer');
+      menu.classList.toggle('aberto');
+      btn.textContent = menu.classList.contains('aberto') ? '✕' : '☰';
+    }
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        const menu = document.querySelector('.nav-links');
+        const btn = document.getElementById('nav-hamburguer');
+        menu.classList.remove('aberto');
+        btn.textContent = '☰';
+      });
+    });
+  </script>
+</body>
+</html>
