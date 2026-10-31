@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Beato Miguel Pro · Santos da Modernidade</title>
+  <meta name="description" content="Conheça a vida do Beato Miguel Pro — padre jesuíta mexicano que exerceu o ministério disfarçado durante a perseguição cristera e foi fuzilado em 1927 gritando 'Viva Cristo Rey!'" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600&family=Raleway:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../style.css" />
+  <style>
+    .perfil-hero {
+      min-height: 100vh;
+      background: var(--dark);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      position: relative;
+      overflow: hidden;
+      padding-top: 80px;
+    }
+    .perfil-hero-bg {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 40%, rgba(201,168,76,0.07) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 40% at 20% 80%, rgba(123,28,46,0.1) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 40% at 80% 20%, rgba(27,45,79,0.12) 0%, transparent 60%);
+    }
+    .perfil-hero-left {
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 5rem 4rem 5rem 5rem; position: relative; z-index: 2;
+    }
+    .perfil-breadcrumb {
+      font-size: 0.68rem; letter-spacing: 0.25em; text-transform: uppercase;
+      color: rgba(201,168,76,0.5); margin-bottom: 2rem;
+    }
+    .perfil-breadcrumb a { color: inherit; text-decoration: none; transition: color 0.2s; }
+    .perfil-breadcrumb a:hover { color: var(--gold); }
+    .perfil-badge {
+      display: inline-block; border: 1px solid rgba(201,168,76,0.4);
+      color: var(--gold); font-size: 0.65rem; letter-spacing: 0.25em;
+      text-transform: uppercase; padding: 0.35rem 0.9rem; margin-bottom: 1.5rem;
+    }
+    .perfil-nome {
+      font-family: 'Cinzel', serif; font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 600; color: var(--ivory); line-height: 1.15;
+      margin-bottom: 0.5rem; letter-spacing: 0.03em;
+    }
+    .perfil-titulo {
+      font-family: 'Cormorant Garamond', serif; font-size: 1.2rem;
+      font-style: italic; font-weight: 300; color: var(--gold-light);
+      margin-bottom: 2rem; opacity: 0.8;
+    }
+    .perfil-meta { display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 2.5rem; }
+    .perfil-meta-item { display: flex; gap: 1rem; align-items: baseline; }
+    .perfil-meta-label {
+      color: rgba(201,168,76,0.6); font-weight: 500; letter-spacing: 0.1em;
+      min-width: 110px; font-size: 0.72rem; text-transform: uppercase; flex-shrink: 0;
+    }
+    .perfil-meta-value { color: rgba(240,232,216,0.75); font-size: 0.85rem; line-height: 1.4; }
+    .perfil-frase {
+      font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-style: italic;
+      color: var(--gold-light); border-left: 2px solid var(--gold);
+      padding-left: 1.25rem; line-height: 1.65; opacity: 0.9;
+    }
+    .perfil-hero-right {
+      position: relative; background: var(--dark-mid);
+      display: flex; align-items: center; justify-content: center; overflow: hidden;
+    }
+    .perfil-hero-right::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse at center, rgba(201,168,76,0.06) 0%, transparent 70%);
+    }
+    .perfil-hero-ano {
+      position: absolute; bottom: 2rem; right: 2rem;
+      font-family: 'Cinzel', serif; font-size: 4rem; font-weight: 600;
+      color: rgba(201,168,76,0.08); line-height: 1;
+    }
+    .perfil-content { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+    .section-tag {
+      font-size: 0.65rem; font-weight: 500; letter-spacing: 0.3em;
+      text-transform: uppercase; color: var(--gold-dark); display: block; margin-bottom: 1rem;
+    }
+    .section-header-left h2 {
+      font-family: 'Cinzel', serif; font-size: 1.5rem; font-weight: 400;
+      color: var(--dark); letter-spacing: 0.08em; margin-bottom: 0.5rem;
+    }
+    .section-header-left p {
+      font-family: 'Cormorant Garamond', serif; font-size: 1rem;
+      font-style: italic; color: var(--text-muted);
+    }
+    .bio-section {
+      padding: 7rem 0; display: grid; grid-template-columns: 1fr 2fr;
+      gap: 5rem; border-bottom: 1px solid var(--gold-light);
+    }
+    .bio-sidebar { position: sticky; top: 100px; align-self: start; }
+    .sidebar-title {
+      font-family: 'Cinzel', serif; font-size: 1.3rem; font-weight: 400;
+      color: var(--dark); letter-spacing: 0.06em; line-height: 1.4;
+    }
+    .sidebar-ornament { width: 30px; height: 1px; background: var(--gold); margin: 1.5rem 0; }
+    .sidebar-resumo {
+      font-family: 'Cormorant Garamond', serif; font-size: 1rem;
+      font-style: italic; color: var(--text-muted); line-height: 1.7;
+    }
+    .bio-texto h3 {
+      font-family: 'Cinzel', serif; font-size: 1rem; font-weight: 400;
+      letter-spacing: 0.1em; color: var(--dark); margin: 2rem 0 0.75rem;
+    }
+    .bio-texto h3:first-child { margin-top: 0; }
+    .bio-texto p { font-size: 0.97rem; line-height: 1.9; color: var(--text-muted); margin-bottom: 1rem; }
+    .bio-texto p strong { color: var(--text); font-weight: 500; }
+    .timeline-section { padding: 7rem 0; border-bottom: 1px solid var(--gold-light); }
+    .timeline-header { margin-bottom: 3.5rem; }
+    .timeline-grid { display: grid; grid-template-columns: 1fr 1fr; position: relative; }
+    .timeline-grid::before {
+      content: ''; position: absolute; left: 50%; top: 0; bottom: 0; width: 1px;
+      background: linear-gradient(to bottom, transparent, var(--gold-light), transparent);
+      transform: translateX(-50%);
+    }
+    .tl-item { padding: 2rem; position: relative; }
+    .tl-item:nth-child(odd) { text-align: right; padding-right: 3rem; }
+    .tl-item:nth-child(even) { padding-left: 3rem; }
+    .tl-item::after {
+      content: ''; position: absolute; top: 2.5rem; width: 8px; height: 8px;
+      background: var(--gold); transform: rotate(45deg);
+    }
+    .tl-item:nth-child(odd)::after { right: -4px; }
+    .tl-item:nth-child(even)::after { left: -4px; }
+    .tl-ano { font-family: 'Cinzel', serif; font-size: 0.72rem; letter-spacing: 0.2em; color: var(--gold-dark); margin-bottom: 0.4rem; }
+    .tl-evento { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; color: var(--dark); margin-bottom: 0.3rem; }
+    .tl-desc { font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; }
+    .milagres-section {
+      padding: 7rem 0; background: var(--parchment); margin: 0 -2rem;
+      padding-left: 2rem; padding-right: 2rem;
+      border-top: 1px solid var(--gold-light); border-bottom: 1px solid var(--gold-light);
+    }
+    .milagres-inner { max-width: 1100px; margin: 0 auto; }
+    .milagres-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 3rem; }
+    .milagre-card { background: var(--ivory); border: 1px solid var(--gold-light); padding: 2rem; }
+    .milagre-numero { font-family: 'Cinzel', serif; font-size: 2.5rem; font-weight: 600; color: var(--gold-light); line-height: 1; margin-bottom: 1rem; }
+    .milagre-local { font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold-dark); margin-bottom: 0.5rem; }
+    .milagre-titulo { font-family: 'Cinzel', serif; font-size: 0.95rem; color: var(--dark); margin-bottom: 0.75rem; }
+    .milagre-desc { font-size: 0.88rem; line-height: 1.75; color: var(--text-muted); }
+    .milagre-ano-badge { display: inline-block; margin-top: 1rem; border: 1px solid var(--gold-light); color: var(--gold-dark); font-size: 0.65rem; letter-spacing: 0.18em; padding: 0.2rem 0.6rem; }
+    .galeria-section { padding: 7rem 0; border-bottom: 1px solid var(--gold-light); }
+    .galeria-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; grid-template-rows: 200px 200px 200px; gap: 1rem; margin-top: 3rem; }
+    .galeria-item {
+      background: var(--dark-mid); display: flex; align-items: center; justify-content: center;
+      color: rgba(201,168,76,0.2); font-size: 0.65rem; letter-spacing: 0.2em;
+      text-transform: uppercase; font-family: 'Cinzel', serif;
+      border: 1px solid rgba(201,168,76,0.1); overflow: hidden;
+    }
+    .galeria-item:first-child { grid-row: 1 / 3; }
+    .galeria-item img { width: 100%; height: 100%; object-fit: cover; }
+    .galeria-legenda { font-size: 0.75rem; color: var(--text-muted); text-align: center; margin-top: 1rem; font-style: italic; font-family: 'Cormorant Garamond', serif; }
+    .oracao-section {
+      padding: 7rem 0; background: var(--blue-deep); margin: 0 -2rem;
+      padding-left: 2rem; padding-right: 2rem; text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .oracao-section::before {
+      content: '"'; position: absolute; top: -2rem; left: 50%; transform: translateX(-50%);
+      font-family: 'Cormorant Garamond', serif; font-size: 20rem;
+      color: rgba(201,168,76,0.05); line-height: 1; pointer-events: none;
+    }
+    .oracao-inner { max-width: 680px; margin: 0 auto; position: relative; z-index: 2; }
+    .oracao-section .section-tag { color: var(--gold); }
+    .oracao-titulo { font-family: 'Cinzel', serif; font-size: 1.4rem; color: var(--ivory); letter-spacing: 0.08em; margin-bottom: 2.5rem; }
+    .oracao-texto { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 300; line-height: 2; color: rgba(240,232,216,0.8); text-align: left; }
+    .oracao-texto p { margin-bottom: 1rem; }
+    .oracao-fecho { font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); opacity: 0.7; margin-top: 2rem; }
+    .fontes-section { padding: 7rem 0; }
+    .fontes-lista { margin-top: 2.5rem; display: flex; flex-direction: column; }
+    .fonte-item { display: grid; grid-template-columns: auto 1fr auto; gap: 1.5rem; align-items: center; padding: 1.25rem 0; border-bottom: 1px solid var(--gold-light); }
+    .fonte-tipo { font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold-dark); border: 1px solid var(--gold-light); padding: 0.2rem 0.6rem; white-space: nowrap; }
+    .fonte-titulo { font-size: 0.92rem; color: var(--text); }
+    .fonte-autor { font-size: 0.8rem; color: var(--text-muted); margin-top: 0.2rem; font-family: 'Cormorant Garamond', serif; font-style: italic; }
+    .fonte-link { font-size: 0.7rem; color: var(--gold-dark); text-decoration: none; letter-spacing: 0.1em; white-space: nowrap; transition: color 0.2s; }
+    .fonte-link:hover { color: var(--gold); }
+    .nav-santos-div { padding: 3rem 0; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--gold-light); margin-top: 2rem; }
+    .nav-santo-link { text-decoration: none; display: flex; flex-direction: column; gap: 0.3rem; }
+    .nav-santo-dir { text-align: right; }
+    .nav-santo-label { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted); }
+    .nav-santo-nome { font-family: 'Cinzel', serif; font-size: 0.95rem; color: var(--gold-dark); transition: color 0.2s; }
+    .nav-santo-link:hover .nav-santo-nome { color: var(--gold); }
+    @media (max-width: 768px) {
+      .perfil-hero { grid-template-columns: 1fr; }
+      .perfil-hero-right { display: none; }
+      .perfil-hero-left { padding: 3rem 1.5rem; }
+      .bio-section { grid-template-columns: 1fr; gap: 2rem; }
+      .bio-sidebar { position: static; }
+      .timeline-grid { grid-template-columns: 1fr; }
+      .timeline-grid::before { display: none; }
+      .tl-item { text-align: left !important; padding: 1rem 0 1rem 2rem !important; }
+      .tl-item::after { left: 0 !important; right: auto !important; }
+      .milagres-grid { grid-template-columns: 1fr; }
+      .galeria-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+      .galeria-item:first-child { grid-row: auto; }
+      .fonte-item { grid-template-columns: 1fr; gap: 0.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="../index.html" class="nav-logo">Santos da Modernidade</a>
+    <ul class="nav-links">
+      <li><a href="../index.html#santos">Os Santos</a></li>
+      <li><a href="../categoria.html">Categorias</a></li>
+      <li><a href="../index.html#cronologia">Cronologia</a></li>
+      <li><a href="../mapa.html">Mapa</a></li>
+      <li><a href="../sobre.html">Sobre</a></li>
+    </ul>
+    <button id="nav-hamburguer" onclick="toggleMenu()"
+            style="background:transparent;border:none;color:#C9A84C;font-size:1.5rem;cursor:pointer;padding:0.25rem 0.5rem;-webkit-appearance:none;appearance:none;">☰</button>
+  </nav>
+
+  <!-- HERO -->
+  <section class="perfil-hero">
+    <div class="perfil-hero-bg"></div>
+    <div class="perfil-hero-left">
+      <p class="perfil-breadcrumb">
+        <a href="../index.html">Início</a> &nbsp;·&nbsp;
+        <a href="../index.html#santos">Os Santos</a> &nbsp;·&nbsp;
+        Miguel Pro
+      </p>
+      <span class="perfil-badge">Beato · Beatificado em 1988</span>
+      <h1 class="perfil-nome">Beato Miguel<br>Pro</h1>
+      <p class="perfil-titulo">"Viva Cristo Rey!" — O padre disfarçado que desafiou a ditadura mexicana</p>
+      <div class="perfil-meta">
+        <div class="perfil-meta-item">
+          <span class="perfil-meta-label">Nascimento</span>
+          <span class="perfil-meta-value">13 de janeiro de 1891 · Zacatecas, México</span>
+        </div>
+        <div class="perfil-meta-item">
+          <span class="perfil-meta-label">Falecimento</span>
+          <span class="perfil-meta-value">23 de novembro de 1927 · Cidade do México, México</span>
+        </div>
+        <div class="perfil-meta-item">
+          <span class="perfil-meta-label">Causa da morte</span>
+          <span class="perfil-meta-value">Fuzilamento por ordem do governo Calles · sem julgamento</span>
+        </div>
+        <div class="perfil-meta-item">
+          <span class="perfil-meta-label">Beatificação</span>
+          <span class="perfil-meta-value">25 de setembro de 1988 · Roma · João Paulo II</span>
+        </div>
+        <div class="perfil-meta-item">
+          <span class="perfil-meta-label">Festa litúrgica</span>
+          <span class="perfil-meta-value">23 de novembro</span>
+        </div>
+        <div class="perfil-meta-item">
+          <span class="perfil-meta-label">Padroeiro</span>
+          <span class="perfil-meta-value">Mártires mexicanos · Jesuítas · Perseguidos pela fé</span>
+        </div>
+      </div>
+      <p class="perfil-frase">"Viva Cristo Rey!" — Últimas palavras antes do fuzilamento, 23 de novembro de 1927</p>
+    </div>
+    <div class="perfil-hero-right" style="position:relative;overflow:hidden;">
+      <img src="../imagens3/bmiguel5.jpg" alt="Beato Miguel Pro"
+           style="width:100%;height:100%;object-fit:cover;object-position:top;" />
+      <span class="perfil-hero-ano">1927</span>
+    </div>
+  </section>
+
+  <!-- CONTEÚDO -->
+  <div class="perfil-content">
+
+    <!-- BIOGRAFIA -->
+    <section class="bio-section" id="biografia">
+      <div class="bio-sidebar">
+        <span class="section-tag">Seção 01</span>
+        <h2 class="sidebar-title">Biografia<br>Detalhada</h2>
+        <div class="sidebar-ornament"></div>
+        <p class="sidebar-resumo">Padre jesuíta mexicano que exerceu o ministério clandestinamente durante a perseguição religiosa do governo Calles — disfarçado de operário, de motorista, de mendigo — até ser preso, condenado sem julgamento e fuzilado aos 36 anos com os braços abertos em cruz, gritando "Viva Cristo Rey!"</p>
+      </div>
+      <div class="bio-texto">
+
+        <h3>Infância em Zacatecas — Alegria e Fé</h3>
+        <p>José Ramón Miguel Agustín Pro Juárez nasceu em <strong>13 de janeiro de 1891</strong> em Guadalupe, próximo a Zacatecas, no norte do México, numa família numerosa e profundamente católica. Seu pai era engenheiro de minas — o que levou a família a se mudar frequentemente pelas regiões mineiras do México, expondo o jovem Miguel desde cedo à dura realidade dos trabalhadores pobres das minas.</p>
+        <p>Miguel cresceu como um jovem alegre, bem-humorado, com talento natural para a comédia e para o disfarce — características que décadas depois se revelariam providenciais. Era conhecido entre os amigos por suas imitações, suas peças teatrais improvisadas e sua capacidade de fazer qualquer pessoa rir. Mas sob essa alegria vibrante havia uma fé profunda e um coração genuinamente compassivo pelos pobres.</p>
+        <p>Quando suas duas irmãs mais velhas entraram para a vida religiosa, Miguel sentiu a ausência de algo que não conseguia nomear. A mãe o convidou para um retiro espiritual — e foi ali, em silêncio e oração, que o jovem de 20 anos descobriu que sua vocação era o sacerdócio jesuíta.</p>
+
+        <h3>A Formação no Exílio — California, Espanha, Bélgica</h3>
+        <p>Em <strong>1911</strong>, Miguel ingressou no noviciado da Companhia de Jesus. Mas o México entrava num período de convulsão política sem precedentes — a Revolução Mexicana (1910-1920) havia derrubado a ditadura de Porfírio Díaz e instalado um governo crescentemente hostil à Igreja Católica. Em <strong>1914</strong>, à medida que a perseguição religiosa se intensificava, Miguel e seus companheiros jesuítas foram forçados a abandonar o México e continuar a formação no exílio.</p>
+        <p>Estudou nos <strong>Estados Unidos</strong>, depois na <strong>Espanha</strong> e finalmente na <strong>Bélgica</strong>, onde foi ordenado sacerdote em <strong>31 de agosto de 1925</strong>. Durante os anos de formação, sofreu de problemas graves de saúde — úlceras estomacais que o acompanhariam pelo resto da vida e que exigiram cirurgias. Era um homem fisicamente frágil, mas de energia e determinação inexauríveis.</p>
+        <p>Nos anos na Europa, aprofundou seu amor pelos trabalhadores pobres — influenciado pela Doutrina Social da Igreja e pelo contato com os operários belgas e espanhóis. Escrevia cartas longas e divertidas para a família no México, cheias de piadas e sketches cômicos, que hoje são tesouros do seu espírito inconfundível.</p>
+
+        <h3>A Lei Calles e a Perseguição — A Igreja na Clandestinidade</h3>
+        <p>Quando Miguel retornou ao México em <strong>julho de 1926</strong>, a situação havia se deteriorado drasticamente. O presidente <strong>Plutarco Elías Calles</strong> havia promulgado a chamada <strong>Lei Calles</strong> — um conjunto de regulamentos que efetivamente criminalizava o exercício público da religião católica: proibiu missas públicas, fechou igrejas, expulsou ordens religiosas, proibiu sacerdotes de usar hábito ou qualquer sinal externo de identidade clerical, e tornou ilegal qualquer ensino religioso.</p>
+        <p>A resposta popular foi a <strong>Guerra Cristera</strong> (1926-1929) — um levante armado de camponeses e agricultores católicos no centro-oeste do México, sob o grito de guerra <em>"Viva Cristo Rey! Viva a Virgem de Guadalupe!"</em> O governo respondeu com brutalidade.</p>
+        <p>Nesse contexto, Miguel Pro iniciou um ministério que não tinha precedente na história moderna da Igreja mexicana: exercer todos os sacramentos na <strong>clandestinidade total</strong>, como os primeiros cristãos nas catacumbas de Roma.</p>
+
+        <h3>O Padre Disfarçado — Um Ministério de Película</h3>
+        <p>O que Miguel Pro fez nos quinze meses seguintes seria material suficiente para um romance de espionagem — não fosse tudo absolutamente verdadeiro, documentado por testemunhas e pelo próprio governo que tentava capturá-lo.</p>
+        <p>Usando disfarces que incluíam roupas de operário, uniforme de motorista, traje de mendigo, roupa de polícia e até de noivo num casamento fictício, Miguel circulava pela <strong>Cidade do México</strong> celebrando Missas em garagens, apartamentos e porões, ouvindo confissões em banheiros, distribuindo comunhão a doentes em hospitais, batizando crianças em cozinhas e casando casais em quintais. Organizou estações secretas de comunhão que nos primeiros dias de cada mês reuniam mais de <strong>1.200 fiéis</strong>.</p>
+        <p>Era perseguido ativamente pela polícia — e repetidamente escapava em circunstâncias que beiravam o milagre e o humor. Certa vez, sendo seguido por policiais num táxi, pediu ao motorista que continuasse enquanto ele se jogava em movimento para a calçada e começou a caminhar cambaleando como bêbado, enganando os agentes que passaram por ele sem reconhecê-lo.</p>
+        <p>Outra vez, saiu de um apartamento onde havia celebrado Missa instantes antes de a polícia chegar — e passou pelos agentes na escada, disfarçado, com ar completamente despreocupado.</p>
+        <p>Além do ministério espiritual, Miguel organizava uma <strong>extensa rede de caridade</strong>: distribuía alimentos, roupas e dinheiro aos pobres da cidade, utilizando recursos que obtinha de famílias abastadas que simpatizavam com a causa. Calculava-se que atendia centenas de famílias pobres semanalmente.</p>
+
+        <h3>A Prisão e o Julgamento que Nunca Houve</h3>
+        <p>Em <strong>13 de novembro de 1927</strong>, um atentado de bomba contra o carro do ex-presidente Álvaro Obregón falhou. A polícia prendeu os responsáveis — e descobriu que um dos carros usados havia pertencido a um irmão de Miguel Pro. Sem nenhuma evidência de envolvimento do padre, o governo Calles ordenou sua prisão imediata.</p>
+        <p>Miguel, seu irmão <strong>Humberto</strong>, e outros dois homens foram presos. Ficaram detidos por <strong>dez dias</strong> sem julgamento, sem acusação formal, sem advogado e sem direito de defesa. A decisão foi tomada diretamente pelo presidente Calles: executá-los publicamente como mensagem de intimidação aos católicos mexicanos.</p>
+        <p>Na manhã de <strong>23 de novembro de 1927</strong>, Miguel foi conduzido ao pátio da sede da polícia na Cidade do México. Jornalistas e fotógrafos foram convocados — o governo queria que a execução fosse amplamente divulgada como sinal de força.</p>
+
+        <h3>O Fuzilamento — As Últimas Palavras</h3>
+        <p>No pátio, Miguel <strong>perdoou seus executores</strong> com um abraço. Recusou a venda nos olhos. Pediu alguns momentos para rezar — ajoelhou-se, rezou em silêncio, depois se levantou.</p>
+        <p>Abriu os braços em forma de cruz. Segurou um crucifixo numa mão e um rosário na outra. Olhou para o pelotão de fuzilamento na frente dele.</p>
+        <p>E gritou: <strong>"Viva Cristo Rey!"</strong></p>
+        <p>Os tiros soaram. Miguel caiu. Um soldado aproximou-se para dar o tiro de misericórdia — e mesmo no chão, Miguel ergueu o punho e murmurou uma última vez: <em>"Viva Cristo Rey."</em></p>
+        <p>O governo havia convocado fotógrafos para intimidar os católicos. O efeito foi exatamente o oposto: as fotos do Padre Pro com os braços abertos em cruz no pátio de fuzilamento tornaram-se algumas das imagens religiosas mais poderosas do século XX — e circularam pelo mundo inteiro, transformando o padre num mártir de dimensão universal.</p>
+        <p>O velório de Miguel e Humberto na casa da família foi visitado por <strong>multidões imensas</strong> — o governo, tentando impedir manifestações, acabou gerando um cortejo fúnebre de proporções que nunca havia visto.</p>
+
+        <h3>Beatificação e Legado</h3>
+        <p>O Papa <strong>João Paulo II</strong> — que havia crescido sob outra ditadura ateísta, a do comunismo polonês — beatificou Miguel Pro em <strong>25 de setembro de 1988</strong>, numa cerimônia em Roma. Na homilia, disse que Miguel havia demonstrado que <em>"a alegria cristã não é negada pelo sofrimento, mas sim completada por ele."</em></p>
+        <p>Miguel Pro permanece como um dos santos mais amados do México e da América Latina — não apenas pelos católicos praticantes, mas por todos os que admiram a coragem de um homem que escolheu servir ao invés de fugir, e que morreu rindo da morte com os braços abertos. Sua história é única no catálogo dos mártires modernos: um padre que era ao mesmo tempo um ator, um comediante e um espião de Deus — e que pagou com a vida a aposta de que Cristo valeria mais do que a segurança.</p>
+      </div>
+    </section>
+
+    <!-- LINHA DO TEMPO -->
+    <section class="timeline-section" id="cronologia">
+      <div class="timeline-header">
+        <span class="section-tag">Seção 02</span>
+        <div class="section-header-left">
+          <h2>Linha do Tempo</h2>
+          <p>36 anos de vida — de Zacatecas ao pátio de fuzilamento da Cidade do México</p>
+        </div>
+      </div>
+      <div class="timeline-grid">
+        <div class="tl-item">
+          <p class="tl-ano">13 Jan 1891</p>
+          <h3 class="tl-evento">Nascimento em Zacatecas</h3>
+          <p class="tl-desc">Nasce numa família numerosa e católica. Cresce nas regiões mineiras do México, desenvolvendo amor pelos trabalhadores pobres e talento natural para o humor.</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-ano">1911 · 20 anos</p>
+          <h3 class="tl-evento">Ingresso na Companhia de Jesus</h3>
+          <p class="tl-desc">Após um retiro espiritual, descobre a vocação jesuíta. Ingressa no noviciado da Companhia de Jesus no México.</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-ano">1914 – 1925</p>
+          <h3 class="tl-evento">Formação no exílio</h3>
+          <p class="tl-desc">Com a perseguição religiosa no México, parte para os EUA, Espanha e Bélgica. Sofre de úlceras graves mas continua os estudos com determinação.</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-ano">31 Ago 1925</p>
+          <h3 class="tl-evento">Ordenação sacerdotal na Bélgica</h3>
+          <p class="tl-desc">Ordenado padre em Enghien, Bélgica. Retorna ao México sabendo que a Igreja é perseguida e que o ministério será perigoso.</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-ano">Jul 1926</p>
+          <h3 class="tl-evento">Retorno ao México — Lei Calles</h3>
+          <p class="tl-desc">Retorna ao México um mês antes da promulgação da Lei Calles, que fecha igrejas e criminaliza o ministério público. Começa o ministério clandestino.</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-ano">1926 – 1927</p>
+          <h3 class="tl-evento">O padre disfarçado</h3>
+          <p class="tl-desc">Disfarçado de operário, motorista e mendigo, celebra Missas em garagens e porões, distribui comunhão, confessa e bate crianças clandestinamente. Organiza redes de caridade para centenas de famílias pobres.</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-ano">13 Nov 1927</p>
+          <h3 class="tl-evento">Prisão sem acusação formal</h3>
+          <p class="tl-desc">Preso sem evidências de envolvimento num atentado contra Obregón. Detido dez dias sem julgamento, sem advogado e sem direito de defesa.</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-ano">23 Nov 1927</p>
+          <h3 class="tl-evento">Fuzilamento — "Viva Cristo Rey!"</h3>
+          <p class="tl-desc">Fuzilado no pátio da polícia em frente a fotógrafos convocados pelo governo. Abre os braços em cruz e grita "Viva Cristo Rey!" antes dos tiros. As fotos circulam pelo mundo.</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-ano">25 Set 1988</p>
+          <h3 class="tl-evento">Beatificação por João Paulo II</h3>
+          <p class="tl-desc">Beatificado em Roma. João Paulo II diz que Miguel demonstrou que "a alegria cristã não é negada pelo sofrimento, mas completada por ele."</p>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- BEATIFICAÇÃO -->
+  <section class="milagres-section" id="beatificacao">
+    <div class="milagres-inner">
+      <span class="section-tag">Seção 03</span>
+      <div class="section-header-left">
+        <h2>Beatificação e Reconhecimento</h2>
+        <p>O processo que levou Miguel Pro ao reconhecimento oficial da Igreja</p>
+      </div>
+      <div class="milagres-grid">
+        <div class="milagre-card">
+          <p class="milagre-numero">✦</p>
+          <p class="milagre-local">Roma · 1988</p>
+          <h3 class="milagre-titulo">Beatificação como mártir</h3>
+          <p class="milagre-desc">Miguel Pro foi beatificado pelo Papa João Paulo II em 25 de setembro de 1988 como mártir — categoria que, na tradição da Igreja, não exige a verificação de milagres adicionais para a beatificação, pois o próprio martírio é considerado o sinal supremo de santidade. A causa foi aberta pela Diocese da Cidade do México com base nos testemunhos dos sobreviventes e na documentação histórica do fuzilamento.</p>
+          <span class="milagre-ano-badge">Beatificado como mártir · 25 Set 1988</span>
+        </div>
+        <div class="milagre-card">
+          <p class="milagre-numero">✦</p>
+          <p class="milagre-local">México · Século XX</p>
+          <h3 class="milagre-titulo">As fotos que converteram o plano do governo</h3>
+          <p class="milagre-desc">O presidente Calles mandou fotógrafos para o fuzilamento com a intenção de intimidar os católicos mexicanos. As imagens do Padre Pro com os braços abertos em cruz, sorrindo antes dos tiros, tiveram o efeito contrário — tornaram-se ícones de resistência e fé, circularam pelo mundo inteiro e transformaram o mártir numa figura de dimensão universal. São hoje consideradas algumas das fotografias religiosas mais poderosas do século XX.</p>
+          <span class="milagre-ano-badge">23 Nov 1927 · Cidade do México</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="perfil-content">
+
+    <!-- GALERIA -->
+    <section class="galeria-section" id="galeria">
+      <span class="section-tag">Seção 04</span>
+      <div class="section-header-left">
+        <h2>Galeria</h2>
+        <p>Fotografias do Beato Miguel Pro — incluindo as históricas imagens do fuzilamento</p>
+      </div>
+      <div class="galeria-grid">
+        <div class="galeria-item">
+          <img src="../imagens3/bmiguel1.jpg" alt="Beato Miguel Pro" style="width:100%;height:100%;object-fit:cover;" />
+        </div>
+        <div class="galeria-item">
+          <img src="../imagens3/bmiguel2.jpg" alt="Beato Miguel Pro" style="width:100%;height:100%;object-fit:cover;" />
+        </div>
+        <div class="galeria-item">
+          <img src="../imagens3/bmiguel6.jpg" alt="Beato Miguel Pro" style="width:100%;height:100%;object-fit:cover;" />
+        </div>
+        <div class="galeria-item">
+          <img src="../imagens3/bmiguel4.jpg" alt="Beato Miguel Pro" style="width:100%;height:100%;object-fit:cover;" />
+        </div>
+        <div class="galeria-item">
+          <img src="../imagens3/bmiguel5.jpg" alt="Beato Miguel Pro" style="width:100%;height:100%;object-fit:cover;" />
+        </div>
+        <div class="galeria-item" style="grid-column: 2 / 4;">
+          <img src="../imagens3/bmiguel3.jpg" alt="Beato Miguel Pro rezando antes do fuzilamento" style="width:100%;height:100%;object-fit:cover;" />
+        </div>
+      </div>
+      <p class="galeria-legenda">
+        Imagens utilizadas sob licença de seus respectivos autores.
+        <a href="../creditos.html" style="color:var(--gold-dark);text-decoration:none;">Créditos completos disponíveis aqui.</a>
+      </p>
+    </section>
+
+    <!-- FONTES -->
+    <section class="fontes-section" id="fontes">
+      <span class="section-tag">Seção 06</span>
+      <div class="section-header-left">
+        <h2>Fontes e Referências</h2>
+        <p>Documentação utilizada para a elaboração deste perfil</p>
+      </div>
+      <div class="fontes-lista">
+        <div class="fonte-item">
+          <span class="fonte-tipo">Site Oficial</span>
+          <div><p class="fonte-titulo">Companhia de Jesus — jesuits.global</p><p class="fonte-autor">Perfil oficial do Beato Miguel Pro na Companhia de Jesus</p></div>
+          <a href="https://www.jesuits.global/saint-blessed/blessed-miguel-agustin-pro/" target="_blank" class="fonte-link">Acessar →</a>
+        </div>
+        <div class="fonte-item">
+          <span class="fonte-tipo">Livro</span>
+          <div><p class="fonte-titulo">Beato Miguel Agustín Pro</p><p class="fonte-autor">Tom Rochford, SJ · Companhia de Jesus, 1988</p></div>
+          <span class="fonte-link">Impresso</span>
+        </div>
+        <div class="fonte-item">
+          <span class="fonte-tipo">Livro</span>
+          <div><p class="fonte-titulo">Padre Pro — Mártir da Revolução Mexicana</p><p class="fonte-autor">Ann Ball · Editora Loyola, 1996</p></div>
+          <span class="fonte-link">Impresso</span>
+        </div>
+        <div class="fonte-item">
+          <span class="fonte-tipo">Livro</span>
+          <div><p class="fonte-titulo">La Cristiada — A Guerra Cristera no México</p><p class="fonte-autor">Jean Meyer · Fondo de Cultura Económica, 1973</p></div>
+          <span class="fonte-link">Impresso</span>
+        </div>
+        <div class="fonte-item">
+          <span class="fonte-tipo">Vatican News</span>
+          <div><p class="fonte-titulo">Beatificação de Miguel Pro — João Paulo II</p><p class="fonte-autor">Santa Sé · 25 de setembro de 1988</p></div>
+          <a href="https://www.vatican.va/content/john-paul-ii/it/homilies/1988/documents/hf_jp-ii_hom_19880925_sei-beati.html" target="_blank" class="fonte-link">Acessar →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- NAVEGAÇÃO -->
+    <div class="nav-santos-div">
+      <a href="lauramontoya.html" class="nav-santo-link">
+        <span class="nav-santo-label">← Santo Anterior</span>
+        <span class="nav-santo-nome">Santa Laura Montoya</span>
+      </a>
+      <a href="carlo-acutis.html" class="nav-santo-link nav-santo-dir">
+        <span class="nav-santo-label">Próximo Santo →</span>
+        <span class="nav-santo-nome">São Carlo Acutis</span>
+      </a>
+    </div>
+
+  </div>
+
+  <!-- ORAÇÃO -->
+  <section class="oracao-section" id="oracao">
+    <div class="oracao-inner">
+      <span class="section-tag">Seção 05</span>
+      <h2 class="oracao-titulo">Oração por Intercessão do Beato Miguel Pro</h2>
+      <div class="oracao-texto">
+        <p>Senhor Jesus, Tu que disseste que não há amor maior do que dar a vida pelos amigos, concede-nos, pela intercessão do Beato Miguel Pro, a coragem de viver a fé mesmo quando ela é perigosa — e a alegria de um coração que nem a perseguição nem a morte conseguem roubar.</p>
+        <p>Ele poderia ter fugido. Tinha talento, inteligência, humor e recursos para desaparecer num país em guerra. Escolheu ficar — disfarçado de tudo e de todos — para que os pobres da Cidade do México pudessem receber os sacramentos. E quando o apanharam, morreu com os braços abertos e o nome de Cristo nos lábios, como se o fuzilamento fosse apenas mais uma cena do grande teatro da misericórdia de Deus.</p>
+        <p>Beato Miguel Pro, mártir da Guerra Cristera, intercede por todos os cristãos perseguidos no mundo inteiro, pelos que exercem o ministério em condições de perigo, e por todos os que precisam de coragem para dizer — em voz alta ou em silêncio — "Viva Cristo Rey!" Amém.</p>
+      </div>
+      <p class="oracao-fecho">· Para uso privado · Aprovação eclesiástica recomendada ·</p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <span class="footer-logo">Santos da Modernidade</span>
+      <span class="footer-copy">© Santos da Modernidade · Ad Maiorem Dei Gloriam</span>
+    </div>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      const menu = document.querySelector('.nav-links');
+      const btn = document.getElementById('nav-hamburguer');
+      menu.classList.toggle('aberto');
+      btn.textContent = menu.classList.contains('aberto') ? '✕' : '☰';
+    }
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        document.querySelector('.nav-links').classList.remove('aberto');
+        document.getElementById('nav-hamburguer').textContent = '☰';
+      });
+    });
+  </script>
+
+</body>
+</html>
