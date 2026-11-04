@@ -151,6 +151,7 @@
       border: 1px solid rgba(201,168,76,0.1); overflow: hidden;
     }
     .galeria-item:first-child { grid-row: 1 / 3; }
+    .galeria-item--wide { grid-column: 1 / -1; }
     .galeria-item img { width: 100%; height: 100%; object-fit: cover; }
     .galeria-legenda { font-size: 0.75rem; color: var(--text-muted); text-align: center; margin-top: 1rem; font-style: italic; font-family: 'Cormorant Garamond', serif; }
     .oracao-section {
@@ -183,9 +184,9 @@
     .nav-santo-label { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted); }
     .nav-santo-nome { font-family: 'Cinzel', serif; font-size: 0.95rem; color: var(--gold-dark); transition: color 0.2s; }
     .nav-santo-link:hover .nav-santo-nome { color: var(--gold); }
-    @media (max-width: 768px) {
+     @media (max-width: 768px) {
       .perfil-hero { grid-template-columns: 1fr; }
-      .perfil-hero-right { display: none; }
+      .perfil-hero-right { display: flex; }
       .perfil-hero-left { padding: 3rem 1.5rem; }
       .bio-section { grid-template-columns: 1fr; gap: 2rem; }
       .bio-sidebar { position: static; }
@@ -194,9 +195,11 @@
       .tl-item { text-align: left !important; padding: 1rem 0 1rem 2rem !important; }
       .tl-item::after { left: 0 !important; right: auto !important; }
       .milagres-grid { grid-template-columns: 1fr; }
-      .galeria-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
-      .galeria-item:first-child { grid-row: auto; }
+      .galeria-grid { grid-template-columns: 1fr 1fr; grid-template-rows: none; grid-auto-rows: 200px; }
+      .galeria-item:first-child { grid-row: auto; grid-column: 1 / -1; }
       .fonte-item { grid-template-columns: 1fr; gap: 0.5rem; }
+      .section-header-left { padding: 0 24px; }
+      .section-tag { padding-left: 24px; }
     }
   </style>
 </head>
@@ -428,7 +431,7 @@
         <div class="galeria-item">
           <img src="../imagens3/bmiguel5.jpg" alt="Beato Miguel Pro" style="width:100%;height:100%;object-fit:cover;" />
         </div>
-        <div class="galeria-item" style="grid-column: 2 / 4;">
+        <div class="galeria-item galeria-item--wide">
           <img src="../imagens3/bmiguel3.jpg" alt="Beato Miguel Pro rezando antes do fuzilamento" style="width:100%;height:100%;object-fit:cover;" />
         </div>
       </div>
@@ -480,9 +483,9 @@
         <span class="nav-santo-label">← Santo Anterior</span>
         <span class="nav-santo-nome">Santa Laura Montoya</span>
       </a>
-      <a href="carlo-acutis.html" class="nav-santo-link nav-santo-dir">
+      <a href="damiao.html" class="nav-santo-link nav-santo-dir">
         <span class="nav-santo-label">Próximo Santo →</span>
-        <span class="nav-santo-nome">São Carlo Acutis</span>
+        <span class="nav-santo-nome">S.D. Frei Damião</span>
       </a>
     </div>
 
